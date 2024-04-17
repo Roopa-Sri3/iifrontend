@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../header/Header';
 import Footer from '../footer/Footer';
+import './Layout.css';
 
 /**
  * Creates a genaric Layout for all pages. Except for Login.
@@ -11,7 +12,7 @@ function Layout({
   children,
 }) {
   return (
-    <div>
+    <div className='layout-style'>
       <Header />
       <main>
         {children}
