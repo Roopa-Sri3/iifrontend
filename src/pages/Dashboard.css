@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full height of the viewport */
+  }
+  
+.card {
+    /* Width of the card */
+    padding: 25px 25px 80px 25px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); /* Shadow for a 3D effect */
+    text-align: center;
+}

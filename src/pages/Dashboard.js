@@ -1,11 +1,21 @@
 import React from 'react';
+import SubHeader from './SubHeader';
+import SubLayout from './SubLayout';
+import SubFooter from './SubFooter';
+import './Dashboard.css'; // Importing the Dashboard CSS
 
-function Dashboard() {
+function Table() {
   return (
-    <div>
-        Dashboard Page
+    <div className="container">
+      <div className="card">
+        <table>
+          <SubHeader />
+          <SubLayout />
+          <SubFooter />
+        </table>
+      </div>
     </div>
   );
 }
 
-export default Dashboard;
+export default Table;
