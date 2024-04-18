@@ -1,0 +1,38 @@
+.header {
+  background-color: #0b38a1;
+    display: flex;
+    position:fixed;
+     text-align: left;
+    height: 70px;
+    width: 100%;  
+}
+
+
+.title-container {
+  width: 12em;
+  background-color: transparent;
+  border-radius: 5px;
+  padding: 5px 10px;
+  position: relative;
+  height: 30px;
+  margin-top: 15px;
+  box-shadow: 0 0 10px 1px rgba(255, 255, 255, 0.5);
+}
+
+.title {
+  color: white;
+  height: 50px;
+  display: block;
+  margin: auto;
+  position: absolute;
+  top: 1px;
+  box-sizing: border-box;
+  font-size: 25px;
+  border-radius: 5px;
+}
+
+.logo {
+    height: 6rem;
+    margin-left:30px ;
+    margin-right:2em; 
+}

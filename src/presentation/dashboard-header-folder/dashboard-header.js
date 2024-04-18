@@ -1,6 +1,7 @@
 import React from 'react';
-import './Header.css';
+import './dashboard-header.css';
 import companylogo from '../../images/company-symbol.png';
+import '../../images/icon.svg';
 
 function Header(){
   return (
@@ -8,7 +9,6 @@ function Header(){
       <img src ={companylogo} alt="Hal" className = 'logo'></img>
       <div className="title-container">
         <p className="title">Interview Insights</p>
-
       </div>
     </header>
   );
