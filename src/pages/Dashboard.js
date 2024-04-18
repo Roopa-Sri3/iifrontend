@@ -4,8 +4,9 @@ import './Dashboard.css';
 function Dashboard() {
   return (
     <div>
-      <button class='config-question'>
-        <a href='/questions_configure'>Configure Questions</a>
+      <button className='config-question'>
+        <a className="anchor-tag" href='/questions_configure'>
+          Configure Questions</a>
       </button>
     </div>
   );
