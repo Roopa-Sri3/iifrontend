@@ -1,0 +1,10 @@
+.modal {
+  &.show {
+    display: block;
+    padding-left: 0;
+  }
+
+  .modal-header{
+    border-bottom: 0;
+  }
+}
