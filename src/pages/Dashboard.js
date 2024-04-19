@@ -1,21 +1,21 @@
 import React from 'react';
-import Button from '../component/core/button/button';
+// import Button from '../components/core/button/button';
 
 function Dashboard() {
-  const handleClick = () => {
-    console.log('candidate added successfully');
-  };
+  // const handleClick = () =>{
+  //   console.log("hello");
+  // };
 
   return (
     <div>
-        Dashboard Page<br/>
-      <Button
-        label="Click me"
+        Dashboard Page
+      {/* <Button
+        id="addCandidateButton"
+        className="myButton"
         handleClick={handleClick}
-        id="myButton"
-        className="add-candidate"
-        disabled={false}
-      />
+      >
+          click me
+      </Button> */}
     </div>
   );
 }
