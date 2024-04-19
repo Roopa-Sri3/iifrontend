@@ -1,0 +1,16 @@
+.footer{
+    text-align: center;
+    position:fixed;
+    bottom: 20px;
+    width: 100%;
+    height: 5px;
+    /* background-color: white; */
+    /* font-size: xx-small; */
+}
+
+.footer-text{
+    height: 1200px;
+    font-size: xx-small;
+    background-color: white;
+    color: #928f8f;
+}

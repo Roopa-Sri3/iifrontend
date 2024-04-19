@@ -27,7 +27,7 @@ h2{
 
 input, label{
     margin-left: 50px;
-    margin-bottom: 20px;
+    /* margin-bottom: 6px; */
     width: 80%;
 }
 

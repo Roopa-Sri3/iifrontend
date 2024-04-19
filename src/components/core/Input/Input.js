@@ -1,12 +1,44 @@
 import React from 'react';
 
-function Input (props) {
+function Input ({
+  type,
+  placeholder,
+  id,
+  onChange,
+  autoComplete,
+  name,
+  value,
+  onFocus,
+  className,
+  disabled,
+  required,
+  hasClear,
+  handleClearClick,
+  getValue,
+  minLength,
+  maxLength,
+  ...restInputProps
+}) {
+  // const { disabled } = restInputProps;
   return (
     <input
-      type={props.type}
-      placeholder={props.placeholder}
-      id={props.id}
-      onChange={props.onChange}
+      type={type}
+      placeholder={placeholder}
+      id={id}
+      onChange={onChange}
+      autoComplete={autoComplete}
+      name = {name}
+      value = {value}
+      onFocus = {onFocus}
+      className = {className}
+      disabled = {disabled}
+      required = {required}
+      hasClear = {hasClear}
+      handleClearClick = {handleClearClick}
+      getValue = {getValue}
+      minLength = {minLength}
+      maxLength = {maxLength}
+      {...restInputProps}
     />
   );
 }
