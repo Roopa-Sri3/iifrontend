@@ -5,6 +5,7 @@ const appSlice = createSlice({
   initialState: {
     isUseLoggedIn: false,
     userName: '',
+    apiCounter: 0,
   },
   reducers: {
     setLogin: (state, action) => {
@@ -17,14 +18,24 @@ const appSlice = createSlice({
       state.isUseLoggedIn = false;
       state.userName = '';
     },
+    incrementApiCounter: (state) => {
+      state.apiCounter += 1;
+    },
+    decrementApiCounter: (state) => {
+      if (state.apiCounter > 0) {
+        state.apiCounter -= 1;
+      }
+    },
   },
 });
-
-export default appSlice.reducer;
 
 export const {
   setLogin,
   resetApp,
   setUserName,
+  incrementApiCounter,
+  decrementApiCounter,
 } = appSlice.actions;
+
+export default appSlice.reducer;
 
