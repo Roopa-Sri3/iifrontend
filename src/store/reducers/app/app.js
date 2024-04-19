@@ -9,6 +9,7 @@ const appSlice = createSlice({
       modalName: '',
       modalData: null,
     },
+    apiCounter: 0,
   },
   reducers: {
     setLogin: (state, action) => {
@@ -29,11 +30,17 @@ const appSlice = createSlice({
     closeModal: (state, action) => {
       state.modal.modalName = '';
       state.modal.modalData = null;
-    }
+    },
+    incrementApiCounter: (state) => {
+      state.apiCounter += 1;
+    },
+    decrementApiCounter: (state) => {
+      if (state.apiCounter > 0) {
+        state.apiCounter -= 1;
+      }
+    },
   },
 });
-
-export default appSlice.reducer;
 
 export const {
   setLogin,
@@ -41,5 +48,9 @@ export const {
   setUserName,
   openModal,
   closeModal,
+  incrementApiCounter,
+  decrementApiCounter,
 } = appSlice.actions;
+
+export default appSlice.reducer;
 
