@@ -9,7 +9,7 @@ const Button = ({
   className,
   disabled = false,
   children,
-}) =>{
+}) => {
   return (
     <button
       id={id}
@@ -17,7 +17,10 @@ const Button = ({
       onClick={handleClick}
       disabled={disabled}
     >
-      {children || label}
+      <div className="buttonContainer">
+        <div className="label">{label}</div>
+        {children}
+      </div>
     </button>
   );
 };
