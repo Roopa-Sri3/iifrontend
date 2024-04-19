@@ -1,11 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
+const initialState = {
+  isUseLoggedIn: false,
+  userName: '',
+  apiCounter: 0,
+};
 
 const appSlice = createSlice({
   name: 'app',
-  initialState: {
-    isUseLoggedIn: false,
-    userName: '',
-  },
+  initialState,
   reducers: {
     setLogin: (state, action) => {
       state.isUseLoggedIn = action.payload.isUseLoggedIn;
@@ -17,14 +19,22 @@ const appSlice = createSlice({
       state.isUseLoggedIn = false;
       state.userName = '';
     },
+    incrementApiCounter: (state) => {
+      state.apiCounter += 1;
+    },
+    decrementApiCounter: (state) => {
+      if (state.apiCounter > 0) {
+        state.apiCounter -= 1;
+      }
+    },
   },
 });
-
-export default appSlice.reducer;
-
 export const {
   setLogin,
   resetApp,
   setUserName,
+  incrementApiCounter,
+  decrementApiCounter,
 } = appSlice.actions;
 
+export default appSlice.reducer;
