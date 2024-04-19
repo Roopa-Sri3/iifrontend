@@ -1,12 +1,6 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { FetchUsers } from '../store/reducers/app/app';
+import React from "react";
 
 function Login() {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(FetchUsers());
-  }, [dispatch]);
   return (
     <div>
       Login Page
