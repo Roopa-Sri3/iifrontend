@@ -1,5 +1,5 @@
 import React from 'react';
-import FileUpload from '../components/FileUpload';
+import FileUpload from '../components/core/File Upload/FileUpload';
 import img from '../images/upload-file.svg';
 import './Questionsconfiguration.css';
 
@@ -13,7 +13,7 @@ function Questionsconfiguration() {
       payload.type = 'formData';
       payload.file_name = attachedFiles[0].name;
       for (let fileIndex = 0; fileIndex < noOfFiles; fileIndex += 1){
-        payload.path = attachedFiles[fileIndex];
+        payload.questionsFile = attachedFiles[fileIndex];
       }
     }
   };
