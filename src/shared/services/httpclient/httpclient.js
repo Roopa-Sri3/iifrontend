@@ -63,6 +63,7 @@ class HTTPClient {
       };
     } finally {
       this.dispatch(decrementApiCounter());
+      console.log('POST request completed');
     }
     return result;
   }
