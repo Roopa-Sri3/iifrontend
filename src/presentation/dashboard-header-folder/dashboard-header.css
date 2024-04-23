@@ -9,28 +9,28 @@
 
 
 .title-container {
-  width: 12em;
+  width: 13em;
   font :Inter;
   background-color: transparent;
   border-radius: 5px;
   margin-left: 180px;
   padding: 5px 10px;
   position: fixed;
-  height: 30px;
+  height: 40px;
   margin-top: 15px;
-  box-shadow: 0 0 10px 1px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 7px 1px rgba(255, 255, 255, 0.5);
 }
 
 .title {
   color: white;
-  height: 50px;
+  height: 90px;
   display: block;
   margin: auto;
-  position: absolute;
-  top: 1px;
+  position: fixed;
+  top: 13.08px;
   box-sizing: border-box;
   font-size: 25px;
-  border-radius: 5px;
+  border-radius: 100px;
 }
 
 .logo {
@@ -49,3 +49,14 @@
 .user-icon img {
   height: 70%;
 }
+
+@media (max-width: 768px) {
+  .user-icon {
+    margin-left: 50px;
+  }
+  .user-icon img {
+    max-height: 50%;
+    max-width: 50%;
+  }
+}
+

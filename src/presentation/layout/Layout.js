@@ -1,5 +1,4 @@
 import React from 'react';
-// import Header from '../dashboard-header-folder/dashboard-header';
 import Footer from '../dashboard-footer-folder/dashboard-footer';
 import  Header from '../dashboard-header-folder/dashboard-header';
 
