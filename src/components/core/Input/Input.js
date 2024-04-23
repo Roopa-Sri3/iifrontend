@@ -19,7 +19,6 @@ function Input ({
   maxLength,
   ...restInputProps
 }) {
-  // const { disabled } = restInputProps;
   return (
     <input
       type={type}

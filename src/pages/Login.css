@@ -1,19 +1,13 @@
-/* .login-body-page{
-    background-image: url('../Images/BlueBackground.png');
-    background-position: 60%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    z-index: 0;
-    /* height: 100%;
-    width: 100%; */
-/* } */ 
-
-html{
+.page{
+    height: 95vh;
+    width: 100vw;
     background-color: #ebeef3;
+    position: absolute;
+    z-index: -2;
 }
 
 .background-image{
-    height: 57%;
+    height: 59%;
     width: 100%;
     position: absolute;
     top: 0;
@@ -23,25 +17,14 @@ html{
 }
 
 .innova-logo{
-    /* position: absolute; */
     margin-left: 2em;
 }
 
-/* html::after{
-    background-image: url('../../public/Group.png');
-    background-position: center 50%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 50%;
-    width: 50%;
-} */
 
 .login-image-block{
     margin: auto;
     margin-left: 10%;
     margin-top: 5%;
-    /* background-color: #ebeef3 */
-    /* display: inline; */
 }
 
 .image-text{
@@ -55,9 +38,7 @@ img{
 .login-container{
     height: 70%;
     background-color: white;
-    /* width:500px; */
     width:35%;
-    /* padding:15px; */
     padding: 2em;
     border: 2px solid white;
     border-radius: 20px;
@@ -66,95 +47,112 @@ img{
     top: 50%;
     left: 75%;
     transform: translate(-50%, -50%);
-    /* z-index: 2; */
     box-shadow: 0 4px 8px 0 rgba(237, 221, 221, 0.501), 0 6px 6px 0 rgba(0, 0, 0, 0.19);
 }
 
 
-input{
-  /* width: 20%; */
-  /* width:100%; */
+/* input{
   height: 3rem;
-  /* padding: 2px; */
   padding:1em;
   box-sizing: border-box;
   margin-top: 15px;
-  /* margin-top: 2px;
-  margin-bottom: 2px; */
-  /* margin:1em auto; */
   border: 3px solid #ccc;
-  /* border-radius: 2px; */
   border-radius: 10px;
-  /* transition: border-color 0.3s */
-}
-
-/* label{
-    margin:2em auto;
+  margin-left: 50px;
+  width: 80%;
 } */
 
-h3{
+/* h3{
+    display: inline;
+    color:  #0a5abb;
+    font-weight: 650;
+    font-size: large;
+} */
+
+.login-welcome-style{
+    font-size: large;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.signin-text{
+    color: black;
+    text-align: center;
+    display: block;
+    font-size: large;
+    font-weight: bold;
+}
+
+.basic-input[type=submit]{
+    background-color: #4595ff;
+    border: none;
+    color: white;
+    padding: 10px 32px;
+    text-decoration: none;
+    cursor: pointer;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.basic-input:focus{
+    border: 1px solid #6098f5;
+    box-shadow: none;
+    outline: none;
+    
+}
+
+label{
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 50px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+/* .label-text{
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 500px;
+    margin-bottom: 20px;
+    width: 100%;
+    display: block;
+} */
+
+input.error {
+    border: 1px solid red;
+    margin-left: 3.2em;
+    height: 3rem;
+    padding:1em;
+    box-sizing: border-box;
+    margin-top: 10px;
+    border-radius: 10px;
+    margin-left: 50px;
+    width: 80%;
+}
+
+input.basic-input{
+    height: 3rem;
+    padding:1em;
+    box-sizing: border-box;
+    margin-top: 10px;
+    border: 3px solid #ccc;
+    border-radius: 10px;
+    margin-left: 50px;
+    width: 80%;
+}
+  
+.error-message{
+    color: red;
+    margin-left: 3.2em;
+    margin-top: 6px;
+}
+
+.label-and-input{
+    margin-bottom: 20px;
+}
+
+.interview-insights-name{
     display: inline;
     color:  #0a5abb;
     font-weight: 650;
     font-size: large;
 }
-
-.login-welcome-style{
-    font-size: large;
-    text-align: center;
-}
-
-.signin-text{
-    color: black;
-    align-items: center;
-    display: block;
-}
-
-input[type=submit]{
-    /* color: white; */
-    background-color: #4595ff;
-    border: none;
-    color: white;
-    padding: 16px 32px;
-    text-decoration: none;
-    /* margin: 4px 2px; */
-    cursor: pointer;
-    align-items: center;
-}
-
-input:focus{
-    border: 1px solid #6098f5;
-    box-shadow: none;
-    outline: none;
-}
-
-label{
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-/* body {
-    background-image: url('');
-    background-position: center 60%;
-    background-repeat: no-repeat;
-    background-size: cover;
-  } */
-
-  input.error {
-    border: 1px solid red;
-  }
-  
-  /* #errorMessages {
-    color: red;
-    margin-top: 10px;
-  } */
-
-  .error-message{
-    color: red;
-    margin-left: 3.2em;
-
-  }
-
-  .label-and-input{
-    margin-bottom: 20px;
-  }
   
