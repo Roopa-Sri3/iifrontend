@@ -1,6 +1,6 @@
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
-import PrivateRoute from "./PrivateRoute component/PrivateRoute";
+import PrivateRoute from "./PrivateRoute component/HrPrivateRoute";
 import UnauthorizedAccess from "./Unauthorised component/UnauthorisedAcess";
 const ROUTES_CONFIG = [
   {
