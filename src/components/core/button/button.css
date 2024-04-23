@@ -1,0 +1,18 @@
+.button {
+    background-color:#4595FF;
+    color:white;
+    padding:8px 16px;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+    height:45px;
+    box-shadow:0 4px 19px 0 rgba(119, 147, 65, 0.3);
+}
+
+.buttonContainer {
+    display:flex;
+    align-items:center;
+}
+.label {
+    margin-right:10px;
+}
