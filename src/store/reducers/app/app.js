@@ -3,8 +3,10 @@ import { createSlice } from '@reduxjs/toolkit';
 const appSlice = createSlice({
   name: 'app',
   initialState: {
-    isUseLoggedIn: false,
+    isUserLoggedIn: false,
     userName: '',
+    profileName: '',
+    role: '',
     modal:{
       modalName: '',
       modalData: null,
@@ -16,14 +18,22 @@ const appSlice = createSlice({
   },
   reducers: {
     setLogin: (state, action) => {
-      state.isUseLoggedIn = action.payload.isUseLoggedIn;
+      state.isUserLoggedIn = action.payload.isUseLoggedIn;
     },
     setUserName: (state, action) => {
       state.userName = action.payload.userName;
     },
+    setUserDetails: (state, action) => {
+      state.userName = action.payload.userName;
+      state.profileName = action.payload.profileName;
+      state.role = action.payload.role;
+      state.isUserLoggedIn = true;
+    },
     resetApp: (state) => {
-      state.isUseLoggedIn = false;
+      state.isUserLoggedIn = false;
       state.userName = '';
+      state.profileName = '';
+      state.role = '';
     },
     openModal: (state,action) => {
       state.modal.modalName = action.payload.modalName;
@@ -62,6 +72,7 @@ export const {
   setLogin,
   resetApp,
   setUserName,
+  setUserDetails,
   openModal,
   closeModal,
   incrementApiCounter,
