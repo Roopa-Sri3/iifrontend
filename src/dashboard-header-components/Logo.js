@@ -1,7 +1,7 @@
 import React from 'react';
 
-function Logo({ src, alt }) {
-  return <img src={src} alt={alt} className='logo' />;
+function Logo({ src, alt, className }) {
+  return <img src={src} alt={alt} className={className} />;
 }
 
 export default Logo;

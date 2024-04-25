@@ -1,27 +1,52 @@
-import React,{ useState } from 'react';
+import React, { useState } from 'react';
 import companylogo from '../../images/company-symbol.png';
-import usericon from '../../images/user-icon.png';
-import Logo from '../../dashboard-header-components/Logo';
+import Innovalogo from '../../dashboard-header-components/Logo';
 import Title from '../../dashboard-header-components/Title';
-import UserIcon from '../../dashboard-header-components/UserIcon';
+import RoundButton from '../../dashboard-header-components/RoundButton';
 import './dashboard-header.css';
+import Expand from '../../components/core/assets/svgs/Expand';
+import LogoutIcons from '../../components/core/assets/svgs/LougoutIcons';
 
 const Header = () => {
-  const [showLogout, setShowLogout] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [showLogout, setShowLogout] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
+  console.log("Is Opened.........", isOpen);
 
   const handleUserIconClick = () => {
-    setShowLogout(!showLogout);
+    if (isLoggedIn) {
+      setShowLogout(!showLogout);
+    } else {
+      setIsLoggedIn(true);
+    }
+  };
+
+  const handleLogout = () => {
+    console.log('User logged out');
+  };
+
+  const toggleExpand = () => {
+    setIsOpen(!isOpen);
   };
 
   return (
     <div className="header">
-      <Logo src={companylogo} alt="Hal"/>
-
-      <div className="title-container">
-        <Title text="Interview Insights"/>
+      <Innovalogo src={companylogo} alt="companylogo" className='innova-logo' />
+      <div className="title">
+        <Title text="Interview Insights" className="interview-insights-title" />
       </div>
-      <div className = "user-icon">
-        <UserIcon src={usericon} alt="user" onClick={handleUserIconClick} />
+      <div className="round">
+        <RoundButton />
+        <Expand onClick={toggleExpand}/>
+        {isOpen && (
+          <div className="expand"  >
+            <h5 className="user-name">Prakash Myla</h5>
+            <h6 className="user-role">Sr.Software analyst</h6>
+            <hr></hr>
+            <LogoutIcons className="logouticon" />
+            <h6 className="logout">Logout</h6>
+          </div>
+        )}
       </div>
     </div>
   );

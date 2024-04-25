@@ -1,7 +1,10 @@
 import React from 'react';
 
-function Title({ text }) {
-  return <p className='title'>{text}</p>;
+function Title({
+  text,
+  ...restTitleProps
+}) {
+  return <p {...restTitleProps}>{text}</p>;
 }
 
 export default Title;

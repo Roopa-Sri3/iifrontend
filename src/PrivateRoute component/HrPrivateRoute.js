@@ -1,17 +1,20 @@
 import React from 'react';
-import { Route,} from 'react-router-dom';
-import { Navigate } from 'react-router-dom';
+import { Route,Routes,Navigate } from 'react-router-dom';
 
-const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => (
-  <Route
-    {...rest}
-    render={(props) =>
-    {isAuthenticated ?
-      <Component {...props} /> :
-      <Navigate to="/unauthorized" />;
-    }
-    }
-  />
+const HRPrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => (
+  <Routes>
+    <Route
+      {...rest}
+      element={(props) =>
+        isAuthenticated ? (
+          <Component {...props} />
+        ) : (
+        // eslint-disable-next-line max-len
+          <Navigate to={{ pathname: '/', state: { from: props.location, message: 'Unauthorised Access' } }} />
+        )
+      }
+    />
+  </Routes>
 );
 
-export default PrivateRoute;
+export default HRPrivateRoute;
