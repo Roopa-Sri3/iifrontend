@@ -1,0 +1,25 @@
+.app-container {
+  display: flex;
+  align-items: flex-start;
+}
+
+.app-container input[type="checkbox"] {
+  accent-color: #4595FF;
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  opacity: 1;
+  border: 1px solid #D0D5DD;
+  cursor: pointer;
+}
+
+.app-container label {
+  margin-left: 24px; 
+  font-family: Inter;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14.52px;
+  text-align: left;
+  position:relative;
+  top: 8px;
+}
