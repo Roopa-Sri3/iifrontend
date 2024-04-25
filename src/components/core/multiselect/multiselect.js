@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import OptionItem from './option-item';
-import './multiselect.css';
 import ChevronRight from '../../assets/svgs/ChevronRight';
 import DeSelect from '../../assets/svgs/DeSelect';
+import './multiselect.css';
 
 const MultiSelect = ({
   id,
@@ -10,18 +10,19 @@ const MultiSelect = ({
   options,
   checked,
   onChange,
-  getValues,
-  setValues,
+  getValues = [],
+  setValues = [],
   selectedValues,
 }) => {
   const [isMenuOpen,setIsMenuOpen] = useState(false);
-  const [selectedOptions, setSelectedOptions] = useState(selectedValues ?? []);
+  const [selectedOptions, setSelectedOptions] = useState([]);
   const [searchItem,setSearchItem] = useState('');
   const dropboxRef = useRef(null);
 
   useEffect(() => {
-    setSelectedOptions(selectedValues ?? []);
-  }, [selectedValues]);
+    if(selectedValues){
+      setSelectedOptions(selectedValues);
+    }}, [selectedValues]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);

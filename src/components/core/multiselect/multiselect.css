@@ -8,7 +8,7 @@
   border-radius: 8px;
   border: 1px solid #FF2828;
   box-sizing:border-box;
-  padding: 20px, 14px, 10px, 14px;
+  padding: 20px 14px 10px 14px;
   display:flex;
   background: #FFFFFF;
   justify-content: space-between;
@@ -70,6 +70,11 @@
   padding:8px 10px;
   cursor:pointer;
   margin:5px;
+  display:flex;
+  align-items: center;
+}
+.check-box{
+  margin-right: 8px;
 }
 .option-item:hover{
   background: #A5BFF226;

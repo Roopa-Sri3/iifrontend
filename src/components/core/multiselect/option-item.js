@@ -16,7 +16,7 @@ const OptionItem = ({
         value={value}
         checked={checked}
         onChange={onChange}
-      />{" "}
+      />
       <label htmlFor={id}>{label}</label>
     </div>
   );
