@@ -64,17 +64,6 @@ img{
     font-weight: bold;
 }
 
-.basic-input[type=submit]{
-    background-color: #4595ff;
-    border: none;
-    color: white;
-    padding: 10px 32px;
-    text-decoration: none;
-    cursor: pointer;
-    align-items: center;
-    margin-top: 30px;
-}
-
 .basic-input:focus{
     border: 1px solid #6098f5;
     box-shadow: none;
