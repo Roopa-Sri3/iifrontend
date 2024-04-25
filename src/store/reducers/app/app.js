@@ -11,6 +11,9 @@ const appSlice = createSlice({
       modalName: '',
       modalData: null,
     },
+    message : '',
+    messageType : '',
+    timeoutId: null,
     apiCounter: 0,
   },
   reducers: {
@@ -35,9 +38,8 @@ const appSlice = createSlice({
     openModal: (state,action) => {
       state.modal.modalName = action.payload.modalName;
       state.modal.modalData = action.payload.modalData;
-
     },
-    closeModal: (state, action) => {
+    closeModal: (state,action) => {
       state.modal.modalName = '';
       state.modal.modalData = null;
     },
@@ -48,6 +50,20 @@ const appSlice = createSlice({
       if (state.apiCounter > 0) {
         state.apiCounter -= 1;
       }
+    },
+    setAlert: (state, action) => {
+      state.message = action.payload.message;
+      state.messageType = action.payload.messageType;
+    },
+    clearAlert: (state,action) => {
+      state.message = '';
+      state.messageType = '';
+    },
+    setTimeoutId: (state, action) => {
+      state.timeoutId = action.payload;
+    },
+    clearTimeoutId: (state) =>{
+      state.timeoutId = null;
     },
   },
 });
@@ -61,6 +77,10 @@ export const {
   closeModal,
   incrementApiCounter,
   decrementApiCounter,
+  setAlert,
+  clearAlert,
+  setTimeoutId,
+  clearTimeoutId,
 } = appSlice.actions;
 
 export default appSlice.reducer;
