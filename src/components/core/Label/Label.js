@@ -10,7 +10,9 @@ function Label ({
     <label
       htmlFor={htmlFor}
       {...restLabelProps}
-    >{text}</label>
+    >
+      {text}
+    </label>
   );
 }
 

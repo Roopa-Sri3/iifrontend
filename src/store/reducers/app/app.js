@@ -29,6 +29,8 @@ const appSlice = createSlice({
     resetApp: (state) => {
       state.isUserLoggedIn = false;
       state.userName = '';
+      state.profileName = '';
+      state.role = '';
     },
     openModal: (state,action) => {
       state.modal.modalName = action.payload.modalName;

@@ -67,8 +67,7 @@ img{
 .basic-input:focus{
     border: 1px solid #6098f5;
     box-shadow: none;
-    outline: none;
-    
+    outline: none; 
 }
 
 label{
