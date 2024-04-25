@@ -1,5 +1,6 @@
 import React from 'react';
 const Checkbox = ({
+  id,
   label,
   checked,
   onChange,
@@ -9,15 +10,21 @@ const Checkbox = ({
     onChange(event.target.checked);
   };
   return (
-    <div className='app-container'>
-      <input type="checkbox"
+    <div className='checkbox-container'>
+      <input
+        type="checkbox"
+        id={id}
         checked={checked}
         onChange={handleChange}
         disabled={disabled}
       />
-      <label>{label}</label>
+      <label
+        htmlFor={id}
+        className="checkbox-label"
+      >
+        {label}
+      </label>
     </div>
   );
 };
 export default Checkbox;
-

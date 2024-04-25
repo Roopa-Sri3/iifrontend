@@ -1,10 +1,10 @@
-.app-container {
+.checkbox-container {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.app-container input[type="checkbox"] {
+.checkbox-container input[type="checkbox"] {
   accent-color: #4595FF;
   width: 18px;
   height: 18px;
@@ -13,13 +13,12 @@
   cursor: pointer;
 }
 
-.app-container label {
+.checkbox-container label {
   margin-left: 10px; 
   font-family: Inter;
   font-size: 12px;
   font-weight: 500;
   line-height: 14.52px;
   text-align: left;
-  
-}
+  }
 
