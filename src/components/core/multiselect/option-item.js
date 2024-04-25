@@ -8,8 +8,9 @@ const OptionItem = ({
   onChange,
 }) => {
   return (
-    <div>
+    <div className="option-item">
       <input
+        className="check-box"
         type="checkbox"
         id={id}
         value={value}
