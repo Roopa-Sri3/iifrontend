@@ -4,3 +4,9 @@ export const GetUserName = (state) => state.app.userName;
 
 export const IsModalOpen = (state, name) => state.app.modal.modalName === name;
 
+export const GetProfileShortcut = (state) => {
+  /** Logic */
+  // console.log();
+  // return '';
+};
+
