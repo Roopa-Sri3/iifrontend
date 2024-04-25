@@ -37,13 +37,13 @@ const Header = () => {
       </div>
       <div className="round">
         <RoundButton />
-        <Expand onClick={toggleExpand}/>
+        <Expand onClick={toggleExpand} className="expand-icon"/>
         {isOpen && (
-          <div className="expand"  >
-            <h5 className="user-name">Prakash Myla</h5>
+          <div className="expand-div"  >
+            <h6 className="user-name">Prakash Myla</h6>
             <h6 className="user-role">Sr.Software analyst</h6>
             <hr></hr>
-            <LogoutIcons className="logouticon" />
+            <LogoutIcons className="logout-icon" />
             <h6 className="logout">Logout</h6>
           </div>
         )}
