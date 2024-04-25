@@ -1,21 +1,19 @@
 import React from 'react';
 import './SubHeader.css';
+// import FilterComponent from '../assets/svgs/filterImage';
 
-function SubHeader() {
+const SubHeader = ({ columns, headerActions }) => {
   return (
-    <div className='table-head'>
-      <thead>
-        <tr>
-          <th>Candidate Name</th>
-          <th>Tech Skills</th>
-          <th>Status</th>
-          <th>View/Dashboard Report</th>
-          <th>Feedback</th>
-          <th>Actions  </th>
-        </tr>
-      </thead>
-    </div>
+    <thead>
+      <tr>
+        {columns.map((column, index) => (
+          <th key={index}>
+            {column}
+            {headerActions && headerActions[index] && headerActions[index]}
+          </th>
+        ))}
+      </tr>
+    </thead>
   );
-}
-
+};
 export default SubHeader;

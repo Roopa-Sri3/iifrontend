@@ -1,23 +1,15 @@
 import React from 'react';
+import CandidateRow from './CandidateRow';
 
-function SubLayout() {
-  // Assuming you have data to map through for rows
-  const dataRows = []; // Replace with your data array
-
+const SubLayout = ({ data, uploadIcon }) => {
   return (
-    <tbody>
-      {dataRows.map((data, index) => (
-        <tr key={index}>
-          <td>{data.candidateName}</td>
-          <td>{data.techSkills}</td>
-          <td>{data.status}</td>
-          <td>{data.report}</td>
-          <td>{data.feedback}</td>
-          <td>{/* Actions */}</td>
-        </tr>
+    <tbody className='data-row'>
+      {data.map((candidate, index) => (
+        <CandidateRow key={index} candidate={candidate}
+        />
       ))}
     </tbody>
   );
-}
+};
 
 export default SubLayout;

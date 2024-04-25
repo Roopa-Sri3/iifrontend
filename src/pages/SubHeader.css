@@ -1,4 +1,5 @@
-table th {
-    padding: 10px
-
-}
+th {
+    background-color: #D9E0E6;
+    padding: 10px;
+    color: #333;
+  }
