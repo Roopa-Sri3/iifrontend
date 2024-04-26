@@ -10,6 +10,7 @@ function Dashboard() {
           Questions Configuration
         </Link>
       </button>
+      Dashboard Page
     </div>
   );
 }
