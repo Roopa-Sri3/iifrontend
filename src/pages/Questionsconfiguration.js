@@ -1,18 +1,16 @@
-import {React} from 'react';
+import {React, useState} from 'react';
+import {useNavigate} from "react-router-dom";
 import FileUpload from '../components/core/fileUpload/FileUpload';
 import Download from '../components/core/download/Download';
-import BackArrow from '../components/assets/svgs/BackArrow';
-import {useNavigate} from "react-router-dom";
-import { useState } from 'react';
-import Filepicture from '../components/assets/svgs/Filepicture';
-import './Questionsconfiguration.css';
-import DeleteImage from '../components/assets/svgs/DeleteImage';
+import BackarrowIcon from '../components/assets/svgs/BackarrowIcon';
+import FileIcon from '../components/assets/svgs/FileIcon';
+import DeletefileIcon from '../components/assets/svgs/DeletefileIcon';
 import {instructions} from '../shared/constants';
+import './Questionsconfiguration.css';
 
 function Questionsconfiguration() {
 
   const navigate = useNavigate();
-
   const handleNavigation = () => {
     navigate('/dashboard');
   };
@@ -41,7 +39,7 @@ function Questionsconfiguration() {
     <div className='questions-main'>
       <div className='containerhead'>
         <div className='navigate-layout'>
-          <BackArrow onClick={handleNavigation} />
+          <BackarrowIcon onClick={handleNavigation} />
         </div>
         <div className='text-layout-head'>
           <h4 className='subText1'>Add Questions from a File</h4>
@@ -69,7 +67,7 @@ function Questionsconfiguration() {
           {selectedFile && (
             <div className="complete-file-content-layout">
               <div className='file-content-layout'>
-                <div className='file-layout'><Filepicture /></div>
+                <div className='file-layout'><FileIcon /></div>
                 <div className='file-info-layout'>
                   <span className='file-name'>{selectedFile.name}</span>
                   <span className='file-size'>
@@ -78,7 +76,7 @@ function Questionsconfiguration() {
                 </div>
               </div>
               <div className='delete-button'>
-                <DeleteImage onClick={handleDeleteFile}/>
+                <DeletefileIcon onClick={handleDeleteFile}/>
               </div>
             </div>
           )}

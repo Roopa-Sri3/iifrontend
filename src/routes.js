@@ -12,7 +12,7 @@ const ROUTES_CONFIG = [
     element: <Dashboard />
   },
   {
-    path: '/questions_configure',
+    path: '/admin/questions_configure',
     element: <Questionsconfiguration />
   }
 ];

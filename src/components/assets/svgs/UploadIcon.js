@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import * as React from "react";
 
-function Upload(props) {
+function UploadIcon(props) {
   return (
     <svg
       width={38}
@@ -41,4 +41,4 @@ function Upload(props) {
   );
 }
 
-export default Upload;
+export default UploadIcon;

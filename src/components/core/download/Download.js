@@ -1,6 +1,6 @@
 import React from 'react';
+import Button from '../button';
 import './Download.css';
-import Button from '../button/button';
 
 const Download = () => {
   const downloadFile = () => {

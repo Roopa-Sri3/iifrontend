@@ -1,9 +1,16 @@
 /* eslint-disable max-len */
 import * as React from "react";
 
-function SvgComponent(props) {
+function DeletefileIcon(props) {
   return (
-    <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      width="18"
+      height="19"
+      viewBox="0 0 18 19"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
       <mask id="mask0_1189_604" style={{"maskType":"alpha"}} maskUnits="userSpaceOnUse" x="0" y="0" width="18" height="19">
         <rect y="0.585449" width="18" height="18" fill="#4595FF"/>
       </mask>
@@ -14,5 +21,4 @@ function SvgComponent(props) {
   );
 }
 
-export default SvgComponent;
-
+export default DeletefileIcon;

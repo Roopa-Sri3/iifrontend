@@ -1,6 +1,6 @@
 import React from "react";
 import './FileUpload.css';
-import Upload from "../../assets/svgs/Upload";
+import UploadIcon from "../../assets/svgs/UploadIcon";
 
 function FileUpload({
   identifier,
@@ -12,7 +12,7 @@ function FileUpload({
       <label className="button-tag"
         htmlFor={identifier}
       >
-        <Upload />
+        <UploadIcon />
         <p className="upload-text">Click to Upload</p>
       </label>
       <input

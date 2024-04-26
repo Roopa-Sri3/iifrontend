@@ -1,6 +1,6 @@
 import * as React from "react";
 
-function BackArrow(props) {
+function BackarrowIcon(props) {
   return (
     <svg
       width={40}
@@ -19,4 +19,4 @@ function BackArrow(props) {
   );
 }
 
-export default BackArrow;
+export default BackarrowIcon;
