@@ -4,8 +4,9 @@
     margin-right: 15px;
   }
 
-.icon-spacing{
+.edit-icon{
   margin-right: 20px;
+  cursor: pointer;
 }
 
 .cd-report {
@@ -36,4 +37,16 @@
 
 .comments-button{
   display: inline-flex;
+}
+
+.visibility-icon{
+  cursor:'pointer';
+}
+
+.share-icon{
+  cursor:pointer;
+}
+
+.filter-icon{
+  cursor:pointer;
 }

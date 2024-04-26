@@ -1,13 +1,27 @@
 import React from 'react';
 import './CandidateRow.css';
-import SvgComponent from '../assets/svgs/editImage';
+import EditComponent from '../assets/svgs/editImage';
 import ShareComponent from '../assets/svgs/shareImage';
 import SaveComponent from '../assets/svgs/reportImage';
 import VisibilityComponent from '../assets/svgs/visibilityImage';
 import BlueSaveComponent from '../assets/svgs/blueSave';
+// import FeedbackModal from '../components/modals/feedbackModal/FeedbackModal';
+import { useDispatch } from 'react-redux';
+import { openModal } from '../store/reducers/app/app';
 
 const CandidateRow = ({ candidate }) => {
+  const dispatch = useDispatch();
+  // const [currentCandidate, setCurrentCandidate] = useState(null);
   const isPdfReport = candidate.report.endsWith('.pdf');
+  const handleOpenModal = () => {
+    dispatch(openModal(
+      {
+        modalName: 'FeedbackModal',
+        modalData: {
+          ...candidate,
+        }
+      }));
+  };
 
   return (
     <tr>
@@ -22,15 +36,17 @@ const CandidateRow = ({ candidate }) => {
           <div className='report-text'>
             {candidate.report}
           </div>
-          {isPdfReport ? <BlueSaveComponent /> : <SaveComponent />}
+          {isPdfReport ?
+            <BlueSaveComponent style={{cursor:'pointer'}}/> :
+            <SaveComponent style={{cursor:'not-allowed'}}/>}
         </div>
       </td>
       <td>
         <div className='feedback-container'>
           {candidate.feedback}
-          <VisibilityComponent style={{marginLeft: '40px'}} onClick={() => {
-            alert('Feedback Popup');
-          }}/>
+          <VisibilityComponent
+            style={{marginLeft: '40px',cursor:'pointer'}}
+            onClick={handleOpenModal}/>
           <span className="comments-text"
             style={{ marginLeft: "10px" }}>
             Comments
@@ -39,8 +55,8 @@ const CandidateRow = ({ candidate }) => {
       </td>
       <td>
         {candidate.actions}
-        <SvgComponent className="icon-spacing"/>
-        <ShareComponent/>
+        <EditComponent className="edit-icon"/>
+        <ShareComponent className="share-icon"/>
       </td>
     </tr>
   );

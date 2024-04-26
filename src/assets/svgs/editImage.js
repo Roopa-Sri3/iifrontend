@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import * as React from "react";
 
-function SvgComponent(props) {
+function EditComponent(props) {
   return (
     <svg
       width={18}
@@ -19,4 +19,4 @@ function SvgComponent(props) {
   );
 }
 
-export default SvgComponent;
+export default EditComponent;

@@ -1,5 +1,6 @@
 import React from 'react';
 import CandidateRow from './CandidateRow';
+import './SubLayout.css';
 
 const SubLayout = ({ data, uploadIcon }) => {
   return (

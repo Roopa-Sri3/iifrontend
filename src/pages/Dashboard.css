@@ -24,8 +24,7 @@
 
   th, td {
     text-align: left;
-    /* padding: 8px; */
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #D9E0E6;
   }
 
   td {
@@ -40,3 +39,30 @@
   td {
     padding: 10px;
   }
+
+  /* Dashboard.css */
+.filter-icon {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.filter-icon-open {
+  background-color: #f0f0f0;
+}
+
+.filter-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 100;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px;
+  display: none;
+}
+
+.filter-icon-open .filter-dropdown {
+  display: block;
+}

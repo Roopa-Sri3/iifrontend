@@ -1,12 +1,17 @@
+/* eslint-disable jsx-a11y/interactive-supports-focus */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions*/
 import React, { useState } from 'react';
 import SubHeader from './SubHeader';
 import SubLayout from './SubLayout';
 import SubFooter from './SubFooter';
 import './Dashboard.css';
 import FilterComponent from '../assets/svgs/filterImage';
+import FeedbackModal from '../components/modals/feedbackModal/FeedbackModal';
+import DropDownMenu from '../components/core/DropDownMenu/DropDownMenu';
 
 const Dashboard = () => {
-  const [candidates, setCandidates] = useState([
+  const [candidates] = useState([
     {
       candidateName: 'Anika',
       techSkills: 'React, Node.js',
@@ -38,30 +43,30 @@ const Dashboard = () => {
     {
       candidateName: 'Anika',
       techSkills: 'React, Node.js',
-      status: 'Shortlisted',
+      status: 'New',
       report: 'No Report',
-      feedback: '7',
+      feedback: '4',
     },
     {
       candidateName: 'Aashrith',
       techSkills: 'Python',
       status: 'Completed',
       report: '16543468.pdf',
-      feedback: '3',
+      feedback: '1',
     },
     {
       candidateName: 'Moksha',
       techSkills: 'Java',
       status: 'Completed',
       report: '16543468.pdf',
-      feedback: '8',
+      feedback: '5',
     },
     {
       candidateName: 'Nirvaan',
       techSkills: 'Ruby',
       status: 'Completed',
       report: '16543468.pdf',
-      feedback: '9',
+      feedback: '3',
     },
     {
       candidateName: 'Anika',
@@ -75,35 +80,21 @@ const Dashboard = () => {
       techSkills: 'Python',
       status: 'Completed',
       report: '16543468.pdf',
-      feedback: '6',
+      feedback: '3',
     },
     {
       candidateName: 'Moksha',
       techSkills: 'Java',
       status: 'Pending',
       report: 'No Report',
-      feedback: '8',
+      feedback: '2',
     },
     {
       candidateName: 'Nirvaan',
       techSkills: 'Ruby',
       status: 'Shortlisting',
       report: 'No Report',
-      feedback: '9',
-    },
-    {
-      candidateName: 'Anika',
-      techSkills: 'React, Node.js',
-      status: 'Shortlisted',
-      report: 'No Report',
-      feedback: '1',
-    },
-    {
-      candidateName: 'Aashrith',
-      techSkills: 'Python',
-      status: 'Pending',
-      report: 'No Report',
-      feedback: '2',
+      feedback: '5',
     },
     {
       candidateName: 'Moksha',
@@ -124,28 +115,28 @@ const Dashboard = () => {
       techSkills: 'React, Node.js',
       status: 'Shortlisted',
       report: 'No Report',
-      feedback: '7',
+      feedback: '4',
     },
     {
       candidateName: 'Aashrith',
       techSkills: 'Python',
       status: 'Completed',
       report: '16543468.pdf',
-      feedback: '3',
+      feedback: '1',
     },
     {
       candidateName: 'Moksha',
       techSkills: 'Java',
       status: 'Completed',
       report: '16543468.pdf',
-      feedback: '8',
+      feedback: '5',
     },
     {
       candidateName: 'Nirvaan',
       techSkills: 'Ruby',
       status: 'Completed',
       report: '16543468.pdf',
-      feedback: '9',
+      feedback: '3',
     },
     {
       candidateName: 'Anika',
@@ -159,42 +150,14 @@ const Dashboard = () => {
       techSkills: 'Python',
       status: 'Completed',
       report: '16543468.pdf',
-      feedback: '6',
-    },
-    {
-      candidateName: 'Moksha',
-      techSkills: 'Java',
-      status: 'Pending',
-      report: 'No Report',
-      feedback: '8',
+      feedback: '3',
     },
     {
       candidateName: 'Nirvaan',
       techSkills: 'Ruby',
       status: 'Shortlisting',
       report: 'No Report',
-      feedback: '9',
-    },
-    {
-      candidateName: 'Anika',
-      techSkills: 'React, Node.js',
-      status: 'Shortlisted',
-      report: 'No Report',
-      feedback: '1',
-    },
-    {
-      candidateName: 'Aashrith',
-      techSkills: 'Python',
-      status: 'Pending',
-      report: 'No Report',
-      feedback: '2',
-    },
-    {
-      candidateName: 'Moksha',
-      techSkills: 'Java',
-      status: 'Pending',
-      report: 'No Report',
-      feedback: '3',
+      feedback: '5',
     },
     {
       candidateName: 'Nirvaan',
@@ -208,79 +171,23 @@ const Dashboard = () => {
       techSkills: 'React, Node.js',
       status: 'Shortlisted',
       report: 'No Report',
-      feedback: '7',
+      feedback: '4',
     },
     {
       candidateName: 'Aashrith',
       techSkills: 'Python',
       status: 'Completed',
       report: '16543468.pdf',
-      feedback: '3',
+      feedback: '1',
     },
     {
       candidateName: 'Moksha',
       techSkills: 'Java',
-      status: 'Completed',
-      report: '16543468.pdf',
-      feedback: '8',
-    },
-    {
-      candidateName: 'Nirvaan',
-      techSkills: 'Ruby',
-      status: 'Completed',
-      report: '16543468.pdf',
-      feedback: '9',
-    },
-    {
-      candidateName: 'Anika',
-      techSkills: 'React, Node.js',
       status: 'Completed',
       report: '16543468.pdf',
       feedback: '5',
     },
     {
-      candidateName: 'Aashrith',
-      techSkills: 'Python',
-      status: 'Completed',
-      report: '16543468.pdf',
-      feedback: '6',
-    },
-    {
-      candidateName: 'Moksha',
-      techSkills: 'Java',
-      status: 'Pending',
-      report: 'No Report',
-      feedback: '8',
-    },
-    {
-      candidateName: 'Nirvaan',
-      techSkills: 'Ruby',
-      status: 'Shortlisting',
-      report: 'No Report',
-      feedback: '9',
-    },
-    {
-      candidateName: 'Anika',
-      techSkills: 'React, Node.js',
-      status: 'Shortlisted',
-      report: 'No Report',
-      feedback: '1',
-    },
-    {
-      candidateName: 'Aashrith',
-      techSkills: 'Python',
-      status: 'Pending',
-      report: 'No Report',
-      feedback: '2',
-    },
-    {
-      candidateName: 'Moksha',
-      techSkills: 'Java',
-      status: 'Pending',
-      report: 'No Report',
-      feedback: '3',
-    },
-    {
       candidateName: 'Nirvaan',
       techSkills: 'Ruby',
       status: 'Shortlisted',
@@ -292,79 +199,23 @@ const Dashboard = () => {
       techSkills: 'React, Node.js',
       status: 'Shortlisted',
       report: 'No Report',
-      feedback: '7',
+      feedback: '4',
     },
     {
       candidateName: 'Aashrith',
       techSkills: 'Python',
       status: 'Completed',
       report: '16543468.pdf',
-      feedback: '3',
+      feedback: '1',
     },
     {
       candidateName: 'Moksha',
       techSkills: 'Java',
-      status: 'Completed',
-      report: '16543468.pdf',
-      feedback: '8',
-    },
-    {
-      candidateName: 'Nirvaan',
-      techSkills: 'Ruby',
-      status: 'Completed',
-      report: '16543468.pdf',
-      feedback: '9',
-    },
-    {
-      candidateName: 'Anika',
-      techSkills: 'React, Node.js',
       status: 'Completed',
       report: '16543468.pdf',
       feedback: '5',
     },
     {
-      candidateName: 'Aashrith',
-      techSkills: 'Python',
-      status: 'Completed',
-      report: '16543468.pdf',
-      feedback: '6',
-    },
-    {
-      candidateName: 'Moksha',
-      techSkills: 'Java',
-      status: 'Pending',
-      report: 'No Report',
-      feedback: '8',
-    },
-    {
-      candidateName: 'Nirvaan',
-      techSkills: 'Ruby',
-      status: 'Shortlisting',
-      report: 'No Report',
-      feedback: '9',
-    },
-    {
-      candidateName: 'Anika',
-      techSkills: 'React, Node.js',
-      status: 'Shortlisted',
-      report: 'No Report',
-      feedback: '1',
-    },
-    {
-      candidateName: 'Aashrith',
-      techSkills: 'Python',
-      status: 'Pending',
-      report: 'No Report',
-      feedback: '2',
-    },
-    {
-      candidateName: 'Moksha',
-      techSkills: 'Java',
-      status: 'Pending',
-      report: 'No Report',
-      feedback: '3',
-    },
-    {
       candidateName: 'Nirvaan',
       techSkills: 'Ruby',
       status: 'Shortlisted',
@@ -376,79 +227,23 @@ const Dashboard = () => {
       techSkills: 'React, Node.js',
       status: 'Shortlisted',
       report: 'No Report',
-      feedback: '7',
+      feedback: '4',
     },
     {
       candidateName: 'Aashrith',
       techSkills: 'Python',
       status: 'Completed',
       report: '16543468.pdf',
-      feedback: '3',
+      feedback: '1',
     },
     {
       candidateName: 'Moksha',
       techSkills: 'Java',
-      status: 'Completed',
-      report: '16543468.pdf',
-      feedback: '8',
-    },
-    {
-      candidateName: 'Nirvaan',
-      techSkills: 'Ruby',
-      status: 'Completed',
-      report: '16543468.pdf',
-      feedback: '9',
-    },
-    {
-      candidateName: 'Anika',
-      techSkills: 'React, Node.js',
       status: 'Completed',
       report: '16543468.pdf',
       feedback: '5',
     },
     {
-      candidateName: 'Aashrith',
-      techSkills: 'Python',
-      status: 'Completed',
-      report: '16543468.pdf',
-      feedback: '6',
-    },
-    {
-      candidateName: 'Moksha',
-      techSkills: 'Java',
-      status: 'Pending',
-      report: 'No Report',
-      feedback: '8',
-    },
-    {
-      candidateName: 'Nirvaan',
-      techSkills: 'Ruby',
-      status: 'Shortlisting',
-      report: 'No Report',
-      feedback: '9',
-    },
-    {
-      candidateName: 'Anika',
-      techSkills: 'React, Node.js',
-      status: 'Shortlisted',
-      report: 'No Report',
-      feedback: '1',
-    },
-    {
-      candidateName: 'Aashrith',
-      techSkills: 'Python',
-      status: 'Pending',
-      report: 'No Report',
-      feedback: '2',
-    },
-    {
-      candidateName: 'Moksha',
-      techSkills: 'Java',
-      status: 'Pending',
-      report: 'No Report',
-      feedback: '3',
-    },
-    {
       candidateName: 'Nirvaan',
       techSkills: 'Ruby',
       status: 'Shortlisted',
@@ -460,77 +255,49 @@ const Dashboard = () => {
       techSkills: 'React, Node.js',
       status: 'Shortlisted',
       report: 'No Report',
-      feedback: '7',
+      feedback: '4',
     },
     {
       candidateName: 'Aashrith',
       techSkills: 'Python',
       status: 'Completed',
       report: '16543468.pdf',
-      feedback: '3',
+      feedback: '1',
     },
     {
       candidateName: 'Moksha',
       techSkills: 'Java',
-      status: 'Completed',
-      report: '16543468.pdf',
-      feedback: '8',
-    },
-    {
-      candidateName: 'Nirvaan',
-      techSkills: 'Ruby',
-      status: 'Completed',
-      report: '16543468.pdf',
-      feedback: '9',
-    },
-    {
-      candidateName: 'Anika',
-      techSkills: 'React, Node.js',
       status: 'Completed',
       report: '16543468.pdf',
       feedback: '5',
     },
     {
-      candidateName: 'Aashrith',
-      techSkills: 'Python',
-      status: 'Completed',
-      report: '16543468.pdf',
-      feedback: '6',
-    },
-    {
-      candidateName: 'Moksha',
-      techSkills: 'Java',
-      status: 'Pending',
-      report: 'No Report',
-      feedback: '8',
-    },
-    {
       candidateName: 'Nirvaan',
       techSkills: 'Ruby',
-      status: 'Shortlisting',
+      status: 'Shortlisted',
       report: 'No Report',
-      feedback: '9',
+      feedback: '4',
     },
     {
       candidateName: 'Anika',
       techSkills: 'React, Node.js',
       status: 'Shortlisted',
       report: 'No Report',
-      feedback: '1',
+      feedback: '4',
     },
     {
       candidateName: 'Aashrith',
       techSkills: 'Python',
-      status: 'Pending',
-      report: 'No Report',
-      feedback: '2',
+      status: 'Completed',
+      report: '16543468.pdf',
+      feedback: '1',
     },
     {
       candidateName: 'Moksha',
       techSkills: 'Java',
-      status: 'Pending',
-      report: 'No Report',
-      feedback: '3',
+      status: 'Completed',
+      report: '16543468.pdf',
+      feedback: '5',
     },
     {
       candidateName: 'Nirvaan',
@@ -544,32 +311,273 @@ const Dashboard = () => {
       techSkills: 'React, Node.js',
       status: 'Shortlisted',
       report: 'No Report',
-      feedback: '7',
+      feedback: '4',
     },
     {
       candidateName: 'Aashrith',
       techSkills: 'Python',
       status: 'Completed',
       report: '16543468.pdf',
-      feedback: '3',
+      feedback: '1',
     },
     {
       candidateName: 'Moksha',
       techSkills: 'Java',
       status: 'Completed',
       report: '16543468.pdf',
-      feedback: '8',
+      feedback: '5',
     },
     {
       candidateName: 'Nirvaan',
       techSkills: 'Ruby',
+      status: 'Shortlisted',
+      report: 'No Report',
+      feedback: '4',
+    },
+    {
+      candidateName: 'Anika',
+      techSkills: 'React, Node.js',
+      status: 'Shortlisted',
+      report: 'No Report',
+      feedback: '4',
+    },
+    {
+      candidateName: 'Aashrith',
+      techSkills: 'Python',
       status: 'Completed',
       report: '16543468.pdf',
-      feedback: '9',
+      feedback: '1',
+    },
+    {
+      candidateName: 'Moksha',
+      techSkills: 'Java',
+      status: 'Completed',
+      report: '16543468.pdf',
+      feedback: '5',
+    },
+    {
+      candidateName: 'Nirvaan',
+      techSkills: 'Ruby',
+      status: 'Shortlisted',
+      report: 'No Report',
+      feedback: '4',
+    },
+    {
+      candidateName: 'Anika',
+      techSkills: 'React, Node.js',
+      status: 'Shortlisted',
+      report: 'No Report',
+      feedback: '4',
+    },
+    {
+      candidateName: 'Aashrith',
+      techSkills: 'Python',
+      status: 'Completed',
+      report: '16543468.pdf',
+      feedback: '1',
+    },
+    {
+      candidateName: 'Moksha',
+      techSkills: 'Java',
+      status: 'Completed',
+      report: '16543468.pdf',
+      feedback: '5',
+    },
+    {
+      candidateName: 'Nirvaan',
+      techSkills: 'Ruby',
+      status: 'Shortlisted',
+      report: 'No Report',
+      feedback: '4',
+    },
+    {
+      candidateName: 'Anika',
+      techSkills: 'React, Node.js',
+      status: 'Shortlisted',
+      report: 'No Report',
+      feedback: '4',
+    },
+    {
+      candidateName: 'Aashrith',
+      techSkills: 'Python',
+      status: 'Completed',
+      report: '16543468.pdf',
+      feedback: '1',
+    },
+    {
+      candidateName: 'Moksha',
+      techSkills: 'Java',
+      status: 'Completed',
+      report: '16543468.pdf',
+      feedback: '5',
+    },
+
+    {
+      candidateName: 'Nirvaan',
+      techSkills: 'Ruby',
+      status: 'Shortlisted',
+      report: 'No Report',
+      feedback: '4',
+    },
+    {
+      candidateName: 'Anika',
+      techSkills: 'React, Node.js',
+      status: 'Shortlisted',
+      report: 'No Report',
+      feedback: '4',
+    },
+    {
+      candidateName: 'Aashrith',
+      techSkills: 'Python',
+      status: 'Completed',
+      report: '16543468.pdf',
+      feedback: '1',
+    },
+    {
+      candidateName: 'Moksha',
+      techSkills: 'Java',
+      status: 'Completed',
+      report: '16543468.pdf',
+      feedback: '5',
+    },
+    {
+      candidateName: 'Nirvaan',
+      techSkills: 'Ruby',
+      status: 'Shortlisted',
+      report: 'No Report',
+      feedback: '4',
+    },
+    {
+      candidateName: 'Anika',
+      techSkills: 'React, Node.js',
+      status: 'Shortlisted',
+      report: 'No Report',
+      feedback: '4',
+    },
+    {
+      candidateName: 'Aashrith',
+      techSkills: 'Python',
+      status: 'Completed',
+      report: '16543468.pdf',
+      feedback: '1',
+    },
+    {
+      candidateName: 'Moksha',
+      techSkills: 'Java',
+      status: 'Completed',
+      report: '16543468.pdf',
+      feedback: '5',
+    },
+    {
+      candidateName: 'Nirvaan',
+      techSkills: 'Ruby',
+      status: 'Shortlisted',
+      report: 'No Report',
+      feedback: '4',
+    },
+    {
+      candidateName: 'Anika',
+      techSkills: 'React, Node.js',
+      status: 'Shortlisted',
+      report: 'No Report',
+      feedback: '4',
+    },
+    {
+      candidateName: 'Aashrith',
+      techSkills: 'Python',
+      status: 'Completed',
+      report: '16543468.pdf',
+      feedback: '1',
+    },
+    {
+      candidateName: 'Moksha',
+      techSkills: 'Java',
+      status: 'Completed',
+      report: '16543468.pdf',
+      feedback: '5',
+    },
+    {
+      candidateName: 'Nirvaan',
+      techSkills: 'Ruby',
+      status: 'Shortlisted',
+      report: 'No Report',
+      feedback: '4',
+    },
+    {
+      candidateName: 'Anika',
+      techSkills: 'React, Node.js',
+      status: 'Shortlisted',
+      report: 'No Report',
+      feedback: '4',
+    },
+    {
+      candidateName: 'Aashrith',
+      techSkills: 'Python',
+      status: 'Completed',
+      report: '16543468.pdf',
+      feedback: '1',
+    },
+    {
+      candidateName: 'Moksha',
+      techSkills: 'Java',
+      status: 'Completed',
+      report: '16543468.pdf',
+      feedback: '5',
+    },
+    {
+      candidateName: 'Nirvaan',
+      techSkills: 'Ruby',
+      status: 'Shortlisted',
+      report: 'No Report',
+      feedback: '4',
+    },
+    {
+      candidateName: 'Anika',
+      techSkills: 'React, Node.js',
+      status: 'Shortlisted',
+      report: 'No Report',
+      feedback: '4',
+    },
+    {
+      candidateName: 'Aashrith',
+      techSkills: 'Python',
+      status: 'Completed',
+      report: '16543468.pdf',
+      feedback: '1',
+    },
+    {
+      candidateName: 'Moksha',
+      techSkills: 'Java',
+      status: 'Completed',
+      report: '16543468.pdf',
+      feedback: '5',
+    },
+    {
+      candidateName: 'Nirvaan',
+      techSkills: 'Ruby',
+      status: 'Shortlisted',
+      report: 'No Report',
+      feedback: '4',
+    },
+    {
+      candidateName: 'Anika',
+      techSkills: 'React, Node.js',
+      status: 'Shortlisted',
+      report: 'No Report',
+      feedback: '4',
+    },
+    {
+      candidateName: 'Aashrith',
+      techSkills: 'Python',
+      status: 'Completed',
+      report: '16543468.pdf',
+      feedback: '1',
     }
   ]);
   const [currentPage, setCurrentPage] = useState(1);
   const [recordsPerPage] = useState(10);
+  const [filteredCandidates, setFilteredCandidates] = useState(candidates);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   // Fetch candidates from the backend on component mount
   // useEffect(() => {
@@ -592,12 +600,12 @@ const Dashboard = () => {
   // Empty dependency array this will only run once after the initial render
 
   // Calculate the total number of pages
-  const totalPages = Math.ceil(candidates.length / recordsPerPage);
+  const totalPages = Math.ceil(filteredCandidates.length / recordsPerPage);
 
   // Calculate the current items to display
   const indexOfLastRecord = currentPage * recordsPerPage;
   const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
-  const currentRecords = candidates.slice(indexOfFirstRecord,
+  const currentRecords = filteredCandidates.slice(indexOfFirstRecord,
     indexOfLastRecord);
 
   // const totalRecords = totalPages * recordsPerPage;
@@ -606,8 +614,42 @@ const Dashboard = () => {
     setCurrentPage(pageNumber);
   };
 
+  const handleFilterChange = (selectedOptions) => {
+    const filteredCandidates = candidates.filter((candidate) => {
+      for (const option in selectedOptions) {
+        if (selectedOptions[option] && candidate.status === option) {
+          return true;
+        }
+      }
+      return false;
+    });
+    setFilteredCandidates(filteredCandidates);
+    setIsFilterOpen(false);
+  };
+
+  const handleFilterToggle = () => {
+    setIsFilterOpen((prevState) => !prevState);
+  };
+
   const headerActions =
-  [null, null, <FilterComponent key="filter-status" />, null, null, null];
+  [null,
+    null,
+    // <FilterComponent key="filter-status" className="filter-icon"/>,
+    <div
+      key="filter-status"
+      className={`filter-icon ${isFilterOpen ? 'filter-icon-open' : ''}`}
+    >
+      <FilterComponent onClick={handleFilterToggle} />
+      {isFilterOpen && (
+        <div className="filter-dropdown">
+          <DropDownMenu
+            options={['Pending', 'Expired', 'Completed', 'New']}
+            onOptionChange={handleFilterChange}
+          />
+        </div>
+      )}
+    </div>,
+    null, null, null];
 
   return (
     <div className="dashboard">
@@ -618,7 +660,8 @@ const Dashboard = () => {
             'Status',
             'View/Dashboard Report',
             'Feedback',
-            'Actions']} headerActions={headerActions} />
+            'Actions']}
+          headerActions={headerActions} />
           <SubLayout data={currentRecords} />
         </table>
         <SubFooter
@@ -626,6 +669,7 @@ const Dashboard = () => {
           totalPages={totalPages}
           onPageChange={handlePageChange}
         />
+        <FeedbackModal />
       </div>
     </div>
   );
