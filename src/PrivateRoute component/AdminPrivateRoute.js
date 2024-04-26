@@ -1,21 +1,10 @@
-import React from 'react';
-import { Route,Routes, Navigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import Dashboard from "../pages/Dashboard";
+import Unauthorized from '../pages/Unauthorized';
 
-// eslint-disable-next-line max-len
-const AdminPrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => (
-  <Routes>
-    <Route
-      {...rest}
-      element={(props) =>
-        isAuthenticated ? (
-          <Component {...props} />
-        ) : (
-        // eslint-disable-next-line max-len
-          <Navigate to={{ pathname: '/', state: { from: props.location, message: 'Unauthorised Access' } }} />
-        )
-      }
-    />
-  </Routes>
-);
+const  ProtectedRoute = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  return isAuthenticated ?  <Unauthorized /> : <Dashboard />;
+};
 
-export default AdminPrivateRoute;
+export default ProtectedRoute;

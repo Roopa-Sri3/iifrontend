@@ -1,11 +1,11 @@
 import React from 'react';
-import './dashboard-footer.css';
+import './Footer.css';
 
 function Footer() {
   return (
     <div className = "footer">
-      Copyright © {new Date().getFullYear()}
-      Innova Solutions Inc. All rights reserved.
+      Copyright © {new Date().getFullYear()} Innova
+      Solutions,Inc. All rights reserved.
     </div>
   );
 }

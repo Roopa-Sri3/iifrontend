@@ -2,19 +2,7 @@ import React, { useState } from 'react';
 import './RoundButton.css';
 
 const RoundButton = ({ onLogout }) => {
-  const [isLogout, setIsLogout] = useState(false);
-  const [showLogoutList, setShowLogoutList] = useState(false);
-
-  const handleClick = () => {
-    if (isLogout) {
-      onLogout();
-    } else {
-      setIsLogout(true);
-    }
-  };
-  const handleLogoutListClick = () => {
-    setShowLogoutList(false);
-  };
+  const [isLogout] = useState(false);
 
   return (
     <div>

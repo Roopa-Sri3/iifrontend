@@ -1,8 +1,8 @@
+import React from 'react';
 import Dashboard from "./pages/Dashboard";
-import AdminPrivateRoute from "./PrivateRoute component/AdminPrivateRoute";
-import HRPrivateRoute from "./PrivateRoute component/HrPrivateRoute";
 import Login from "./pages/Login";
-import UnauthorizedAccess from "./Unauthorised component/UnauthorisedAcess";
+import Unauthorized from './pages/Unauthorized';
+import ProtectedDashboardRoute from './privateRoutes/protectDashboardRoute';
 
 const ROUTES_CONFIG = [
   {
@@ -10,13 +10,19 @@ const ROUTES_CONFIG = [
     element: <Login />
   },
   {
-    path: '/dashboard',
-    element: <Dashboard />
+    path: '/',
+    element:  <ProtectedDashboardRoute />,
+    children: [
+      {
+        path: "/dashboard",
+        element: <Dashboard />,
+      },
+    ]
   },
   {
     path: '/unauthorized',
-    element: <UnauthorizedAccess />,
-  },
+    element: <Unauthorized />
+  }
 ];
 
 export default ROUTES_CONFIG;

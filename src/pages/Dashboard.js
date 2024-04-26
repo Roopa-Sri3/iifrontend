@@ -1,9 +1,13 @@
 import React from 'react';
+import UserDisplay from '../components/UserDisplay/UserDisplay';
 
 function Dashboard() {
   return (
     <div>
-        Dashboard Page
+      {/* <Header/> */}
+      <UserDisplay />
+      {/* <Layout />
+      <Footer/> */}
     </div>
   );
 }

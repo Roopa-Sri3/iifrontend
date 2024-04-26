@@ -1,19 +1,26 @@
 .header {
   background-color: #0b38a1;
-  display: flex;
+  padding-bottom :30px;
+  margin-bottom: 15px;
   position: fixed;
+  top:0; 
   text-align: left;
-  height: 70px;
+  height: 55px;
   width: 100%;
+  display:flex;
+  align-items: flex-start;
+ 
 }
 .round {
   display: flex;
   align-items: center;
   right: 5px;
   border: none;
-  margin-left: 1070px;
-  margin-bottom: 10px;
+  margin-left: 1130px;
+  margin-bottom: 2px;
   margin-right: 10px;
+  margin-top: -8px;
+  
 }
 
 .user-profile {
@@ -26,69 +33,27 @@
   opacity: 0px;
 }
 
-/* 
-.interview-insights-title {
-  width: 12em;
-  font :Inter;
-  background-color: transparent;
-  border-radius: 5px;
-  margin-left: 180px;
-  padding: 5px 10px;
-  /* position: fixed; 
-  height: 27px;
-  margin-top: 15px;
-  box-shadow: 0 0 7px 1px rgba(255, 255, 255, 0.5);
-}
-
-.title {
-  color: white;
-  height: 90px;
-  display: block;
-  margin: auto;
-  /* position: fixed; 
-  top: 13.08px;
-  box-sizing: border-box;
-  font-size: 25px;
-  border-radius: 100px;
-}
-
-.logo {
-    height: 6rem;
-    margin-left:30px ;
-    margin-right:2em; 
-}
-
-
-expand-button{
-  margin-left: 400px;
-  margin-top: -100px;;
-} 
-
-.user-button{
-  display: inline;
-} */
-
 .interview-insights-title {
   color: white;
-  height: 35px;
+  height: 45px;
   border-radius: 8px;
   margin-left: 40px;
-  box-shadow: 0 0 6px 1px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 6px 1px rgba(255, 255, 255,0.5);
   padding: 6px;
-  margin-top: 12px;
+  margin-top: 1px;
   font-weight: 600;
   font-size: 25px;
-  line-height: 32px;
+  line-height: 38px;
   display: flex;
   position: fixed;
 }
 
 .innova-logo {
-  width: 100px;
-  height: 100px;
-  margin-top: -10px;
-  margin-left: 15px;
-}
+   height: 80px;
+   width:  70px;
+   padding-bottom: 20px;
+   padding-left: 25px;
+ }
 
 .expand {
   display: flex;
@@ -134,14 +99,18 @@ expand-button{
   background-color: white;
 }
 
-.expand-icon{
+.expand-icon {
   margin-top: 20px;
   margin-left: 5px;
   cursor: pointer;
 }
 
-.logout{
-  margin-top: -30px;
-  margin-left: 50px;
+.logout {
+  margin-top: -26px;
+  margin-left: 70px;
 }
-
+.logout-icon {
+  margin-left: 44px;
+  margin-top: 60px;
+  height : 30px;
+}
