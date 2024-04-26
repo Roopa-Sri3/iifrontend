@@ -1,5 +1,5 @@
 import React from 'react';
-import cx from 'classnames';
+// import cx from 'classnames';
 import './button.css';
 
 const Button = ({
@@ -10,10 +10,11 @@ const Button = ({
   disabled = false,
   children,
 }) => {
+  const buttonClass = className ? className : 'button';
   return (
     <button
       id={id}
-      className={cx('button',className)}
+      className={buttonClass}
       onClick={handleClick}
       disabled={disabled}
     >
