@@ -1,19 +1,20 @@
 import React from "react";
 import './FileUpload.css';
+import Upload from "../../assets/svgs/Upload";
 
 function FileUpload({
-  uploadIcon,
   LabelText,
   identifier,
   canAttachMultiple,
   disabled,
   handleFiles}) {
   return(
-    <div>
+    <>
       <label className="button-tag"
         htmlFor={identifier}
-      >Upload Files
-        <img className="upload-image" src={uploadIcon} alt="Upload Icon"/>
+      >
+        <Upload />
+        <p className="upload-text">Click to Upload</p>
       </label>
       <input
         className="input-file-upload-button"
@@ -22,9 +23,9 @@ function FileUpload({
         type="file"
         multiple={canAttachMultiple}
         disabled={disabled}
-        onchange={handleFiles}
+        onChange={handleFiles}
       />
-    </div>
+    </>
   );
 }
 export default FileUpload;

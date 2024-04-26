@@ -1,3 +1,151 @@
-.bulk-tags{
-    margin-left: 12px;
+.questions-main{
+    background-color: #ebeef3;
+    height:600px;
 }
+
+.containerhead {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+}
+
+.text-layout-head{
+    margin-top: 10px;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    align-content: center;
+}
+
+.subText2{
+    font-style: italic;
+}
+
+.question-instructions-layout{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.super-container{
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    padding: 20px;
+}
+
+.main-container{
+    display: flex;
+    flex:1;
+    flex-direction: column;
+    background-color: #ffffff;
+    height:450px;
+    border-radius: 5px 0px 0px 5px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.instructions-layout{
+    flex: 0.6;
+    display: flex;
+    background-color: #f9f9f9;
+    padding:10px;
+    flex-direction: column;
+    border-radius: 0px 5px 5px 0px;
+}
+
+
+.download-template-section{
+    background-color: #daeaff;
+    width: 48%;
+    display: flex;
+    align-items: center;
+    padding: 3px 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+} 
+
+.upload-questions-section{
+    margin: 10px auto;
+    display:grid;
+    width:55%;
+    padding-bottom: 50px;
+}
+
+.final-upload{
+    border:none;
+    color:#ffffff;
+    background-color: #4595ff;
+    height:40px;
+    width:15%;
+    border-radius: 5px;
+    margin: 10px 20px;
+    align-self: flex-end;
+}
+
+.complete-file-content-layout{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    background-color: #ebeef3;
+    border-radius: 5px;
+    height:60px;
+    width:56%;
+}
+
+.file-content-layout{
+    display: flex;
+    margin: 2px 20px;
+    background-color: #ffffff;
+    height:40px;
+    width:80%;
+    border-radius: 5px;
+}
+
+.file-info-layout{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.file-layout{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.file-size{
+    font-size: 9px;
+    font-style: bold;
+}
+
+.instructions-list{
+    font-size: 15px;
+}
+
+.inst-head{
+    padding-bottom: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
