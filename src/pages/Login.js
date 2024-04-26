@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import Input from '../components/core/Input/Input';
 import Label from '../components/core/Label/Label';
 import './Login.css';
@@ -10,10 +11,12 @@ import innovalogo from '../Images/InnovaLogo.png';
 import Button from '../components/core/button/button';
 // eslint-disable-next-line max-len
 import {LOGIN_MOCKUP_DATA, emailPattern, passwordPattern} from '../shared/constants';
+// eslint-disable-next-line max-len
 import { setUserDetails } from '../store/reducers/app/app';
 
 function Login() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
@@ -21,6 +24,7 @@ function Login() {
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
+    setEmailError(false);
   };
 
   const handlePasswordChange = (e) => {
@@ -39,6 +43,7 @@ function Login() {
         profileName: user.profileName,
         role: user.role,
       }));
+      navigate('/dashboard');
       return true;
     }
   };
@@ -82,9 +87,9 @@ function Login() {
         <form className="login-container" onSubmit={handleSubmit}>
           <p className='login-welcome-style'>
             Welcome to
-            <h3 className='interview-insights-name'>
-              Interview Insights
-            </h3>
+            <span className='interview-insights-name'>
+              &nbsp;Interview Insights
+            </span>
           </p>
           <h3 className='signin-text'>Sign in</h3>
           <div className='label-and-input'>

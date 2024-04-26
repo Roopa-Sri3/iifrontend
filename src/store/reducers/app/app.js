@@ -18,7 +18,7 @@ const appSlice = createSlice({
   },
   reducers: {
     setLogin: (state, action) => {
-      state.isUserLoggedIn = action.payload.isUseLoggedIn;
+      state.isUserLoggedIn = action.payload.isUserLoggedIn;
     },
     setUserName: (state, action) => {
       state.userName = action.payload.userName;
