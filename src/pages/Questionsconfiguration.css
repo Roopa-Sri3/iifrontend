@@ -1,0 +1,145 @@
+.questions-main{
+    background-color: #ebeef3;
+    height:600px;
+}
+
+.containerhead {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+}
+
+.text-layout-head{
+    margin-top: 10px;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    align-content: center;
+}
+
+.subText2{
+    font-style: italic;
+}
+
+.question-instructions-layout{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.super-container{
+    display: flex;
+    flex: 1;
+    padding: 20px;
+}
+
+.main-container{
+    display: flex;
+    flex:1;
+    flex-direction: column;
+    background-color: #ffffff;
+    height:450px;
+    border-radius: 5px 0px 0px 5px;
+    align-items: center;
+    padding: 10px;
+}
+
+.instructions-layout{
+    flex: 0.6;
+    display: flex;
+    background-color: #f9f9f9;
+    padding:9px;
+    flex-direction: column;
+    border-radius: 0px 5px 5px 0px;
+}
+
+
+.download-template-section{
+    background-color: #daeaff;
+    width: 48%;
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    justify-content: center;
+} 
+
+.upload-questions-section{
+    margin: 10px auto;
+    display:grid;
+    width:55%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.complete-file-content-layout{
+    display: flex;
+    align-items: center;
+    background-color: #ebeef3;
+    border-radius: 5px;
+    height:65px;
+    width:55%;
+    margin-bottom: 10px;
+    border: 2px solid #eaeef3;
+
+}
+
+.file-content-layout{
+    display: flex;
+    margin: 2px 20px;
+    background-color: #ffffff;
+    height:45px;
+    width:85%;
+    border-radius: 5px;
+    border: 2px solid #eaeef3;
+}
+
+.file-info-layout{
+    display: flex;
+    flex-direction: column;
+}
+
+.file-layout{
+    align-self: center;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.file-size{
+    font-size: 10px;
+    font-weight: bold;
+    color: #727885;
+}
+
+.file-name{
+    font-size: 15px;
+    font-weight: bold;
+    color:black;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: no-wrap;
+}
+
+.instructions-list{
+    font-size: 15px;
+}
+
+.inst-head{
+    padding-bottom: 10px;
+}
+
+.final-upload {
+    border:none;
+    color:#ffffff;
+    background-color: #4595ff;
+    height:40px;
+    width:15%;
+    border-radius: 5px;
+    margin-left: 40%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+

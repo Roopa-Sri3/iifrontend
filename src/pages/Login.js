@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import Input from '../components/core/Input/Input';
 import Label from '../components/core/Label/Label';
 import './Login.css';
@@ -8,8 +9,9 @@ import background from '../images/BlueBackground.png';
 import image from '../images/Group.png';
 import imagetext from '../images/Login-Text.png';
 import Button from '../components/core/button/button';
-import { LOGIN_MOCKUP_DATA, emailPattern, passwordPattern }
-  from '../shared/constants';
+// eslint-disable-next-line max-len
+import {LOGIN_MOCKUP_DATA, emailPattern, passwordPattern} from '../shared/constants';
+// eslint-disable-next-line max-len
 import { setUserDetails } from '../store/reducers/app/app';
 
 function Login() {
@@ -22,6 +24,7 @@ function Login() {
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
+    setEmailError(false);
   };
 
   const handlePasswordChange = (e) => {
@@ -61,7 +64,7 @@ function Login() {
       }
       else {
         setPasswordError('');
-        if (verifyCredentials(email, password)) {
+        if(verifyCredentials(email, password)){
           navigate('/dashboard');
         }
         else {
@@ -82,9 +85,9 @@ function Login() {
         <form className="login-container" onSubmit={handleSubmit}>
           <p className='login-welcome-style'>
             Welcome to
-            <h3 className='interview-insights-name'>
-              Interview Insights
-            </h3>
+            <span className='interview-insights-name'>
+              &nbsp;Interview Insights
+            </span>
           </p>
           <h3 className='signin-text'>Sign in</h3>
           <div className='label-and-input'>

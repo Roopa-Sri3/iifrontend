@@ -1,0 +1,16 @@
+.download-button{
+    border: 1px solid #ccc; 
+    border-radius: 0 5px 5px 0; 
+    cursor: pointer;
+    color: #4695ff;
+    text-align: center; 
+    font-weight: bold; 
+    border: none;
+    background-color: #daeaff;
+}
+
+.download-layout{
+    color: #daeaff;
+}
+
+

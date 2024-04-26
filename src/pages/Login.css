@@ -113,8 +113,10 @@ input.basic-input{
 .interview-insights-name{
     display: inline;
     color:  #0a5abb;
-    font-weight: 650;
-    font-size: large;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin: 1em 0;
+    padding: 0.5em 0.2em;
 }
   
 .basic-button{
