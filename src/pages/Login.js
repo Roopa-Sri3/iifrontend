@@ -43,7 +43,6 @@ function Login() {
         profileName: user.profileName,
         role: user.role,
       }));
-      navigate('/dashboard');
       return true;
     }
   };
@@ -65,8 +64,7 @@ function Login() {
       else{
         setPasswordError('');
         if(verifyCredentials(email, password)){
-          alert("Login Successful");
-          return;
+          navigate('/dashboard');
         }
         else{
           alert("Invalid Username or Password");
