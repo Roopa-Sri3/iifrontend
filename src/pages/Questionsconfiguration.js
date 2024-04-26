@@ -7,7 +7,7 @@ import { useState } from 'react';
 import Filepicture from '../components/assets/svgs/Filepicture';
 import './Questionsconfiguration.css';
 import DeleteImage from '../components/assets/svgs/DeleteImage';
-import instructions from '../shared/constants';
+import {instructions} from '../shared/constants';
 
 function Questionsconfiguration() {
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import './Download.css';
+import Button from '../button/button';
 
 const Download = () => {
   const downloadFile = () => {
@@ -25,12 +26,10 @@ const Download = () => {
 
   return (
     <div className='download-layout'>
-      <button
-        onClick={downloadFile}
+      <Button handleClick={downloadFile}
         className='download-button'
-      >
-        Download Here
-      </button>
+        label="Download here"
+      />
     </div>
   );
 };

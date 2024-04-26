@@ -3,7 +3,6 @@ import './FileUpload.css';
 import Upload from "../../assets/svgs/Upload";
 
 function FileUpload({
-  LabelText,
   identifier,
   canAttachMultiple,
   disabled,
@@ -18,7 +17,6 @@ function FileUpload({
       </label>
       <input
         className="input-file-upload-button"
-        labelText= {LabelText}
         id={identifier}
         type="file"
         multiple={canAttachMultiple}
