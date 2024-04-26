@@ -81,10 +81,11 @@ function Questionsconfiguration() {
             </div>
           )}
           <button className='final-upload' onClick={handleSubmit}>
-            Upload</button>
+            Upload
+          </button>
         </div>
         <div className='instructions-layout'>
-          <b className='inst-head'>Instructions..</b>
+          <b className='inst-head'>Instructions.</b>
           <ol className='instructions-list'>
             {instructions.map((instruction, index) => (
               <li key={index}>{instruction}</li>
