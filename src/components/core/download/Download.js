@@ -28,7 +28,7 @@ const Download = () => {
     <div className='download-layout'>
       <Button handleClick={downloadFile}
         className='download-button'
-        label="Download here"
+        label="Download Template"
       />
     </div>
   );
