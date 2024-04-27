@@ -1,6 +1,5 @@
 import React from 'react';
 import UserDisplay from '../components/UserDisplay/UserDisplay';
-import './Dashboard.css';
 
 function Dashboard() {
   return (
