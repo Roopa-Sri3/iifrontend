@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Input from '../components/core/Input/Input';
@@ -7,7 +7,6 @@ import './Login.css';
 import background from '../Images/BlueBackground.png';
 import image from '../Images/Group.png';
 import imagetext from '../Images/Login-Text.png';
-import innovalogo from '../Images/InnovaLogo.png';
 import Button from '../components/core/button/button';
 // eslint-disable-next-line max-len
 import {LOGIN_MOCKUP_DATA, emailPattern, passwordPattern} from '../shared/constants';
@@ -36,8 +35,8 @@ function Login() {
     // Verify if any of the credentials matches
     // then find that object and set the store with the respective values.
     const user = LOGIN_MOCKUP_DATA.find(user => user.username === email
-    && user.password === password);
-    if(user){
+      && user.password === password);
+    if (user) {
       dispatch(setUserDetails({
         userName: user.username,
         profileName: user.profileName,
@@ -49,24 +48,25 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     // Basic validation criteria
     const emailCheck = emailPattern.test(email);
     const passwordCheck = passwordPattern.test(password);
 
-    if(email.trim() === '' || !emailCheck){
+    if (email.trim() === '' || !emailCheck) {
       setEmailError('Please enter valid email address.');
     }
-    else{
+    else {
       setEmailError('');
       if (password.trim() === '' || !passwordCheck) {
         setPasswordError('Please enter valid password.');
       }
-      else{
+      else {
         setPasswordError('');
         if(verifyCredentials(email, password)){
           navigate('/dashboard');
         }
-        else{
+        else {
           alert("Invalid Username or Password");
         }
       }
@@ -76,7 +76,6 @@ function Login() {
   return (
     <div className='page'>
       <div className='login-body-page'>
-        <img src={innovalogo} alt='' className='innova-logo'></img>
         <img src={background} alt='' className='background-image'></img>
         <div className='login-image-block'>
           <img src={imagetext} alt='' className='image-text'></img>
@@ -120,7 +119,7 @@ function Login() {
               autoComplete="off"
               className={passwordError ? 'error' : 'basic-input'}
             />
-            {passwordError && <p  className='error-message'>{passwordError}</p>}
+            {passwordError && <p className='error-message'>{passwordError}</p>}
           </div>
           <Button
             label="Login"

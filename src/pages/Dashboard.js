@@ -1,20 +1,11 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import UserDisplay from '../components/UserDisplay/UserDisplay';
 import './Dashboard.css';
 
 function Dashboard() {
-  const navigate = useNavigate();
-
-  const handleNavigate = () => {
-    navigate('/admin/questions_configure');
-  };
-
   return (
     <div>
-      Dashboard<br />
-      <button className='config-question' onClick={handleNavigate}>
-          Bulk Import
-      </button>
+      <UserDisplay />
     </div>
   );
 }
