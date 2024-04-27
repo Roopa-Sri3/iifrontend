@@ -20,14 +20,17 @@ const  UserDisplay = () => {
         <div>sr. software Engineer</div>
       </div>
       <div className='candidates-count'>
-        {userRole === 'ADMIN' ?
+        {(userRole === 'ADMIN') && (
           <button className='config-question' onClick={handleNavigate}>
-          Bulk Import
-          </button> :
+            Bulk Import
+          </button>
+        )}
+        {(userRole === 'HR') && (
           <div>
             <p>Candidates</p>
             <p>Till Date</p>
-          </div>}
+          </div>
+        )}
       </div>
     </div>
   );
