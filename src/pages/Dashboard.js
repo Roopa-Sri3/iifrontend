@@ -1,16 +1,20 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './Dashboard.css';
 
 function Dashboard() {
+  const navigate = useNavigate();
+
+  const handleNavigate = () => {
+    navigate('/admin/questions_configure');
+  };
+
   return (
     <div>
-      <button className='config-question'>
-        <Link className='anchor-tag' to="/admin/questions_configure">
-          Questions Configuration
-        </Link>
+      Dashboard<br />
+      <button className='config-question' onClick={handleNavigate}>
+          Bulk Import
       </button>
-      Dashboard Page
     </div>
   );
 }
