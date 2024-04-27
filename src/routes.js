@@ -1,14 +1,14 @@
 import React from 'react';
 import Dashboard from "./pages/Dashboard";
-import Login from "./pages/Login";
-import Unauthorized from './pages/Unauthorized';
+import ProtectLoginRoute from './privateRoutes/protectLoginRoute';
 import ProtectedDashboardRoute from './privateRoutes/protectDashboardRoute';
 import Questionsconfiguration from "./pages/Questionsconfiguration";
+import Unauthorized from './pages/Unauthorized';
 
 const ROUTES_CONFIG = [
   {
     path: '/',
-    element: <Login />
+    element: <ProtectLoginRoute />
   },
   {
     path: '/',

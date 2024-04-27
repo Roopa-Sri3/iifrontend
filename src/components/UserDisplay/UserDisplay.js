@@ -19,16 +19,16 @@ const  UserDisplay = () => {
         <div>Myla Prakash</div>
         <div>sr. software Engineer</div>
       </div>
-      <div className='candidates-count'>
+      <div>
         {(userRole === 'ADMIN') && (
           <button className='config-question' onClick={handleNavigate}>
             Bulk Import
           </button>
         )}
         {(userRole === 'HR') && (
-          <div>
-            <p>Candidates</p>
-            <p>Till Date</p>
+          <div className='candidates-count'>
+            <div>Candidates</div>
+            <div>Till Date</div>
           </div>
         )}
       </div>
