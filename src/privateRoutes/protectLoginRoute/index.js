@@ -1,3 +1,3 @@
-import ProtectLoginRoute from './protectLoginRoute';
+import ProtectLoginRoute from './ProtectLoginRoute';
 
 export default ProtectLoginRoute;
