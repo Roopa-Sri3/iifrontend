@@ -8,10 +8,14 @@
     margin:30px;
 }
 
-.user-details{
 
-}
-
-.candidates-count{
-
+.config-question{
+    background-color: #4595ff;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    border-radius: 5px;
+    color:white;
+    padding:10px;
 }

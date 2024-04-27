@@ -39,7 +39,8 @@ function Questionsconfiguration() {
     <div className='questions-main'>
       <div className='containerhead'>
         <div className='navigate-layout'>
-          <BackarrowIcon onClick={handleNavigation} />
+          <BackarrowIcon onClick={handleNavigation}
+            className="back-arrow-icon"/>
         </div>
         <div className='text-layout-head'>
           <h4 className='subText1'>Add Questions from a File</h4>
