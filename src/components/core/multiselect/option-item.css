@@ -1,0 +1,12 @@
+.option-item {
+    .option-item-field-label{
+        cursor: pointer;        
+     } 
+
+     &.disabled {
+        .option-item-field-label{
+            cursor: not-allowed;  
+        }
+    }
+}
+

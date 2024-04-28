@@ -1,0 +1,39 @@
+.add-candidate-field-label-mandatory::after {
+  content: "*";
+  color: #FF2828;
+}
+
+.form-input {
+  border: 1px solid #D0D5DD;
+  border-radius: 8px;
+  font-size: 16px;
+  height:44px;
+}
+
+.validation-error {
+  color: #FF2828;
+  font-size: 12.25px;
+  line-height: 18.38px;
+  align-self: flex-start;
+}
+
+.add-candidate-field-error {
+  border-color: #FF2828;
+}
+
+.add-candidate-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.add-candidate-field-label-mandatory, .add-candidate-field-label{
+  margin-bottom:3px;
+  margin-left: 0;
+  color: #344054;
+  font-size: 14px;
+  line-height:20px;
+  align-self: flex-start;
+  text-align: left;
+}
+

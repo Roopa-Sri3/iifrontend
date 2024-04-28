@@ -1,0 +1,9 @@
+.dashbord-root {
+  margin: 30px;
+}
+
+.dashbord-filters-and-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+} 
