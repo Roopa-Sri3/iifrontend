@@ -9,3 +9,4 @@ export const GetAlertMessage = (state) => state.app.message;
 export const GetAlertMessageType = (state) => state.app.messageType;
 
 export const GetTimeoutId = (state) => state.app.timeoutId;
+
