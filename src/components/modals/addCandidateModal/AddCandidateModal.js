@@ -11,7 +11,6 @@ import './AddCandidateModal.css';
 
 const AddCandidateModal = () => {
   const dispatch = useDispatch();
-  // const [formData, setFormData] = useState({});
 
   const IsAddCandidateModalOpen = useSelector(
     (state) => IsModalOpen(state, 'AddCandidateModal'),
@@ -140,8 +139,7 @@ const AddCandidateModal = () => {
         selectedSecondarySkills,
         rRNumber,
       };
-      // setFormData(formData);
-      console.log(formData);
+
       resetForm();
       dispatch(closeModal());
     }

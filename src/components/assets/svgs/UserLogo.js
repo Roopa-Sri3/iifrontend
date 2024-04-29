@@ -4,7 +4,13 @@ import React from "react";
 function UserLogo(props) {
   return (
     <>
-      <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg
+        width="52"
+        height="52"
+        viewBox="0 0 52 52"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <g filter="url(#filter0_d_241_369)">
           <rect x="2" y="1" width="48" height="48" rx="10" fill="white"/>
           <rect x="2.5" y="1.5" width="47" height="47" rx="9.5" stroke="#E4E7EC"/>

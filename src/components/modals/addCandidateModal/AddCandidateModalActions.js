@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import Button from '../../core/button/button';
 import Checkbox from '../../core/checkbox/checkbox';
 import { setAlert } from '../../../store/reducers/app/app';
-import './AddCandidateModalActions.css';
 import { GetModalData } from '../../../store/selector/app';
+import './AddCandidateModalActions.css';
 
 const AddCandidateModalActions = ({ onSubmit, validateForm }) => {
   const dispatch = useDispatch();

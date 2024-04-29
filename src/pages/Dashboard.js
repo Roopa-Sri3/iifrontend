@@ -27,8 +27,8 @@ function Dashboard() {
           label="Add Candidate"
           handleClick={handleAddCandidate}
         />
-        <AddCandidateModal />
       </div>
+      <AddCandidateModal />
     </div>
   );
 }
