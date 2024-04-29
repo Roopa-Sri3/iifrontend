@@ -1,0 +1,33 @@
+.upload-image{
+    margin-left: 16px;
+    height: 20px;
+}
+
+.input-file-upload-button{
+    display: none;
+}
+
+
+.button-tag{
+  display: inline-block;
+  padding: 0.5em 1em;
+  border: dotted;
+  background-color: #f9f9f9;
+  color: #333;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  margin: 0px;
+}
+
+.button-tag:hover {
+    background-color: #f0f0f0;
+    border-color: #999;
+}
+
+.upload-text{
+    margin-left: 10px;
+    display: inline;
+}
+

@@ -9,7 +9,7 @@ import RoundButton from '../../dashboard-header-components/RoundButton';
 import Expand from '../../components/core/assets/svgs/Expand';
 import LogoutIcons from '../../components/core/assets/svgs/LougoutIcons';
 
-import companylogo from '../../images/company-symbol.png';
+import companylogo from '../../Images/company-symbol.png';
 import './Header.css';
 
 const Header = () => {
