@@ -2,6 +2,8 @@ export const IsUserLoggedIn = (state) => state.app.isUserLoggedIn;
 
 export const GetUserName = (state) => state.app.userName;
 
+export const GetProfileName = (state) => state.app.profileName;
+
 export const IsModalOpen = (state, name) => state.app.modal.modalName === name;
 
 export const GetAlertMessage = (state) => state.app.message;
@@ -13,10 +15,10 @@ export const GetTimeoutId = (state) => state.app.timeoutId;
 export const GetUserRole = (state) => state.app.role;
 
 export const GetProfileShortcutName = (state) => {
-  const profilelName = state.app.profileName;
+  const profileName = state.app.profileName;
 
-  if (profilelName) {
-    const names = profilelName.split(' ');
+  if (profileName) {
+    const names = profileName.split(' ');
 
     if (names.length >= 2) {
       return names[0][0] + names[1][0];
