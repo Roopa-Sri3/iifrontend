@@ -4,6 +4,8 @@ export const GetUserName = (state) => state.app.userName;
 
 export const IsModalOpen = (state, name) => state.app.modal.modalName === name;
 
+export const GetModalData = (state) => state.app.modal.modalData;
+
 export const GetAlertMessage = (state) => state.app.message;
 
 export const GetAlertMessageType = (state) => state.app.messageType;

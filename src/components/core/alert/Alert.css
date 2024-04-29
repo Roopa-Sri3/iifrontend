@@ -10,6 +10,7 @@
     border-radius: 5px;
     white-space: nowrap;
     opacity: 100%;
+    z-index: 1000;
     
     &.alert.success{
         position: absolute;

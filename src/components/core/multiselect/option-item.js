@@ -1,14 +1,20 @@
 import React from "react";
+import cx from 'classnames';
+import './option-item.css';
 
 const OptionItem = ({
   id,
   value,
   label,
-  checked,
+  checked = false,
   onChange,
+  disabled,
 }) => {
   return (
-    <div className="option-item">
+    <div
+      className={
+        cx('option-item', checked ? 'checked' : '', disabled ? 'disabled' : '')
+      }>
       <input
         className="check-box"
         type="checkbox"
@@ -16,8 +22,15 @@ const OptionItem = ({
         value={value}
         checked={checked}
         onChange={onChange}
+        disabled={disabled}
       />
-      <label htmlFor={id}>{label}</label>
+      <label
+        htmlFor={id}
+        className={cx("option-item-field-label", disabled ? 'disabled' : '' )}
+      >
+        {label}
+      </label>
+
     </div>
   );
 };

@@ -1,0 +1,21 @@
+.add-modal-header{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    padding: 10px;
+}
+.logo{
+    margin-right: 20px;
+}
+.title{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19.36px;
+    text-align: left;
+    margin-right: auto;
+}
+.close-icon{
+    padding-right:10px;
+    cursor: pointer;
+}
+
