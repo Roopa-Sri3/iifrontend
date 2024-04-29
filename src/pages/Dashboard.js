@@ -15,9 +15,6 @@ function Dashboard() {
     dispatch(openModal({
       modalName: 'AddCandidateModal',
       modalData: {
-        mode: 'EDIT',
-        name: '',
-        primary: ''
       }
     }));
   };
@@ -29,9 +26,8 @@ function Dashboard() {
         <Button
           label="Add Candidate"
           handleClick={handleAddCandidate}
-        >
-          {<AddCandidateModal />}
-        </Button>
+        />
+        <AddCandidateModal />
       </div>
     </div>
   );
