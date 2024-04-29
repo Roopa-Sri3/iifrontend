@@ -22,7 +22,7 @@ const  UserDisplay = () => {
       <div>
         {(userRole === 'ADMIN') && (
           <button className='config-question' onClick={handleNavigate}>
-            Bulk Import
+            Import Questions
           </button>
         )}
         {(userRole === 'HR') && (

@@ -89,7 +89,7 @@ function Questionsconfiguration() {
           <b className='inst-head'>Instructions.</b>
           <ol className='instructions-list'>
             {instructions.map((instruction, index) => (
-              <li key={index}>{instruction}</li>
+              <li className="list-layout" key={index}>{instruction}</li>
             ))}
           </ol>
         </div>
