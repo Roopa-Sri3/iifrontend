@@ -37,3 +37,10 @@
   text-align: left;
 }
 
+.form-input{
+  padding-left: 10px;
+}
+
+.my-form{
+  padding: 0px 20px;
+}

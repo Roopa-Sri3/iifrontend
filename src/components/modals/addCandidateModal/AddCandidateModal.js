@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import cx from 'classnames';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { IsModalOpen, GetModalData } from '../../../store/selector/app/app';
 import Modal from '../../core/modal/Modal';
 import MultiSelect from '../../core/multiselect/multiselect';
+import {closeModal} from "../../../store/reducers/app/app";
+import AddCandidateModalHeader from './AddCandidateModalHeader';
+import AddCandidateModalActions from './AddCandidateModalActions';
 import './AddCandidateModal.css';
 
 const AddCandidateModal = () => {
+  const dispatch = useDispatch();
+  // const [formData, setFormData] = useState({});
 
   const IsAddCandidateModalOpen = useSelector(
     (state) => IsModalOpen(state, 'AddCandidateModal'),
@@ -51,7 +56,23 @@ const AddCandidateModal = () => {
 
   useEffect(() => {
     if (storeModalData && storeModalData.mode === 'EDIT') {
-      // Need to set the state with modal data.
+      const candidateData = {...storeModalData};
+      setFullName(candidateData.fullName);
+      setEmail(candidateData.email);
+      setMobileNumber(candidateData.mobileNumber);
+      setYearsOfExperience(candidateData.yearsOfExperience);
+      setSelectedPrimarySkills(candidateData.selectedPrimarySkills);
+      setSelectedSecondarySkills(candidateData.selectedSecondarySkills);
+      setRRNumber(candidateData.rRNumber);
+    }
+    else {
+      setFullName('');
+      setEmail('');
+      setMobileNumber('');
+      setYearsOfExperience('');
+      setSelectedPrimarySkills([]);
+      setSelectedSecondarySkills([]);
+      setRRNumber('');
     }
   }, [storeModalData]);
 
@@ -65,7 +86,7 @@ const AddCandidateModal = () => {
       setMobileNumberError('Enter valid number');
       isValid = false;
     }
-    if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
+    if (!email || !/^\S+@gmail.com/.test(email)) {
       setEmailError('Please enter email');
       isValid = false;
     }
@@ -76,23 +97,53 @@ const AddCandidateModal = () => {
     }
     if(selectedPrimarySkills.length === 0){
       setSelectedPrimarySkillsError('Primary skill is required');
+      isValid = false;
     }
     if(selectedSecondarySkills.length === 0){
       setSelectedSecondarySkillsError('Secondary skill is required');
+      isValid = false;
     }
 
     return isValid;
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const resetForm = () => {
+    setFullName('');
+    setEmail('');
+    setMobileNumber('');
+    setYearsOfExperience('');
+    setSelectedPrimarySkills([]);
+    setSelectedSecondarySkills([]);
+    setRRNumber('');
+    setFullNameError('');
+    setEmailError('');
+    setMobileNumberError('');
+    setYearsOfExperienceError('');
+    setSelectedPrimarySkillsError('');
+    setSelectedSecondarySkillsError('');
+  };
+
+  const handleCloseModal = () => {
+    resetForm();
+    dispatch(closeModal());
+  };
+
+  const handleSubmit = () => {
     const isValid = validateForm();
-    console.log('selectedPrimarySkills values:',selectedPrimarySkills);
-    console.log('selectedSecondarySkills values:',selectedSecondarySkills);
-    if (isValid) {
-      console.log('Form is valid. Submitting...');
-    } else {
-      console.log('Form is invalid. Please correct the errors.');
+    if (isValid){
+      const formData = {
+        fullName,
+        email,
+        mobileNumber,
+        yearsOfExperience,
+        selectedPrimarySkills,
+        selectedSecondarySkills,
+        rRNumber,
+      };
+      // setFormData(formData);
+      console.log(formData);
+      resetForm();
+      dispatch(closeModal());
     }
   };
 
@@ -101,7 +152,7 @@ const AddCandidateModal = () => {
       <Modal
         show={IsAddCandidateModalOpen}
         size='modal-lg'
-        modalHeader='Add Candidate'
+        modalHeader={<AddCandidateModalHeader onClose={handleCloseModal} />}
       >
         <div className='container'>
           <form className='my-form' onSubmit={handleSubmit}>
@@ -236,6 +287,7 @@ const AddCandidateModal = () => {
                   options={options}
                   onChange={handleSecondarySkills}
                   maxSelection="3"
+                  selectedValues={selectedSecondarySkills}
                 />
                 {selectedSecondarySkillsError &&
                 <p className='validation-error'>
@@ -261,6 +313,10 @@ const AddCandidateModal = () => {
             </div>
           </form>
         </div>
+        <AddCandidateModalActions
+          onSubmit={handleSubmit}
+          validateForm={validateForm}
+        />
       </Modal>
     </div>
   );

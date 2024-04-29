@@ -51,7 +51,8 @@ const MultiSelect = ({
 
     let updatedSelectedOptions;
 
-    if (selectedOptions.findIndex((selectedOption) => selectedOption.value === option.value) !== -1) {
+    if (selectedOptions.findIndex(
+      (selectedOption) => selectedOption.value === option.value) !== -1) {
       updatedSelectedOptions = selectedOptions.filter(
         (eachOption) => eachOption.value !== option.value
       );
@@ -70,7 +71,6 @@ const MultiSelect = ({
 
   const handleCheckbox = (option, isChecked) => {
     handleOptionClick(option, isChecked);
-    console.log(option.checked);
   };
 
   const handleOutsideClick = (event) => {
@@ -92,7 +92,9 @@ const MultiSelect = ({
   );
 
   const disabledOptions = selectedOptions.length >= maxSelection ?
-    options.filter(option => !selectedOptions.find(selectedOption => selectedOption.value === option.value))
+    options.filter(
+      option => !selectedOptions.find(
+        selectedOption => selectedOption.value === option.value))
     : [];
 
   return (
@@ -147,7 +149,8 @@ const MultiSelect = ({
                   (eachOption) => eachOption.value === option.value)
                 }
                 onChange={(e) => {handleCheckbox(option, e.target.checked);}}
-                disabled={disabledOptions.some(disabledOption => disabledOption.value === option.value)}
+                disabled={disabledOptions.some(
+                  disabledOption => disabledOption.value === option.value)}
               />
             ))}
           </div>
