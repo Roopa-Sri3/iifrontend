@@ -4,9 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import Input from '../components/core/Input/Input';
 import Label from '../components/core/Label/Label';
 import './Login.css';
-import background from '../Images/BlueBackground.png';
-import image from '../Images/Group.png';
-import imagetext from '../Images/Login-Text.png';
+import background from '../images/BlueBackground.png';
+import image from '../images/Group.png';
+import imagetext from '../images/Login-Text.png';
 import Button from '../components/core/button/button';
 // eslint-disable-next-line max-len
 import {LOGIN_MOCKUP_DATA, emailPattern, passwordPattern} from '../shared/constants';

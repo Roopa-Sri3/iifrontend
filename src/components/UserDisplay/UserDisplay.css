@@ -1,20 +1,40 @@
+*{
+    box-sizing: border-box;
+}
+
 .user-display{
     display:flex;
+    flex-direction: column;
     align-items: center;
     justify-content: space-between;
     background: linear-gradient(90deg, #326D62 0%, #0E5291 51.6%, #0E034F 100%);
     color: white;
-    padding: 15px 10px;
     margin:30px;
     border-radius: 8px;
-    position: relative;
     z-index: -1;
 }
 
-.user-details{
-
+.dashboard-line-2{
+    display: flex;
+    flex:1;
+    align-items: center;
+    margin-right: 20px;
+    justify-content: flex-start;
 }
 
-.candidates-count{
-
+.dashboard-line-1{
+    display: flex;
+    flex:1;
+    align-items: center;
+    margin-left: 20px;
+    justify-content: flex-end;
 }
+
+.registered-till-date{
+    font-size: 15px;
+}
+
+/* .candidates-text{
+    margin-bottom: -5px; */
+
+

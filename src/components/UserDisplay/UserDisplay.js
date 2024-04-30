@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector,} from 'react-redux';
 import {GetUserRole, GetProfileName }  from '../../store/selector/app';
-
 import './UserDisplay.css';
 
 const  UserDisplay = () => {
@@ -10,13 +9,14 @@ const  UserDisplay = () => {
 
   return(
     <div className='user-display'>
-      <div className='dashboard-user-details'>
-        <div>{profileName}</div>
-        <div>{userRole}</div>
+      <div className='dashboard-line-1'>
+        <p>{profileName}</p>
+        <p className='candidates-text'>Candidates</p>
       </div>
-      <div className='candidates-count'>
-        <div>Candidates</div>
-        <div>Till Date:</div>
+      <div className='dashboard-line-2'>
+        <p>{userRole}</p>
+        <p className='registered-till-date'>
+          Till Date:</p>
       </div>
     </div>
   );

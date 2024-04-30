@@ -84,7 +84,7 @@
   color: #929292;
 }
 .expand-div {
-  box-sizing: border-box;
+  box-sizing:border-box;
   width: 230px;
   height: 130px;
   border: 2px solid Whitesmoke;
@@ -97,21 +97,22 @@
   margin-top: 60px;
   margin-right: 20px;
   display: inline;
-  padding: 5px;
+  padding: 12px;
   background-color:#F5F5F7;
-  top: -20px; 
+  top: -2px; 
   display: inline-block;
-  z-index: 3;
+  z-index:1;
 }
 
 .expand-icon {
   margin-top: 20px;
   margin-left: 5px;
   cursor: pointer;
+  z-index: 1;
 }
 
 .logout {
-  margin-top: -26px;
+  margin-top: 1px;
   margin-left: 70px;
 }
 .logout-icon {
