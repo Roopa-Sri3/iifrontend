@@ -1,7 +1,7 @@
-/* eslint-disable max-len */
 import React, { useState }from 'react';
 import { useSelector,} from 'react-redux';
-import { IsUserLoggedIn, GetProfileName, GetUserRole }  from '../../store/selector/app';
+import { IsUserLoggedIn, GetProfileName, GetUserRole }
+  from '../../store/selector/app';
 
 import Innovalogo from '../../dashboard-header-components/Logo';
 import Title from '../../dashboard-header-components/Title';
@@ -33,7 +33,6 @@ const Header = () => {
           <div className="round">
             <RoundButton />
             <Expand className="expand-icon" onClick={toggleExpand} />
-            {/* TODO : Need to add the expand functionality later */}
             {isOpen && (
               <div className="expand-div"  >
                 <h6 className="user-name">{profileName}</h6>

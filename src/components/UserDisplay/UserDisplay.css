@@ -6,7 +6,6 @@
   display: flex;
   position: relative;
   flex-direction: column;
-  /* align-items: right; */
   justify-content: space-between;
   background: linear-gradient(90deg, #326d62 0%, #0e5291 51.6%, #0e034f 100%);
   color: white;

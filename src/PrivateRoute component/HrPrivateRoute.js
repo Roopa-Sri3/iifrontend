@@ -9,8 +9,10 @@ const HRPrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => (
         isAuthenticated ? (
           <Component {...props} />
         ) : (
-        // eslint-disable-next-line max-len
-          <Navigate to={{ pathname: '/', state: { from: props.location, message: 'Unauthorised Access' } }} />
+          <Navigate to={
+            { pathname: '/',
+              state: { from: props.location, message: 'Unauthorised Access' }
+            }} />
         )
       }
     />

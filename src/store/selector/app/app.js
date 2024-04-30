@@ -19,11 +19,12 @@ export const GetProfileShortcutName = (state) => {
 
   if (profileName) {
     const names = profileName.split(' ');
+    const NO_PROFILE_NAME = 'NO_PROFILE_NAME';
 
     if (names.length >= 2) {
       return names[0][0] + names[1][0];
     }
-    return "UU"; // TODO: IF NO NAME??
+    return "NO_PROFILE_NAME";
   }
-  return "UU"; // TODO: IF NO NAME??
+  return "NO_PROFILE_NAME";
 };
