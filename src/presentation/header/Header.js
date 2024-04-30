@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import React, { useState }from 'react';
 import { useSelector,} from 'react-redux';
-import { IsUserLoggedIn, GetUserName, GetUserRole }  from '../../store/selector/app';
+import { IsUserLoggedIn, GetProfileName, GetUserRole }  from '../../store/selector/app';
 
 import Innovalogo from '../../dashboard-header-components/Logo';
 import Title from '../../dashboard-header-components/Title';
@@ -9,12 +9,12 @@ import RoundButton from '../../dashboard-header-components/RoundButton';
 import Expand from '../../components/core/assets/svgs/Expand';
 import LogoutIcons from '../../components/core/assets/svgs/LougoutIcons';
 
-import companylogo from '../../images/company-symbol.png';
+import companylogo from '../../Images/company-symbol.png';
 import './Header.css';
 
 const Header = () => {
   const isLoggedIn = useSelector(IsUserLoggedIn);
-  const profileName = useSelector(GetUserName);
+  const profileName = useSelector(GetProfileName);
   const userRole = useSelector(GetUserRole);
   const [isOpen, setIsOpen] = useState(false);
 

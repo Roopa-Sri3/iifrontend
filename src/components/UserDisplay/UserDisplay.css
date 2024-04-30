@@ -1,40 +1,43 @@
-*{
-    box-sizing: border-box;
+* {
+  box-sizing: border-box;
 }
 
-.user-display{
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    background: linear-gradient(90deg, #326D62 0%, #0E5291 51.6%, #0E034F 100%);
-    color: white;
-    margin:30px;
-    border-radius: 8px;
-    z-index: -1;
+.user-display {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  /* align-items: right; */
+  justify-content: space-between;
+  background: linear-gradient(90deg, #326d62 0%, #0e5291 51.6%, #0e034f 100%);
+  color: white;
+  margin: 30px;
+  border-radius: 8px;
+  z-index: -1;
+  padding: 18px 25px;
 }
 
-.dashboard-line-2{
-    display: flex;
-    flex:1;
-    align-items: center;
-    margin-right: 20px;
-    justify-content: flex-start;
+.user-details-line1 {
+  display: flex;
+  justify-content: space-between;
 }
 
-.dashboard-line-1{
-    display: flex;
-    flex:1;
-    align-items: center;
-    margin-left: 20px;
-    justify-content: flex-end;
+.user-details-line2 {
+  display: flex;
+  justify-content: space-between;
 }
 
-.registered-till-date{
-    font-size: 15px;
+.right {
+  text-align: right;
 }
 
-/* .candidates-text{
-    margin-bottom: -5px; */
+.profileName {
+  font-size: 16px;
+}
 
+.roleName {
+    font-size: 11.22px;
+}
 
+.left {
+  text-align: left;
+}

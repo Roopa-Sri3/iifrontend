@@ -19,13 +19,13 @@ export const LOGIN_MOCKUP_DATA = [
     username: 'admin@innova.in',
     password: 'Admin@123',
     profileName: 'Uday Dontula',
-    role: 'ADMIN'
+    role: 'Senior Associate - Admin'
   },
   {
     username: 'hr@innova.in',
     password: 'Hr@123456',
     profileName: 'Tharun Ganga',
-    role: 'HR'
+    role: 'Senior Associate - Human Resource'
   }
 ];
 
