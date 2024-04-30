@@ -18,7 +18,7 @@ const appSlice = createSlice({
   },
   reducers: {
     setLogin: (state, action) => {
-      state.isUserLoggedIn = action.payload.isUseLoggedIn;
+      state.isUserLoggedIn = action.payload.isUserLoggedIn;
     },
     setUserName: (state, action) => {
       state.userName = action.payload.userName;
@@ -39,7 +39,7 @@ const appSlice = createSlice({
       state.modal.modalName = action.payload.modalName;
       state.modal.modalData = action.payload.modalData;
     },
-    closeModal: (state,action) => {
+    closeModal: (state) => {
       state.modal.modalName = '';
       state.modal.modalData = null;
     },

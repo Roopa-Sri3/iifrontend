@@ -12,9 +12,6 @@ function Input ({
   className,
   disabled,
   required,
-  hasClear,
-  handleClearClick,
-  getValue,
   minLength,
   maxLength,
   ...restInputProps
@@ -32,9 +29,6 @@ function Input ({
       className = {className}
       disabled = {disabled}
       required = {required}
-      hasClear = {hasClear}
-      handleClearClick = {handleClearClick}
-      getValue = {getValue}
       minLength = {minLength}
       maxLength = {maxLength}
       {...restInputProps}

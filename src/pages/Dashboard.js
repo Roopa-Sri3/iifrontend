@@ -1,9 +1,34 @@
-import React from 'react';
+import React from "react";
+import Button from "../components/core/button/button";
+import { useDispatch } from "react-redux";
+import { openModal, } from '../store/reducers/app/app';
+import
+AddCandidateModal
+  from "../components/modals/addCandidateModal/AddCandidateModal";
+import UserDisplay from '../components/UserDisplay/UserDisplay';
+import './Dashboard.css';
 
 function Dashboard() {
+  const dispatch = useDispatch();
+
+  const handleAddCandidate = () => {
+    dispatch(openModal({
+      modalName: 'AddCandidateModal',
+      modalData: {
+      }
+    }));
+  };
+
   return (
-    <div>
-      Dashboard Page
+    <div className="dashbord-root">
+      <UserDisplay />
+      <div className="dashbord-filters-and-actions">
+        <Button
+          label="Add Candidate"
+          handleClick={handleAddCandidate}
+        />
+      </div>
+      <AddCandidateModal />
     </div>
   );
 }
