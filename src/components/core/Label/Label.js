@@ -9,8 +9,8 @@ function Label ({
   return (
     <label
       htmlFor={htmlFor}
-      {...restLabelProps}
       className={className}
+      {...restLabelProps}
     >
       {text}
     </label>
