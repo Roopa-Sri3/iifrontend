@@ -62,3 +62,4 @@ const AddCandidateModalActions = ({ onSubmit, validateForm }) => {
 };
 
 export default AddCandidateModalActions;
+
