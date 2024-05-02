@@ -310,11 +310,11 @@ const AddCandidateModal = () => {
               </div>
             </div>
           </form>
+          <AddCandidateModalActions
+            onSubmit={handleSubmit}
+            validateForm={validateForm}
+          />
         </div>
-        <AddCandidateModalActions
-          onSubmit={handleSubmit}
-          validateForm={validateForm}
-        />
       </Modal>
     </div>
   );
