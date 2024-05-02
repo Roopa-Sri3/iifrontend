@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "../components/core/button/button";
 import { useDispatch, useSelector } from "react-redux";
-import { openModal, } from '../store/reducers/app/app';
+import { openModal } from '../store/reducers/app/app';
 import
 AddCandidateModal
   from "../components/modals/addCandidateModal/AddCandidateModal";

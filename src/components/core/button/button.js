@@ -19,7 +19,7 @@ const Button = ({
       disabled={disabled}
     >
       <div className="buttonContainer">
-        <div className="label">{label}</div>
+        <div className={children ? "label" : ""}>{label}</div>
         {children}
       </div>
     </button>
