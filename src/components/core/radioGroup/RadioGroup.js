@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import Label from '../Label/Label';
 import cx from 'classnames';
 import './RadioGroup.css';
@@ -7,13 +6,16 @@ const RadioGroup = ({
   options,
   className,
   onChange,
+  selectedValue,
 }) => {
+  const handleOptionChange = (optionValue) => {
+    onChange(optionValue);
+  };
 
-  const [selectedOption, setSelectedOption] = useState(null);
-
-  const handleOptionChange = (option) => {
-    setSelectedOption(option);
-    onChange(option);
+  const handleKeyDown = (event,optionValue) => {
+    if (event.key === 'Enter' || event.key === " ") {
+      onChange(optionValue);
+    }
   };
 
   return (
@@ -27,12 +29,16 @@ const RadioGroup = ({
           <input
             type="radio"
             value={option.value}
-            checked={selectedOption === option.value}
+            checked={selectedValue === option.value}
             onChange={() => handleOptionChange(option.value)}
           />
           <div
+            role="button"
+            tabIndex="0"
             className={`radio-option-label
-            ${selectedOption === option.value ? 'selected' : ''}`}
+            ${selectedValue === option.value ? 'selected' : ''}`}
+            onClick={() => handleOptionChange(option.value)}
+            onKeyDown={handleKeyDown(option.value)}
           >
             {option.label}
           </div>
