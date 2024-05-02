@@ -28,7 +28,8 @@ const Header = () => {
       {isLoggedIn && (
         <>
           <div className="title">
-            <Title text="Interview Insights" className="interview-insights-title" />
+            <Title text="Interview Insights"
+              className="interview-insights-title" />
           </div>
           <div className="round">
             <RoundButton />
