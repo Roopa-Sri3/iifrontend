@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Button from '../core/button';
 import './Question.css';
 import RadioGroup from '../core/radioGroup/RadioGroup';
@@ -10,13 +10,7 @@ const Question = ({
   category = 'SINGLESELECT',
   handlePrevious,
   handleSave,
-  options = [
-    { label: 'Global', value: 'global' },
-    { label: 'Transient', value: 'transient' },
-    { label: 'Volatile', value: 'volatile' },
-    { label: 'Default', value: 'default' },
-  ],
-
+  options = [],
 }) => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [codeValue, setCodeValue] = useState('');
@@ -54,6 +48,7 @@ const Question = ({
           {category === 'SINGLESELECT' &&
             <div className='sinlge-option'>
               <RadioGroup
+                label="Choose answer"
                 options={options}
                 onChange={handleOptionChange}
                 selectedValue={selectedOption}
