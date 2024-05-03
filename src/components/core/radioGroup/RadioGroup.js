@@ -4,6 +4,7 @@ import cx from 'classnames';
 import './RadioGroup.css';
 
 const RadioGroup = ({
+  label,
   options,
   className,
   onChange,
@@ -22,7 +23,7 @@ const RadioGroup = ({
   return (
     <div className={cx('radio-group-component-container',className)}>
       <Label
-        text="Choose answer"
+        text={label}
         className="radio-group-label"
       />
       {options.map((option) => (
