@@ -1,0 +1,25 @@
+{
+    "CandidateProfileView": [
+      {
+        "CandidateName": "Varsha",
+        "PhoneNumber": "123-456-7890",
+        "Email": "Varsha@example.com",
+        "Experience": "5 years",
+        "Skills": ["React.js", "JavaScript", "HTML", "CSS"]
+      },
+      {
+        "CandidateName": "Siddharth",
+        "PhoneNumber": "987-654-3210",
+        "Email": "Siddharth@example.com",
+        "Experience": "3 years",
+        "Skills": ["Python", "SQL", "Data Analysis"]
+      },
+      {
+        "CandidateName": "Rishitha",
+        "PhoneNumber": "555-123-4567",
+        "Email": "Rishitha@example.com",
+        "Experience": "7 years",
+        "Skills": ["Java", "Spring Boot", "RESTful APIs"]
+      }
+    ]
+  }

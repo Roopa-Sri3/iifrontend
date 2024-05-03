@@ -4,6 +4,8 @@ import ProtectLoginRoute from './privateRoutes/protectLoginRoute';
 import ProtectedDashboardRoute from './privateRoutes/protectDashboardRoute';
 import Questionsconfiguration from "./pages/Questionsconfiguration";
 import Unauthorized from './pages/Unauthorized';
+import CandidateProfileview
+  from './components/core/CandidateProfileView/CandidateProfileView';
 
 const ROUTES_CONFIG = [
   {
@@ -28,6 +30,10 @@ const ROUTES_CONFIG = [
     path: '/unauthorized',
     element: <Unauthorized />
   },
+  {
+    path: '/CandidateProfileView',
+    element: <CandidateProfileview />
+  }
 ];
 
 export default ROUTES_CONFIG;
