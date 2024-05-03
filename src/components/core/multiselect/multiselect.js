@@ -6,11 +6,9 @@ import DeSelect from '../../assets/svgs/DeSelect';
 import './multiselect.css';
 
 const MultiSelect = ({
-  id,
   label,
   options,
   className,
-  checked,
   onChange,
   selectedValues,
   maxSelection,
@@ -37,10 +35,6 @@ const MultiSelect = ({
     if (event.key === 'Enter' || event.key === " ") {
       toggleMenu();
     }
-  };
-
-  const handleTouch = () => {
-    toggleMenu();
   };
 
   const handleSearchChange = (event) =>{
@@ -104,7 +98,6 @@ const MultiSelect = ({
         tabIndex="0"
         onClick={handleMouseClick}
         onKeyDown={handleKeyDown}
-        onTouch={handleTouch}
       >
         <div className="selected-options">
           {selectedOptions && selectedOptions.map((option) => (
