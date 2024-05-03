@@ -1,16 +1,24 @@
 import { useState } from 'react';
 import Button from '../core/button';
 import './Question.css';
+import RadioGroup from '../core/radioGroup/RadioGroup';
 
 const Question = ({
   questionNumber,
   totalQuestions,
   questionText,
-  category,
+  category = 'SINGLESELECT',
   handlePrevious,
   handleSave,
+  options = [
+    { label: 'Global', value: 'global' },
+    { label: 'Transient', value: 'transient' },
+    { label: 'Volatile', value: 'volatile' },
+    { label: 'Default', value: 'default' },
+  ],
 
 }) => {
+  const [selectedOption, setSelectedOption] = useState(null);
   const [codeValue, setCodeValue] = useState('');
 
   const handlePreviousButton = () =>{
@@ -19,6 +27,10 @@ const Question = ({
 
   const handleSaveButton = () =>{
     handleSave();
+  };
+
+  const handleOptionChange = (optionValue) => {
+    setSelectedOption(optionValue);
   };
 
   const handleCodeChange = (event) => {
@@ -41,9 +53,14 @@ const Question = ({
           }
           {category === 'SINGLESELECT' &&
             <div className='sinlge-option'>
-
+              <RadioGroup
+                options={options}
+                onChange={handleOptionChange}
+                selectedValue={selectedOption}
+              />
             </div>
           }
+          {console.log(selectedOption)}
           {category === 'CODING' &&
             <div className='coding'>
               Write code here
