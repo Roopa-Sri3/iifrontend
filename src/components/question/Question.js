@@ -7,7 +7,7 @@ const Question = ({
   questionNumber,
   totalQuestions,
   questionText,
-  category = 'SINGLESELECT',
+  category,
   handlePrevious,
   handleSave,
   options = [],
@@ -40,11 +40,6 @@ const Question = ({
           <div className='question-text'>
             {questionText}
           </div>
-          {category === 'MULTISELECT' &&
-            <div className='multi-option'>
-
-            </div>
-          }
           {category === 'SINGLESELECT' &&
             <div className='sinlge-option'>
               <RadioGroup
@@ -55,7 +50,6 @@ const Question = ({
               />
             </div>
           }
-          {console.log(selectedOption)}
           {category === 'CODING' &&
             <div className='coding'>
               Write code here
