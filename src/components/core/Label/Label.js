@@ -9,6 +9,7 @@ function Label ({
   return (
     <label
       htmlFor={htmlFor}
+      className={className}
       {...restLabelProps}
     >
       {text}

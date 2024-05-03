@@ -1,5 +1,5 @@
 .page{
-    height: 95vh;
+    height: 92vh;
     width: 100vw;
     background-color: #ebeef3;
     position: absolute;
@@ -70,14 +70,14 @@ img{
     outline: none; 
 }
 
-label{
+.label-text{
     font-family: Arial, Helvetica, sans-serif;
     margin-left: 50px;
     margin-bottom: 10px;
     width: 100%;
 }
 
-input.error {
+.error {
     border: 1px solid red;
     margin-left: 3.2em;
     height: 3rem;
@@ -89,7 +89,7 @@ input.error {
     width: 80%;
 }
 
-input.basic-input{
+.basic-input{
     height: 3rem;
     padding:1em;
     box-sizing: border-box;
