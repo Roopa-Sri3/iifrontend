@@ -44,12 +44,14 @@ const AddCandidateModalActions = ({ onSubmit, validateForm }) => {
   return (
     <div>
       {!isEditMode && (
-        <Checkbox
-          id='mycheckbox'
-          label="Share link with candidate"
-          checked={isChecked}
-          onChange={handleCheckboxChange}
-        />
+        <div className='addcandidate-checkbox-container'>
+          <Checkbox
+            id='mycheckbox'
+            label="Share link with candidate"
+            checked={isChecked}
+            onChange={handleCheckboxChange}
+          />
+        </div>
       )}
       <center className='add-button'>
         <Button
