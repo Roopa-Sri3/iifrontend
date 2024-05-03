@@ -1,26 +1,24 @@
-
 .questions-container{
     background-color: #EBEEF3;
-    height: 685px;
+    min-height: 685px;
     padding: 80px 40px 60px 40px;
 }
 
 .question-card{
-    height: 530px;
     background-color: #FFFFFF;
     padding: 15px 50px;
     border-radius: 5px;
 }
 
 .number{
-    height: 20px;
+    min-height: 20px;
     font-size: 16px;
     font-weight: 700;
     line-height: 19.36px;
 }
 
 .question{
-    height: 410px;
+    min-height: 410px;   
     border: 1px solid #D9E0E6;
     border-radius: 5px;
     padding: 20px;
@@ -28,12 +26,19 @@
 }
 
 .question-text{
-    height: 40px;
+    min-height: 40px;
     background-color: #FFFFFF;
     border: 1px solid #D9E0E6;
     border-radius: 5px;
     padding: 6px 10px;
     margin-bottom: 10px;
+}
+
+.coding-area{
+    border: 1px solid #D9E0E6;
+    border-radius: 5px;
+    min-height: 270px;
+    width: 100%;
 }
 
 .action-buttons{
