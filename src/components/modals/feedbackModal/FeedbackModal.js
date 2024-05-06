@@ -1,9 +1,8 @@
-/* eslint-disable jsx-a11y/interactive-supports-focus */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from "react";
 import { useSelector } from "react-redux";
 import { GetModalData, IsModalOpen } from "../../../store/selector/app/app";
 import Modal from "../../core/modal/Modal";
+import Button from "../../core/button";
 import { closeModal } from "../../../store/reducers/app/app";
 import CloseLogo from "../../../assets/svgs/CloseLogo";
 import FilledStarComponent from "../../../assets/svgs/filledStar";
@@ -16,8 +15,6 @@ const FeedbackModal = () => {
   const IsFeedbackModelOpen = useSelector((state) =>
     IsModalOpen(state, 'FeedbackModal'));
   const storeModalData = useSelector(GetModalData);
-
-  console.log('Data', storeModalData);
 
   const handleCloseModal = () => {
     dispatch(closeModal());
@@ -44,11 +41,11 @@ const FeedbackModal = () => {
         size="model-md"
       >
         <>
-          <div role='button'
-            onClick={handleCloseModal}
+          <Button
+            handleClick={handleCloseModal}
             className='close-icon'>
             <CloseLogo color={"black"} />
-          </div>
+          </Button>
           <div>
             {storeModalData && (
               <>

@@ -2,9 +2,7 @@ import React from 'react';
 import './CandidateRow.css';
 import EditComponent from '../assets/svgs/editImage';
 import ShareComponent from '../assets/svgs/shareImage';
-// import SaveComponent from '../assets/svgs/reportImage';
 import VisibilityComponent from '../assets/svgs/visibilityImage';
-// import BlueSaveComponent from '../assets/svgs/blueSave';
 import { useDispatch } from 'react-redux';
 import { openModal } from '../store/reducers/app/app';
 import DownloadIcon from '../assets/svgs/downloadIcon';
@@ -35,9 +33,10 @@ const CandidateRow = ({ candidate }) => {
           <div className='report-text'>
             {candidate.report}
           </div>
-          {isPdfReport ?
-            <DownloadIcon style={{cursor:'pointer'}} fillColor='#196AD6'/> :
-            <DownloadIcon style={{cursor:'not-allowed'}}/>}
+          <DownloadIcon
+            style={{ cursor: isPdfReport ? 'pointer' : 'not-allowed' }}
+            fillColor={isPdfReport ? '#196AD6' : '#6F7683'}
+          />
         </div>
       </td>
       <td>

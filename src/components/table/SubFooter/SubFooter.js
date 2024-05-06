@@ -25,10 +25,10 @@ const SubFooter =
 
     filteredCandidates.filter(candidate => candidate.status === selectedStatus);
     const totalFilteredRecords = filteredCandidates.length;
-    const indexOfLastRecord = currentPage * recordsPerPage;
-    const indexOfFirstRecord = (currentPage - 1) * recordsPerPage;
-    const startRecord = Math.max(1, indexOfFirstRecord + 1);
-    const endRecord = Math.min(indexOfLastRecord, totalFilteredRecords);
+    const indexOfFirstRecord =
+    Math.max(1, ((currentPage - 1) * recordsPerPage) + 1);
+    const indexOfLastRecord =
+    Math.min((currentPage * recordsPerPage), totalFilteredRecords);
 
     return (
       <div className="pagination-root">
@@ -60,7 +60,8 @@ const SubFooter =
             disabled={currentPage === totalPages}>{'>>'}</button>
         )}
         <div className="current-page-entries">
-          Showing {startRecord} to {endRecord} of {totalFilteredRecords} entries
+          Showing {indexOfFirstRecord} to {indexOfLastRecord} of{' '}
+          {totalFilteredRecords} entries
         </div>
       </div>
     );

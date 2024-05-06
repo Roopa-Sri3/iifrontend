@@ -3,6 +3,7 @@ import './StatusFilter.css';
 
 const StatusFilter = ({ onFilterChange, onClose}) => {
   const [selectedStatus, setSelectedStatus] = useState(null);
+  const statuses = ['Pending', 'Completed', 'Expired', 'New'];
 
   const handleCheckboxChange = (status) => {
     setSelectedStatus(status);
@@ -12,38 +13,16 @@ const StatusFilter = ({ onFilterChange, onClose}) => {
 
   return (
     <div className="status-filter-popup">
-      <label className="status-filter-label">
-        <input
-          type="checkbox"
-          checked={selectedStatus === 'Pending'}
-          onChange={() => handleCheckboxChange('Pending')}
-        />
-        Pending
-      </label>
-      <label className="status-filter-label">
-        <input
-          type="checkbox"
-          checked={selectedStatus === 'Completed'}
-          onChange={() => handleCheckboxChange('Completed')}
-        />
-        Completed
-      </label>
-      <label className="status-filter-label">
-        <input
-          type="checkbox"
-          checked={selectedStatus === 'Expired'}
-          onChange={() => handleCheckboxChange('Expired')}
-        />
-        Expired
-      </label>
-      <label className="status-filter-label">
-        <input
-          type="checkbox"
-          checked={selectedStatus === 'New'}
-          onChange={() => handleCheckboxChange('New')}
-        />
-        New
-      </label>
+      {statuses.map((status) => (
+        <label key={status} className="status-filter-label">
+          <input
+            type="checkbox"
+            checked={selectedStatus === status}
+            onChange={() => handleCheckboxChange(status)}
+          />
+          {status}
+        </label>
+      ))}
     </div>
   );
 };
