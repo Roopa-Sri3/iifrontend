@@ -1,0 +1,39 @@
+.status-filter-popup {
+    position: absolute;
+    top: 60px;
+    left: 500px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 5px;
+    z-index: 100;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .status-filter-label {
+    display: block;
+    margin-bottom: 8px;
+  }
+  
+  .status-filter-popup input[type="checkbox"] {
+    margin-right: 8px;
+  }
+
+  .status-filter-popup input[type="checkbox"]::before {
+    content: "";
+    display: flex;
+    width: 14px;
+    height: 14px;
+    border: 2px solid black;
+    background-color: #fff;
+    justify-content: flex-start;
+  }
+  
+  .status-filter-popup input[type="checkbox"]:hover::before {
+    cursor:pointer;
+    background-color:#4595FF;
+    border: none;
+  }
