@@ -6,7 +6,7 @@ import { IsUserLoggedIn,/* GetUserName, GetUserRole*/ }  from '../../store/selec
 import Innovalogo from '../../dashboard-header-components/Logo';
 import Title from '../../dashboard-header-components/Title';
 import RoundButton from '../../dashboard-header-components/RoundButton';
-import Expand from '../../components/core/assets/svgs/Expand';
+import Expand from '../../components/assets/svgs/Expand';
 // import LogoutIcons from '../../components/core/assets/svgs/LougoutIcons';
 
 import companylogo from '../../Images/company-symbol.png';
