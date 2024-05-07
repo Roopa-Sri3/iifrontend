@@ -19,7 +19,37 @@ const CandidateRow = ({ candidate }) => {
         }
       }));
   };
+  const handleEditClick = () => {
+    const rowCandidateData = {
+      fullName: "abinash",
+      email: "191fa04101@gmail.com",
+      mobileNumber:"6309574567",
+      yearsOfExperience: 1,
+      primaryTechSkill: "Java",
+      secondaryTechSkills: ['C', 'Python', 'PHP'],
+      rRNumber: "",
+      status: "completed",
+      fileUrl: "c::/file",
+      rating: 1,
+      comments: "dfgf"
+    };
 
+    dispatch(openModal(
+      {
+        modalName: 'AddCandidateModal',
+        modalData: {
+          mode:'EDIT',
+          ...rowCandidateData,
+          selectedPrimarySkills:[
+            {label: rowCandidateData.primaryTechSkill,
+              value: rowCandidateData.primaryTechSkill}
+          ],
+          selectedSecondarySkills:
+          rowCandidateData.secondaryTechSkills.map(secondarySkill =>
+            ({label: secondarySkill, value: secondarySkill})),
+        }
+      }));
+  };
   return (
     <tr className='candidate-row'>
       <td>{candidate.candidateName}</td>
@@ -53,7 +83,18 @@ const CandidateRow = ({ candidate }) => {
       </td>
       <td>
         {candidate.actions}
-        <EditComponent className="edit-icon"/>
+        <span className="edit-icon"
+          role="button"
+          tabIndex="0"
+          onClick = {handleEditClick}
+          onKeyDown={(event) => {
+            if(event.key === "Enter" || event.key === ' '){
+              handleEditClick();
+            }
+          }}
+        >
+          <EditComponent/>
+        </span>
         <ShareComponent className="share-icon"/>
       </td>
     </tr>
