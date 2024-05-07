@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Button from "../components/core/button/button";
 import { useDispatch, useSelector } from "react-redux";
 import { openModal, } from '../store/reducers/app/app';
@@ -9,6 +9,7 @@ import './Dashboard.css';
 import FeedbackModal from '../components/modals/feedbackModal/FeedbackModal';
 import StatusFilter from './StatusFilter';
 import Search from '../components/assets/svgs/Search';
+import { GetTechSkills } from '../store/reducers/dashboard/dashboard.js';
 import { GetUserRole } from "../store/selector/app";
 import SubFooter from "../components/table/SubFooter/SubFooter";
 import SubHeader from "../components/table/SubHeader/SubHeader";
@@ -16,6 +17,18 @@ import SubLayout from "../components/table/SubLayout/SubLayout";
 import { candidates } from "../shared/constants";
 
 const Dashboard = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(GetTechSkills({
+      onSuccess: () => {
+        console.log('Sucess');
+      },
+      onError: () => {
+        console.log('Error');
+      },
+    }));
+  }, [dispatch]);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [recordsPerPage] = useState(10);
@@ -46,8 +59,8 @@ const Dashboard = () => {
 
   const totalPages = Math.ceil(filteredCandidates.length / recordsPerPage);
 
-  const dispatch = useDispatch();
   const role = useSelector(GetUserRole);
+  // const dropdownOptions = useSelector(GetSkills);
 
   const handleAddCandidate = () => {
     dispatch(openModal({
@@ -55,6 +68,14 @@ const Dashboard = () => {
       modalData: {
       }
     }));
+  };
+
+  const handleAddOrEditCandidate = (
+    mode,
+    ...formData
+  ) => {
+    console.log('formData', formData);
+    console.log('mode', mode);
   };
 
   return (
@@ -110,7 +131,9 @@ const Dashboard = () => {
           {showFilter && <StatusFilter onFilterChange={handleFilterChange}
             onClose={() => setShowFilter(false)} />}
         </div>
-        <AddCandidateModal />
+        <AddCandidateModal
+          handleAddOrEditCandidate={handleAddOrEditCandidate}
+        />
         <FeedbackModal />
       </div>
       }

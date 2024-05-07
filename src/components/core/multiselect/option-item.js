@@ -16,7 +16,7 @@ const OptionItem = ({
         cx('option-item', checked ? 'checked' : '', disabled ? 'disabled' : '')
       }>
       <input
-        className="check-box"
+        className="option-item-check-box"
         type="checkbox"
         id={id}
         value={value}

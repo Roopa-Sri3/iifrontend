@@ -7,9 +7,12 @@ import MultiSelect from '../../core/multiselect/multiselect';
 import {closeModal} from "../../../store/reducers/app/app";
 import AddCandidateModalHeader from './AddCandidateModalHeader';
 import AddCandidateModalActions from './AddCandidateModalActions';
+import Checkbox from '../../core/checkbox/checkbox';
 import './AddCandidateModal.css';
 
-const AddCandidateModal = () => {
+const AddCandidateModal = ({
+  handleAddOrEditCandidate = () => {}
+}) => {
   const dispatch = useDispatch();
 
   const IsAddCandidateModalOpen = useSelector(
@@ -24,6 +27,7 @@ const AddCandidateModal = () => {
   const [selectedPrimarySkills, setSelectedPrimarySkills] = useState([]);
   const [selectedSecondarySkills, setSelectedSecondarySkills] = useState([]);
   const [rRNumber,setRRNumber] = useState('');
+  const [isChecked, setIsChecked] = useState(false);
 
   const [fullNameError, setFullNameError] = useState('');
   const [emailError, setEmailError] = useState('');
@@ -133,16 +137,26 @@ const AddCandidateModal = () => {
       const formData = {
         fullName,
         email,
-        mobileNumber,
+        mobileNo:mobileNumber,
         yearsOfExperience,
-        selectedPrimarySkills,
-        selectedSecondarySkills,
-        rRNumber,
+        primaryTechSkill : selectedPrimarySkills[0].value,
+        secondaryTechSkill :
+        selectedSecondarySkills.map(skill => skill.value),
+        rrNo:rRNumber,
+        shareLink:isChecked,
       };
-
+      console.log(JSON.stringify(formData));
+      handleAddOrEditCandidate({
+        ...formData,
+        mode: storeModalData && storeModalData.mode,
+      });
       resetForm();
       dispatch(closeModal());
     }
+  };
+
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked);
   };
 
   return (
@@ -168,7 +182,7 @@ const AddCandidateModal = () => {
                   className={`form-input ${fullNameError ?
                     'add-candidate-field-error' : ''}`}
                   placeholder='Candidate Name'
-                  value={fullName}
+                  value={fullName || ''}
                   onChange={(e) => {setFullName(e.target.value);
                     setFullNameError('');}}
                   autoComplete='off'
@@ -190,7 +204,7 @@ const AddCandidateModal = () => {
                   className={`form-input ${emailError ?
                     'add-candidate-field-error' : ''}`}
                   placeholder='Candidate Email'
-                  value={email}
+                  value={email || ''}
                   onChange={(e) => {setEmail(e.target.value);
                     setEmailError('');}}
                   autoComplete='off'
@@ -212,7 +226,7 @@ const AddCandidateModal = () => {
                   className={`form-input ${mobileNumberError ?
                     'add-candidate-field-error' : ''}`}
                   placeholder='Candidate Mobile'
-                  value={mobileNumber}
+                  value={mobileNumber  || ''}
                   onChange={(e) => {setMobileNumber(e.target.value);
                     setMobileNumberError('');}}
                   pattern="[0-9]{10}"
@@ -233,7 +247,7 @@ const AddCandidateModal = () => {
                   className={`form-input ${yearsOfExperienceError ?
                     'add-candidate-field-error' : ''}`}
                   placeholder='Candidate Experience'
-                  value={yearsOfExperience}
+                  value={yearsOfExperience || ''}
                   onChange={(e) => {setYearsOfExperience(e.target.value);
                     setYearsOfExperienceError('');}}
                   autoComplete='off'
@@ -258,7 +272,7 @@ const AddCandidateModal = () => {
                     `form-input ${selectedPrimarySkillsError ?
                       'add-candidate-field-error' : ''}`
                   }
-                  options={options}
+                  options={options || []}
                   onChange={handlePrimarySkills}
                   maxSelection="1"
                   selectedValues={selectedPrimarySkills}
@@ -282,10 +296,11 @@ const AddCandidateModal = () => {
                     `form-input ${selectedSecondarySkillsError ?
                       'add-candidate-field-error' : ''}`
                   }
-                  options={options}
+                  options={options || []}
                   onChange={handleSecondarySkills}
                   maxSelection="3"
                   selectedValues={selectedSecondarySkills}
+                  initialDisabledOptions={selectedPrimarySkills}
                 />
                 {selectedSecondarySkillsError &&
                 <p className='validation-error'>
@@ -302,17 +317,30 @@ const AddCandidateModal = () => {
                   type="text"
                   id="rRNumber"
                   className="form-input"
-                  value={rRNumber}
+                  value={rRNumber || ''}
                   onChange={(e) => setRRNumber(e.target.value)}
                   autoComplete='off'
                   pattern="[0-9]{10}"
                 />
               </div>
             </div>
+            {(storeModalData && storeModalData.mode !== 'EDIT') && (
+              <div className='row'>
+                <div className='col-12'>
+                  <Checkbox
+                    id='mycheckbox'
+                    label="Share link with candidate"
+                    checked={isChecked}
+                    onChange={handleCheckboxChange}
+                  />
+                </div>
+              </div>
+            )}
           </form>
           <AddCandidateModalActions
             onSubmit={handleSubmit}
             validateForm={validateForm}
+            isChecked={isChecked}
           />
         </div>
       </Modal>

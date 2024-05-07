@@ -48,10 +48,13 @@ class HTTPClient {
     let result;
     try {
       this.dispatch(incrementApiCounter());
-      const response = await axios.post(`${this.baseURL || ''}${url}`, data, {
-        ...configObj,
-        headers: this.headers,
-      });
+      const response = await axios.post(
+        `${this.baseURL || ''}${url}`,
+        data,
+        {
+          ...configObj,
+          headers: this.headers,
+        });
       const { data: responseData } = response;
       onSuccess(responseData);
       result = responseData;
