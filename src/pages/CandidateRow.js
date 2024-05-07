@@ -1,11 +1,11 @@
 import React from 'react';
-import './CandidateRow.css';
+import { useDispatch } from 'react-redux';
 import EditComponent from '../assets/svgs/editImage';
 import ShareComponent from '../assets/svgs/shareImage';
 import VisibilityComponent from '../assets/svgs/visibilityImage';
-import { useDispatch } from 'react-redux';
 import { openModal } from '../store/reducers/app/app';
 import DownloadIcon from '../assets/svgs/downloadIcon';
+import './CandidateRow.css';
 
 const CandidateRow = ({ candidate }) => {
   const dispatch = useDispatch();

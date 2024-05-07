@@ -92,14 +92,24 @@
 }
 
 .search-field input {
-  /* padding: 10px 30px 10px 10px; */
-  border: none;
+  border:none;
   width: 400px;
 }
 
-.search-field input:hover{
+/* .search-field input:hover{
   border: 1px solid #c2b5b5;
+} */
+
+.search-text:focus{
+  outline: none;
+  box-shadow: none;
 }
+
+.img-search{
+  position:absolute;
+  right:5;
+}
+
 
 .candidate-insights{
   font-weight: bold;

@@ -1,6 +1,5 @@
 import React from 'react';
 import CandidateRow from '../../../pages/CandidateRow';
-import './SubLayout.css';
 
 const SubLayout =
 ({ data, uploadIcon, currentPage, recordsPerPage , filteredCandidates }) => {
@@ -10,7 +9,7 @@ const SubLayout =
   filteredCandidates.slice(indexOfFirstRecord, indexOfLastRecord);
 
   return (
-    <tbody className='data-row'>
+    <tbody>
       {currentRecords.map((candidate, index) => (
         <CandidateRow key={index} candidate={candidate} />
       ))}

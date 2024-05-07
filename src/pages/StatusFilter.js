@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import './StatusFilter.css';
 
-const StatusFilter = ({ onFilterChange, onClose}) => {
-  const [selectedStatus, setSelectedStatus] = useState(null);
+const StatusFilter = ({ onFilterChange, onClose, selectedStatus}) => {
+  const [localSelectedStatus,setLocalSelectedStatus] = useState(selectedStatus);
   const statuses = ['Pending', 'Completed', 'Expired', 'New'];
 
   const handleCheckboxChange = (status) => {
-    setSelectedStatus(status);
-    onFilterChange(status);
+    const newSelectedStatus = localSelectedStatus === status ? null : status;
+    setLocalSelectedStatus(newSelectedStatus);
+    onFilterChange(newSelectedStatus);
     onClose();
   };
 
@@ -15,9 +16,9 @@ const StatusFilter = ({ onFilterChange, onClose}) => {
     <div className="status-filter-popup">
       {statuses.map((status) => (
         <label key={status} className="status-filter-label">
-          <input
+          <input className='status-checkbox'
             type="checkbox"
-            checked={selectedStatus === status}
+            checked={localSelectedStatus === status}
             onChange={() => handleCheckboxChange(status)}
           />
           {status}
