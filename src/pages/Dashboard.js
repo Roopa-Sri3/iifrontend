@@ -1,20 +1,23 @@
 import React, {useState, useEffect} from "react";
 import Button from "../components/core/button/button";
 import { useDispatch, useSelector } from "react-redux";
-
-import AddCandidateModal
+import { openModal, } from '../store/reducers/app/app';
+import
+AddCandidateModal
   from "../components/modals/addCandidateModal/AddCandidateModal";
 import FeedbackModal from '../components/modals/feedbackModal/FeedbackModal';
 import StatusFilter from './StatusFilter';
 import Search from '../components/assets/svgs/Search';
-import { GetTechSkills } from '../store/reducers/dashboard/dashboard.js';
+import {
+  AddCandidate,
+  EditCandidate,
+  GetTechSkills,
+} from '../store/reducers/dashboard/dashboard.js';
 import { GetUserRole } from "../store/selector/app";
 import SubFooter from "../components/table/SubFooter/SubFooter";
 import SubHeader from "../components/table/SubHeader/SubHeader";
 import SubLayout from "../components/table/SubLayout/SubLayout";
 import UserDisplay from '../components/UserDisplay/UserDisplay';
-
-import { openModal, } from '../store/reducers/app/app';
 
 import FilterComponent from '../assets/svgs/filterImage';
 
@@ -28,7 +31,7 @@ const Dashboard = () => {
   useEffect(() => {
     dispatch(GetTechSkills({
       onSuccess: () => {
-        console.log('Sucess');
+        console.log('Success');
       },
       onError: () => {
         console.log('Error');
@@ -69,7 +72,6 @@ const Dashboard = () => {
   const totalPages = Math.ceil(filteredCandidates.length / recordsPerPage);
 
   const role = useSelector(GetUserRole);
-  // const dropdownOptions = useSelector(GetSkills);
 
   const handleAddCandidate = () => {
     dispatch(openModal({
@@ -79,12 +81,25 @@ const Dashboard = () => {
     }));
   };
 
-  const handleAddOrEditCandidate = (
+  const handleAddOrEditCandidate = ({
     mode,
     ...formData
-  ) => {
+  }) => {
     console.log('formData', formData);
     console.log('mode', mode);
+    if (mode === 'EDIT') {
+      dispatch(EditCandidate({
+        data: {...formData},
+        onSuccess: () => {},
+        onError: () => {}
+      }));
+    } else {
+      dispatch(AddCandidate({
+        data: {...formData},
+        onSuccess: () => {},
+        onError: () => {}
+      }));
+    }
   };
 
   const headerActions =

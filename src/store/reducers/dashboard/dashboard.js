@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import APIWrapper from '../../../shared/services/apiWrapper/apiwrapper';
 
 const initialState = {
-  skillsOptions:[]
+  skillsOptions:[],
+  candidateDetails:{}
 };
 
 const dashboardSlice = createSlice({
@@ -16,13 +17,12 @@ const dashboardSlice = createSlice({
 });
 
 export const {
-  setSkills
+  setSkills,
 } = dashboardSlice.actions;
 
 export default dashboardSlice.reducer;
 
 export const GetTechSkills = ({
-  payload,
   onSuccess = () => {},
   onError = () => {},
 } = {}) => async(dispatch) => {
@@ -34,4 +34,32 @@ export const GetTechSkills = ({
   });
 
   dispatch(setSkills(skills));
+};
+
+export const AddCandidate = ({
+  data,
+  onSuccess = () => {},
+  onError = () => {},
+} = {}) => async(dispatch) => {
+  const apiWrapper = new APIWrapper(dispatch);
+
+  await apiWrapper.addCandidate({
+    data,
+    onSuccess,
+    onError,
+  });
+};
+
+export const EditCandidate = ({
+  data,
+  onSuccess = () => {},
+  onError = () => {},
+} = {}) => async(dispatch) => {
+  const apiWrapper = new APIWrapper(dispatch);
+
+  await apiWrapper.editCandidate({
+    data,
+    onSuccess,
+    onError,
+  });
 };

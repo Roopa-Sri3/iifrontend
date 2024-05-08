@@ -18,6 +18,7 @@ const AddCandidateModal = ({
   const IsAddCandidateModalOpen = useSelector(
     (state) => IsModalOpen(state, 'AddCandidateModal'),
   );
+
   const storeModalData = useSelector(GetModalData);
 
   const [fullName,setFullName] = useState('');

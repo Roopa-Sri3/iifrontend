@@ -24,6 +24,7 @@ const CandidateRow = ({ candidate }) => {
   };
   const handleEditClick = () => {
     const rowCandidateData = {
+      // ...candidate,
       fullName: "abinash",
       email: "191fa04101@gmail.com",
       mobileNumber:"6309574567",
@@ -96,7 +97,7 @@ const CandidateRow = ({ candidate }) => {
             }
           }}
         >
-          <EditComponent/>
+          <EditComponent />
         </span>
         <ShareComponent className="share-icon"/>
       </td>
