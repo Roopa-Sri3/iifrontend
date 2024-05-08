@@ -4,7 +4,7 @@ function Title({
   text,
   ...restTitleProps
 }) {
-  return <p {...restTitleProps}>{text}</p>;
+  return <h5 {...restTitleProps}>{text}</h5>;
 }
 
 export default Title;

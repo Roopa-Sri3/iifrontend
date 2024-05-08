@@ -1,3 +1,24 @@
+/* .user-display{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(90deg, #326D62 0%, #0E5291 51.6%, #0E034F 100%);
+    color: white;
+    padding: 5px 10px;
+} */
+
+
+.config-question{
+    background-color: #4595ff;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    border-radius: 5px;
+    color:white;
+    padding:10px;
+}
+
 * {
   box-sizing: border-box;
 }

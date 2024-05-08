@@ -1,6 +1,6 @@
 .questions-main{
     background-color: #ebeef3;
-    height:600px;
+    height:620px;
 }
 
 .containerhead {
@@ -129,6 +129,7 @@
 
 .inst-head{
     padding-bottom: 10px;
+    margin-left: 20px;
 }
 
 .final-upload {
@@ -141,5 +142,13 @@
     margin-left: 40%;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+.back-arrow-icon{
+    cursor:pointer;
+}
+
+.list-layout{
+    list-style-type: lower-roman;
 }
 

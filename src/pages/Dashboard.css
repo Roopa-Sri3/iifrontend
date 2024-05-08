@@ -1,19 +1,9 @@
-.config-question{
-    position: absolute;
-    right: 0;
-    background-color: #0047AB;
-    border: none;
-    padding: 5px 10px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 14px;
-    margin: 4px 4px;
-    border-radius: 5px;
+.dashbord-root {
+  margin: 30px;
 }
 
-.anchor-tag{
-    color: aliceblue;
-    text-decoration: none;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: medium;
-}
+.dashbord-filters-and-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+} 

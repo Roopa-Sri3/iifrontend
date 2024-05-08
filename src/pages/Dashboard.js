@@ -1,17 +1,38 @@
-import React from 'react';
+import React from "react";
+import Button from "../components/core/button/button";
+import { useDispatch, useSelector } from "react-redux";
+import { openModal, } from '../store/reducers/app/app';
+import
+AddCandidateModal
+  from "../components/modals/addCandidateModal/AddCandidateModal";
 import UserDisplay from '../components/UserDisplay/UserDisplay';
-import { Link } from 'react-router-dom';
 import './Dashboard.css';
+import { GetUserRole } from "../store/selector/app";
 
 function Dashboard() {
+  const dispatch = useDispatch();
+  const role = useSelector(GetUserRole);
+
+  const handleAddCandidate = () => {
+    dispatch(openModal({
+      modalName: 'AddCandidateModal',
+      modalData: {
+      }
+    }));
+  };
+
   return (
-    <div>
+    <div className="dashbord-root">
       <UserDisplay />
-      <button className='config-question'>
-        <Link className='anchor-tag' to="/admin/questions_configure">
-          Questions Configuration
-        </Link>
-      </button>
+      <div className="dashbord-filters-and-actions">
+        { role === 'HR' &&
+          <Button
+            label="Add Candidate"
+            handleClick={handleAddCandidate}
+          />
+        }
+      </div>
+      <AddCandidateModal />
     </div>
   );
 }

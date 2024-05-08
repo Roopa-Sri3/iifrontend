@@ -39,7 +39,8 @@ function Questionsconfiguration() {
     <div className='questions-main'>
       <div className='containerhead'>
         <div className='navigate-layout'>
-          <BackarrowIcon onClick={handleNavigation} />
+          <BackarrowIcon onClick={handleNavigation}
+            className="back-arrow-icon"/>
         </div>
         <div className='text-layout-head'>
           <h4 className='subText1'>Add Questions from a File</h4>
@@ -88,7 +89,7 @@ function Questionsconfiguration() {
           <b className='inst-head'>Instructions.</b>
           <ol className='instructions-list'>
             {instructions.map((instruction, index) => (
-              <li key={index}>{instruction}</li>
+              <li className="list-layout" key={index}>{instruction}</li>
             ))}
           </ol>
         </div>

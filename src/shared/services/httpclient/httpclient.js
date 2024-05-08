@@ -19,7 +19,7 @@ class HTTPClient {
     let result;
     try {
       this.dispatch(incrementApiCounter());
-      const response = await axios.get(url, {
+      const response = await axios.get(`${this.baseURL || ''}${url}`, {
         ...configObj,
         headers: this.headers,
       });
@@ -48,7 +48,7 @@ class HTTPClient {
     let result;
     try {
       this.dispatch(incrementApiCounter());
-      const response = await axios.post(url, data, {
+      const response = await axios.post(`${this.baseURL || ''}${url}`, data, {
         ...configObj,
         headers: this.headers,
       });

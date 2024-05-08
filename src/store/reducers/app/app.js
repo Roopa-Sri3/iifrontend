@@ -39,7 +39,7 @@ const appSlice = createSlice({
       state.modal.modalName = action.payload.modalName;
       state.modal.modalData = action.payload.modalData;
     },
-    closeModal: (state,action) => {
+    closeModal: (state) => {
       state.modal.modalName = '';
       state.modal.modalData = null;
     },
