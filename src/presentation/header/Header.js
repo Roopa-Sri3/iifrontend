@@ -26,10 +26,8 @@ const Header = () => {
     <div className="header">
       <Innovalogo src={companylogo} alt="companylogo" className='innova-logo' />
       {isLoggedIn && (
-        <>
-          <div className="title">
-            <Title text="Interview Insights" className="interview-insights-title" />
-          </div>
+        <div className='logged-in-app-header'>
+          <Title text="Interview Insights" className="interview-insights-title" />
           <div className="round">
             <RoundButton />
             <Expand className="expand-icon"/>
@@ -44,7 +42,7 @@ const Header = () => {
               </div>
             )} */}
           </div>
-        </>
+        </div>
       )}
     </div>
   );
