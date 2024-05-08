@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
+import { statuses } from '../shared/constants';
 import './StatusFilter.css';
 
 const StatusFilter = ({ onFilterChange, onClose, selectedStatus}) => {
   const [localSelectedStatus,setLocalSelectedStatus] = useState(selectedStatus);
-  const statuses = ['Pending', 'Completed', 'Expired', 'New'];
 
   const handleCheckboxChange = (status) => {
     const newSelectedStatus = localSelectedStatus === status ? null : status;

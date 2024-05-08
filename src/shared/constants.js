@@ -671,6 +671,9 @@ export const candidates = [
     comment:'exam was tough'
   }
 ];
+
+export const ratingLabels = ["Bad", "Average", "Good", "Excellent", "Outstanding"];
+export const statuses = ['Pending', 'Completed', 'Expired', 'New'];
 export const emailPattern = /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/;
 
 // eslint-disable-next-line max-len

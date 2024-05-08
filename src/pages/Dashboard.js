@@ -1,19 +1,22 @@
 import React, {useState} from "react";
-import { useDispatch, useSelector } from "react-redux";
+
 import Button from "../components/core/button/button";
-import { openModal, } from '../store/reducers/app/app';
 import AddCandidateModal
   from "../components/modals/addCandidateModal/AddCandidateModal";
-import UserDisplay from '../components/UserDisplay/UserDisplay';
 import FeedbackModal from '../components/modals/feedbackModal/FeedbackModal';
-import StatusFilter from './StatusFilter';
-import Search from '../components/assets/svgs/Search';
-import { GetUserRole } from "../store/selector/app";
 import SubFooter from "../components/table/SubFooter/SubFooter";
 import SubHeader from "../components/table/SubHeader/SubHeader";
 import SubLayout from "../components/table/SubLayout/SubLayout";
+import UserDisplay from '../components/UserDisplay/UserDisplay';
+import Search from '../components/assets/svgs/Search';
+
+import { openModal, } from '../store/reducers/app/app';
+import { GetUserRole } from "../store/selector/app";
+
 import { candidates } from "../shared/constants";
 import FilterComponent from '../assets/svgs/filterImage';
+import { useDispatch, useSelector } from "react-redux";
+import StatusFilter from './StatusFilter';
 import './Dashboard.css';
 
 const Dashboard = () => {

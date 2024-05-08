@@ -1,10 +1,11 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
 import { GetModalData, IsModalOpen } from "../../../store/selector/app/app";
-import Modal from "../../core/modal/Modal";
 import { closeModal } from "../../../store/reducers/app/app";
+import Modal from "../../core/modal/Modal";
 import CloseIcon from "../../../assets/svgs/CloseLogo";
 import StarIcon from "../../../assets/svgs/StarIcon";
+import { ratingLabels } from "../../../shared/constants";
+import { useSelector, useDispatch } from "react-redux";
 import "./FeedbackModal.css";
 
 const FeedbackModal = () => {
@@ -17,8 +18,6 @@ const FeedbackModal = () => {
   const handleCloseModal = () => {
     dispatch(closeModal());
   };
-
-  const ratingLabels = ["Bad", "Average", "Good", "Excellent", "Outstanding"];
 
   const renderRatingStars = () => {
     if (!storeModalData) return null;

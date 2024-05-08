@@ -55,16 +55,6 @@
   margin-bottom: 20px;
 }
 
-/* .add-candidate-button {
-  margin-right: 0;
-  height: 10px;
-  display: flex;
-  justify-content: right;
-  align-items:left;
-  padding-right:75px;
-  padding-bottom: 30px;
-} */
-
 .blue-button {
   background-color: #4595FF;
   color: #ffffff; 
@@ -96,9 +86,6 @@
   width: 400px;
 }
 
-/* .search-field input:hover{
-  border: 1px solid #c2b5b5;
-} */
 
 .search-text:focus{
   outline: none;

@@ -1,10 +1,10 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { openModal } from '../store/reducers/app/app';
 import EditComponent from '../assets/svgs/editImage';
 import ShareComponent from '../assets/svgs/shareImage';
 import VisibilityComponent from '../assets/svgs/visibilityImage';
-import { openModal } from '../store/reducers/app/app';
 import DownloadIcon from '../assets/svgs/downloadIcon';
+import { useDispatch } from 'react-redux';
 import './CandidateRow.css';
 
 const CandidateRow = ({ candidate }) => {
