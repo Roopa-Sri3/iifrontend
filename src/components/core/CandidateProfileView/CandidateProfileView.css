@@ -1,29 +1,51 @@
  .Candidate-box {
-  width: 1100px;
+  width: 900px;
   height: 200px;
-  position: relative;
-  top :40px;
-  padding: 30px;
-  left: 233px;
+  padding: 10px; 
   border-radius: 6px;
   background: linear-gradient(90deg, #326D62 0%, #0E5291 51.6%, #0E034F 100%);
   display: flex;
   flex-direction: column;
-  align-items:flex-start;
-  justify-content: flex-start;
-  } 
+  align-items: center;
+  margin: 90px auto 0;
+  flex-direction: row; /* Change the flex-direction to row */
+  justify-content: space-between;
+  position: relative;
+   } 
 
   .icon-wrapper {
-    margin-left: 23px;
-    margin-top: 25px;
-    margin-bottom: 1px;
+    
+  
+    height: 100%; 
+    
    }
 
+   .icon-container { 
+    margin-top: 50px;
+    
+   }
+   /* .icon-wrapper > div {
+    margin: 30px 3px 5px 29px; 
+   } */
+   .icon-item{
+   
+    margin: 20px; 
+   }
  .vertical-line {
     position: absolute;
-    left: 502.5px;
-    width: 1px;
+    left: 300px;
+    align-items: center;
+    justify-content: center;
+    width: 1px; 
     height: 120px;
     bottom: 27px;
     background-color: #fff;
+   }
+  .support-email{
+     color: #F9F9F9;
+     font-size: 12px;
+     position: absolute;  
+     bottom: 0px; 
+     right: 10px;  
+
   }
