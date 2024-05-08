@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import Button from "../components/core/button/button";
 import AddCandidateModal
@@ -13,9 +14,9 @@ import Search from '../components/assets/svgs/Search';
 import { openModal, } from '../store/reducers/app/app';
 import { GetUserRole } from "../store/selector/app";
 
-import { candidates } from "../shared/constants";
 import FilterComponent from '../assets/svgs/filterImage';
-import { useDispatch, useSelector } from "react-redux";
+
+import { candidates } from "../shared/constants";
 import StatusFilter from './StatusFilter';
 import './Dashboard.css';
 

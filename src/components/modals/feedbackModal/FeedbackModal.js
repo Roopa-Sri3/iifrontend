@@ -1,11 +1,15 @@
 import React from "react";
-import { GetModalData, IsModalOpen } from "../../../store/selector/app/app";
+import { useSelector, useDispatch } from "react-redux";
+
 import { closeModal } from "../../../store/reducers/app/app";
-import Modal from "../../core/modal/Modal";
+import { GetModalData, IsModalOpen } from "../../../store/selector/app/app";
+
 import CloseIcon from "../../../assets/svgs/CloseLogo";
 import StarIcon from "../../../assets/svgs/StarIcon";
+
+import Modal from "../../core/modal/Modal";
+
 import { ratingLabels } from "../../../shared/constants";
-import { useSelector, useDispatch } from "react-redux";
 import "./FeedbackModal.css";
 
 const FeedbackModal = () => {
