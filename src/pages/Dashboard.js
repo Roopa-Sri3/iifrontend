@@ -1,11 +1,9 @@
 import React, {useState, useEffect} from "react";
 import Button from "../components/core/button/button";
 import { useDispatch, useSelector } from "react-redux";
-import { openModal, } from '../store/reducers/app/app';
+
 import AddCandidateModal
   from "../components/modals/addCandidateModal/AddCandidateModal";
-import UserDisplay from '../components/UserDisplay/UserDisplay';
-import './Dashboard.css';
 import FeedbackModal from '../components/modals/feedbackModal/FeedbackModal';
 import StatusFilter from './StatusFilter';
 import Search from '../components/assets/svgs/Search';
@@ -14,7 +12,15 @@ import { GetUserRole } from "../store/selector/app";
 import SubFooter from "../components/table/SubFooter/SubFooter";
 import SubHeader from "../components/table/SubHeader/SubHeader";
 import SubLayout from "../components/table/SubLayout/SubLayout";
+import UserDisplay from '../components/UserDisplay/UserDisplay';
+
+import { openModal, } from '../store/reducers/app/app';
+
+import FilterComponent from '../assets/svgs/filterImage';
+
 import { candidates } from "../shared/constants";
+import './Dashboard.css';
+import AddIcon from "../components/assets/svgs/AddIcon.js";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -32,7 +38,6 @@ const Dashboard = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [recordsPerPage] = useState(10);
-
   const [showFilter, setShowFilter] = useState(false);
   const [selectedStatus, setSelectedStatus] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
@@ -51,6 +56,10 @@ const Dashboard = () => {
   const handleFilterChange = (status) => {
     setSelectedStatus(status);
     setCurrentPage(1);
+  };
+
+  const handleFilterComponentClick = () => {
+    setShowFilter(!showFilter);
   };
 
   const handleSearch = (event) => {
@@ -78,6 +87,13 @@ const Dashboard = () => {
     console.log('mode', mode);
   };
 
+  const headerActions =
+  [null,
+    null,
+    <FilterComponent className='filter'
+      onClick={handleFilterComponentClick}/>,
+    null, null, null];
+
   return (
     <div className="dashboard">
       <UserDisplay />
@@ -87,17 +103,19 @@ const Dashboard = () => {
           <div className="candidate-insights">Candidate Insights</div>
           <div className="search-field">
             <input
+              className="search-text"
               type="search"
               placeholder="Search Candidate Name, Tech Skills"
               value={searchTerm}
               onChange={handleSearch}
             />
-            <Search/>
+            <Search />
           </div>
           { role === 'HR' &&
         <Button
           label="Add Candidate"
           handleClick={handleAddCandidate}
+          children={<AddIcon />}
         />
           }
         </div>
@@ -109,6 +127,7 @@ const Dashboard = () => {
               'View/Dashboard Report',
               'Feedback',
               'Actions']}
+            headerActions={headerActions}
             />
             <SubLayout
               data={filteredCandidates}
@@ -128,8 +147,12 @@ const Dashboard = () => {
             selectedStatus={selectedStatus}
             onStatusChange={handleFilterChange}
           />
-          {showFilter && <StatusFilter onFilterChange={handleFilterChange}
-            onClose={() => setShowFilter(false)} />}
+          {showFilter &&
+          (<StatusFilter
+            onFilterChange={handleFilterChange}
+            onClose={() => setShowFilter(false)}
+            selectedStatus={selectedStatus}
+          />)}
         </div>
         <AddCandidateModal
           handleAddOrEditCandidate={handleAddOrEditCandidate}

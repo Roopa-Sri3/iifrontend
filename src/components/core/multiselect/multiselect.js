@@ -12,16 +12,19 @@ const MultiSelect = ({
   options = [],
   className,
   onChange,
-  selectedValues = [],
+  selectedValues,
   maxSelection,
-  initialDisabledOptions = [],
   disabled = false,
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [searchItem, setSearchItem] = useState('');
-
   const dropboxRef = useRef(null);
+
+  useEffect(() => {
+    if (selectedValues && selectedValues.length) {
+      setSelectedOptions(selectedValues);
+    }},[selectedValues]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);

@@ -1,19 +1,22 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { GetModalData, IsModalOpen } from "../../../store/selector/app/app";
-import Modal from "../../core/modal/Modal";
-import Button from "../../core/button";
+import { useSelector, useDispatch } from "react-redux";
+
 import { closeModal } from "../../../store/reducers/app/app";
-import CloseLogo from "../../../assets/svgs/CloseLogo";
-import FilledStarComponent from "../../../assets/svgs/filledStar";
-import EmptyStarComponent from "../../../assets/svgs/emptyStar";
-import { useDispatch } from "react-redux";
-import './FeedbackModal.css';
+import { GetModalData, IsModalOpen } from "../../../store/selector/app/app";
+
+import CloseIcon from "../../../assets/svgs/CloseLogo";
+import StarIcon from "../../../assets/svgs/StarIcon";
+
+import Modal from "../../core/modal/Modal";
+
+import { ratingLabels } from "../../../shared/constants";
+import "./FeedbackModal.css";
 
 const FeedbackModal = () => {
   const dispatch = useDispatch();
   const IsFeedbackModelOpen = useSelector((state) =>
-    IsModalOpen(state, 'FeedbackModal'));
+    IsModalOpen(state, 'FeedbackModal')
+  );
   const storeModalData = useSelector(GetModalData);
 
   const handleCloseModal = () => {
@@ -23,54 +26,44 @@ const FeedbackModal = () => {
   const renderRatingStars = () => {
     if (!storeModalData) return null;
 
-    const filledStars = Array.from({ length: storeModalData.feedback },
-      (_, index) => (
-        <FilledStarComponent key={`filled-star-${index}`} />
-      ));
-    const emptyStars = Array.from({ length: 5 - storeModalData.feedback },
-      (_, index) => (
-        <EmptyStarComponent key={`empty-star-${index}`} />
-      ));
-    return [...filledStars, ...emptyStars];
+    const stars = [];
+    for (let i = 0; i < 5; i++) {
+      const fillColor = i < storeModalData.feedback ? "#FFD700" : "#D9D9D9";
+      const label = ratingLabels[i];
+      stars.push(
+        <div key={`star-${label}`} className="star-with-label">
+          <StarIcon fillColor={fillColor} />
+          <span className="star-label">{label}</span>
+        </div>
+      );
+    }
+    return <div className="rating-stars">{stars}</div>;
   };
 
   return (
     <div>
-      <Modal
-        show={IsFeedbackModelOpen}
-        size="model-md"
-      >
-        <>
-          <Button
-            handleClick={handleCloseModal}
-            className='close-icon'>
-            <CloseLogo color={"black"} />
-          </Button>
-          <div>
-            {storeModalData && (
-              <>
-                {storeModalData && (
-                  <>
-                    <div className="centered-content">
-                      <h2 className="candidate-name">
-                        {storeModalData.candidateName}</h2>
-                      <div className="rating-stars">
-                        {renderRatingStars()}
-                      </div>
-                    </div>
-                    <p className="heading">Feedback Comments</p>
-                    <div className="bordered-box">
-                      <p className="box-text">
-                        {storeModalData.comment}
-                      </p>
-                    </div>
-                  </>
-                )}
-              </>
-            )}
+      {storeModalData && (
+        <Modal
+          show={IsFeedbackModelOpen}
+          size="model-md"
+          modalHeader={
+            <div className="feedback-header">
+              <div className="candidate-name">
+                {storeModalData.candidateName}
+              </div>
+              <CloseIcon color={"black"} onClick={handleCloseModal} />
+            </div>
+          }
+        >
+          <div className="feedback-body">
+            {renderRatingStars()}
+            <p className="heading">Feedback Comments</p>
+            <div className="bordered-box">
+              <p className="box-text">{storeModalData.comment}</p>
+            </div>
           </div>
-        </>
-      </Modal>
+        </Modal>
+      )}
     </div>
   );
 };
