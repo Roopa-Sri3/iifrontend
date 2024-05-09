@@ -4,6 +4,7 @@ import ProtectLoginRoute from "./privateRoutes/protectLoginRoute";
 import ProtectedDashboardRoute from "./privateRoutes/protectDashboardRoute";
 import Questionsconfiguration from "./pages/Questionsconfiguration";
 import Unauthorized from "./pages/Unauthorized";
+import LinkExpired from "./pages/LinkExpired";
 
 const ROUTES_CONFIG = [
   {
@@ -27,6 +28,10 @@ const ROUTES_CONFIG = [
   {
     path: "/unauthorized",
     element: <Unauthorized />
+  },
+  {
+    path: "/candidate/link-expired",
+    element: <LinkExpired />
   },
 ];
 
