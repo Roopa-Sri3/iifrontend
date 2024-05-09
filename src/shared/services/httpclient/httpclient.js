@@ -66,7 +66,6 @@ class HTTPClient {
       };
     } finally {
       this.dispatch(decrementApiCounter());
-
     }
     return result;
   }
@@ -99,7 +98,6 @@ class HTTPClient {
       };
     } finally {
       this.dispatch(decrementApiCounter());
-
     }
     return result;
   }
