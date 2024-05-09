@@ -37,39 +37,38 @@ const Header = () => {
     <div className="header">
       <Innovalogo src={companylogo} alt="companylogo" className='innova-logo' />
       {isLoggedIn && (
-        <div>
-          <div className="title">
-            <Title text="Interview Insights"
-              className="interview-insights-title" />
-          </div>
-          <div className='header-template'>
-            <div className="round">
-              <RoundButton />
-              <Expand className="expand-icon" onClick={toggleExpand} />
-              {isOpen && (
-                <div className="expand-div"  >
-                  <h6 className="user-name">{profileName}</h6>
-                  <h6 className="user-role">{userRole}</h6>
-                  <hr></hr>
-                  <div className="logout-icon">
-                    <LogoutIcons  />
-                    <div>
-                      <LogoutModal />
-                      <div className="logout"
-                        role="button"
-                        tabIndex="0"
-                        onClick = {handleLogoutClick}
-                        onKeyDown={(event) => {
-                          if(event.key === "Enter" || event.key === " "){
-                            handleLogoutClick();
-                          }
-                        }}
-                      >Logout</div>
-                    </div>
+        <div className="logged-in-app-header">
+          <Title text="Interview Insights"
+            className="interview-insights-title" />
+          <div className="round">
+            <RoundButton />
+            <Expand className="expand-icon" onClick={toggleExpand} />
+            {isOpen && (
+              <div className="expand-div"  >
+                <h6 className="user-name">{profileName}</h6>
+                <h6 className="user-role">{userRole}</h6>
+                <hr></hr>
+                <div className="logout-icon">
+                  <div>
+                    <LogoutIcons />
+                    <button
+                      className = "logout-button"
+                      tabIndex="0"
+                      onClick={handleLogoutClick}
+                      onKeyDown={(event) => {
+                        if (event.key === "Enter" || event.key === " ") {
+                          handleLogoutClick();
+                        }
+                      }}
+                    >
+                      <h5
+                      >Logout</h5>
+                    </button>
                   </div>
+                  <LogoutModal />
                 </div>
-              )}
-            </div>
+              </div>
+            )}
           </div>
         </div>
       )}

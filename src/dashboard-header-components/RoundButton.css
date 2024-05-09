@@ -1,19 +1,11 @@
 .round-button {
-    width: 40px;
-    height: 42px;
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
+    border: none;
     background-color: #FFFFFF;
     font-size: 16px;
-    cursor: pointer;
-    display:block;
-    top: 200px;
-    left: 1294.03px;
     padding: 6px 0px 6px 0px;
-    gap: 5px;
-    opacity: 0px;
-    margin-left: 250px;
-    margin-top: 15px;
-    border: none;
    }
   
  
