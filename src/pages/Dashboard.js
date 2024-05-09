@@ -51,6 +51,7 @@ const Dashboard = () => {
 
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
+    setCurrentPage(1);
   };
 
   const totalPages = Math.ceil(filteredCandidates.length / recordsPerPage);

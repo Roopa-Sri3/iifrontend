@@ -33,7 +33,7 @@ export const candidates = [
   {
     candidateName: 'Anika',
     techSkills: 'React, Node.js',
-    status: 'Shortlisted',
+    status: 'New',
     report: 'No Report',
     feedback: '4',
     comment: 'The exam was good.'
@@ -57,7 +57,7 @@ export const candidates = [
   {
     candidateName: 'Nirvaan',
     techSkills: 'Ruby',
-    status: 'Shortlisted',
+    status: 'New',
     report: 'No Report',
     feedback: '4',
     comment: 'The exam was good.'
@@ -121,7 +121,7 @@ export const candidates = [
   {
     candidateName: 'Nirvaan',
     techSkills: 'Ruby',
-    status: 'Shortlisting',
+    status: 'Expired',
     report: 'No Report',
     feedback: '5',
     comment:'exam was tough'
@@ -145,7 +145,7 @@ export const candidates = [
   {
     candidateName: 'Nirvaan',
     techSkills: 'Ruby',
-    status: 'Shortlisted',
+    status: 'New',
     report: 'No Report',
     feedback: '4',
     comment: 'The exam was good.'
@@ -209,7 +209,7 @@ export const candidates = [
   {
     candidateName: 'Nirvaan',
     techSkills: 'Ruby',
-    status: 'Shortlisting',
+    status: 'Expired',
     report: 'No Report',
     feedback: '5',
     comment:'exam was tough'
@@ -233,7 +233,7 @@ export const candidates = [
   {
     candidateName: 'Nirvaan',
     techSkills: 'Ruby',
-    status: 'Shortlisted',
+    status: 'New',
     report: 'No Report',
     feedback: '4',
     comment: 'The exam was good.'
@@ -297,7 +297,7 @@ export const candidates = [
   {
     candidateName: 'Nirvaan',
     techSkills: 'Ruby',
-    status: 'Shortlisting',
+    status: 'Expired',
     report: 'No Report',
     feedback: '5',
     comment:'exam was tough'
@@ -321,7 +321,7 @@ export const candidates = [
   {
     candidateName: 'Nirvaan',
     techSkills: 'Ruby',
-    status: 'Shortlisted',
+    status: 'New',
     report: 'No Report',
     feedback: '4',
     comment: 'The exam was good.'
@@ -385,7 +385,7 @@ export const candidates = [
   {
     candidateName: 'Nirvaan',
     techSkills: 'Ruby',
-    status: 'Shortlisting',
+    status: 'Expired',
     report: 'No Report',
     feedback: '5',
     comment:'exam was tough'
@@ -409,7 +409,7 @@ export const candidates = [
   {
     candidateName: 'Nirvaan',
     techSkills: 'Ruby',
-    status: 'Shortlisted',
+    status: 'New',
     report: 'No Report',
     feedback: '4',
     comment: 'The exam was good.'
@@ -473,7 +473,7 @@ export const candidates = [
   {
     candidateName: 'Nirvaan',
     techSkills: 'Ruby',
-    status: 'Shortlisting',
+    status: 'Expired',
     report: 'No Report',
     feedback: '5',
     comment:'exam was tough'
@@ -497,7 +497,7 @@ export const candidates = [
   {
     candidateName: 'Nirvaan',
     techSkills: 'Ruby',
-    status: 'Shortlisted',
+    status: 'New',
     report: 'No Report',
     feedback: '4',
     comment: 'The exam was good.'
@@ -561,7 +561,7 @@ export const candidates = [
   {
     candidateName: 'Nirvaan',
     techSkills: 'Ruby',
-    status: 'Shortlisting',
+    status: 'Expired',
     report: 'No Report',
     feedback: '5',
     comment:'exam was tough'
@@ -585,7 +585,7 @@ export const candidates = [
   {
     candidateName: 'Nirvaan',
     techSkills: 'Ruby',
-    status: 'Shortlisted',
+    status: 'New',
     report: 'No Report',
     feedback: '4',
     comment: 'The exam was good.'
@@ -649,7 +649,7 @@ export const candidates = [
   {
     candidateName: 'Nirvaan',
     techSkills: 'Ruby',
-    status: 'Shortlisting',
+    status: 'Expired',
     report: 'No Report',
     feedback: '5',
     comment:'exam was tough'
