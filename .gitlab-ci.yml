@@ -1,0 +1,16 @@
+stages:
+    - build
+
+frontend_build:
+    stage: build
+    tags:
+        - capstone
+        - linux
+    script:
+        - node --version
+        - npm --version
+        - npm ci
+        - npm build
+    artifacts:
+        paths:
+            - /home/roopagaddam/
