@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 import "./Questionsnavigate.css";
-import Button from '../core/button/button';
-import Questionbutton from '../Questionbutton/Questionbutton';
+import Button from "../core/button/button";
+import Questionbutton from "../Questionbutton/Questionbutton";
 
 function Questionsnavigate() {
   const handleSubmit = () =>{
@@ -9,8 +9,8 @@ function Questionsnavigate() {
   };
 
   return (
-    <div className='nav-layout'>
-      <div className='screen-layout'>
+    <div className="nav-layout">
+      <div className="screen-layout">
         <Questionbutton />
         <Button
           className="submit-assessment-button"

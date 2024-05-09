@@ -1,4 +1,4 @@
-import HTTPClient from '../httpclient';
+import HTTPClient from "../httpclient";
 
 class APIWrapper extends HTTPClient {
   constructor(dispatch = () => {}) {
@@ -25,7 +25,7 @@ class APIWrapper extends HTTPClient {
     onError = () => {},
   }) {
     const formData = new FormData();
-    formData.append('file', file);
+    formData.append("file", file);
     console.log(formData);
 
     return this.post({

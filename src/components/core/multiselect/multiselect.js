@@ -1,9 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react';
-import cx from 'classnames';
-import OptionItem from './option-item';
-import ChevronRight from '../../assets/svgs/ChevronRight';
-import DeSelect from '../../assets/svgs/DeSelect';
-import './multiselect.css';
+import React, { useState, useRef, useEffect } from "react";
+import cx from "classnames";
+import OptionItem from "./option-item";
+import ChevronRight from "../../assets/svgs/ChevronRight";
+import DeSelect from "../../assets/svgs/DeSelect";
+import "./multiselect.css";
 
 const MultiSelect = ({
   label,
@@ -15,7 +15,7 @@ const MultiSelect = ({
 }) => {
   const [isMenuOpen,setIsMenuOpen] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState([]);
-  const [searchItem,setSearchItem] = useState('');
+  const [searchItem,setSearchItem] = useState("");
   const dropboxRef = useRef(null);
 
   useEffect(() => {
@@ -32,7 +32,7 @@ const MultiSelect = ({
   };
 
   const handleKeyDown = (event) => {
-    if (event.key === 'Enter' || event.key === " ") {
+    if (event.key === "Enter" || event.key === " ") {
       toggleMenu();
     }
   };
@@ -59,7 +59,7 @@ const MultiSelect = ({
     }
 
     setSelectedOptions(updatedSelectedOptions);
-    setSearchItem('');
+    setSearchItem("");
     onChange(updatedSelectedOptions);
   };
 
@@ -70,7 +70,7 @@ const MultiSelect = ({
   const handleOutsideClick = (event) => {
     if(dropboxRef.current && !dropboxRef.current.contains(event.target)) {
       setIsMenuOpen(false);
-      setSearchItem('');
+      setSearchItem("");
     }
   };
 
@@ -93,7 +93,7 @@ const MultiSelect = ({
 
   return (
     <div className="drop-box" ref={dropboxRef}>
-      <div className={cx('drop-box-header', className )}
+      <div className={cx("drop-box-header", className )}
         role="button"
         tabIndex="0"
         onClick={handleMouseClick}

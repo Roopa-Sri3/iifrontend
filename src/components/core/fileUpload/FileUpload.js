@@ -1,6 +1,6 @@
 import React from "react";
 import UploadIcon from "../../assets/svgs/UploadIcon";
-import './FileUpload.css';
+import "./FileUpload.css";
 
 function FileUpload({
   identifier,

@@ -1,18 +1,18 @@
-import React from 'react';
+import React from "react";
 import Dashboard from "./pages/Dashboard";
-import ProtectLoginRoute from './privateRoutes/protectLoginRoute';
-import ProtectedDashboardRoute from './privateRoutes/protectDashboardRoute';
+import ProtectLoginRoute from "./privateRoutes/protectLoginRoute";
+import ProtectedDashboardRoute from "./privateRoutes/protectDashboardRoute";
 import Questionsconfiguration from "./pages/Questionsconfiguration";
-import Unauthorized from './pages/Unauthorized';
-import Assessmentscreen from './pages/Assessmenscreen';
+import Unauthorized from "./pages/Unauthorized";
+import Assessmentscreen from "./pages/Assessmenscreen";
 
 const ROUTES_CONFIG = [
   {
-    path: '/',
+    path: "/",
     element: <ProtectLoginRoute />
   },
   {
-    path: '/',
+    path: "/",
     element:  <ProtectedDashboardRoute />,
     children: [
       {
@@ -22,15 +22,15 @@ const ROUTES_CONFIG = [
     ]
   },
   {
-    path: '/admin/questions-configure',
+    path: "/admin/questions-configure",
     element: <Questionsconfiguration />
   },
   {
-    path: '/unauthorized',
+    path: "/unauthorized",
     element: <Unauthorized />
   },
   {
-    path: '/candidate/assessment-screen',
+    path: "/candidate/assessment-screen",
     element: <Assessmentscreen />
   },
 ];

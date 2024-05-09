@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import Button from '../core/button';
-import './Question.css';
-import RadioGroup from '../core/radioGroup/RadioGroup';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from "react";
+import Button from "../core/button";
+import "./Question.css";
+import RadioGroup from "../core/radioGroup/RadioGroup";
+import { useDispatch, useSelector } from "react-redux";
 // eslint-disable-next-line max-len
-import { handleSaveAndNext, handlePrevious, updateAnswers } from '../../store/reducers/screen/screen';
+import { handleSaveAndNext, handlePrevious, updateAnswers } from "../../store/reducers/screen/screen";
 // eslint-disable-next-line max-len
-import { selectCurrentQuestion, getQuestions, getAnswers } from '../../store/selector/screen';
+import { selectCurrentQuestion, getQuestions, getAnswers } from "../../store/selector/screen";
 
 const Question = () => {
   const answers = useSelector(getAnswers);
@@ -17,7 +17,7 @@ const Question = () => {
   const dispatch = useDispatch();
 
   const [selectedOption, setSelectedOption] = useState(null);
-  const [codeValue, setCodeValue] = useState('');
+  const [codeValue, setCodeValue] = useState("");
 
   const handlePreviousButton = (presentquestion) =>{
     dispatch(handlePrevious(presentquestion));
@@ -25,17 +25,16 @@ const Question = () => {
 
   const handleSaveButton = () => {
     const updatedAnswers = [...answers];
-    const answerValue = selectedOption ? selectedOption.value : codeValue || '';
+    const answerValue = selectedOption ? selectedOption : codeValue || "";
     updatedAnswers[currQuestion.questionId - 1] = {
       questionId: currQuestion.questionId,
       answer: answerValue,
     };
-    // updatedAnswers.push({ questionId: currQuestion.questionId,
-    //   answer: answerValue });
     console.log(codeValue);
     console.log(updatedAnswers);
     dispatch(updateAnswers(updatedAnswers));
-    dispatch(handleSaveAndNext(presentquestion));
+    setSelectedOption(null);
+    dispatch(handleSaveAndNext(presentquestion,answerValue));
   };
 
   const handleOptionChange = (optionValue) => {
@@ -48,16 +47,16 @@ const Question = () => {
   };
 
   return (
-    <div className='questions-container'>
-      <div className='question-card'>
-        <h4 className='number'>Question {presentquestion}/{totalQuestions}</h4>
-        <div className='question'>
-          <h6 className='heading'>Answer the Question</h6>
-          <div className='question-text'>
+    <div className="questions-container">
+      <div className="question-card">
+        <h4 className="number">Question {presentquestion}/{totalQuestions}</h4>
+        <div className="question">
+          <h6 className="heading">Answer the Question</h6>
+          <div className="question-text">
             {currQuestion.questionText}
           </div>
-          {currQuestion.questionType === 'single-select' &&
-          <div className='sinlge-option'>
+          {currQuestion.questionType === "single-select" &&
+          <div className="sinlge-option">
             <RadioGroup
               label="Choose answer"
               options={currQuestion.options}
@@ -66,13 +65,13 @@ const Question = () => {
             />
           </div>
           }
-          {currQuestion.questionType === 'coding' &&
-            <div className='coding'>
+          {currQuestion.questionType === "coding" &&
+            <div className="coding">
               Write code here
               <textarea
-                className='coding-area'
+                className="coding-area"
                 value={codeValue}
-                placeholder='Enter your code here'
+                placeholder="Enter your code here"
                 onChange={handleCodeChange}
                 rows={10}
                 cols={175}
@@ -80,16 +79,16 @@ const Question = () => {
             </div>
           }
         </div>
-        <div className='action-buttons'>
+        <div className="action-buttons">
           <Button
             className=
               // eslint-disable-next-line max-len
-              {presentquestion >= 2 ? 'previous-button' : 'previous-button-hide'}
-            label={'Previous'}
+              {presentquestion >= 2 ? "previous-button" : "previous-button-hide"}
+            label={"Previous"}
             handleClick={() => handlePreviousButton(presentquestion)}
           />
           <Button
-            className={'save-next'}
+            className={"save-next"}
             label={presentquestion >= totalQuestions ? "Save" : "Save & Next"}
             handleClick={handleSaveButton}
           />

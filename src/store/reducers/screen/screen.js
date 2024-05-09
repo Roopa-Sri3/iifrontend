@@ -58,6 +58,7 @@ const screenSlice = createSlice({
     },
     updateAnswers: (state, action) => {
       state.answers = action.payload;
+      console.log(action,"action");
     },
   },
 });
