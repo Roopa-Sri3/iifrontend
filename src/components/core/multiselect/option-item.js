@@ -13,7 +13,7 @@ const OptionItem = ({
   return (
     <div
       className={
-        cx('option-item', checked ? 'checked' : '', disabled ? 'disabled' : '')
+        cx("option-item", checked ? "checked" : "", disabled ? "disabled" : "")
       }>
       <input
         className="option-item-check-box"
@@ -26,7 +26,7 @@ const OptionItem = ({
       />
       <label
         htmlFor={id}
-        className={cx("option-item-field-label", disabled ? 'disabled' : '' )}
+        className={cx("option-item-field-label", disabled ? "disabled" : " ")}
       >
         {label}
       </label>

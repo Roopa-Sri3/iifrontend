@@ -4,6 +4,7 @@ import ProtectLoginRoute from "./privateRoutes/protectLoginRoute";
 import ProtectedDashboardRoute from "./privateRoutes/protectDashboardRoute";
 import Questionsconfiguration from "./pages/Questionsconfiguration";
 import Unauthorized from "./pages/Unauthorized";
+import AssessmentInstructions from "./pages/AssessmentInstructions";
 
 const ROUTES_CONFIG = [
   {
@@ -27,6 +28,10 @@ const ROUTES_CONFIG = [
   {
     path: "/unauthorized",
     element: <Unauthorized />
+  },
+  {
+    path: "/candidate/assessment-instructions",
+    element: <AssessmentInstructions />
   },
 ];
 
