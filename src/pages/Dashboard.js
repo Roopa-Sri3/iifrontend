@@ -1,33 +1,43 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import Button from "../components/core/button/button";
-import AddCandidateModal
-  from "../components/modals/addCandidateModal/AddCandidateModal";
-import FeedbackModal from "../components/modals/feedbackModal/FeedbackModal";
 import SubFooter from "../components/table/SubFooter/SubFooter";
 import SubHeader from "../components/table/SubHeader/SubHeader";
 import SubLayout from "../components/table/SubLayout/SubLayout";
-import UserDisplay from "../components/UserDisplay/UserDisplay";
-import Search from "../components/assets/svgs/Search";
-
-import { openModal, } from "../store/reducers/app/app";
+import UserDisplay from '../components/UserDisplay/UserDisplay';
+import
+AddCandidateModal
+  from "../components/modals/addCandidateModal/AddCandidateModal";
+import FeedbackModal from '../components/modals/feedbackModal/FeedbackModal';
+import { openModal, } from '../store/reducers/app/app';
+import {
+  AddCandidate,
+  EditCandidate,
+  GetTechSkills,
+} from '../store/reducers/dashboard/dashboard.js';
 import { GetUserRole } from "../store/selector/app";
-
-import FilterComponent from "../assets/svgs/filterImage";
-
 import { candidates } from "../shared/constants";
-import StatusFilter from "./StatusFilter";
-import "./Dashboard.css";
+import StatusFilter from './StatusFilter';
+import Search from '../components/assets/svgs/Search';
+import AddIcon from "../components/assets/svgs/AddIcon.js";
+import FilterComponent from '../assets/svgs/filterImage';
+import './Dashboard.css';
 
 const Dashboard = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(GetTechSkills({
+      onSuccess: () => {},
+      onError: () => {},
+    }));
+  }, [dispatch]);
+
   const [currentPage, setCurrentPage] = useState(1);
   const [recordsPerPage] = useState(10);
   const [showFilter, setShowFilter] = useState(false);
   const [selectedStatus, setSelectedStatus] = useState(null);
-  const [searchTerm, setSearchTerm] = useState("");
-  const dispatch = useDispatch();
-  const role = useSelector(GetUserRole);
+  const [searchTerm, setSearchTerm] = useState('');
 
   const filteredCandidates = candidates.filter(
     (candidate) =>
@@ -55,12 +65,33 @@ const Dashboard = () => {
 
   const totalPages = Math.ceil(filteredCandidates.length / recordsPerPage);
 
+  const role = useSelector(GetUserRole);
+
   const handleAddCandidate = () => {
     dispatch(openModal({
       modalName: "AddCandidateModal",
       modalData: {
       }
     }));
+  };
+
+  const handleAddOrEditCandidate = ({
+    mode,
+    ...formData
+  }) => {
+    if (mode === 'EDIT') {
+      dispatch(EditCandidate({
+        data: {...formData},
+        onSuccess: () => {},
+        onError: () => {}
+      }));
+    } else {
+      dispatch(AddCandidate({
+        data: {...formData},
+        onSuccess: () => {},
+        onError: () => {}
+      }));
+    }
   };
 
   const headerActions =
@@ -91,6 +122,7 @@ const Dashboard = () => {
         <Button
           label="Add Candidate"
           handleClick={handleAddCandidate}
+          children={<AddIcon />}
         />
           }
         </div>
@@ -129,7 +161,9 @@ const Dashboard = () => {
             selectedStatus={selectedStatus}
           />)}
         </div>
-        <AddCandidateModal />
+        <AddCandidateModal
+          handleAddOrEditCandidate={handleAddOrEditCandidate}
+        />
         <FeedbackModal />
       </div>
       }
