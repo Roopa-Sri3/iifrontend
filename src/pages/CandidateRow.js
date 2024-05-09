@@ -1,22 +1,22 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
+import React from "react";
+import { useDispatch } from "react-redux";
 
-import { openModal } from '../store/reducers/app/app';
+import { openModal } from "../store/reducers/app/app";
 
-import EditComponent from '../assets/svgs/editImage';
-import ShareComponent from '../assets/svgs/shareImage';
-import VisibilityComponent from '../assets/svgs/visibilityImage';
-import DownloadIcon from '../assets/svgs/downloadIcon';
+import EditComponent from "../assets/svgs/editImage";
+import ShareComponent from "../assets/svgs/shareImage";
+import VisibilityComponent from "../assets/svgs/visibilityImage";
+import DownloadIcon from "../assets/svgs/downloadIcon";
 
-import './CandidateRow.css';
+import "./CandidateRow.css";
 
 const CandidateRow = ({ candidate }) => {
   const dispatch = useDispatch();
-  const isPdfReport = candidate.report.endsWith('.pdf');
+  const isPdfReport = candidate.report.endsWith(".pdf");
   const handleOpenModal = () => {
     dispatch(openModal(
       {
-        modalName: 'FeedbackModal',
+        modalName: "FeedbackModal",
         modalData: {
           ...candidate,
         }
@@ -29,7 +29,7 @@ const CandidateRow = ({ candidate }) => {
       mobileNumber:"6309574567",
       yearsOfExperience: 1,
       primaryTechSkill: "Java",
-      secondaryTechSkills: ['C', 'Python', 'PHP'],
+      secondaryTechSkills: ["C", "Python", "PHP"],
       rRNumber: "",
       status: "completed",
       fileUrl: "c::/file",
@@ -39,9 +39,9 @@ const CandidateRow = ({ candidate }) => {
 
     dispatch(openModal(
       {
-        modalName: 'AddCandidateModal',
+        modalName: "AddCandidateModal",
         modalData: {
-          mode:'EDIT',
+          mode:"EDIT",
           ...rowCandidateData,
           selectedPrimarySkills:[
             {label: rowCandidateData.primaryTechSkill,
@@ -58,7 +58,7 @@ const CandidateRow = ({ candidate }) => {
       <td>{candidate.candidateName}</td>
       <td>{candidate.techSkills}</td>
       <td className={candidate.status ===
-        'Completed' ? 'status-completed' : ''}>
+        "Completed" ? "status-completed" : ""}>
         {candidate.status}
       </td>
       <td>
@@ -67,8 +67,8 @@ const CandidateRow = ({ candidate }) => {
             {candidate.report}
           </div>
           <DownloadIcon
-            style={{ cursor: isPdfReport ? 'pointer' : 'not-allowed' }}
-            fillColor={isPdfReport ? '#196AD6' : '#6F7683'}
+            style={{ cursor: isPdfReport ? "pointer" : "not-allowed" }}
+            fillColor={isPdfReport ? "#196AD6" : "#6F7683"}
           />
         </div>
       </td>
@@ -76,7 +76,7 @@ const CandidateRow = ({ candidate }) => {
         <div className='feedback-container'>
           {candidate.feedback}
           <VisibilityComponent
-            style={{marginLeft: '40px',cursor:'pointer'}}
+            style={{marginLeft: "40px",cursor:"pointer"}}
             onClick={handleOpenModal}/>
           <span className="comments-text"
             style={{ marginLeft: "10px" }}>
@@ -91,7 +91,7 @@ const CandidateRow = ({ candidate }) => {
           tabIndex="0"
           onClick = {handleEditClick}
           onKeyDown={(event) => {
-            if(event.key === "Enter" || event.key === ' '){
+            if(event.key === "Enter" || event.key === " "){
               handleEditClick();
             }
           }}

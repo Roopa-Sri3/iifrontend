@@ -1,8 +1,8 @@
-import axios from 'axios';
+import axios from "axios";
 import {
   decrementApiCounter,
   incrementApiCounter,
-} from '../../../store/reducers/app/app';
+} from "../../../store/reducers/app/app";
 
 class HTTPClient {
   constructor(dispatch = () => {}) {
@@ -19,7 +19,7 @@ class HTTPClient {
     let result;
     try {
       this.dispatch(incrementApiCounter());
-      const response = await axios.get(`${this.baseURL || ''}${url}`, {
+      const response = await axios.get(`${this.baseURL || ""}${url}`, {
         ...configObj,
         headers: this.headers,
       });
@@ -48,7 +48,7 @@ class HTTPClient {
     let result;
     try {
       this.dispatch(incrementApiCounter());
-      const response = await axios.post(`${this.baseURL || ''}${url}`, data, {
+      const response = await axios.post(`${this.baseURL || ""}${url}`, data, {
         ...configObj,
         headers: this.headers,
       });

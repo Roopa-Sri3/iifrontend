@@ -1,5 +1,5 @@
-import React from 'react';
-import './checkbox.css';
+import React from "react";
+import "./checkbox.css";
 const Checkbox = ({
   id,
   label,

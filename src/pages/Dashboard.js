@@ -4,28 +4,28 @@ import { useDispatch, useSelector } from "react-redux";
 import Button from "../components/core/button/button";
 import AddCandidateModal
   from "../components/modals/addCandidateModal/AddCandidateModal";
-import FeedbackModal from '../components/modals/feedbackModal/FeedbackModal';
+import FeedbackModal from "../components/modals/feedbackModal/FeedbackModal";
 import SubFooter from "../components/table/SubFooter/SubFooter";
 import SubHeader from "../components/table/SubHeader/SubHeader";
 import SubLayout from "../components/table/SubLayout/SubLayout";
-import UserDisplay from '../components/UserDisplay/UserDisplay';
-import Search from '../components/assets/svgs/Search';
+import UserDisplay from "../components/UserDisplay/UserDisplay";
+import Search from "../components/assets/svgs/Search";
 
-import { openModal, } from '../store/reducers/app/app';
+import { openModal, } from "../store/reducers/app/app";
 import { GetUserRole } from "../store/selector/app";
 
-import FilterComponent from '../assets/svgs/filterImage';
+import FilterComponent from "../assets/svgs/filterImage";
 
 import { candidates } from "../shared/constants";
-import StatusFilter from './StatusFilter';
-import './Dashboard.css';
+import StatusFilter from "./StatusFilter";
+import "./Dashboard.css";
 
 const Dashboard = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [recordsPerPage] = useState(10);
   const [showFilter, setShowFilter] = useState(false);
   const [selectedStatus, setSelectedStatus] = useState(null);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const dispatch = useDispatch();
   const role = useSelector(GetUserRole);
 
@@ -57,7 +57,7 @@ const Dashboard = () => {
 
   const handleAddCandidate = () => {
     dispatch(openModal({
-      modalName: 'AddCandidateModal',
+      modalName: "AddCandidateModal",
       modalData: {
       }
     }));
@@ -73,7 +73,7 @@ const Dashboard = () => {
   return (
     <div className="dashboard">
       <UserDisplay />
-      { role === 'HR' &&
+      { role === "HR" &&
       <div>
         <div className="dashboard-filters-and-actions">
           <div className="candidate-insights">Candidate Insights</div>
@@ -87,7 +87,7 @@ const Dashboard = () => {
             />
             <Search />
           </div>
-          { role === 'HR' &&
+          { role === "HR" &&
         <Button
           label="Add Candidate"
           handleClick={handleAddCandidate}
@@ -96,12 +96,12 @@ const Dashboard = () => {
         </div>
         <div className="card">
           <table>
-            <SubHeader columns={['Candidate Name',
-              'Tech Skills',
-              'Status',
-              'View/Dashboard Report',
-              'Feedback',
-              'Actions']}
+            <SubHeader columns={["Candidate Name",
+              "Tech Skills",
+              "Status",
+              "View/Dashboard Report",
+              "Feedback",
+              "Actions"]}
             headerActions={headerActions}
             />
             <SubLayout
