@@ -10,7 +10,7 @@ frontend_build:
         - node --version
         - npm --version
         - npm ci
-        - npm build
+        - npm run build
     artifacts:
         paths:
             - /home/roopagaddam/
