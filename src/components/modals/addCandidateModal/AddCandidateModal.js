@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import cx from 'classnames';
 import { useSelector, useDispatch } from 'react-redux';
-import { IsModalOpen, GetModalData } from '../../../store/selector/app/app';
+import cx from 'classnames';
 import Modal from '../../core/modal/Modal';
 import MultiSelect from '../../core/multiselect/multiselect';
-import {closeModal} from "../../../store/reducers/app/app";
+import Checkbox from '../../core/checkbox/checkbox';
 import AddCandidateModalHeader from './AddCandidateModalHeader';
 import AddCandidateModalActions from './AddCandidateModalActions';
-import Checkbox from '../../core/checkbox/checkbox';
+import {closeModal} from "../../../store/reducers/app/app";
+import { IsModalOpen, GetModalData } from '../../../store/selector/app/app';
 import './AddCandidateModal.css';
 
 const AddCandidateModal = ({
@@ -146,7 +146,7 @@ const AddCandidateModal = ({
         rrNo:rRNumber,
         shareLink:isChecked,
       };
-      console.log(JSON.stringify(formData));
+
       handleAddOrEditCandidate({
         ...formData,
         mode: storeModalData && storeModalData.mode,

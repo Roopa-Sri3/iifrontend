@@ -1,41 +1,35 @@
 import React, {useState, useEffect} from "react";
-import Button from "../components/core/button/button";
 import { useDispatch, useSelector } from "react-redux";
-import { openModal, } from '../store/reducers/app/app';
+import Button from "../components/core/button/button";
+import SubFooter from "../components/table/SubFooter/SubFooter";
+import SubHeader from "../components/table/SubHeader/SubHeader";
+import SubLayout from "../components/table/SubLayout/SubLayout";
+import UserDisplay from '../components/UserDisplay/UserDisplay';
 import
 AddCandidateModal
   from "../components/modals/addCandidateModal/AddCandidateModal";
 import FeedbackModal from '../components/modals/feedbackModal/FeedbackModal';
-import StatusFilter from './StatusFilter';
-import Search from '../components/assets/svgs/Search';
+import { openModal, } from '../store/reducers/app/app';
 import {
   AddCandidate,
   EditCandidate,
   GetTechSkills,
 } from '../store/reducers/dashboard/dashboard.js';
 import { GetUserRole } from "../store/selector/app";
-import SubFooter from "../components/table/SubFooter/SubFooter";
-import SubHeader from "../components/table/SubHeader/SubHeader";
-import SubLayout from "../components/table/SubLayout/SubLayout";
-import UserDisplay from '../components/UserDisplay/UserDisplay';
-
-import FilterComponent from '../assets/svgs/filterImage';
-
 import { candidates } from "../shared/constants";
-import './Dashboard.css';
+import StatusFilter from './StatusFilter';
+import Search from '../components/assets/svgs/Search';
 import AddIcon from "../components/assets/svgs/AddIcon.js";
+import FilterComponent from '../assets/svgs/filterImage';
+import './Dashboard.css';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(GetTechSkills({
-      onSuccess: () => {
-        console.log('Success');
-      },
-      onError: () => {
-        console.log('Error');
-      },
+      onSuccess: () => {},
+      onError: () => {},
     }));
   }, [dispatch]);
 
@@ -85,8 +79,6 @@ const Dashboard = () => {
     mode,
     ...formData
   }) => {
-    console.log('formData', formData);
-    console.log('mode', mode);
     if (mode === 'EDIT') {
       dispatch(EditCandidate({
         data: {...formData},

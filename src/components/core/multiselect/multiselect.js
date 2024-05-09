@@ -85,12 +85,13 @@ const MultiSelect = ({
   }, []);
 
   const filterOptions = options.filter((option) =>
-    option.label.toLowerCase().includes(searchItem.toLowerCase()));
+    option.label.toLowerCase().includes(searchItem.toLowerCase())
+  );
 
   const disabledOptions = selectedOptions.length >= maxSelection ?
     options.filter(
-      option => !selectedOptions.find(
-        selectedOption => selectedOption.value === option.value
+      (option) => !selectedOptions.find(
+        (selectedOption) => selectedOption.value === option.value
       ))
     : [];
 
@@ -108,9 +109,13 @@ const MultiSelect = ({
       >
         <div className="selected-options">
           {selectedOptions && selectedOptions.map((option) => (
-            <div key={option.value} className="selected-option">
+            <div
+              key={option.value}
+              className="selected-option"
+            >
               {option.label}
-              <span className="deselect-option"
+              <span
+                className="deselect-option"
                 role="button"
                 tabIndex="0"
                 onClick={() => handleOptionClick(option)}
@@ -155,7 +160,7 @@ const MultiSelect = ({
                 }
                 onChange={(e) => { handleCheckbox(option, e.target.checked); }}
                 disabled={disabledOptions.some(
-                  disabledOption => disabledOption.value === option.value)}
+                  (disabledOption) => disabledOption.value === option.value)}
               />
             ))}
           </div>

@@ -3,7 +3,6 @@ import APIWrapper from '../../../shared/services/apiWrapper/apiwrapper';
 
 const initialState = {
   skillsOptions:[],
-  candidateDetails:{}
 };
 
 const dashboardSlice = createSlice({

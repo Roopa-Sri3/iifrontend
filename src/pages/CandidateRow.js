@@ -1,13 +1,10 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-
 import { openModal } from '../store/reducers/app/app';
-
 import EditComponent from '../assets/svgs/editImage';
 import ShareComponent from '../assets/svgs/shareImage';
 import VisibilityComponent from '../assets/svgs/visibilityImage';
 import DownloadIcon from '../assets/svgs/downloadIcon';
-
 import './CandidateRow.css';
 
 const CandidateRow = ({ candidate }) => {
@@ -24,7 +21,7 @@ const CandidateRow = ({ candidate }) => {
   };
   const handleEditClick = () => {
     const rowCandidateData = {
-      // ...candidate,
+      ...candidate,
       fullName: "abinash",
       email: "191fa04101@gmail.com",
       mobileNumber:"6309574567",
@@ -87,7 +84,8 @@ const CandidateRow = ({ candidate }) => {
       </td>
       <td>
         {candidate.actions}
-        <span className="edit-icon"
+        <span
+          className="edit-icon"
           role="button"
           tabIndex="0"
           onClick = {handleEditClick}
