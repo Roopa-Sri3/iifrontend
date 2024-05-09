@@ -30,8 +30,8 @@ const OptionItem = ({
       >
         {label}
       </label>
-
-  </div>
-);
+    </div>
+  );
+};
 
 export default OptionItem;
