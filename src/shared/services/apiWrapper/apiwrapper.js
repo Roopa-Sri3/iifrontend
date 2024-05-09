@@ -1,4 +1,4 @@
-import HTTPClient from '../httpclient';
+import HTTPClient from "../httpclient";
 
 class APIWrapper extends HTTPClient {
   constructor(dispatch = () => {}) {

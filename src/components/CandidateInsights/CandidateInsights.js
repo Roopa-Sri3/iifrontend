@@ -1,5 +1,5 @@
-import React from 'react';
-import '../components/UserDisplay';
+import React from "react";
+import "../components/UserDisplay";
 
 const  UserDisplay = () => {
   <div className='CandidateInsights'>

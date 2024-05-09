@@ -1,8 +1,8 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { GetUserRole } from '../../store/selector/app';
-import './UserDisplay.css';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { GetUserRole } from "../../store/selector/app";
+import "./UserDisplay.css";
 
 const  UserDisplay = () => {
 
@@ -10,7 +10,7 @@ const  UserDisplay = () => {
   const navigate = useNavigate();
 
   const handleNavigate = () => {
-    navigate('/admin/questions_configure');
+    navigate("/admin/questions_configure");
   };
 
   return(
@@ -20,12 +20,12 @@ const  UserDisplay = () => {
         <div>sr. software Engineer</div>
       </div>
       <div>
-        {(userRole === 'ADMIN') && (
+        {(userRole === "ADMIN") && (
           <button className='config-question' onClick={handleNavigate}>
             Import Questions
           </button>
         )}
-        {(userRole === 'HR') && (
+        {(userRole === "HR") && (
           <div className='candidates-count'>
             <div>Candidates</div>
             <div>Till Date</div>

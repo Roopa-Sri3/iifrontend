@@ -1,5 +1,5 @@
-import React from 'react';
-import './SubFooter.css';
+import React from "react";
+import "./SubFooter.css";
 
 const SubFooter =
   ({ currentPage,
@@ -35,16 +35,16 @@ const SubFooter =
         <button
           className="page-number-btn"
           onClick={() => onPageChange(1)}
-          disabled={currentPage === 1}>{'<<'}</button>
+          disabled={currentPage === 1}>{"<<"}</button>
         <button className="page-number-btn"
           onClick={() => onPageChange(currentPage - 1)}
-          disabled={currentPage === 1}>{'<'}</button>
+          disabled={currentPage === 1}>{"<"}</button>
         {pageNumbers.map(number => (
           <button
             key={number}
             onClick={() => onPageChange(number)}
             className={`page-number-btn page-button ${
-              currentPage === number ? 'active' : ''}`}
+              currentPage === number ? "active" : ""}`}
           >
             {number}
           </button>
@@ -52,15 +52,15 @@ const SubFooter =
         {pageNumbers[pageNumbers.length - 1] < totalPages && (
           <button className="page-number-btn"
             onClick={() => onPageChange(currentPage + 1)}
-            disabled={currentPage === totalPages}>{'>'}</button>
+            disabled={currentPage === totalPages}>{">"}</button>
         )}
         {pageNumbers[pageNumbers.length - 1] < totalPages && (
           <button className="page-number-btn"
             onClick={() => onPageChange(totalPages)}
-            disabled={currentPage === totalPages}>{'>>'}</button>
+            disabled={currentPage === totalPages}>{">>"}</button>
         )}
         <div className="current-page-entries">
-          Showing {indexOfFirstRecord} to {indexOfLastRecord} of{' '}
+          Showing {indexOfFirstRecord} to {indexOfLastRecord} of{" "}
           {totalFilteredRecords} entries
         </div>
       </div>

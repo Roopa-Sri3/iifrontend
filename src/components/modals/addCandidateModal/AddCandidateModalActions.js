@@ -35,9 +35,9 @@ const AddCandidateModalActions = ({
     }
   };
 
-  const isEditMode = storeModalData.mode === 'EDIT';
-  const buttonLabel = isEditMode ? 'Save Changes' :
-    isChecked ? 'Add Candidate and share Link' : 'Add Candidate';
+  const isEditMode = storeModalData.mode === "EDIT";
+  const buttonLabel = isEditMode ? "Save Changes" :
+    isChecked ? "Add Candidate and share Link" : "Add Candidate";
 
   return (
     <div>

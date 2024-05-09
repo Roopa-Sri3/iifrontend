@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import Button from '../core/button';
-import './Question.css';
-import RadioGroup from '../core/radioGroup/RadioGroup';
+import React, { useState } from "react";
+import Button from "../core/button";
+import "./Question.css";
+import RadioGroup from "../core/radioGroup/RadioGroup";
 
 const Question = ({
   questionNumber,
@@ -13,7 +13,7 @@ const Question = ({
   options = [],
 }) => {
   const [selectedOption, setSelectedOption] = useState(null);
-  const [codeValue, setCodeValue] = useState('');
+  const [codeValue, setCodeValue] = useState("");
 
   const handlePreviousButton = () =>{
     handlePrevious();
@@ -40,7 +40,7 @@ const Question = ({
           <div className='question-text'>
             {questionText}
           </div>
-          {category === 'SINGLESELECT' &&
+          {category === "SINGLESELECT" &&
             <div className='sinlge-option'>
               <RadioGroup
                 label="Choose answer"
@@ -50,7 +50,7 @@ const Question = ({
               />
             </div>
           }
-          {category === 'CODING' &&
+          {category === "CODING" &&
             <div className='coding'>
               Write code here
               <textarea
@@ -65,12 +65,12 @@ const Question = ({
         </div>
         <div className='action-buttons'>
           <Button
-            className={'previous-button'}
-            label={'Previous'}
+            className={"previous-button"}
+            label={"Previous"}
             handleClick={handlePreviousButton} />
           <Button
-            className={'save-next'}
-            label={'Save & Next'}
+            className={"save-next"}
+            label={"Save & Next"}
             handleClick={handleSaveButton}/>
         </div>
       </div>
