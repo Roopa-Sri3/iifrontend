@@ -11,6 +11,4 @@ frontend_build:
         - npm --version
         - npm ci
         - npm run build
-    artifacts:
-        paths:
-            - /home/roopagaddam/
+    
