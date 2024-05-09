@@ -1,24 +1,28 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+// import { useNavigate } from 'react-router-dom';
 import { IsModalOpen } from '../../../store/selector/app';
 import Modal from '../../core/modal/Modal';
 import './LogoutModal.css';
 import Button from '../../core/button';
-import { closeModal } from '../../../store/reducers/app/app';
+import { closeModal, resetApp }
+  from '../../../store/reducers/app/app';
 
 const LogoutModal = () => {
   const dispatch = useDispatch();
+  // const navigate = useNavigate();
   const IsLogoutModalOpen = useSelector(
     (state) => IsModalOpen(state, 'LogoutModal'),
   );
 
-  const handleNoButton = () =>{
-    // console.log("Clicked No");
+  const handleNoButton = () => {
     dispatch(closeModal());
   };
 
-  const handleYesButton = () =>{
-    console.log('Clicked on Yes');
+  const handleYesButton = () => {
+    dispatch(resetApp());
+    // navigate('/');
+    // dispatch(navigateToLogin());
   };
 
   return (

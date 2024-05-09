@@ -61,8 +61,8 @@ const Header = () => {
                         }
                       }}
                     >
-                      <h5
-                      >Logout</h5>
+                      <h6
+                      >Logout</h6>
                     </button>
                   </div>
                   <LogoutModal />

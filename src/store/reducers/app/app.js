@@ -7,14 +7,15 @@ const appSlice = createSlice({
     userName: '',
     profileName: '',
     role: '',
-    modal:{
+    modal: {
       modalName: '',
       modalData: null,
     },
-    message : '',
-    messageType : '',
+    message: '',
+    messageType: '',
     timeoutId: null,
     apiCounter: 0,
+    route: '/',
   },
   reducers: {
     setLogin: (state, action) => {
@@ -35,7 +36,7 @@ const appSlice = createSlice({
       state.profileName = '';
       state.role = '';
     },
-    openModal: (state,action) => {
+    openModal: (state, action) => {
       state.modal.modalName = action.payload.modalName;
       state.modal.modalData = action.payload.modalData;
     },
@@ -55,16 +56,19 @@ const appSlice = createSlice({
       state.message = action.payload.message;
       state.messageType = action.payload.messageType;
     },
-    clearAlert: (state,action) => {
+    clearAlert: (state, action) => {
       state.message = '';
       state.messageType = '';
     },
     setTimeoutId: (state, action) => {
       state.timeoutId = action.payload;
     },
-    clearTimeoutId: (state) =>{
+    clearTimeoutId: (state) => {
       state.timeoutId = null;
     },
+    // navigateToLogin: (state) => {
+    //   state.route = useNavigate('/');
+    // },
   },
 });
 
@@ -81,6 +85,7 @@ export const {
   clearAlert,
   setTimeoutId,
   clearTimeoutId,
+  navigateToLogin,
 } = appSlice.actions;
 
 export default appSlice.reducer;

@@ -12,11 +12,11 @@ const ROUTES_CONFIG = [
   },
   {
     path: '/',
-    element:  <ProtectedDashboardRoute />,
+    element: (<ProtectedDashboardRoute />),
     children: [
       {
         path: "/dashboard",
-        element: <Dashboard />,
+        element: (<Dashboard />)
       },
     ]
   },
@@ -24,10 +24,10 @@ const ROUTES_CONFIG = [
     path: '/admin/questions_configure',
     element: <Questionsconfiguration />
   },
-  // {
-  //   path: '/unauthorized',
-  //   element: <Unauthorized />
-  // },
+  {
+    path: '/unauthorized',
+    element: <Unauthorized />
+  },
 ];
 
 export default ROUTES_CONFIG;
