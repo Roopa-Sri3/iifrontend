@@ -10,7 +10,7 @@ const  UserDisplay = () => {
   const navigate = useNavigate();
 
   const handleNavigate = () => {
-    navigate('/admin/questions_configure');
+    navigate('/admin/questions-configure');
   };
 
   return(

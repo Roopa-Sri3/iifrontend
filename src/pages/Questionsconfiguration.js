@@ -1,15 +1,19 @@
 import {React, useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import FileUpload from '../components/core/fileUpload/FileUpload';
+import Button from '../components/core/button';
 import Download from '../components/core/download/Download';
 import BackarrowIcon from '../components/assets/svgs/BackarrowIcon';
 import FileIcon from '../components/assets/svgs/FileIcon';
 import DeletefileIcon from '../components/assets/svgs/DeletefileIcon';
 import {instructions} from '../shared/constants';
 import './Questionsconfiguration.css';
+import { PostUploadFile } from '../store/reducers/app/app';
+import { useDispatch } from 'react-redux';
 
 function Questionsconfiguration() {
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleNavigation = () => {
     navigate('/dashboard');
@@ -19,6 +23,7 @@ function Questionsconfiguration() {
 
   const handleFiles = (event) => {
     const files = event.target.files;
+    console.log(files);
     if (files.length > 0) {
       setSelectedFile(files[0]);
     } else {
@@ -31,8 +36,17 @@ function Questionsconfiguration() {
     setSelectedFile(null);
   };
 
-  const handleSubmit = ()=>{
-    alert("File Uploaded Successfully");
+  const handleSubmit = () => {
+    dispatch(PostUploadFile({
+      file: selectedFile,
+      onSuccess: () => {
+        alert("File uploaded successfully");
+      },
+      onError: (error) => {
+        console.error(error);
+        alert("Failed to upload file");
+      },
+    }));
   };
 
   return(
@@ -81,9 +95,12 @@ function Questionsconfiguration() {
               </div>
             </div>
           )}
-          <button className='final-upload' onClick={handleSubmit}>
-            Upload
-          </button>
+          <Button
+            className='final-upload'
+            handleClick={handleSubmit}
+            label="Upload"
+          >
+          </Button>
         </div>
         <div className='instructions-layout'>
           <b className='inst-head'>Instructions.</b>

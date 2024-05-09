@@ -22,7 +22,7 @@ const ROUTES_CONFIG = [
     ]
   },
   {
-    path: '/admin/questions_configure',
+    path: '/admin/questions-configure',
     element: <Questionsconfiguration />
   },
   {
@@ -30,7 +30,7 @@ const ROUTES_CONFIG = [
     element: <Unauthorized />
   },
   {
-    path: '/assessmentscreen',
+    path: '/candidate/assessment-screen',
     element: <Assessmentscreen />
   },
 ];

@@ -133,6 +133,9 @@
 }
 
 .final-upload {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border:none;
     color:#ffffff;
     background-color: #4595ff;
