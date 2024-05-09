@@ -35,7 +35,7 @@ const MultiSelect = ({
   };
 
   const handleKeyDown = (event) => {
-    if (event.key === 'Enter' || event.key === " ") {
+    if (event.key === "Enter" || event.key === " ") {
       toggleMenu();
     }
   };
@@ -62,7 +62,7 @@ const MultiSelect = ({
     }
 
     setSelectedOptions(updatedSelectedOptions);
-    setSearchItem('');
+    setSearchItem("");
     onChange(updatedSelectedOptions);
   };
 
@@ -73,7 +73,7 @@ const MultiSelect = ({
   const handleOutsideClick = (event) => {
     if (dropboxRef.current && !dropboxRef.current.contains(event.target)) {
       setIsMenuOpen(false);
-      setSearchItem('');
+      setSearchItem("");
     }
   };
 

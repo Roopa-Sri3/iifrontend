@@ -1,18 +1,18 @@
-import {React, useState} from 'react';
+import {React, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import FileUpload from '../components/core/fileUpload/FileUpload';
-import Download from '../components/core/download/Download';
-import BackarrowIcon from '../components/assets/svgs/BackarrowIcon';
-import FileIcon from '../components/assets/svgs/FileIcon';
-import DeletefileIcon from '../components/assets/svgs/DeletefileIcon';
-import {instructions} from '../shared/constants';
-import './Questionsconfiguration.css';
+import FileUpload from "../components/core/fileUpload/FileUpload";
+import Download from "../components/core/download/Download";
+import BackarrowIcon from "../components/assets/svgs/BackarrowIcon";
+import FileIcon from "../components/assets/svgs/FileIcon";
+import DeletefileIcon from "../components/assets/svgs/DeletefileIcon";
+import {instructions} from "../shared/constants";
+import "./Questionsconfiguration.css";
 
 function Questionsconfiguration() {
 
   const navigate = useNavigate();
   const handleNavigation = () => {
-    navigate('/dashboard');
+    navigate("/dashboard");
   };
 
   const [selectedFile, setSelectedFile] = useState(null);

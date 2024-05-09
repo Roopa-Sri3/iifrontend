@@ -69,7 +69,7 @@ const Dashboard = () => {
 
   const handleAddCandidate = () => {
     dispatch(openModal({
-      modalName: 'AddCandidateModal',
+      modalName: "AddCandidateModal",
       modalData: {
       }
     }));
@@ -104,7 +104,7 @@ const Dashboard = () => {
   return (
     <div className="dashboard">
       <UserDisplay />
-      { role === 'HR' &&
+      { role === "HR" &&
       <div>
         <div className="dashboard-filters-and-actions">
           <div className="candidate-insights">Candidate Insights</div>
@@ -118,7 +118,7 @@ const Dashboard = () => {
             />
             <Search />
           </div>
-          { role === 'HR' &&
+          { role === "HR" &&
         <Button
           label="Add Candidate"
           handleClick={handleAddCandidate}
@@ -128,12 +128,12 @@ const Dashboard = () => {
         </div>
         <div className="card">
           <table>
-            <SubHeader columns={['Candidate Name',
-              'Tech Skills',
-              'Status',
-              'View/Dashboard Report',
-              'Feedback',
-              'Actions']}
+            <SubHeader columns={["Candidate Name",
+              "Tech Skills",
+              "Status",
+              "View/Dashboard Report",
+              "Feedback",
+              "Actions"]}
             headerActions={headerActions}
             />
             <SubLayout

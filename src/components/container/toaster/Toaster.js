@@ -11,7 +11,7 @@ import {
   GetAlertMessageType,
   GetTimeoutId,
 } from "../../../store/selector/app/app";
-import './Toaster.css';
+import "./Toaster.css";
 
 const Toaster = ({
   handleRemove,

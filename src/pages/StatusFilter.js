@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { statuses } from '../shared/constants';
-import './StatusFilter.css';
+import React, { useState } from "react";
+import { statuses } from "../shared/constants";
+import "./StatusFilter.css";
 
 const StatusFilter = ({ onFilterChange, onClose, selectedStatus}) => {
   const [localSelectedStatus,setLocalSelectedStatus] = useState(selectedStatus);

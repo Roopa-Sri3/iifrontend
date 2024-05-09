@@ -1,3 +1,3 @@
-import ProtectedDashboardRoute from './ProtectedDashboardRoute';
+import ProtectedDashboardRoute from "./ProtectedDashboardRoute";
 
 export default ProtectedDashboardRoute;

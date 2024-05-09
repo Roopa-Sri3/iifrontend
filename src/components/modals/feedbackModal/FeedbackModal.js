@@ -15,7 +15,7 @@ import "./FeedbackModal.css";
 const FeedbackModal = () => {
   const dispatch = useDispatch();
   const IsFeedbackModelOpen = useSelector((state) =>
-    IsModalOpen(state, 'FeedbackModal')
+    IsModalOpen(state, "FeedbackModal")
   );
   const storeModalData = useSelector(GetModalData);
 

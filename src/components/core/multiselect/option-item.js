@@ -1,6 +1,6 @@
 import React from "react";
-import cx from 'classnames';
-import './option-item.css';
+import cx from "classnames";
+import "./option-item.css";
 
 const OptionItem = ({
   id,
@@ -30,9 +30,7 @@ const OptionItem = ({
       >
         {label}
       </label>
-
-    </div>
-  );
-};
+  </div>
+);
 
 export default OptionItem;
