@@ -1,27 +1,33 @@
-import React, { useState, useRef, useEffect } from "react";
-import cx from "classnames";
-import OptionItem from "./option-item";
-import ChevronRight from "../../assets/svgs/ChevronRight";
-import DeSelect from "../../assets/svgs/DeSelect";
-import "./multiselect.css";
+import React, { useState, useRef, useEffect } from 'react';
+import cx from 'classnames';
+import OptionItem from './option-item';
+import ChevronRight from '../../assets/svgs/ChevronRight';
+import DeSelect from '../../assets/svgs/DeSelect';
+import Search from '../../assets/svgs/Search';
+import './multiselect.css';
 
 const MultiSelect = ({
+  id,
   label,
-  options,
+  options = [],
   className,
   onChange,
   selectedValues,
   maxSelection,
+  disabled = false,
 }) => {
-  const [isMenuOpen,setIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState([]);
-  const [searchItem,setSearchItem] = useState("");
+  const [searchItem, setSearchItem] = useState('');
   const dropboxRef = useRef(null);
 
   useEffect(() => {
-    if(selectedValues){
+    if (selectedValues && selectedValues.length) {
       setSelectedOptions(selectedValues);
-    }}, [selectedValues]);
+    } else{
+      setSelectedOptions([]);
+    }
+  },[selectedValues]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -37,7 +43,7 @@ const MultiSelect = ({
     }
   };
 
-  const handleSearchChange = (event) =>{
+  const handleSearchChange = (event) => {
     setSearchItem(event.target.value);
   };
 
@@ -68,7 +74,7 @@ const MultiSelect = ({
   };
 
   const handleOutsideClick = (event) => {
-    if(dropboxRef.current && !dropboxRef.current.contains(event.target)) {
+    if (dropboxRef.current && !dropboxRef.current.contains(event.target)) {
       setIsMenuOpen(false);
       setSearchItem("");
     }
@@ -87,33 +93,42 @@ const MultiSelect = ({
 
   const disabledOptions = selectedOptions.length >= maxSelection ?
     options.filter(
-      option => !selectedOptions.find(
-        selectedOption => selectedOption.value === option.value))
+      (option) => !selectedOptions.find(
+        (selectedOption) => selectedOption.value === option.value
+      ))
     : [];
 
   return (
     <div className="drop-box" ref={dropboxRef}>
-      <div className={cx("drop-box-header", className )}
-        role="button"
-        tabIndex="0"
-        onClick={handleMouseClick}
-        onKeyDown={handleKeyDown}
+      <div className={cx(
+        'drop-box-header',
+        className,
+        disabled ? 'disabled' : ''
+      )}
+      role="button"
+      tabIndex="0"
+      onClick={handleMouseClick}
+      onKeyDown={handleKeyDown}
       >
         <div className="selected-options">
           {selectedOptions && selectedOptions.map((option) => (
-            <div key={option.id} className="selected-option">
+            <div
+              key={option.value}
+              className="selected-option"
+            >
               {option.label}
-              <span className="deselect-option"
+              <span
+                className="deselect-option"
                 role="button"
                 tabIndex="0"
-                onClick = {() => handleOptionClick(option)}
+                onClick={() => handleOptionClick(option)}
                 onKeyDown={(event) => {
-                  if(event.key === "Enter" || event.key === " "){
+                  if (event.key === "Enter" || event.key === " ") {
                     handleOptionClick(option);
                   }
                 }}
               >
-                {selectedOptions.includes(option) && (<DeSelect/>)}
+                {selectedOptions.includes(option) && (<DeSelect />)}
               </span>
             </div>
           ))}
@@ -125,25 +140,30 @@ const MultiSelect = ({
       </div>
       {isMenuOpen && (
         <div className='drop-box-menu'>
-          <input
-            type="text"
-            placeholder="Search"
-            value={searchItem}
-            onChange={handleSearchChange}
-          />
+          <div className='search-section'>
+            <input
+              type="text"
+              placeholder="Search"
+              value={searchItem}
+              onChange={handleSearchChange}
+            />
+            <div className='multiselect-search-icon'>
+              <Search />
+            </div>
+          </div>
           <div className="options-menu">
-            {filterOptions.map(option=>(
+            {filterOptions.map(option => (
               <OptionItem
                 key={option.id}
-                id={option.id}
+                id={`${id}_option_${option.value}`}
                 label={option.label}
                 value={option.value}
                 checked={selectedOptions.some(
                   (eachOption) => eachOption.value === option.value)
                 }
-                onChange={(e) => {handleCheckbox(option, e.target.checked);}}
+                onChange={(e) => { handleCheckbox(option, e.target.checked); }}
                 disabled={disabledOptions.some(
-                  disabledOption => disabledOption.value === option.value)}
+                  (disabledOption) => disabledOption.value === option.value)}
               />
             ))}
           </div>

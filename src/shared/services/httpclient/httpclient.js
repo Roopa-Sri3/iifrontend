@@ -48,10 +48,13 @@ class HTTPClient {
     let result;
     try {
       this.dispatch(incrementApiCounter());
-      const response = await axios.post(`${this.baseURL || ""}${url}`, data, {
-        ...configObj,
-        headers: this.headers,
-      });
+      const response = await axios.post(
+        `${this.baseURL || ''}${url}`,
+        data,
+        {
+          ...configObj,
+          headers: this.headers,
+        });
       const { data: responseData } = response;
       onSuccess(responseData);
       result = responseData;
@@ -63,7 +66,38 @@ class HTTPClient {
       };
     } finally {
       this.dispatch(decrementApiCounter());
+    }
+    return result;
+  }
 
+  async put({
+    url,
+    data,
+    configObj = {},
+    onSuccess = () => {},
+    onError = () => {},
+  }) {
+    let result;
+    try {
+      this.dispatch(incrementApiCounter());
+      const response = await axios.put(
+        `${this.baseURL || ''}${url}`,
+        data,
+        {
+          ...configObj,
+          headers: this.headers,
+        });
+      const { data: responseData } = response;
+      onSuccess(responseData);
+      result = responseData;
+    } catch (e) {
+      onError(e);
+      result = {
+        isError: true,
+        errorMessage: e.message,
+      };
+    } finally {
+      this.dispatch(decrementApiCounter());
     }
     return result;
   }
