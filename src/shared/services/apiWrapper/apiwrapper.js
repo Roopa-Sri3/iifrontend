@@ -3,7 +3,7 @@ import HTTPClient from "../httpclient";
 class APIWrapper extends HTTPClient {
   constructor(dispatch = () => {}) {
     super();
-    this.baseURL = 'http://10.139.166.48:8080/InterviewInsights-0.0.1-SNAPSHOT';
+    this.baseURL = "http://10.139.166.48:8080/InterviewInsights-0.0.1-SNAPSHOT";
     this.dispatch = dispatch;
   }
 
