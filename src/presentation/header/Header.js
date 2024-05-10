@@ -65,7 +65,6 @@ const Header = () => {
                       >Logout</h6>
                     </button>
                   </div>
-                  <LogoutModal />
                 </div>
               </div>
             )}

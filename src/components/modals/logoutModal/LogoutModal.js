@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { IsModalOpen } from '../../../store/selector/app';
 import Modal from '../../core/modal/Modal';
 import './LogoutModal.css';
@@ -10,7 +10,7 @@ import { closeModal, resetApp }
 
 const LogoutModal = () => {
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const IsLogoutModalOpen = useSelector(
     (state) => IsModalOpen(state, 'LogoutModal'),
   );
@@ -21,8 +21,7 @@ const LogoutModal = () => {
 
   const handleYesButton = () => {
     dispatch(resetApp());
-    // navigate('/');
-    // dispatch(navigateToLogin());
+    navigate('/');
   };
 
   return (

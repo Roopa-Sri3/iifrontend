@@ -19,6 +19,7 @@ import FilterComponent from '../assets/svgs/filterImage';
 import { candidates } from "../shared/constants";
 import StatusFilter from './StatusFilter';
 import './Dashboard.css';
+import LogoutModal from "../components/modals/logoutModal/LogoutModal";
 
 const Dashboard = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -131,8 +132,10 @@ const Dashboard = () => {
         </div>
         <AddCandidateModal />
         <FeedbackModal />
+
       </div>
       }
+      <LogoutModal />
     </div>
   );
 };

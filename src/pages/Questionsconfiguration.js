@@ -7,6 +7,7 @@ import FileIcon from '../components/assets/svgs/FileIcon';
 import DeletefileIcon from '../components/assets/svgs/DeletefileIcon';
 import {instructions} from '../shared/constants';
 import './Questionsconfiguration.css';
+import LogoutModal from '../components/modals/logoutModal/LogoutModal';
 
 function Questionsconfiguration() {
 
@@ -94,6 +95,7 @@ function Questionsconfiguration() {
           </ol>
         </div>
       </div>
+      <LogoutModal />
     </div>
   );
 }
