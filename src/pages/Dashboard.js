@@ -16,15 +16,23 @@ import {
   GetTechSkills,
 } from "../store/reducers/dashboard/dashboard.js";
 import { GetUserRole } from "../store/selector/app";
-import { candidates } from "../shared/constants";
-import StatusFilter from "./StatusFilter";
+import { candidates, statuses } from "../shared/constants";
+// import StatusFilter from "./StatusFilter";
 import Search from "../components/assets/svgs/Search";
 import AddIcon from "../components/assets/svgs/AddIcon.js";
-import FilterComponent from "../assets/svgs/filterImage";
 import "./Dashboard.css";
+import StatuFilter from "../components/table/statuFilter/StatuFilter.js";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
+  // Reed the page records from store.
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [recordsPerPage] = useState(10); // Remove it from state.
+  const [showFilter, setShowFilter] = useState(false); // Move it to StatuFilter component.
+  const [selectedStatus, setSelectedStatus] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [statusFilter, setStatusFilter] = useState([]);
 
   useEffect(() => {
     dispatch(GetTechSkills({
@@ -33,11 +41,26 @@ const Dashboard = () => {
     }));
   }, [dispatch]);
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const [recordsPerPage] = useState(10);
-  const [showFilter, setShowFilter] = useState(false);
-  const [selectedStatus, setSelectedStatus] = useState(null);
-  const [searchTerm, setSearchTerm] = useState("");
+  const fetchCurrentPageRecords = ({
+    pageNO = 1,
+  }) => {
+    console.log({
+      pageNO,
+      searchTerm,
+      statusFilter
+    });
+  };
+
+  // useEffect(() => {
+  //   /**
+  //    * seach,
+  //    * status,
+  //    * pageNO
+  //    * Call Action creator whichj internally calls API.
+  //    */
+  //   fetchCurrentPageRecords();
+
+  // }, [statusFilter, searchTerm]);
 
   const filteredCandidates = candidates.filter(
     (candidate) =>
@@ -48,11 +71,9 @@ const Dashboard = () => {
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
-  };
-
-  const handleFilterChange = (status) => {
-    setSelectedStatus(status);
-    setCurrentPage(1);
+    fetchCurrentPageRecords({
+      pageNO: pageNumber,
+    });
   };
 
   const handleFilterComponentClick = () => {
@@ -93,12 +114,47 @@ const Dashboard = () => {
     }
   };
 
-  const headerActions =
-  [null,
+  const handleCheckboxChange = (optionSelected, selected) => {
+    if (selected) {
+      setStatusFilter([
+        ...statusFilter,
+        optionSelected,
+      ]);
+    } else {
+      setStatusFilter(statusFilter.filter((status) => status.value !== optionSelected.value));
+    }
+  };
+
+  const headerActions = [
     null,
-    <FilterComponent className='filter'
-      onClick={handleFilterComponentClick}/>,
-    null, null, null];
+    null,
+    // <div className="statsu-filter">
+    //   <FilterComponent
+    //     className='filter'
+    //     onClick={handleFilterComponentClick}
+    //   />
+    //   {showFilter && (
+    //     <div className='drop-box-menu'>
+    //       <OptionsMenu
+    //         id="dashBoardStatusFilter"
+    //         options={statuses}
+    //         handleCheckbox={handleCheckboxChange}
+    //         selectedOptions={statusFilter}
+    //       />
+    //     </div>
+    //   )}
+    // </div>,
+    <StatuFilter
+      showFilter={showFilter}
+      statuses={statuses}
+      statusFilter={statusFilter}
+      handleCheckboxChange={handleCheckboxChange}
+      handleFilterComponentClick={handleFilterComponentClick}
+    />,
+    null,
+    null,
+    null,
+  ];
 
   return (
     <div className="dashboard">
@@ -127,13 +183,16 @@ const Dashboard = () => {
         </div>
         <div className="card">
           <table>
-            <SubHeader columns={["Candidate Name",
-              "Tech Skills",
-              "Status",
-              "View/Dashboard Report",
-              "Feedback",
-              "Actions"]}
-            headerActions={headerActions}
+            <SubHeader
+              columns={[
+                "Candidate Name",
+                "Tech Skills",
+                "Status",
+                "View/Dashboard Report",
+                "Feedback",
+                "Actions",
+              ]}
+              headerActions={headerActions}
             />
             <SubLayout
               data={filteredCandidates}
@@ -151,14 +210,13 @@ const Dashboard = () => {
             onPageChange={handlePageChange}
             filteredCandidates={filteredCandidates}
             selectedStatus={selectedStatus}
-            onStatusChange={handleFilterChange}
           />
-          {showFilter &&
+          {/* {showFilter &&
           (<StatusFilter
             onFilterChange={handleFilterChange}
             onClose={() => setShowFilter(false)}
             selectedStatus={selectedStatus}
-          />)}
+          />)} */}
         </div>
         <AddCandidateModal
           handleAddOrEditCandidate={handleAddOrEditCandidate}
