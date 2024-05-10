@@ -1,10 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react';
-import cx from 'classnames';
-import OptionItem from './option-item';
-import ChevronRight from '../../assets/svgs/ChevronRight';
-import DeSelect from '../../assets/svgs/DeSelect';
-import Search from '../../assets/svgs/Search';
-import './multiselect.css';
+import React, { useState, useRef, useEffect } from "react";
+import cx from "classnames";
+import OptionItem from "./option-item";
+import ChevronRight from "../../assets/svgs/ChevronRight";
+import DeSelect from "../../assets/svgs/DeSelect";
+import Search from "../../assets/svgs/Search";
+import "./multiselect.css";
 
 const MultiSelect = ({
   id,
@@ -18,7 +18,7 @@ const MultiSelect = ({
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState([]);
-  const [searchItem, setSearchItem] = useState('');
+  const [searchItem, setSearchItem] = useState("");
   const dropboxRef = useRef(null);
 
   useEffect(() => {
@@ -101,9 +101,9 @@ const MultiSelect = ({
   return (
     <div className="drop-box" ref={dropboxRef}>
       <div className={cx(
-        'drop-box-header',
+        "drop-box-header",
         className,
-        disabled ? 'disabled' : ''
+        disabled ? "disabled" : ""
       )}
       role="button"
       tabIndex="0"

@@ -4,24 +4,24 @@ import Button from "../components/core/button/button";
 import SubFooter from "../components/table/SubFooter/SubFooter";
 import SubHeader from "../components/table/SubHeader/SubHeader";
 import SubLayout from "../components/table/SubLayout/SubLayout";
-import UserDisplay from '../components/UserDisplay/UserDisplay';
+import UserDisplay from "../components/UserDisplay/UserDisplay";
 import
 AddCandidateModal
   from "../components/modals/addCandidateModal/AddCandidateModal";
-import FeedbackModal from '../components/modals/feedbackModal/FeedbackModal';
-import { openModal, } from '../store/reducers/app/app';
+import FeedbackModal from "../components/modals/feedbackModal/FeedbackModal";
+import { openModal, } from "../store/reducers/app/app";
 import {
   AddCandidate,
   EditCandidate,
   GetTechSkills,
-} from '../store/reducers/dashboard/dashboard.js';
+} from "../store/reducers/dashboard/dashboard.js";
 import { GetUserRole } from "../store/selector/app";
 import { candidates } from "../shared/constants";
-import StatusFilter from './StatusFilter';
-import Search from '../components/assets/svgs/Search';
+import StatusFilter from "./StatusFilter";
+import Search from "../components/assets/svgs/Search";
 import AddIcon from "../components/assets/svgs/AddIcon.js";
-import FilterComponent from '../assets/svgs/filterImage';
-import './Dashboard.css';
+import FilterComponent from "../assets/svgs/filterImage";
+import "./Dashboard.css";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -37,7 +37,7 @@ const Dashboard = () => {
   const [recordsPerPage] = useState(10);
   const [showFilter, setShowFilter] = useState(false);
   const [selectedStatus, setSelectedStatus] = useState(null);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
 
   const filteredCandidates = candidates.filter(
     (candidate) =>
@@ -70,8 +70,7 @@ const Dashboard = () => {
   const handleAddCandidate = () => {
     dispatch(openModal({
       modalName: "AddCandidateModal",
-      modalData: {
-      }
+      modalData: {}
     }));
   };
 
@@ -79,7 +78,7 @@ const Dashboard = () => {
     mode,
     ...formData
   }) => {
-    if (mode === 'EDIT') {
+    if (mode === "EDIT") {
       dispatch(EditCandidate({
         data: {...formData},
         onSuccess: () => {},

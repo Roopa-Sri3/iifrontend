@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import cx from 'classnames';
-import Modal from '../../core/modal/Modal';
-import MultiSelect from '../../core/multiselect/multiselect';
-import Checkbox from '../../core/checkbox/checkbox';
-import AddCandidateModalHeader from './AddCandidateModalHeader';
-import AddCandidateModalActions from './AddCandidateModalActions';
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import cx from "classnames";
+import Modal from "../../core/modal/Modal";
+import MultiSelect from "../../core/multiselect/multiselect";
+import Checkbox from "../../core/checkbox/checkbox";
+import AddCandidateModalHeader from "./AddCandidateModalHeader";
+import AddCandidateModalActions from "./AddCandidateModalActions";
 import {closeModal} from "../../../store/reducers/app/app";
-import { IsModalOpen, GetModalData } from '../../../store/selector/app/app';
-import './AddCandidateModal.css';
+import { IsModalOpen, GetModalData } from "../../../store/selector/app/app";
+import "./AddCandidateModal.css";
 
 const AddCandidateModal = ({
   handleAddOrEditCandidate = () => {}
@@ -27,7 +27,7 @@ const AddCandidateModal = ({
   const [yearsOfExperience,setYearsOfExperience] = useState("");
   const [selectedPrimarySkills, setSelectedPrimarySkills] = useState([]);
   const [selectedSecondarySkills, setSelectedSecondarySkills] = useState([]);
-  const [rRNumber,setRRNumber] = useState('');
+  const [rRNumber,setRRNumber] = useState("");
   const [isChecked, setIsChecked] = useState(false);
 
   const [fullNameError, setFullNameError] = useState("");
@@ -183,7 +183,7 @@ const AddCandidateModal = ({
                   className={`form-input ${fullNameError ?
                     "add-candidate-field-error" : ""}`}
                   placeholder='Candidate Name'
-                  value={fullName || ''}
+                  value={fullName || ""}
                   onChange={(e) => {setFullName(e.target.value);
                     setFullNameError("");}}
                   autoComplete='off'
@@ -205,7 +205,7 @@ const AddCandidateModal = ({
                   className={`form-input ${emailError ?
                     "add-candidate-field-error" : ""}`}
                   placeholder='Candidate Email'
-                  value={email || ''}
+                  value={email || ""}
                   onChange={(e) => {setEmail(e.target.value);
                     setEmailError("");}}
                   autoComplete='off'
@@ -227,7 +227,7 @@ const AddCandidateModal = ({
                   className={`form-input ${mobileNumberError ?
                     "add-candidate-field-error" : ""}`}
                   placeholder='Candidate Mobile'
-                  value={mobileNumber  || ''}
+                  value={mobileNumber  || ""}
                   onChange={(e) => {setMobileNumber(e.target.value);
                     setMobileNumberError("");}}
                   pattern="[0-9]{10}"
@@ -248,7 +248,7 @@ const AddCandidateModal = ({
                   className={`form-input ${yearsOfExperienceError ?
                     "add-candidate-field-error" : ""}`}
                   placeholder='Candidate Experience'
-                  value={yearsOfExperience || ''}
+                  value={yearsOfExperience || ""}
                   onChange={(e) => {setYearsOfExperience(e.target.value);
                     setYearsOfExperienceError("");}}
                   autoComplete='off'
@@ -318,14 +318,14 @@ const AddCandidateModal = ({
                   type="text"
                   id="rRNumber"
                   className="form-input"
-                  value={rRNumber || ''}
+                  value={rRNumber || ""}
                   onChange={(e) => setRRNumber(e.target.value)}
                   autoComplete='off'
                   pattern="[0-9]{10}"
                 />
               </div>
             </div>
-            {(storeModalData && storeModalData.mode !== 'EDIT') && (
+            {(storeModalData && storeModalData.mode !== "EDIT") && (
               <div className='row'>
                 <div className='col-12'>
                   <Checkbox
