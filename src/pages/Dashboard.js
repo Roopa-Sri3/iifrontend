@@ -30,7 +30,7 @@ const Dashboard = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [recordsPerPage] = useState(10); // Remove it from state.
   const [showFilter, setShowFilter] = useState(false); // Move it to StatuFilter component.
-  const [selectedStatus, setSelectedStatus] = useState(null);
+  const [selectedStatus] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState([]);
 
