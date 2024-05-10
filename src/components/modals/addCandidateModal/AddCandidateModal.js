@@ -1,42 +1,47 @@
-import React, { useEffect, useState } from 'react';
-import cx from 'classnames';
-import { useSelector, useDispatch } from 'react-redux';
-import { IsModalOpen, GetModalData } from '../../../store/selector/app/app';
-import Modal from '../../core/modal/Modal';
-import MultiSelect from '../../core/multiselect/multiselect';
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import cx from "classnames";
+import Modal from "../../core/modal/Modal";
+import MultiSelect from "../../core/multiselect/multiselect";
+import Checkbox from "../../core/checkbox/checkbox";
+import AddCandidateModalHeader from "./AddCandidateModalHeader";
+import AddCandidateModalActions from "./AddCandidateModalActions";
 import {closeModal} from "../../../store/reducers/app/app";
-import AddCandidateModalHeader from './AddCandidateModalHeader';
-import AddCandidateModalActions from './AddCandidateModalActions';
-import './AddCandidateModal.css';
+import { IsModalOpen, GetModalData } from "../../../store/selector/app/app";
+import "./AddCandidateModal.css";
 
-const AddCandidateModal = () => {
+const AddCandidateModal = ({
+  handleAddOrEditCandidate = () => {}
+}) => {
   const dispatch = useDispatch();
 
   const IsAddCandidateModalOpen = useSelector(
-    (state) => IsModalOpen(state, 'AddCandidateModal'),
+    (state) => IsModalOpen(state, "AddCandidateModal"),
   );
+
   const storeModalData = useSelector(GetModalData);
 
-  const [fullName,setFullName] = useState('');
-  const [email,setEmail] = useState('');
-  const [mobileNumber,setMobileNumber] = useState('');
-  const [yearsOfExperience,setYearsOfExperience] = useState('');
+  const [fullName,setFullName] = useState("");
+  const [email,setEmail] = useState("");
+  const [mobileNumber,setMobileNumber] = useState("");
+  const [yearsOfExperience,setYearsOfExperience] = useState("");
   const [selectedPrimarySkills, setSelectedPrimarySkills] = useState([]);
   const [selectedSecondarySkills, setSelectedSecondarySkills] = useState([]);
-  const [rRNumber,setRRNumber] = useState('');
+  const [rRNumber,setRRNumber] = useState("");
+  const [isChecked, setIsChecked] = useState(false);
 
-  const [fullNameError, setFullNameError] = useState('');
-  const [emailError, setEmailError] = useState('');
-  const [mobileNumberError, setMobileNumberError] = useState('');
-  const [yearsOfExperienceError, setYearsOfExperienceError] = useState('');
+  const [fullNameError, setFullNameError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [mobileNumberError, setMobileNumberError] = useState("");
+  const [yearsOfExperienceError, setYearsOfExperienceError] = useState("");
   const [
     selectedPrimarySkillsError,
     setSelectedPrimarySkillsError
-  ] = useState('');
+  ] = useState("");
   const [
     selectedSecondarySkillsError,
     setSelectedSecondarySkillsError
-  ] = useState('');
+  ] = useState("");
 
   const handlePrimarySkills = (selectedValues) => {
     setSelectedPrimarySkills(selectedValues);
@@ -46,15 +51,15 @@ const AddCandidateModal = () => {
   };
 
   const options = [
-    {id:1, label:'Java', value:'Java'},
-    {id:2, label:'Python', value:'Python'},
-    {id:3, label:'C', value:'C'},
-    {id:4, label:'C++', value:'C++'},
-    {id:5, label:'PHP', value:'PHP'}
+    {id:1, label:"Java", value:"Java"},
+    {id:2, label:"Python", value:"Python"},
+    {id:3, label:"C", value:"C"},
+    {id:4, label:"C++", value:"C++"},
+    {id:5, label:"PHP", value:"PHP"}
   ];
 
   useEffect(() => {
-    if (storeModalData && storeModalData.mode === 'EDIT') {
+    if (storeModalData && storeModalData.mode === "EDIT") {
       const candidateData = {...storeModalData};
       setFullName(candidateData.fullName);
       setEmail(candidateData.email);
@@ -65,41 +70,41 @@ const AddCandidateModal = () => {
       setRRNumber(candidateData.rRNumber);
     }
     else {
-      setFullName('');
-      setEmail('');
-      setMobileNumber('');
-      setYearsOfExperience('');
+      setFullName("");
+      setEmail("");
+      setMobileNumber("");
+      setYearsOfExperience("");
       setSelectedPrimarySkills([]);
       setSelectedSecondarySkills([]);
-      setRRNumber('');
+      setRRNumber("");
     }
   }, [storeModalData]);
 
   const validateForm = () => {
     let isValid = true;
     if (!fullName) {
-      setFullNameError('Please enter full name');
+      setFullNameError("Please enter full name");
       isValid = false;
     }
     if (!mobileNumber || !/^\d{10}$/.test(mobileNumber)) {
-      setMobileNumberError('Enter valid number');
+      setMobileNumberError("Enter valid number");
       isValid = false;
     }
     if (!email || !/^\S+@gmail.com/.test(email)) {
-      setEmailError('Please enter email');
+      setEmailError("Please enter email");
       isValid = false;
     }
     if (!yearsOfExperience || isNaN(yearsOfExperience) || yearsOfExperience < 0)
     {
-      setYearsOfExperienceError('Please enter years of experience');
+      setYearsOfExperienceError("Please enter years of experience");
       isValid = false;
     }
     if(selectedPrimarySkills.length === 0){
-      setSelectedPrimarySkillsError('Primary skill is required');
+      setSelectedPrimarySkillsError("Primary skill is required");
       isValid = false;
     }
     if(selectedSecondarySkills.length === 0){
-      setSelectedSecondarySkillsError('Secondary skill is required');
+      setSelectedSecondarySkillsError("Secondary skill is required");
       isValid = false;
     }
 
@@ -107,19 +112,19 @@ const AddCandidateModal = () => {
   };
 
   const resetForm = () => {
-    setFullName('');
-    setEmail('');
-    setMobileNumber('');
-    setYearsOfExperience('');
+    setFullName("");
+    setEmail("");
+    setMobileNumber("");
+    setYearsOfExperience("");
     setSelectedPrimarySkills([]);
     setSelectedSecondarySkills([]);
-    setRRNumber('');
-    setFullNameError('');
-    setEmailError('');
-    setMobileNumberError('');
-    setYearsOfExperienceError('');
-    setSelectedPrimarySkillsError('');
-    setSelectedSecondarySkillsError('');
+    setRRNumber("");
+    setFullNameError("");
+    setEmailError("");
+    setMobileNumberError("");
+    setYearsOfExperienceError("");
+    setSelectedPrimarySkillsError("");
+    setSelectedSecondarySkillsError("");
   };
 
   const handleCloseModal = () => {
@@ -133,32 +138,42 @@ const AddCandidateModal = () => {
       const formData = {
         fullName,
         email,
-        mobileNumber,
+        mobileNo:mobileNumber,
         yearsOfExperience,
-        selectedPrimarySkills,
-        selectedSecondarySkills,
-        rRNumber,
+        primaryTechSkill : selectedPrimarySkills[0].value,
+        secondaryTechSkill :
+        selectedSecondarySkills.map(skill => skill.value),
+        rrNo:rRNumber,
+        shareLink:isChecked,
       };
 
+      handleAddOrEditCandidate({
+        ...formData,
+        mode: storeModalData && storeModalData.mode,
+      });
       resetForm();
       dispatch(closeModal());
     }
+  };
+
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked);
   };
 
   return (
     <div>
       <Modal
         show={IsAddCandidateModalOpen}
-        size='modal-lg'
+        size="modal-lg"
         modalHeader={<AddCandidateModalHeader onClose={handleCloseModal} />}
       >
-        <div className='container'>
-          <form className='my-form' onSubmit={handleSubmit}>
-            <div className='row'>
-              <div className={cx('col-6','add-candidate-field')}>
+        <div className="container">
+          <form className="my-form" onSubmit={handleSubmit}>
+            <div className="row">
+              <div className={cx("col-6","add-candidate-field")}>
                 <label
                   htmlFor="fullName"
-                  className='add-candidate-field-label-mandatory'
+                  className="add-candidate-field-label-mandatory"
                 >
                   Full Name
                 </label>
@@ -166,21 +181,21 @@ const AddCandidateModal = () => {
                   type="text"
                   id="fullName"
                   className={`form-input ${fullNameError ?
-                    'add-candidate-field-error' : ''}`}
-                  placeholder='Candidate Name'
-                  value={fullName}
+                    "add-candidate-field-error" : ""}`}
+                  placeholder="Candidate Name"
+                  value={fullName || ""}
                   onChange={(e) => {setFullName(e.target.value);
-                    setFullNameError('');}}
-                  autoComplete='off'
+                    setFullNameError("");}}
+                  autoComplete="off"
                   minLength="4"
                 />
                 {fullNameError &&
-                <p className='validation-error'>{fullNameError}</p>}
+                <p className="validation-error">{fullNameError}</p>}
               </div>
-              <div className={cx('col-6','add-candidate-field')}>
+              <div className={cx("col-6","add-candidate-field")}>
                 <label
-                  htmlFor='email'
-                  className='add-candidate-field-label-mandatory'
+                  htmlFor="email"
+                  className="add-candidate-field-label-mandatory"
                 >
                   Email
                 </label>
@@ -188,21 +203,21 @@ const AddCandidateModal = () => {
                   type="text"
                   id="email"
                   className={`form-input ${emailError ?
-                    'add-candidate-field-error' : ''}`}
-                  placeholder='Candidate Email'
-                  value={email}
+                    "add-candidate-field-error" : ""}`}
+                  placeholder="Candidate Email"
+                  value={email || ""}
                   onChange={(e) => {setEmail(e.target.value);
-                    setEmailError('');}}
-                  autoComplete='off'
+                    setEmailError("");}}
+                  autoComplete="off"
                 />
-                {emailError && <p className='validation-error'>{emailError}</p>}
+                {emailError && <p className="validation-error">{emailError}</p>}
               </div>
             </div>
-            <div className='row'>
-              <div className={cx('col-6','add-candidate-field')}>
+            <div className="row">
+              <div className={cx("col-6","add-candidate-field")}>
                 <label
                   htmlFor="mobileNumber"
-                  className='add-candidate-field-label-mandatory'
+                  className="add-candidate-field-label-mandatory"
                 >
                   Mobile Number
                 </label>
@@ -210,20 +225,20 @@ const AddCandidateModal = () => {
                   type="text"
                   id="mobileNumber"
                   className={`form-input ${mobileNumberError ?
-                    'add-candidate-field-error' : ''}`}
-                  placeholder='Candidate Mobile'
-                  value={mobileNumber}
+                    "add-candidate-field-error" : ""}`}
+                  placeholder="Candidate Mobile"
+                  value={mobileNumber  || ""}
                   onChange={(e) => {setMobileNumber(e.target.value);
-                    setMobileNumberError('');}}
+                    setMobileNumberError("");}}
                   pattern="[0-9]{10}"
-                  autoComplete='off'/>
+                  autoComplete="off"/>
                 {mobileNumberError &&
-                <p className='validation-error'>{mobileNumberError}</p>}
+                <p className="validation-error">{mobileNumberError}</p>}
               </div>
-              <div className={cx('col-6','add-candidate-field')}>
+              <div className={cx("col-6","add-candidate-field")}>
                 <label
                   htmlFor="yearsOfExperience"
-                  className='add-candidate-field-label-mandatory'
+                  className="add-candidate-field-label-mandatory"
                 >
                   Years of Experience
                 </label>
@@ -231,23 +246,23 @@ const AddCandidateModal = () => {
                   type="text"
                   id="yearsOfExperience"
                   className={`form-input ${yearsOfExperienceError ?
-                    'add-candidate-field-error' : ''}`}
-                  placeholder='Candidate Experience'
-                  value={yearsOfExperience}
+                    "add-candidate-field-error" : ""}`}
+                  placeholder="Candidate Experience"
+                  value={yearsOfExperience || ""}
                   onChange={(e) => {setYearsOfExperience(e.target.value);
-                    setYearsOfExperienceError('');}}
-                  autoComplete='off'
-                  min='0'
+                    setYearsOfExperienceError("");}}
+                  autoComplete="off"
+                  min="0"
                 />
                 {yearsOfExperienceError &&
-                <p className='validation-error'>{yearsOfExperienceError}</p>}
+                <p className="validation-error">{yearsOfExperienceError}</p>}
               </div>
             </div>
-            <div className='row'>
-              <div className={cx('col-6','add-candidate-field')}>
+            <div className="row">
+              <div className={cx("col-6","add-candidate-field")}>
                 <label
-                  htmlFor='primaryTechSkills'
-                  className='add-candidate-field-label-mandatory'
+                  htmlFor="primaryTechSkills"
+                  className="add-candidate-field-label-mandatory"
                 >
                   Primary Tech Skills
                 </label>
@@ -256,22 +271,22 @@ const AddCandidateModal = () => {
                   label=""
                   className={
                     `form-input ${selectedPrimarySkillsError ?
-                      'add-candidate-field-error' : ''}`
+                      "add-candidate-field-error" : ""}`
                   }
-                  options={options}
+                  options={options || []}
                   onChange={handlePrimarySkills}
                   maxSelection="1"
                   selectedValues={selectedPrimarySkills}
                 />
                 {selectedPrimarySkillsError &&
-                <p className='validation-error'>
+                <p className="validation-error">
                   {selectedPrimarySkillsError}
                 </p>}
               </div>
-              <div className={cx('col-6','add-candidate-field')}>
+              <div className={cx("col-6","add-candidate-field")}>
                 <label
-                  htmlFor='secondaryTechSkills'
-                  className='add-candidate-field-label-mandatory'
+                  htmlFor="secondaryTechSkills"
+                  className="add-candidate-field-label-mandatory"
                 >
                   Secondary Tech Skills
                 </label>
@@ -280,39 +295,53 @@ const AddCandidateModal = () => {
                   label=""
                   className={
                     `form-input ${selectedSecondarySkillsError ?
-                      'add-candidate-field-error' : ''}`
+                      "add-candidate-field-error" : ""}`
                   }
-                  options={options}
+                  options={options || []}
                   onChange={handleSecondarySkills}
                   maxSelection="3"
                   selectedValues={selectedSecondarySkills}
+                  initialDisabledOptions={selectedPrimarySkills}
                 />
                 {selectedSecondarySkillsError &&
-                <p className='validation-error'>
+                <p className="validation-error">
                   {selectedSecondarySkillsError}
                 </p>}
               </div>
             </div>
-            <div className='row'>
-              <div className={cx('col-6','add-candidate-field')}>
-                <label htmlFor="rRNumber" className='add-candidate-field-label'>
+            <div className="row">
+              <div className={cx("col-6","add-candidate-field")}>
+                <label htmlFor="rRNumber" className="add-candidate-field-label">
                   RR#
                 </label>
                 <input
                   type="text"
                   id="rRNumber"
                   className="form-input"
-                  value={rRNumber}
+                  value={rRNumber || ""}
                   onChange={(e) => setRRNumber(e.target.value)}
-                  autoComplete='off'
+                  autoComplete="off"
                   pattern="[0-9]{10}"
                 />
               </div>
             </div>
+            {(storeModalData && storeModalData.mode !== "EDIT") && (
+              <div className="row">
+                <div className="col-12">
+                  <Checkbox
+                    id="mycheckbox"
+                    label="Share link with candidate"
+                    checked={isChecked}
+                    onChange={handleCheckboxChange}
+                  />
+                </div>
+              </div>
+            )}
           </form>
           <AddCandidateModalActions
             onSubmit={handleSubmit}
             validateForm={validateForm}
+            isChecked={isChecked}
           />
         </div>
       </Modal>

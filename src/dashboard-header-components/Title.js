@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 
 function Title({
   text,
   ...restTitleProps
 }) {
-  return <p {...restTitleProps}>{text}</p>;
+  return <div {...restTitleProps}>{text}</div>;
 }
 
 export default Title;
