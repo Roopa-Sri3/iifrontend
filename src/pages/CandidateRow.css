@@ -1,0 +1,56 @@
+.candidate-row{
+  border: 1px solid #D9E0E6;
+}
+
+.comments-text {
+    color: #0b55bd;
+    font-size: 14px;
+    margin-right: 15px;
+  }
+
+.edit-icon{
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.cd-report {
+  display: inline-flex;
+}
+
+.report-text{
+  width:150px;
+  overflow: hidden;
+  text-Overflow:ellipsis;
+}
+
+.feedback-container{
+  display:inline-flex ;
+}
+
+.save-icon {
+  color: grey;
+}
+
+.save-icon.clickable {
+  color: blue;
+}
+
+.status-completed {
+  color: #1AB900;
+}
+
+.comments-button{
+  display: inline-flex;
+}
+
+.visibility-icon{
+  cursor:'pointer';
+}
+
+.share-icon{
+  cursor:pointer;
+}
+
+.filter-icon{
+  cursor:pointer;
+}

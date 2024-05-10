@@ -1,6 +1,6 @@
 import React from "react";
-import cx from 'classnames';
-import './option-item.css';
+import cx from "classnames";
+import "./option-item.css";
 
 const OptionItem = ({
   id,
@@ -9,30 +9,27 @@ const OptionItem = ({
   checked = false,
   onChange,
   disabled,
-}) => {
-  return (
-    <div
-      className={
-        cx('option-item', checked ? 'checked' : '', disabled ? 'disabled' : '')
-      }>
-      <input
-        className="check-box"
-        type="checkbox"
-        id={id}
-        value={value}
-        checked={checked}
-        onChange={onChange}
-        disabled={disabled}
-      />
-      <label
-        htmlFor={id}
-        className={cx("option-item-field-label", disabled ? 'disabled' : '' )}
-      >
-        {label}
-      </label>
-
-    </div>
-  );
-};
+}) => (
+  <div
+    className={
+      cx("option-item", checked ? "checked" : "", disabled ? "disabled" : "")
+    }>
+    <input
+      className="option-item-check-box"
+      type="checkbox"
+      id={id}
+      value={value}
+      checked={checked}
+      onChange={onChange}
+      disabled={disabled}
+    />
+    <label
+      htmlFor={id}
+      className={cx("option-item-field-label", disabled ? "disabled" : "" )}
+    >
+      {label}
+    </label>
+  </div>
+);
 
 export default OptionItem;

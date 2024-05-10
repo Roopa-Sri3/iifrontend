@@ -5,7 +5,7 @@ import GreenClose from "../../assets/svgs/GreenClose";
 import RedCheckCircle from "../../assets/svgs/RedCheckCircle";
 import RedClose from "../../assets/svgs/RedClose";
 import cx from "classnames";
-import './Alert.css';
+import "./Alert.css";
 
 const Alert = ({
   message,
@@ -22,15 +22,15 @@ const Alert = ({
   };
 
   return (
-    <div className={cx('alert', messageType || 'success' )} role="alert">
-      <div className={cx('alert-content')}>
+    <div className={cx("alert", messageType || "success" )} role="alert">
+      <div className={cx("alert-content")}>
         <div className="check">
           {messageType === "success"
             ? <GreenCheckCircle /> : <RedCheckCircle />}
         </div>
-        <span className={cx('alert-text')}>{message}</span>
-        <button className={cx('close')} onClick={handleClick}>
-          {messageType === 'success' ? <GreenClose/> : <RedClose/>}
+        <span className={cx("alert-text")}>{message}</span>
+        <button className={cx("close")} onClick={handleClick}>
+          {messageType === "success" ? <GreenClose/> : <RedClose/>}
         </button>
       </div>
     </div>

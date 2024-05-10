@@ -1,25 +1,25 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import Input from '../components/core/Input/Input';
-import Label from '../components/core/Label/Label';
-import './Login.css';
-import background from '../Images/BlueBackground.png';
-import image from '../Images/Group.png';
-import imagetext from '../Images/Login-Text.png';
-import Button from '../components/core/button/button';
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import Input from "../components/core/Input/Input";
+import Label from "../components/core/Label/Label";
+import "./Login.css";
+import background from "../Images/BlueBackground.png";
+import image from "../Images/Group.png";
+import imagetext from "../Images/Login-Text.png";
+import Button from "../components/core/button/button";
 // eslint-disable-next-line max-len
-import {LOGIN_MOCKUP_DATA, emailPattern, passwordPattern} from '../shared/constants';
+import {LOGIN_MOCKUP_DATA, emailPattern, passwordPattern} from "../shared/constants";
 // eslint-disable-next-line max-len
-import { setUserDetails } from '../store/reducers/app/app';
+import { setUserDetails } from "../store/reducers/app/app";
 
 function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [emailError, setEmailError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -53,18 +53,18 @@ function Login() {
     const emailCheck = emailPattern.test(email);
     const passwordCheck = passwordPattern.test(password);
 
-    if (email.trim() === '' || !emailCheck) {
-      setEmailError('Please enter valid email address.');
+    if (email.trim() === "" || !emailCheck) {
+      setEmailError("Please enter valid email address.");
     }
     else {
-      setEmailError('');
-      if (password.trim() === '' || !passwordCheck) {
-        setPasswordError('Please enter valid password.');
+      setEmailError("");
+      if (password.trim() === "" || !passwordCheck) {
+        setPasswordError("Please enter valid password.");
       }
       else {
-        setPasswordError('');
+        setPasswordError("");
         if(verifyCredentials(email, password)){
-          navigate('/dashboard');
+          navigate("/dashboard");
         }
         else {
           alert("Invalid Username or Password");
@@ -101,7 +101,7 @@ function Login() {
               id="email"
               onChange={handleEmailChange}
               autoComplete="off"
-              className={emailError ? 'error' : 'basic-input'}
+              className={emailError ? "error" : "basic-input"}
             />
             {emailError && <p className='error-message'>{emailError}</p>}
           </div>
@@ -117,7 +117,7 @@ function Login() {
               id="password"
               onChange={handlePasswordChange}
               autoComplete="off"
-              className={passwordError ? 'error' : 'basic-input'}
+              className={passwordError ? "error" : "basic-input"}
             />
             {passwordError && <p className='error-message'>{passwordError}</p>}
           </div>
