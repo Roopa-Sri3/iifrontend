@@ -1,3 +1,3 @@
-import AddCandidateModal from './AddCandidateModal';
+import AddCandidateModal from "./AddCandidateModal";
 
 export default AddCandidateModal;

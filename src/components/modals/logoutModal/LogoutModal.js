@@ -1,18 +1,19 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { IsModalOpen } from '../../../store/selector/app';
-import Modal from '../../core/modal/Modal';
-import './LogoutModal.css';
-import Button from '../../core/button';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { IsModalOpen } from "../../../store/selector/app";
 import { closeModal, resetApp }
-  from '../../../store/reducers/app/app';
+  from "../../../store/reducers/app/app";
+import Modal from "../../core/modal/Modal";
+import Button from "../../core/button";
+
+import "./LogoutModal.css";
 
 const LogoutModal = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const IsLogoutModalOpen = useSelector(
-    (state) => IsModalOpen(state, 'LogoutModal'),
+    (state) => IsModalOpen(state, "LogoutModal"),
   );
 
   const handleNoButton = () => {
@@ -21,7 +22,8 @@ const LogoutModal = () => {
 
   const handleYesButton = () => {
     dispatch(resetApp());
-    navigate('/');
+    dispatch(closeModal());
+    navigate("/");
   };
 
   return (
@@ -35,13 +37,13 @@ const LogoutModal = () => {
         </p>
         <div className='submit-actions'>
           <Button
-            className={'modal-no-button'}
-            label={'No'}
+            className={"modal-no-button"}
+            label={"No"}
             handleClick={handleNoButton}
           />
           <Button
-            className={'modal-yes-button'}
-            label={'Yes'}
+            className={"modal-yes-button"}
+            label={"Yes"}
             handleClick={handleYesButton}
           />
         </div>

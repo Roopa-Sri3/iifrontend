@@ -1,5 +1,5 @@
-import React from 'react';
-import './Unauthorized.css';
+import React from "react";
+import "./Unauthorized.css";
 
 function Unauthorized() {
   return (

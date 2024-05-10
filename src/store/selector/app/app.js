@@ -18,9 +18,9 @@ export const GetUserRole = (state) => state.app.role;
 
 export const GetProfileShortcutName = (state) => {
   const profileName = state.app.profileName;
-
   if (profileName) {
-    const names = profileName.split(' ');
+    const names = profileName.split(" ");
+
     if (names.length >= 2) {
       return names[0][0] + names[1][0];
     }
@@ -28,3 +28,4 @@ export const GetProfileShortcutName = (state) => {
   }
   return "NO_PROFILE_NAME";
 };
+

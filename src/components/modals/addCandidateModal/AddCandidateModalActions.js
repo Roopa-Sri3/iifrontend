@@ -1,19 +1,17 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import Button from '../../core/button/button';
-import Checkbox from '../../core/checkbox/checkbox';
-import { setAlert } from '../../../store/reducers/app/app';
-import { GetModalData } from '../../../store/selector/app';
-import './AddCandidateModalActions.css';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Button from "../../core/button/button";
+import { setAlert } from "../../../store/reducers/app/app";
+import { GetModalData } from "../../../store/selector/app";
+import "./AddCandidateModalActions.css";
 
-const AddCandidateModalActions = ({ onSubmit, validateForm }) => {
+const AddCandidateModalActions = ({
+  onSubmit,
+  validateForm,
+  isChecked = false,
+}) => {
   const dispatch = useDispatch();
-  const [isChecked, setIsChecked] = useState(false);
   const storeModalData = useSelector(GetModalData);
-
-  const handleCheckboxChange = () => {
-    setIsChecked(!isChecked);
-  };
 
   const handleAddCandidate = () => {
     const isValid = validateForm();
@@ -37,22 +35,12 @@ const AddCandidateModalActions = ({ onSubmit, validateForm }) => {
     }
   };
 
-  const isEditMode = storeModalData.mode === 'EDIT';
-  const buttonLabel = isEditMode ? 'Save Changes' :
-    isChecked ? 'Add Candidate and share Link' : 'Add Candidate';
+  const isEditMode = storeModalData.mode === "EDIT";
+  const buttonLabel = isEditMode ? "Save Changes" :
+    isChecked ? "Add Candidate and share Link" : "Add Candidate";
 
   return (
     <div>
-      {!isEditMode && (
-        <div className='addcandidate-checkbox-container'>
-          <Checkbox
-            id='mycheckbox'
-            label="Share link with candidate"
-            checked={isChecked}
-            onChange={handleCheckboxChange}
-          />
-        </div>
-      )}
       <center className='add-button'>
         <Button
           label={buttonLabel}

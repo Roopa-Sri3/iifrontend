@@ -1,18 +1,17 @@
-import React, { useState }from 'react';
-import { useDispatch, useSelector,} from 'react-redux';
+import React, { useState  }from "react";
+import { useDispatch, useSelector} from "react-redux";
 import { IsUserLoggedIn, GetProfileName, GetUserRole }
-  from '../../store/selector/app';
+  from "../../store/selector/app";
 
-import Innovalogo from '../../dashboard-header-components/Logo';
-import Title from '../../dashboard-header-components/Title';
-import RoundButton from '../../dashboard-header-components/RoundButton';
-import Expand from '../../components/core/assets/svgs/Expand';
-import LogoutIcons from '../../components/core/assets/svgs/LougoutIcons';
+import Innovalogo from "../../dashboard-header-components/Logo";
+import Title from "../../dashboard-header-components/Title";
+import RoundButton from "../../dashboard-header-components/RoundButton";
+import Expand from "../../components/core/assets/svgs/Expand";
+import LogoutIcons from "../../components/core/assets/svgs/LougoutIcons";
+import companylogo from "../../Images/company-symbol.png";
+import { openModal } from "../../store/reducers/app/app";
 
-import companylogo from '../../Images/company-symbol.png';
-import './Header.css';
-import { openModal } from '../../store/reducers/app/app';
-import LogoutModal from '../../components/modals/logoutModal/LogoutModal';
+import "./Header.css";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -20,19 +19,18 @@ const Header = () => {
   const profileName = useSelector(GetProfileName);
   const userRole = useSelector(GetUserRole);
   const [isOpen, setIsOpen] = useState(false);
-
   const toggleExpand = () => {
     setIsOpen(!isOpen);
   };
 
   const handleLogoutClick = () => {
     dispatch(openModal({
-      modalName: 'LogoutModal',
+      modalName: "LogoutModal",
       modalData: {
       }
     }));
+    setIsOpen(false);
   };
-
   return (
     <div className="header">
       <Innovalogo src={companylogo} alt="companylogo" className='innova-logo' />

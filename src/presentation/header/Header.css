@@ -9,6 +9,7 @@
   height: 55px;
   width: 100%;
   padding: 0px 10px;
+  z-index: 1500;
 
   .logged-in-app-header{
     display: flex;
@@ -21,7 +22,7 @@
   display: flex;
   align-items: center;
   border: none;
- }
+  }
 
 .interview-insights-title {
   display: flex;
@@ -43,7 +44,7 @@
 .expand {
   display: flex;
   align-items: center;
-  margin-top: 10px;
+  margin-top: 1px;
 }
 
 .user-details {
@@ -103,4 +104,7 @@
 .logout-button {
   border: none;
   background: none;
+}
+.round-button {
+  cursor: auto !important;
 }

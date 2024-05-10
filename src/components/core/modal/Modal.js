@@ -1,6 +1,6 @@
-import React from 'react';
-import cx from 'classnames';
-import './Modal.css';
+import React from "react";
+import cx from "classnames";
+import "./Modal.css";
 
 function Modal({
   show,
@@ -15,12 +15,12 @@ function Modal({
       {show
         && (
           <>
-            <div className={cx('modal-backdrop', 'fade', 'show')} />
-            <div className={cx('modal', 'show')}>
+            <div className={cx("modal-backdrop", "fade", "show")} />
+            <div className={cx("modal", "show")}>
               <div
-                className={cx('modal-dialog', 'modal-dialog-centered', size)}
+                className={cx("modal-dialog", "modal-dialog-centered", size)}
               >
-                <div className={cx('modal-content', className)} >
+                <div className={cx("modal-content", className)} >
                   <div className='modal-header'>
                     {modalHeader}
                   </div>

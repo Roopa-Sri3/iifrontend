@@ -1,18 +1,18 @@
-import React from 'react';
+import React from "react";
 import Dashboard from "./pages/Dashboard";
-import ProtectLoginRoute from './privateRoutes/protectLoginRoute';
-import ProtectedDashboardRoute from './privateRoutes/protectDashboardRoute';
+import ProtectLoginRoute from "./privateRoutes/protectLoginRoute";
+import ProtectedDashboardRoute from "./privateRoutes/protectDashboardRoute";
 import Questionsconfiguration from "./pages/Questionsconfiguration";
-import Unauthorized from './pages/Unauthorized';
+import Unauthorized from "./pages/Unauthorized";
 
 const ROUTES_CONFIG = [
   {
-    path: '/',
+    path: "/",
     element: <ProtectLoginRoute />
   },
   {
-    path: '/',
-    element: (<ProtectedDashboardRoute />),
+    path: "/",
+    element:  <ProtectedDashboardRoute />,
     children: [
       {
         path: "/dashboard",
@@ -21,11 +21,11 @@ const ROUTES_CONFIG = [
     ]
   },
   {
-    path: '/admin/questions_configure',
+    path: "/admin/questions_configure",
     element: <Questionsconfiguration />
   },
   {
-    path: '/unauthorized',
+    path: "/unauthorized",
     element: <Unauthorized />
   },
 ];

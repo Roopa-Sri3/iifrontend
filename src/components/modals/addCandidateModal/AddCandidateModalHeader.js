@@ -1,7 +1,7 @@
-import React from 'react';
-import UserLogo from '../../assets/svgs/UserLogo';
-import CloseLogo from '../../assets/svgs/CloseLogo';
-import './AddCandidateModalHeader.css';
+import React from "react";
+import UserLogo from "../../assets/svgs/UserLogo";
+import CloseLogo from "../../assets/svgs/CloseLogo";
+import "./AddCandidateModalHeader.css";
 
 function AddCandidateModalHeader({onClose}) {
   const handleClose = () => {
@@ -9,7 +9,7 @@ function AddCandidateModalHeader({onClose}) {
   };
 
   const handleKeyDown = (event) => {
-    if (event.key === 'Escape') {
+    if (event.key === "Escape") {
       handleClose();
     }
   };

@@ -1,5 +1,5 @@
-import React from 'react';
-import CandidateRow from '../../../pages/CandidateRow';
+import React from "react";
+import CandidateRow from "../../../pages/CandidateRow";
 
 const SubLayout =
 ({ data, uploadIcon, currentPage, recordsPerPage , filteredCandidates }) => {

@@ -1,21 +1,21 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const appSlice = createSlice({
-  name: 'app',
+  name: "app",
   initialState: {
     isUserLoggedIn: false,
-    userName: '',
-    profileName: '',
-    role: '',
-    modal: {
-      modalName: '',
+    userName: "",
+    profileName: "",
+    role: "",
+    modal:{
+      modalName: "",
       modalData: null,
     },
-    message: '',
-    messageType: '',
+    message : "",
+    messageType : "",
     timeoutId: null,
     apiCounter: 0,
-    route: '/',
+    route: "/",
   },
   reducers: {
     setLogin: (state, action) => {
@@ -32,16 +32,16 @@ const appSlice = createSlice({
     },
     resetApp: (state) => {
       state.isUserLoggedIn = false;
-      state.userName = '';
-      state.profileName = '';
-      state.role = '';
+      state.userName = "";
+      state.profileName = "";
+      state.role = "";
     },
     openModal: (state, action) => {
       state.modal.modalName = action.payload.modalName;
       state.modal.modalData = action.payload.modalData;
     },
     closeModal: (state) => {
-      state.modal.modalName = '';
+      state.modal.modalName = "";
       state.modal.modalData = null;
     },
     incrementApiCounter: (state) => {
@@ -56,9 +56,9 @@ const appSlice = createSlice({
       state.message = action.payload.message;
       state.messageType = action.payload.messageType;
     },
-    clearAlert: (state, action) => {
-      state.message = '';
-      state.messageType = '';
+    clearAlert: (state,action) => {
+      state.message = "";
+      state.messageType = "";
     },
     setTimeoutId: (state, action) => {
       state.timeoutId = action.payload;
@@ -66,9 +66,6 @@ const appSlice = createSlice({
     clearTimeoutId: (state) => {
       state.timeoutId = null;
     },
-    // navigateToLogin: (state) => {
-    //   state.route = useNavigate('/');
-    // },
   },
 });
 

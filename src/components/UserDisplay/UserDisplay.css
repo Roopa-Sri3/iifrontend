@@ -1,13 +1,3 @@
-/* .user-display{
-    display:flex;
-    align-items: center;
-    justify-content: space-between;
-    background: linear-gradient(90deg, #326D62 0%, #0E5291 51.6%, #0E034F 100%);
-    color: white;
-    padding: 5px 10px;
-} */
-
-
 .config-question{
     background-color: #4595ff;
     border: none;
@@ -30,7 +20,7 @@
   justify-content: space-between;
   background: linear-gradient(90deg, #326d62 0%, #0e5291 51.6%, #0e034f 100%);
   color: white;
-  margin: 30px;
+  margin: 3px;
   border-radius: 8px;
   z-index: -1;
   padding: 18px 25px;
@@ -46,7 +36,7 @@
   justify-content: space-between;
 }
 
-.right {
+.first-row {
   text-align: right;
 }
 
@@ -58,6 +48,6 @@
     font-size: 11.22px;
 }
 
-.left {
+.second-row {
   text-align: left;
 }

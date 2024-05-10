@@ -1,7 +1,7 @@
-import React from 'react';
-import Label from '../Label/Label';
-import cx from 'classnames';
-import './RadioGroup.css';
+import React from "react";
+import Label from "../Label/Label";
+import cx from "classnames";
+import "./RadioGroup.css";
 
 const RadioGroup = ({
   label,
@@ -15,13 +15,13 @@ const RadioGroup = ({
   };
 
   const handleKeyDown = (event,optionValue) => {
-    if (event.key === 'Enter' || event.key === " ") {
+    if (event.key === "Enter" || event.key === " ") {
       onChange(optionValue);
     }
   };
 
   return (
-    <div className={cx('radio-group-component-container',className)}>
+    <div className={cx("radio-group-component-container",className)}>
       <Label
         text={label}
         className="radio-group-label"
@@ -38,7 +38,7 @@ const RadioGroup = ({
             role="button"
             tabIndex="0"
             className={`radio-option-label
-            ${selectedValue === option.value ? 'selected' : ''}`}
+            ${selectedValue === option.value ? "selected" : ""}`}
             onClick={() => handleOptionChange(option.value)}
             onKeyDown={handleKeyDown(option.value)}
           >
