@@ -76,7 +76,9 @@
   background-color:#F5F5F7;
   display: flex;
   align-items:  flex-start;
+  align-items: center;
   flex-direction: column;
+
 }
 
 .expand-div hr {

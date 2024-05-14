@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
 import cx from "classnames";
-import OptionItem from "./option-item";
 import ChevronRight from "../../assets/svgs/ChevronRight";
 import DeSelect from "../../assets/svgs/DeSelect";
 import Search from "../../assets/svgs/Search";
 import "./multiselect.css";
+import OptionsMenu from "../optionsMenu/OptionsMenu";
 
 const MultiSelect = ({
   id,
@@ -152,7 +152,14 @@ const MultiSelect = ({
             </div>
           </div>
           <div className="options-menu">
-            {filterOptions.map(option => (
+            <OptionsMenu
+              id={id}
+              options={filterOptions}
+              selectedOptions={selectedOptions}
+              disabledOptions={disabledOptions}
+              handleCheckbox={handleCheckbox}
+            />
+            {/* {filterOptions.map(option => (
               <OptionItem
                 key={option.id}
                 id={`${id}_option_${option.value}`}
@@ -165,7 +172,7 @@ const MultiSelect = ({
                 disabled={disabledOptions.some(
                   (disabledOption) => disabledOption.value === option.value)}
               />
-            ))}
+            ))} */}
           </div>
         </div>
       )}

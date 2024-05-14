@@ -36,10 +36,6 @@ const UserDisplay = () => {
         </button>
       )}
 
-
-
-
-      
     </div>
 
   );
