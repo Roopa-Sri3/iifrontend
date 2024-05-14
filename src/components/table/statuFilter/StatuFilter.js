@@ -22,7 +22,7 @@ function StatuFilter({
 
   useOutsideClickHandler({
     ref: statusFilterRef,
-    outsideClickHandler: handleOutsideClick, // Set the state to false.
+    outsideClickHandler: handleOutsideClick,
   });
 
   return (
