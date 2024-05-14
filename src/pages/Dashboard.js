@@ -17,7 +17,6 @@ import {
 } from "../store/reducers/dashboard/dashboard.js";
 import { GetUserRole } from "../store/selector/app";
 import { candidates, statuses } from "../shared/constants";
-// import StatusFilter from "./StatusFilter";
 import Search from "../components/assets/svgs/Search";
 import AddIcon from "../components/assets/svgs/AddIcon.js";
 import "./Dashboard.css";
@@ -30,7 +29,7 @@ const Dashboard = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [recordsPerPage] = useState(10); // Remove it from state.
   const [showFilter, setShowFilter] = useState(false); // Move it to StatuFilter component.
-  const [selectedStatus, setSelectedStatus] = useState(null);
+  const [selectedStatus] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState([]);
 

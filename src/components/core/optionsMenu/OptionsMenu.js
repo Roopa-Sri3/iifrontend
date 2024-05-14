@@ -1,5 +1,5 @@
 import React from "react";
-import OptionItem from "../multiselect/option-item";
+import OptionItem from "../optionItem/OptionItem";
 
 function OptionsMenu({
   id,
