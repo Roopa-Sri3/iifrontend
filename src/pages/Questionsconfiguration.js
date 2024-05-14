@@ -37,16 +37,21 @@ function Questionsconfiguration() {
   };
 
   const handleSubmit = () => {
-    dispatch(PostUploadFile({
-      file: selectedFile,
-      onSuccess: () => {
-        alert("File uploaded successfully");
-      },
-      onError: (error) => {
-        console.error(error);
-        alert("Failed to upload file");
-      },
-    }));
+    if (selectedFile){
+      dispatch(PostUploadFile({
+        file: selectedFile,
+        onSuccess: () => {
+          alert("File uploaded successfully");
+        },
+        onError: (error) => {
+          console.error(error);
+          alert("Failed to upload file");
+        },
+      }));
+    }
+    else{
+      alert("File should be selected");
+    }
   };
 
   return(

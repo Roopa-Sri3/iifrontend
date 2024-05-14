@@ -31,6 +31,7 @@ const Question = () => {
       answer: answerValue,
     };
     setSelectedOption(null);
+    console.log(updatedAnswers);
     dispatch(updateAnswers(updatedAnswers));
     dispatch(handleSaveAndNext(presentquestion));
   };

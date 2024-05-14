@@ -5,7 +5,7 @@ import { getQuestions, selectCurrentQuestion, getAnswers } from "../../store/sel
 import { handleQuestionClick } from "../../store/reducers/screen/screen";
 import "./Questionbutton.css";
 
-const QuestionButtons = ( ) => {
+const QuestionButtons = () => {
   const dispatch = useDispatch();
 
   const answs = useSelector(getAnswers);

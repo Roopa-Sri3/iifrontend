@@ -66,7 +66,7 @@ class APIWrapper extends HTTPClient {
     console.log(formData);
 
     return this.post({
-      url: this.baseURL + "/interviewinsights/uploadExcelFile",
+      url: this.baseURL + "/uploadExcelFile",
       data: formData,
       onSuccess,
       onError,
