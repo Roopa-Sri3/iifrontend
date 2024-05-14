@@ -13,7 +13,6 @@ const UserDisplay = () => {
 
   const handleNavigate = () => {
     navigate("/admin/questions_configure");
-    navigate("/admin/questions-configure");
   };
 
   return (

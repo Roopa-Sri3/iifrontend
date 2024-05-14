@@ -2,8 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { IsModalOpen } from "../../../store/selector/app";
-import { closeModal, resetApp }
-  from "../../../store/reducers/app/app";
+import { closeModal, resetApp } from "../../../store/reducers/app/app";
 import Modal from "../../core/modal/Modal";
 import Button from "../../core/button";
 

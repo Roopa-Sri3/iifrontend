@@ -1,7 +1,6 @@
 import React, { useState  }from "react";
 import { useDispatch, useSelector} from "react-redux";
-import { IsUserLoggedIn, GetProfileName, GetUserRole }
-  from "../../store/selector/app";
+import { IsUserLoggedIn, GetProfileName, GetUserRole } from "../../store/selector/app";
 
 import Innovalogo from "../../dashboard-header-components/Logo";
 import Title from "../../dashboard-header-components/Title";
