@@ -1,6 +1,6 @@
 import React from "react";
-import Button from "../core/button/button";
 import { useSelector, useDispatch } from "react-redux";
+import Button from "../core/button/button";
 import { getQuestions, selectCurrentQuestion, getAnswers } from "../../store/selector/screen";
 import { handleQuestionClick } from "../../store/reducers/screen/screen";
 import "./Questionbutton.css";

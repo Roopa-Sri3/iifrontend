@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import Button from "../core/button";
-import "./Question.css";
-import RadioGroup from "../core/radioGroup/RadioGroup";
 import { useDispatch, useSelector } from "react-redux";
+import Button from "../core/button";
+import RadioGroup from "../core/radioGroup/RadioGroup";
 import { handleSaveAndNext, handlePrevious, updateAnswers } from "../../store/reducers/screen/screen";
 import { selectCurrentQuestion, getQuestions, getAnswers } from "../../store/selector/screen";
+import "./Question.css";
 
 const Question = () => {
   const dispatch = useDispatch();
@@ -12,8 +12,8 @@ const Question = () => {
   const questions = useSelector(getQuestions);
   const totalQuestions = questions.length;
   const presentquestion = useSelector(selectCurrentQuestion);
-  const currQuestion = questions.find((q) => q.questionId === presentquestion);
-  const answerForQuestion = answers.find((a) => a && a.questionId === currQuestion.questionId);
+  const currQuestion = questions.find((question) => question.questionId === presentquestion);
+  const answerForQuestion = answers.find((answer) => answer && answer.questionId === currQuestion.questionId);
   const savedAnswer = answerForQuestion ? answerForQuestion.answer : "";
 
   const [selectedOption, setSelectedOption] = useState(null);

@@ -1,7 +1,7 @@
 import React from "react";
-import "./Questionsnavigate.css";
 import Button from "../core/button/button";
 import Questionbutton from "../Questionbutton/Questionbutton";
+import "./Questionsnavigate.css";
 
 function Questionsnavigate() {
   const handleSubmit = () =>{
