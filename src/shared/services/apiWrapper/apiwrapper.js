@@ -3,7 +3,6 @@ import HTTPClient from "../httpclient";
 class APIWrapper extends HTTPClient {
   constructor(dispatch = () => {}) {
     super();
-    this.baseURL = 'http://10.139.166.48:8080/InterviewInsights-0.0.1-SNAPSHOT';
     // Need to get from .env file
     this.baseURL = process.env.REACT_APP_BASE_URL;
     this.dispatch = dispatch;
@@ -46,13 +45,12 @@ class APIWrapper extends HTTPClient {
     });
   }
 
-
   async GetFileDownload({
     onSuccess = () => {},
     onError = () => {},
   }) {
     return this.get({
-      url: this.baseURL + "/api/download",
+      url: this.baseURL + "/downloadTemplate",
       onSuccess,
       onError,
     });
@@ -68,7 +66,7 @@ class APIWrapper extends HTTPClient {
     console.log(formData);
 
     return this.post({
-      url: this.baseURL + "/api/interviewinsights/upload",
+      url: this.baseURL + "/interviewinsights/uploadExcelFile",
       data: formData,
       onSuccess,
       onError,

@@ -1,5 +1,4 @@
 import React from "react";
-// eslint-disable-next-line max-len
 import Questionsnavigate from "../components/Questionsnavigate/Questionsnavigate";
 import Question from "../components/question";
 

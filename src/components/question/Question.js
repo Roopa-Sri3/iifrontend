@@ -3,18 +3,18 @@ import Button from "../core/button";
 import "./Question.css";
 import RadioGroup from "../core/radioGroup/RadioGroup";
 import { useDispatch, useSelector } from "react-redux";
-// eslint-disable-next-line max-len
 import { handleSaveAndNext, handlePrevious, updateAnswers } from "../../store/reducers/screen/screen";
-// eslint-disable-next-line max-len
 import { selectCurrentQuestion, getQuestions, getAnswers } from "../../store/selector/screen";
 
 const Question = () => {
+  const dispatch = useDispatch();
   const answers = useSelector(getAnswers);
   const questions = useSelector(getQuestions);
   const totalQuestions = questions.length;
   const presentquestion = useSelector(selectCurrentQuestion);
   const currQuestion = questions.find((q) => q.questionId === presentquestion);
-  const dispatch = useDispatch();
+  const answerForQuestion = answers.find((a) => a && a.questionId === currQuestion.questionId);
+  const savedAnswer = answerForQuestion ? answerForQuestion.answer : "";
 
   const [selectedOption, setSelectedOption] = useState(null);
   const [codeValue, setCodeValue] = useState("");
@@ -23,18 +23,16 @@ const Question = () => {
     dispatch(handlePrevious(presentquestion));
   };
 
-  const handleSaveButton = () => {
+  const handleSaveAndNextButton = (presentquestion) => {
     const updatedAnswers = [...answers];
     const answerValue = selectedOption ? selectedOption : codeValue || "";
     updatedAnswers[currQuestion.questionId - 1] = {
       questionId: currQuestion.questionId,
       answer: answerValue,
     };
-    console.log(codeValue);
-    console.log(updatedAnswers);
-    dispatch(updateAnswers(updatedAnswers));
     setSelectedOption(null);
-    dispatch(handleSaveAndNext(presentquestion,answerValue));
+    dispatch(updateAnswers(updatedAnswers));
+    dispatch(handleSaveAndNext(presentquestion));
   };
 
   const handleOptionChange = (optionValue) => {
@@ -61,7 +59,7 @@ const Question = () => {
               label="Choose answer"
               options={currQuestion.options}
               onChange={handleOptionChange}
-              selectedValue={selectedOption}
+              selectedValue={selectedOption || savedAnswer}
             />
           </div>
           }
@@ -82,7 +80,6 @@ const Question = () => {
         <div className="action-buttons">
           <Button
             className=
-              // eslint-disable-next-line max-len
               {presentquestion >= 2 ? "previous-button" : "previous-button-hide"}
             label={"Previous"}
             handleClick={() => handlePreviousButton(presentquestion)}
@@ -90,7 +87,7 @@ const Question = () => {
           <Button
             className={"save-next"}
             label={presentquestion >= totalQuestions ? "Save" : "Save & Next"}
-            handleClick={handleSaveButton}
+            handleClick={() => handleSaveAndNextButton(presentquestion)}
           />
         </div>
       </div>

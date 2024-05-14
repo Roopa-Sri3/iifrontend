@@ -1,12 +1,12 @@
-import { createSlice } from '@reduxjs/toolkit';
-import APIWrapper from '../../../shared/services/apiWrapper/apiwrapper';
+import { createSlice } from "@reduxjs/toolkit";
+import APIWrapper from "../../../shared/services/apiWrapper/apiwrapper";
 
 const initialState = {
   skillsOptions:[],
 };
 
 const dashboardSlice = createSlice({
-  name: 'dashboard',
+  name: "dashboard",
   initialState: initialState,
   reducers: {
     setSkills: (state, action) => {

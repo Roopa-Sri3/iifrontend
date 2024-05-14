@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 export const selectCurrentQuestion = (state) => state.screen.currentQuestion;
 
 export const getQuestions = (state) => state.screen.questions;

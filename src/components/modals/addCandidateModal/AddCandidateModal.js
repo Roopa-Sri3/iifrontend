@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import cx from 'classnames';
-import Modal from '../../core/modal/Modal';
-import MultiSelect from '../../core/multiselect/multiselect';
-import Checkbox from '../../core/checkbox/checkbox';
-import AddCandidateModalHeader from './AddCandidateModalHeader';
-import AddCandidateModalActions from './AddCandidateModalActions';
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import cx from "classnames";
+import Modal from "../../core/modal/Modal";
+import MultiSelect from "../../core/multiselect/multiselect";
+import Checkbox from "../../core/checkbox/checkbox";
+import AddCandidateModalHeader from "./AddCandidateModalHeader";
+import AddCandidateModalActions from "./AddCandidateModalActions";
 import {closeModal} from "../../../store/reducers/app/app";
-import { IsModalOpen, GetModalData } from '../../../store/selector/app/app';
-import './AddCandidateModal.css';
+import { IsModalOpen, GetModalData } from "../../../store/selector/app/app";
+import "./AddCandidateModal.css";
 
 const AddCandidateModal = ({
   handleAddOrEditCandidate = () => {}
@@ -27,7 +27,7 @@ const AddCandidateModal = ({
   const [yearsOfExperience,setYearsOfExperience] = useState("");
   const [selectedPrimarySkills, setSelectedPrimarySkills] = useState([]);
   const [selectedSecondarySkills, setSelectedSecondarySkills] = useState([]);
-  const [rRNumber,setRRNumber] = useState('');
+  const [rRNumber,setRRNumber] = useState("");
   const [isChecked, setIsChecked] = useState(false);
 
   const [fullNameError, setFullNameError] = useState("");
@@ -164,16 +164,16 @@ const AddCandidateModal = ({
     <div>
       <Modal
         show={IsAddCandidateModalOpen}
-        size='modal-lg'
+        size="modal-lg"
         modalHeader={<AddCandidateModalHeader onClose={handleCloseModal} />}
       >
-        <div className='container'>
-          <form className='my-form' onSubmit={handleSubmit}>
-            <div className='row'>
+        <div className="container">
+          <form className="my-form" onSubmit={handleSubmit}>
+            <div className="row">
               <div className={cx("col-6","add-candidate-field")}>
                 <label
                   htmlFor="fullName"
-                  className='add-candidate-field-label-mandatory'
+                  className="add-candidate-field-label-mandatory"
                 >
                   Full Name
                 </label>
@@ -182,20 +182,20 @@ const AddCandidateModal = ({
                   id="fullName"
                   className={`form-input ${fullNameError ?
                     "add-candidate-field-error" : ""}`}
-                  placeholder='Candidate Name'
-                  value={fullName || ''}
+                  placeholder="Candidate Name"
+                  value={fullName || ""}
                   onChange={(e) => {setFullName(e.target.value);
                     setFullNameError("");}}
-                  autoComplete='off'
+                  autoComplete="off"
                   minLength="4"
                 />
                 {fullNameError &&
-                <p className='validation-error'>{fullNameError}</p>}
+                <p className="validation-error">{fullNameError}</p>}
               </div>
               <div className={cx("col-6","add-candidate-field")}>
                 <label
-                  htmlFor='email'
-                  className='add-candidate-field-label-mandatory'
+                  htmlFor="email"
+                  className="add-candidate-field-label-mandatory"
                 >
                   Email
                 </label>
@@ -204,20 +204,20 @@ const AddCandidateModal = ({
                   id="email"
                   className={`form-input ${emailError ?
                     "add-candidate-field-error" : ""}`}
-                  placeholder='Candidate Email'
-                  value={email || ''}
+                  placeholder="Candidate Email"
+                  value={email || ""}
                   onChange={(e) => {setEmail(e.target.value);
                     setEmailError("");}}
-                  autoComplete='off'
+                  autoComplete="off"
                 />
-                {emailError && <p className='validation-error'>{emailError}</p>}
+                {emailError && <p className="validation-error">{emailError}</p>}
               </div>
             </div>
-            <div className='row'>
+            <div className="row">
               <div className={cx("col-6","add-candidate-field")}>
                 <label
                   htmlFor="mobileNumber"
-                  className='add-candidate-field-label-mandatory'
+                  className="add-candidate-field-label-mandatory"
                 >
                   Mobile Number
                 </label>
@@ -226,19 +226,19 @@ const AddCandidateModal = ({
                   id="mobileNumber"
                   className={`form-input ${mobileNumberError ?
                     "add-candidate-field-error" : ""}`}
-                  placeholder='Candidate Mobile'
-                  value={mobileNumber  || ''}
+                  placeholder="Candidate Mobile"
+                  value={mobileNumber  || ""}
                   onChange={(e) => {setMobileNumber(e.target.value);
                     setMobileNumberError("");}}
                   pattern="[0-9]{10}"
-                  autoComplete='off'/>
+                  autoComplete="off"/>
                 {mobileNumberError &&
-                <p className='validation-error'>{mobileNumberError}</p>}
+                <p className="validation-error">{mobileNumberError}</p>}
               </div>
               <div className={cx("col-6","add-candidate-field")}>
                 <label
                   htmlFor="yearsOfExperience"
-                  className='add-candidate-field-label-mandatory'
+                  className="add-candidate-field-label-mandatory"
                 >
                   Years of Experience
                 </label>
@@ -247,22 +247,22 @@ const AddCandidateModal = ({
                   id="yearsOfExperience"
                   className={`form-input ${yearsOfExperienceError ?
                     "add-candidate-field-error" : ""}`}
-                  placeholder='Candidate Experience'
-                  value={yearsOfExperience || ''}
+                  placeholder="Candidate Experience"
+                  value={yearsOfExperience || ""}
                   onChange={(e) => {setYearsOfExperience(e.target.value);
                     setYearsOfExperienceError("");}}
-                  autoComplete='off'
-                  min='0'
+                  autoComplete="off"
+                  min="0"
                 />
                 {yearsOfExperienceError &&
-                <p className='validation-error'>{yearsOfExperienceError}</p>}
+                <p className="validation-error">{yearsOfExperienceError}</p>}
               </div>
             </div>
-            <div className='row'>
+            <div className="row">
               <div className={cx("col-6","add-candidate-field")}>
                 <label
-                  htmlFor='primaryTechSkills'
-                  className='add-candidate-field-label-mandatory'
+                  htmlFor="primaryTechSkills"
+                  className="add-candidate-field-label-mandatory"
                 >
                   Primary Tech Skills
                 </label>
@@ -279,14 +279,14 @@ const AddCandidateModal = ({
                   selectedValues={selectedPrimarySkills}
                 />
                 {selectedPrimarySkillsError &&
-                <p className='validation-error'>
+                <p className="validation-error">
                   {selectedPrimarySkillsError}
                 </p>}
               </div>
               <div className={cx("col-6","add-candidate-field")}>
                 <label
-                  htmlFor='secondaryTechSkills'
-                  className='add-candidate-field-label-mandatory'
+                  htmlFor="secondaryTechSkills"
+                  className="add-candidate-field-label-mandatory"
                 >
                   Secondary Tech Skills
                 </label>
@@ -304,32 +304,32 @@ const AddCandidateModal = ({
                   initialDisabledOptions={selectedPrimarySkills}
                 />
                 {selectedSecondarySkillsError &&
-                <p className='validation-error'>
+                <p className="validation-error">
                   {selectedSecondarySkillsError}
                 </p>}
               </div>
             </div>
-            <div className='row'>
+            <div className="row">
               <div className={cx("col-6","add-candidate-field")}>
-                <label htmlFor="rRNumber" className='add-candidate-field-label'>
+                <label htmlFor="rRNumber" className="add-candidate-field-label">
                   RR#
                 </label>
                 <input
                   type="text"
                   id="rRNumber"
                   className="form-input"
-                  value={rRNumber || ''}
+                  value={rRNumber || ""}
                   onChange={(e) => setRRNumber(e.target.value)}
-                  autoComplete='off'
+                  autoComplete="off"
                   pattern="[0-9]{10}"
                 />
               </div>
             </div>
-            {(storeModalData && storeModalData.mode !== 'EDIT') && (
-              <div className='row'>
-                <div className='col-12'>
+            {(storeModalData && storeModalData.mode !== "EDIT") && (
+              <div className="row">
+                <div className="col-12">
                   <Checkbox
-                    id='mycheckbox'
+                    id="mycheckbox"
                     label="Share link with candidate"
                     checked={isChecked}
                     onChange={handleCheckboxChange}

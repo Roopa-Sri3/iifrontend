@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   currentQuestion : 1,
@@ -16,7 +15,7 @@ const initialState = {
     {
       questionId: 2,
       questionText: "What is the largest planet in our solar system?",
-      options: [{ label:"Earth", value:"Earth"},
+      options: [{ label:"Earth", value:"earth"},
         { label:"Mercury", value:"mercury"},
         { label:"Saturn", value:"saturn"},
         { label:"Jupiter", value:"jupiter"},],
@@ -36,6 +35,24 @@ const initialState = {
       questionText: "Write a C program to print first 10 multiples of 2?",
       questionType: "coding"
     },
+    {
+      questionId: 5,
+      questionText: "Who is the highest scorer of IPL 2016?",
+      options: [{ label:"Virat", value:"virat"},
+        { label:"Gill", value:"gill"},
+        { label:"Sachin", value:"sachin"},
+        { label:"Dhoni", value:"dhoni"},],
+      questionType: "single-select",
+    },
+    {
+      questionId: 6,
+      questionText: "Who is the highest scorer of IPL 2016?",
+      options: [{ label:"Virat", value:"virat"},
+        { label:"Gill", value:"gill"},
+        { label:"Sachin", value:"sachin"},
+        { label:"Dhoni", value:"dhoni"},],
+      questionType: "single-select",
+    },
   ],
   answers: [],
 };
@@ -46,19 +63,21 @@ const screenSlice = createSlice({
   reducers: {
     handleQuestionClick: (state, action) => {
       state.currentQuestion = action.payload;
-      console.log(action,"action");
     },
     handleSaveAndNext: (state, action) => {
-      state.currentQuestion = action.payload + 1;
-      console.log(action,"action");
+      if (state.currentQuestion === state.questions.length)
+      {
+        state.currentQuestion = action.payload;
+      }
+      else if (state.currentQuestion < state.questions.length){
+        state.currentQuestion = action.payload + 1;
+      }
     },
     handlePrevious: (state, action) => {
       state.currentQuestion = action.payload - 1;
-      console.log(action,"action");
     },
     updateAnswers: (state, action) => {
       state.answers = action.payload;
-      console.log(action,"action");
     },
   },
 });

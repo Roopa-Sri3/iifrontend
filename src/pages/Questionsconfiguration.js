@@ -66,7 +66,7 @@ function Questionsconfiguration() {
         <div className="main-container">
           <div className="download-template-section">
             <div>
-            Don"t have a template to upload?
+            Don't have a template to upload?
             </div>
             <Download />
           </div>
