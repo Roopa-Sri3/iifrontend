@@ -10,7 +10,7 @@ const dashboardSlice = createSlice({
   initialState: initialState,
   reducers: {
     setSkills: (state, action) => {
-      state.skillsOptions = action.payload.skills;
+      state.skillsOptions = action.payload;
     },
   }
 });

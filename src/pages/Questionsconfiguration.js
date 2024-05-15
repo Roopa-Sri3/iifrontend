@@ -7,9 +7,9 @@ import BackarrowIcon from "../components/assets/svgs/BackarrowIcon";
 import FileIcon from "../components/assets/svgs/FileIcon";
 import DeletefileIcon from "../components/assets/svgs/DeletefileIcon";
 import {instructions} from "../shared/constants";
-import "./Questionsconfiguration.css";
 import { PostUploadFile } from "../store/reducers/app/app";
 import { useDispatch } from "react-redux";
+import "./Questionsconfiguration.css";
 
 function Questionsconfiguration() {
 

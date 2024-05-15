@@ -8,3 +8,7 @@ thead {
 .candidate-th {
   padding: 10px;
 }
+
+.th-section-with-filter{
+  display: flex;
+}

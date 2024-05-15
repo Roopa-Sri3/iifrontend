@@ -16,6 +16,15 @@ export const instructions =
   "Note: Only upload files with a maximum size of [400Kb] to ensure smooth processing."
 ];
 
+export const options = [
+  {label:"Java", value:1},
+  {label:"Python", value:2},
+  {label:"C", value:3},
+  {label:"C++", value:4},
+  {label:"PHP", value:5},
+  {label:"CSS", value:6}
+];
+
 export const LOGIN_MOCKUP_DATA = [
   {
     username: "admin@innova.in",
@@ -675,7 +684,24 @@ export const candidates = [
 ];
 
 export const ratingLabels = ["Bad", "Average", "Good", "Excellent", "Outstanding"];
-export const statuses = ["Pending", "Completed", "Expired", "New"];
+export const statuses = [
+  {
+    label:"Pending",
+    value: "Pending"
+  },
+  {
+    label:"Completed",
+    value: "Completed"
+  },
+  {
+    label:"Expired",
+    value: "Expired"
+  },
+  {
+    label:"New",
+    value: "New"
+  },
+];
 export const emailPattern = /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/;
 
 // eslint-disable-next-line max-len

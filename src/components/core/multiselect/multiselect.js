@@ -1,6 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
 import cx from "classnames";
+<<<<<<< HEAD
 import OptionItem from "./option-item";
+=======
+import OptionsMenu from "../optionsMenu/OptionsMenu";
+>>>>>>> 961e1b93b1d01f9004e248ba9efc551a4d129102
 import ChevronRight from "../../assets/svgs/ChevronRight";
 import DeSelect from "../../assets/svgs/DeSelect";
 import Search from "../../assets/svgs/Search";
@@ -10,11 +14,11 @@ const MultiSelect = ({
   id,
   label,
   options = [],
-  className,
   onChange,
   selectedValues,
   maxSelection,
   disabled = false,
+  error = false,
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState([]);
@@ -34,7 +38,9 @@ const MultiSelect = ({
   };
 
   const handleMouseClick = () => {
-    toggleMenu();
+    if(!disabled){
+      toggleMenu();
+    }
   };
 
   const handleKeyDown = (event) => {
@@ -102,8 +108,17 @@ const MultiSelect = ({
     <div className="drop-box" ref={dropboxRef}>
       <div className={cx(
         "drop-box-header",
+<<<<<<< HEAD
         className,
         disabled ? "disabled" : ""
+=======
+        {
+          "drop-box-header-disabled": disabled,
+        },
+        {
+          "drop-box-header-error": error,
+        }
+>>>>>>> 961e1b93b1d01f9004e248ba9efc551a4d129102
       )}
       role="button"
       tabIndex="0"
@@ -152,20 +167,13 @@ const MultiSelect = ({
             </div>
           </div>
           <div className="options-menu">
-            {filterOptions.map(option => (
-              <OptionItem
-                key={option.id}
-                id={`${id}_option_${option.value}`}
-                label={option.label}
-                value={option.value}
-                checked={selectedOptions.some(
-                  (eachOption) => eachOption.value === option.value)
-                }
-                onChange={(e) => { handleCheckbox(option, e.target.checked); }}
-                disabled={disabledOptions.some(
-                  (disabledOption) => disabledOption.value === option.value)}
-              />
-            ))}
+            <OptionsMenu
+              id={id}
+              options={filterOptions}
+              selectedOptions={selectedOptions}
+              disabledOptions={disabledOptions}
+              handleCheckbox={handleCheckbox}
+            />
           </div>
         </div>
       )}

@@ -38,7 +38,7 @@ class APIWrapper extends HTTPClient {
   }) {
     return this.put({
       data,
-      url:"/interviewinsights/4ca936a4-f3b8-451a-9803-1a09ff415f4d",
+      url:"/interviewinsights/fb954df5-bd69-4d20-85d2-849ba6bc9501",
       onSuccess,
       onError,
     });

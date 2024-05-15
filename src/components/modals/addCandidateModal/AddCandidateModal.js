@@ -8,12 +8,14 @@ import AddCandidateModalHeader from "./AddCandidateModalHeader";
 import AddCandidateModalActions from "./AddCandidateModalActions";
 import {closeModal} from "../../../store/reducers/app/app";
 import { IsModalOpen, GetModalData } from "../../../store/selector/app/app";
+import { GetStoreSkills } from "../../../store/selector/dashboard/dashboard";
 import "./AddCandidateModal.css";
 
 const AddCandidateModal = ({
   handleAddOrEditCandidate = () => {}
 }) => {
   const dispatch = useDispatch();
+  const options = useSelector(GetStoreSkills);
 
   const IsAddCandidateModalOpen = useSelector(
     (state) => IsModalOpen(state, "AddCandidateModal"),
@@ -29,34 +31,24 @@ const AddCandidateModal = ({
   const [selectedSecondarySkills, setSelectedSecondarySkills] = useState([]);
   const [rRNumber,setRRNumber] = useState("");
   const [isChecked, setIsChecked] = useState(false);
+  const [isPrimarySkillSelected, setIsPrimarySkillSelected] = useState(false);
 
   const [fullNameError, setFullNameError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [mobileNumberError, setMobileNumberError] = useState("");
   const [yearsOfExperienceError, setYearsOfExperienceError] = useState("");
-  const [
-    selectedPrimarySkillsError,
-    setSelectedPrimarySkillsError
-  ] = useState("");
-  const [
-    selectedSecondarySkillsError,
-    setSelectedSecondarySkillsError
-  ] = useState("");
+  const [selectedPrimarySkillsError, setSelectedPrimarySkillsError] = useState("");
+  const [selectedSecondarySkillsError, setSelectedSecondarySkillsError] = useState("");
 
   const handlePrimarySkills = (selectedValues) => {
     setSelectedPrimarySkills(selectedValues);
+    setSelectedPrimarySkillsError("");
+    setIsPrimarySkillSelected(selectedValues.length > 0);
   };
+
   const handleSecondarySkills = (selectedValues) => {
     setSelectedSecondarySkills(selectedValues);
   };
-
-  const options = [
-    {id:1, label:"Java", value:"Java"},
-    {id:2, label:"Python", value:"Python"},
-    {id:3, label:"C", value:"C"},
-    {id:4, label:"C++", value:"C++"},
-    {id:5, label:"PHP", value:"PHP"}
-  ];
 
   useEffect(() => {
     if (storeModalData && storeModalData.mode === "EDIT") {
@@ -66,6 +58,7 @@ const AddCandidateModal = ({
       setMobileNumber(candidateData.mobileNumber);
       setYearsOfExperience(candidateData.yearsOfExperience);
       setSelectedPrimarySkills(candidateData.selectedPrimarySkills);
+      setIsPrimarySkillSelected(true);
       setSelectedSecondarySkills(candidateData.selectedSecondarySkills);
       setRRNumber(candidateData.rRNumber);
     }
@@ -103,10 +96,6 @@ const AddCandidateModal = ({
       setSelectedPrimarySkillsError("Primary skill is required");
       isValid = false;
     }
-    if(selectedSecondarySkills.length === 0){
-      setSelectedSecondarySkillsError("Secondary skill is required");
-      isValid = false;
-    }
 
     return isValid;
   };
@@ -118,7 +107,9 @@ const AddCandidateModal = ({
     setYearsOfExperience("");
     setSelectedPrimarySkills([]);
     setSelectedSecondarySkills([]);
+    setIsPrimarySkillSelected(false);
     setRRNumber("");
+    setIsChecked(false);
     setFullNameError("");
     setEmailError("");
     setMobileNumberError("");
@@ -150,6 +141,7 @@ const AddCandidateModal = ({
       handleAddOrEditCandidate({
         ...formData,
         mode: storeModalData && storeModalData.mode,
+        formData: console.log(JSON.stringify(formData)),
       });
       resetForm();
       dispatch(closeModal());
@@ -269,14 +261,14 @@ const AddCandidateModal = ({
                 <MultiSelect
                   id="primaryTechSkills"
                   label=""
-                  className={
-                    `form-input ${selectedPrimarySkillsError ?
-                      "add-candidate-field-error" : ""}`
-                  }
+                  className={cx("form-input", {
+                    "add-candidate-field-error": selectedPrimarySkillsError,
+                  })}
                   options={options || []}
                   onChange={handlePrimarySkills}
                   maxSelection="1"
                   selectedValues={selectedPrimarySkills}
+                  error={selectedPrimarySkillsError}
                 />
                 {selectedPrimarySkillsError &&
                 <p className="validation-error">
@@ -285,8 +277,10 @@ const AddCandidateModal = ({
               </div>
               <div className={cx("col-6","add-candidate-field")}>
                 <label
-                  htmlFor="secondaryTechSkills"
-                  className="add-candidate-field-label-mandatory"
+                  htmlFor='secondaryTechSkills'
+                  className={cx("add-candidate-field-label", {
+                    "drop-box-header-disabled": !isPrimarySkillSelected,
+                  })}
                 >
                   Secondary Tech Skills
                 </label>
@@ -301,12 +295,8 @@ const AddCandidateModal = ({
                   onChange={handleSecondarySkills}
                   maxSelection="3"
                   selectedValues={selectedSecondarySkills}
-                  initialDisabledOptions={selectedPrimarySkills}
+                  disabled={!isPrimarySkillSelected}
                 />
-                {selectedSecondarySkillsError &&
-                <p className="validation-error">
-                  {selectedSecondarySkillsError}
-                </p>}
               </div>
             </div>
             <div className="row">
