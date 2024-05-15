@@ -1,23 +1,16 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { openModal } from "../store/reducers/app/app";
+import { GetStoreSkills } from "../store/selector/dashboard/dashboard";
 import EditComponent from "../assets/svgs/editImage";
 import ShareComponent from "../assets/svgs/shareImage";
 import VisibilityComponent from "../assets/svgs/visibilityImage";
 import DownloadIcon from "../assets/svgs/downloadIcon";
 import "./CandidateRow.css";
 
-const options = [
-  {label:"Java", value:1},
-  {label:"Python", value:2},
-  {label:"C", value:3},
-  {label:"C++", value:4},
-  {label:"PHP", value:5},
-  {label:"CSS", value:6}
-];
-
 const CandidateRow = ({ candidate }) => {
   const dispatch = useDispatch();
+  const options = useSelector(GetStoreSkills);
   const isPdfReport = candidate.report.endsWith(".pdf");
   const handleOpenModal = () => {
     dispatch(openModal(

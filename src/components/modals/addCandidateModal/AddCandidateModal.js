@@ -8,12 +8,14 @@ import AddCandidateModalHeader from "./AddCandidateModalHeader";
 import AddCandidateModalActions from "./AddCandidateModalActions";
 import {closeModal} from "../../../store/reducers/app/app";
 import { IsModalOpen, GetModalData } from "../../../store/selector/app/app";
+import { GetStoreSkills } from "../../../store/selector/dashboard/dashboard";
 import "./AddCandidateModal.css";
 
 const AddCandidateModal = ({
   handleAddOrEditCandidate = () => {}
 }) => {
   const dispatch = useDispatch();
+  const options = useSelector(GetStoreSkills);
 
   const IsAddCandidateModalOpen = useSelector(
     (state) => IsModalOpen(state, "AddCandidateModal"),
@@ -47,15 +49,6 @@ const AddCandidateModal = ({
   const handleSecondarySkills = (selectedValues) => {
     setSelectedSecondarySkills(selectedValues);
   };
-
-  const options = [
-    {label:"Java", value:1},
-    {label:"Python", value:2},
-    {label:"C", value:3},
-    {label:"C++", value:4},
-    {label:"PHP", value:5},
-    {label:"CSS", value:6}
-  ];
 
   useEffect(() => {
     if (storeModalData && storeModalData.mode === "EDIT") {

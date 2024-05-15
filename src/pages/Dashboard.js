@@ -9,18 +9,18 @@ import
 AddCandidateModal
   from "../components/modals/addCandidateModal/AddCandidateModal";
 import FeedbackModal from "../components/modals/feedbackModal/FeedbackModal";
+import StatuFilter from "../components/table/statuFilter/StatuFilter.js";
 import { openModal, } from "../store/reducers/app/app";
 import {
   AddCandidate,
   EditCandidate,
-  GetTechSkills,
+  GetTechSkills
 } from "../store/reducers/dashboard/dashboard.js";
 import { GetUserRole } from "../store/selector/app";
 import { candidates, statuses } from "../shared/constants";
 import Search from "../components/assets/svgs/Search";
 import AddIcon from "../components/assets/svgs/AddIcon.js";
 import "./Dashboard.css";
-import StatuFilter from "../components/table/statuFilter/StatuFilter.js";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
