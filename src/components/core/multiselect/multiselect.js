@@ -1,21 +1,20 @@
 import React, { useState, useRef, useEffect } from "react";
 import cx from "classnames";
-import OptionItem from "./option-item";
+import OptionsMenu from "../optionsMenu/OptionsMenu";
 import ChevronRight from "../../assets/svgs/ChevronRight";
 import DeSelect from "../../assets/svgs/DeSelect";
 import Search from "../../assets/svgs/Search";
 import "./multiselect.css";
-import OptionsMenu from "../optionsMenu/OptionsMenu";
 
 const MultiSelect = ({
   id,
   label,
   options = [],
-  className,
   onChange,
   selectedValues,
   maxSelection,
   disabled = false,
+  error = false,
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState([]);
@@ -35,7 +34,9 @@ const MultiSelect = ({
   };
 
   const handleMouseClick = () => {
-    toggleMenu();
+    if(!disabled){
+      toggleMenu();
+    }
   };
 
   const handleKeyDown = (event) => {
@@ -103,9 +104,12 @@ const MultiSelect = ({
     <div className="drop-box" ref={dropboxRef}>
       <div className={cx(
         "drop-box-header",
-        "drop-box-header",
-        className,
-        disabled ? "disabled" : ""
+        {
+          "drop-box-header-disabled": disabled,
+        },
+        {
+          "drop-box-header-error": error,
+        }
       )}
       role="button"
       tabIndex="0"
@@ -161,20 +165,6 @@ const MultiSelect = ({
               disabledOptions={disabledOptions}
               handleCheckbox={handleCheckbox}
             />
-            {/* {filterOptions.map(option => (
-              <OptionItem
-                key={option.id}
-                id={`${id}_option_${option.value}`}
-                label={option.label}
-                value={option.value}
-                checked={selectedOptions.some(
-                  (eachOption) => eachOption.value === option.value)
-                }
-                onChange={(e) => { handleCheckbox(option, e.target.checked); }}
-                disabled={disabledOptions.some(
-                  (disabledOption) => disabledOption.value === option.value)}
-              />
-            ))} */}
           </div>
         </div>
       )}
