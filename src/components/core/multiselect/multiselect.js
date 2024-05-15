@@ -103,7 +103,6 @@ const MultiSelect = ({
     <div className="drop-box" ref={dropboxRef}>
       <div className={cx(
         "drop-box-header",
-        "drop-box-header",
         className,
         disabled ? "disabled" : ""
       )}
