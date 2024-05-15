@@ -13,14 +13,13 @@ import { openModal, } from "../store/reducers/app/app";
 import {
   AddCandidate,
   EditCandidate,
-  GetTechSkills,
+  GetTechSkills
 } from "../store/reducers/dashboard/dashboard.js";
 import { GetUserRole } from "../store/selector/app";
 import { candidates, statuses } from "../shared/constants";
 import Search from "../components/assets/svgs/Search";
 import AddIcon from "../components/assets/svgs/AddIcon.js";
 import StatusFilter from "../components/table/statuFilter/StatuFilter.js";
-
 import "./Dashboard.css";
 
 const Dashboard = () => {
