@@ -19,9 +19,7 @@ import { GetUserRole } from "../store/selector/app";
 import { candidates, statuses } from "../shared/constants";
 import Search from "../components/assets/svgs/Search";
 import AddIcon from "../components/assets/svgs/AddIcon.js";
-// import FilterComponent from "../assets/svgs/filterImage";
 import StatusFilter from "../components/table/statuFilter/StatuFilter.js";
-import OptionsMenu from "../components/core/optionsMenu/OptionsMenu.js";
 
 import "./Dashboard.css";
 
