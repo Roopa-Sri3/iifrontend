@@ -9,7 +9,6 @@ import
 AddCandidateModal
   from "../components/modals/addCandidateModal/AddCandidateModal";
 import FeedbackModal from "../components/modals/feedbackModal/FeedbackModal";
-import StatuFilter from "../components/table/statuFilter/StatuFilter.js";
 import { openModal, } from "../store/reducers/app/app";
 import {
   AddCandidate,
@@ -21,7 +20,6 @@ import { candidates, statuses } from "../shared/constants";
 import Search from "../components/assets/svgs/Search";
 import AddIcon from "../components/assets/svgs/AddIcon.js";
 import StatusFilter from "../components/table/statuFilter/StatuFilter.js";
-
 import "./Dashboard.css";
 
 const Dashboard = () => {
