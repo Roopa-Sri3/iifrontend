@@ -52,7 +52,7 @@ const CandidateRow = ({ candidate }) => {
   };
 
   return (
-    <tr className='candidate-row'>
+    <tr className="candidate-row">
       <td>{candidate.candidateName}</td>
       <td>{candidate.techSkills}</td>
       <td className={candidate.status ===
@@ -60,8 +60,8 @@ const CandidateRow = ({ candidate }) => {
         {candidate.status}
       </td>
       <td>
-        <div className='cd-report'>
-          <div className='report-text'>
+        <div className="cd-report">
+          <div className="report-text">
             {candidate.report}
           </div>
           <DownloadIcon
@@ -71,7 +71,7 @@ const CandidateRow = ({ candidate }) => {
         </div>
       </td>
       <td>
-        <div className='feedback-container'>
+        <div className="feedback-container">
           {candidate.feedback}
           <VisibilityComponent
             style={{marginLeft: "40px",cursor:"pointer"}}

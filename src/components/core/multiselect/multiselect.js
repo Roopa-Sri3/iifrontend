@@ -145,15 +145,15 @@ const MultiSelect = ({
         </span>
       </div>
       {isMenuOpen && (
-        <div className='drop-box-menu'>
-          <div className='search-section'>
+        <div className="drop-box-menu">
+          <div className="search-section">
             <input
               type="text"
               placeholder="Search"
               value={searchItem}
               onChange={handleSearchChange}
             />
-            <div className='multiselect-search-icon'>
+            <div className="multiselect-search-icon">
               <Search />
             </div>
           </div>

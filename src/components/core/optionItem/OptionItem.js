@@ -25,7 +25,7 @@ const OptionItem = ({
     />
     <label
       htmlFor={id}
-      className={cx("option-item-field-label", disabled ? "disabled" : "" )}
+      className={cx("option-item-field-label", disabled ? "disabled" : " ")}
     >
       {label}
     </label>
