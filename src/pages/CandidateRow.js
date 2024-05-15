@@ -7,6 +7,15 @@ import VisibilityComponent from "../assets/svgs/visibilityImage";
 import DownloadIcon from "../assets/svgs/downloadIcon";
 import "./CandidateRow.css";
 
+const options = [
+  {label:"Java", value:1},
+  {label:"Python", value:2},
+  {label:"C", value:3},
+  {label:"C++", value:4},
+  {label:"PHP", value:5},
+  {label:"CSS", value:6}
+];
+
 const CandidateRow = ({ candidate }) => {
   const dispatch = useDispatch();
   const isPdfReport = candidate.report.endsWith(".pdf");
@@ -26,8 +35,8 @@ const CandidateRow = ({ candidate }) => {
       email: "191fa04101@gmail.com",
       mobileNumber:"6309574567",
       yearsOfExperience: 1,
-      primaryTechSkill: "Java",
-      secondaryTechSkills: ["C", "Python", "PHP"],
+      primaryTechSkill: 2,
+      secondaryTechSkills: [1, 4, 6],
       rRNumber: "",
       status: "completed",
       fileUrl: "c::/file",
@@ -41,16 +50,14 @@ const CandidateRow = ({ candidate }) => {
         modalData: {
           mode:"EDIT",
           ...rowCandidateData,
-          selectedPrimarySkills:[
-            {label: rowCandidateData.primaryTechSkill,
-              value: rowCandidateData.primaryTechSkill}
-          ],
-          selectedSecondarySkills:
-          rowCandidateData.secondaryTechSkills.map(secondarySkill =>
-            ({label: secondarySkill, value: secondarySkill})),
+          selectedPrimarySkills: [options.find((option) => option.value === rowCandidateData.primaryTechSkill)],
+          selectedSecondarySkills: options.filter(
+            (option) => rowCandidateData.secondaryTechSkills.length === 0 ? [] : rowCandidateData.secondaryTechSkills.includes(option.value)
+          )
         }
       }));
   };
+
   return (
     <tr className="candidate-row">
       <td>{candidate.candidateName}</td>

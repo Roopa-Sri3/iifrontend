@@ -1,6 +1,6 @@
 import React from "react";
 import cx from "classnames";
-import "./option-item.css";
+import "./OptionItem.css";
 
 const OptionItem = ({
   id,

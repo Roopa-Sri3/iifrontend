@@ -1,8 +1,8 @@
 import React, { useRef, useState } from "react";
 import OptionsMenu from "../../core/optionsMenu/OptionsMenu";
+import useOutsideClickHandler from "../../core/useOutsideClickHandler/useOutsideClickHandler";
 import FilterComponent from "../../../assets/svgs/filterImage";
 import "./StatuFilter.css";
-import useOutsideClickHandler from "../../core/useOutsideClickHandler/useOutsideClickHandler";
 
 function StatuFilter({
   statuses,
