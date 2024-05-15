@@ -27,5 +27,5 @@ frontend-deploy:
         - ssh-keyscan 10.139.166.48 >> ~/.ssh/known_hosts
         - chmod 644 ~/.ssh/known_hosts
   script:
-      - scp -o  StrictHostkeyChecking=no /home/roopagaddam/builds/W3MLysJnj/0/capstone_2024/interview-insights/interview-insights-web/src/index.js roopagaddam@10.139.166.48:/var/www/
+      - scp -o  StrictHostkeyChecking=no /home/roopagaddam/builds/W3MLysJnj/0/capstone_2024/interview-insights/interview-insights-web/build roopagaddam@10.139.166.48:/var/www/build
     
