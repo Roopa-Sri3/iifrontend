@@ -1,19 +1,17 @@
 import React from "react";
 import Button from "../button";
-import "./Download.css";
 import { GetFileDownload } from "../../../store/reducers/app/app";
 import { useDispatch } from "react-redux";
+import { downloadUrl } from "../../../shared/constants";
+import "./Download.css";
 
 const Download = () => {
   const dispatch = useDispatch();
 
   const downloadFile = () => {
     dispatch(GetFileDownload({
-      onSuccess: (blob) => {
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.click();
+      onSuccess: () => {
+        window.open(downloadUrl,"_blank");
         alert("Download Successful");
       },
       onError: (e) => {

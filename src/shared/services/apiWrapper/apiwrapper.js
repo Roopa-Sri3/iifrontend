@@ -3,8 +3,7 @@ import HTTPClient from "../httpclient";
 class APIWrapper extends HTTPClient {
   constructor(dispatch = () => {}) {
     super();
-    // Need to get from .env file
-    this.baseURL = process.env.REACT_APP_BASE_URL;
+    this.baseURL = "http://10.139.166.48:8081/InterviewInsights-0.0.1-SNAPSHOT";
     this.dispatch = dispatch;
   }
 
@@ -45,28 +44,32 @@ class APIWrapper extends HTTPClient {
     });
   }
 
-  async GetFileDownload({
+  async getFileDownload({
     onSuccess = () => {},
     onError = () => {},
   }) {
     return this.get({
-      url: this.baseURL + "/downloadTemplate",
+      url: "/interviewinsights/downloadTemplate",
       onSuccess,
       onError,
     });
   }
 
-  async PostUploadFile({
+  async postUploadFile({
     file,
     onSuccess = () => {},
     onError = () => {},
   }) {
     const formData = new FormData();
     formData.append("file", file);
-    console.log(formData);
+    formData.append("createdBy", "Srinu");
+    formData.append("modifiedBy", "Sidhu");
+    this.headers = {
+      "Content-Type" : "multipart/form-data",
+    };
 
     return this.post({
-      url: this.baseURL + "/uploadExcelFile",
+      url: "/interviewinsights/uploadExcelFile",
       data: formData,
       onSuccess,
       onError,

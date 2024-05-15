@@ -75,7 +75,7 @@ export const GetFileDownload = ({
 }) => async(dispatch) => {
   const apiWrapper = new APIWrapper(dispatch);
 
-  await apiWrapper.GetFileDownload({
+  await apiWrapper.getFileDownload({
     onSuccess,
     onError,
   });
@@ -88,7 +88,7 @@ export const PostUploadFile = ({
 }) => async(dispatch) => {
   const apiWrapper = new APIWrapper(dispatch);
 
-  await apiWrapper.PostUploadFile({
+  await apiWrapper.postUploadFile({
     file,
     onSuccess,
     onError,
