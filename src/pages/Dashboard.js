@@ -25,7 +25,6 @@ import "./Dashboard.css";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
-  // Reed the page records from store.
 
   const [currentPage, setCurrentPage] = useState(1);
   const recordsPerPage = 10;
@@ -125,20 +124,6 @@ const Dashboard = () => {
   const headerActions = [
     null,
     null,
-    // <><div className="status-filter">
-    //   {/* <FilterComponent
-    //     className='filter'
-    //     onClick={handleFilterComponentClick} /> */}
-    //   {/* {showFilter && (
-    //     <div className='drop-box-menu'>
-    //       <OptionsMenu
-    //         id="dashBoardStatusFilter"
-    //         options={statuses}
-    //         handleCheckbox={handleCheckboxChange}
-    //         selectedOptions={statusFilter} />
-    //     </div>
-    //   )} */}
-    // </div>
     <StatusFilter
       statuses={statuses}
       statusFilter={statusFilter}
@@ -204,12 +189,6 @@ const Dashboard = () => {
               filteredCandidates={filteredCandidates}
               selectedStatus={selectedStatus}
             />
-            {/* {showFilter &&
-          (<StatusFilter
-            onFilterChange={handleFilterChange}
-            onClose={() => setShowFilter(false)}
-            selectedStatus={selectedStatus}
-          />)} */}
           </div>
           <AddCandidateModal
             handleAddOrEditCandidate={handleAddOrEditCandidate}
