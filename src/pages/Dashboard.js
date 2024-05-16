@@ -20,6 +20,7 @@ import { candidates, statuses } from "../shared/constants";
 import Search from "../components/assets/svgs/Search";
 import AddIcon from "../components/assets/svgs/AddIcon.js";
 import StatusFilter from "../components/table/statuFilter/StatuFilter.js";
+import LogoutModal from "../components/modals/logoutModal/LogoutModal.js";
 import "./Dashboard.css";
 
 const Dashboard = () => {
@@ -195,6 +196,7 @@ const Dashboard = () => {
           <FeedbackModal />
         </div>
       }
+      <LogoutModal />
     </div>
   );
 };
