@@ -11,6 +11,7 @@ import { PostUploadFile } from "../store/reducers/dashboard/dashboard";
 import { setAlert } from "../store/reducers/app/app";
 import { useDispatch } from "react-redux";
 import "./Questionsconfiguration.css";
+import LogoutModal from "../components/modals/logoutModal/LogoutModal";
 
 function Questionsconfiguration() {
 
@@ -24,7 +25,6 @@ function Questionsconfiguration() {
 
   const handleFiles = (event) => {
     const files = event.target.files;
-    console.log(files);
     if (files.length > 0) {
       setSelectedFile(files[0]);
       console.log(selectedFile);
@@ -35,7 +35,6 @@ function Questionsconfiguration() {
   };
 
   const handleDeleteFile = () => {
-    console.log("Deleted", selectedFile);
     setSelectedFile(null);
     document.getElementById("file-input").value = null;
   };
@@ -115,6 +114,7 @@ function Questionsconfiguration() {
           </ol>
         </div>
       </div>
+      <LogoutModal />
     </div>
   );
 }
