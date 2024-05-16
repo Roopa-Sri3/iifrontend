@@ -1,23 +1,16 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { openModal } from "../store/reducers/app/app";
+import { GetStoreSkills } from "../store/selector/dashboard/dashboard";
 import EditComponent from "../assets/svgs/editImage";
 import ShareComponent from "../assets/svgs/shareImage";
 import VisibilityComponent from "../assets/svgs/visibilityImage";
 import DownloadIcon from "../assets/svgs/downloadIcon";
 import "./CandidateRow.css";
 
-const options = [
-  {label:"Java", value:1},
-  {label:"Python", value:2},
-  {label:"C", value:3},
-  {label:"C++", value:4},
-  {label:"PHP", value:5},
-  {label:"CSS", value:6}
-];
-
 const CandidateRow = ({ candidate }) => {
   const dispatch = useDispatch();
+  const options = useSelector(GetStoreSkills);
   const isPdfReport = candidate.report.endsWith(".pdf");
   const handleOpenModal = () => {
     dispatch(openModal(
@@ -59,7 +52,7 @@ const CandidateRow = ({ candidate }) => {
   };
 
   return (
-    <tr className='candidate-row'>
+    <tr className="candidate-row">
       <td>{candidate.candidateName}</td>
       <td>{candidate.techSkills}</td>
       <td className={candidate.status ===
@@ -67,8 +60,8 @@ const CandidateRow = ({ candidate }) => {
         {candidate.status}
       </td>
       <td>
-        <div className='cd-report'>
-          <div className='report-text'>
+        <div className="cd-report">
+          <div className="report-text">
             {candidate.report}
           </div>
           <DownloadIcon
@@ -78,7 +71,7 @@ const CandidateRow = ({ candidate }) => {
         </div>
       </td>
       <td>
-        <div className='feedback-container'>
+        <div className="feedback-container">
           {candidate.feedback}
           <VisibilityComponent
             style={{marginLeft: "40px",cursor:"pointer"}}

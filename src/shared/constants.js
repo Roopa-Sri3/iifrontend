@@ -3,6 +3,8 @@
  * File to save all constants in app
  */
 
+export const downloadUrl = "http://10.139.166.48:8081/InterviewInsights-0.0.1-SNAPSHOT/interviewinsights/downloadTemplate";
+
 export const instructions =
 [
   "Download Template: Before importing questions, download the template file by clicking the 'Download Template' button below. This file contains the required format for uploading questions." ,
@@ -12,6 +14,15 @@ export const instructions =
   "Review Before Importing: After uploading, review the questions to ensure they are correctly formatted and appear as expected.",
   "Upload Questions: Finally, click 'Upload Questions' to add the questions to your database.",
   "Note: Only upload files with a maximum size of [400Kb] to ensure smooth processing."
+];
+
+export const options = [
+  {label:"Java", value:1},
+  {label:"Python", value:2},
+  {label:"C", value:3},
+  {label:"C++", value:4},
+  {label:"PHP", value:5},
+  {label:"CSS", value:6}
 ];
 
 export const LOGIN_MOCKUP_DATA = [

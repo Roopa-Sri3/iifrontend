@@ -133,6 +133,9 @@
 }
 
 .final-upload {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border:none;
     color:#ffffff;
     background-color: #4595ff;
@@ -142,6 +145,10 @@
     margin-left: 40%;
     margin-top: 10px;
     margin-bottom: 10px;
+
+    &:disabled{
+        background-color: #93979b;
+    }
 }
 
 .back-arrow-icon{

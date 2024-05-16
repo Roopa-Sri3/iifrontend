@@ -15,17 +15,9 @@ export const GetTimeoutId = (state) => state.app.timeoutId;
 export const GetUserRole = (state) => state.app.role;
 
 export const GetProfileShortcutName = (state) => {
-  const profilelName = state.app.profileName;
-
-  if (profilelName) {
-    const names = profilelName.split(" ");
-
-    if (names.length >= 2) {
-      return names[0][0] + names[1][0];
-    }
-    return "UU"; // TODO: IF NO NAME??
-  }
-  return "UU"; // TODO: IF NO NAME??
+  const firstName = state.app.firstName || "";
+  const lastName = state.app.lastName || "";
+  return firstName[0].toUpperCase() + lastName[0].toUpperCase() || "UU"; // TODO: IF NO NAME??
 };
 
 export const GetDuration = (state) => state.app.assessment.duration;

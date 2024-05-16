@@ -1,11 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
+import APIWrapper from "../../../shared/services/apiWrapper/apiwrapper";
 
 const appSlice = createSlice({
   name: "app",
   initialState: {
     isUserLoggedIn: false,
     userName: "",
-    profileName: "",
+    firstName: "",
+    lastName: "",
+    designation: "",
     role: "",
     modal:{
       modalName: "",
@@ -29,9 +32,19 @@ const appSlice = createSlice({
       state.userName = action.payload.userName;
     },
     setUserDetails: (state, action) => {
-      state.userName = action.payload.userName;
-      state.profileName = action.payload.profileName;
-      state.role = action.payload.role;
+      const {
+        username,
+        firstName,
+        lastName,
+        designation,
+        role,
+      } = action.payload;
+
+      state.userName = username;
+      state.firstName = firstName;
+      state.lastName = lastName;
+      state.designation = designation;
+      state.role = role;
       state.isUserLoggedIn = true;
     },
     resetApp: (state) => {
@@ -107,3 +120,31 @@ export const {
 } = appSlice.actions;
 
 export default appSlice.reducer;
+
+export const PostUserCredentials = ({
+  data,
+  onSuccess = () => {},
+  onError = () => {},
+} = {}) => async(dispatch) => {
+  const apiWrapper = new APIWrapper(dispatch);
+
+  await apiWrapper.postUserCredentials({
+    data,
+    onSuccess,
+    onError,
+  });
+};
+
+export const PostToken = ({
+  data,
+  onSuccess = () => {},
+  onError = () => {},
+} = {}) => async(dispatch) => {
+  const apiWrapper = new APIWrapper(dispatch);
+
+  await apiWrapper.postToken({
+    data,
+    onSuccess,
+    onError,
+  });
+};

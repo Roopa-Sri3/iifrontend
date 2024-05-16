@@ -8,12 +8,14 @@ import AddCandidateModalHeader from "./AddCandidateModalHeader";
 import AddCandidateModalActions from "./AddCandidateModalActions";
 import {closeModal} from "../../../store/reducers/app/app";
 import { IsModalOpen, GetModalData } from "../../../store/selector/app/app";
+import { GetStoreSkills } from "../../../store/selector/dashboard/dashboard";
 import "./AddCandidateModal.css";
 
 const AddCandidateModal = ({
   handleAddOrEditCandidate = () => {}
 }) => {
   const dispatch = useDispatch();
+  const options = useSelector(GetStoreSkills);
 
   const IsAddCandidateModalOpen = useSelector(
     (state) => IsModalOpen(state, "AddCandidateModal"),
@@ -47,15 +49,6 @@ const AddCandidateModal = ({
   const handleSecondarySkills = (selectedValues) => {
     setSelectedSecondarySkills(selectedValues);
   };
-
-  const options = [
-    {label:"Java", value:1},
-    {label:"Python", value:2},
-    {label:"C", value:3},
-    {label:"C++", value:4},
-    {label:"PHP", value:5},
-    {label:"CSS", value:6}
-  ];
 
   useEffect(() => {
     if (storeModalData && storeModalData.mode === "EDIT") {
@@ -163,16 +156,16 @@ const AddCandidateModal = ({
     <div>
       <Modal
         show={IsAddCandidateModalOpen}
-        size='modal-lg'
+        size="modal-lg"
         modalHeader={<AddCandidateModalHeader onClose={handleCloseModal} />}
       >
-        <div className='container'>
-          <form className='my-form' onSubmit={handleSubmit}>
-            <div className='row'>
+        <div className="container">
+          <form className="my-form" onSubmit={handleSubmit}>
+            <div className="row">
               <div className={cx("col-6","add-candidate-field")}>
                 <label
                   htmlFor="fullName"
-                  className='add-candidate-field-label-mandatory'
+                  className="add-candidate-field-label-mandatory"
                 >
                   Full Name
                 </label>
@@ -181,20 +174,20 @@ const AddCandidateModal = ({
                   id="fullName"
                   className={`form-input ${fullNameError ?
                     "add-candidate-field-error" : ""}`}
-                  placeholder='Candidate Name'
+                  placeholder="Candidate Name"
                   value={fullName || ""}
                   onChange={(e) => {setFullName(e.target.value);
                     setFullNameError("");}}
-                  autoComplete='off'
+                  autoComplete="off"
                   minLength="4"
                 />
                 {fullNameError &&
-                <p className='validation-error'>{fullNameError}</p>}
+                <p className="validation-error">{fullNameError}</p>}
               </div>
               <div className={cx("col-6","add-candidate-field")}>
                 <label
-                  htmlFor='email'
-                  className='add-candidate-field-label-mandatory'
+                  htmlFor="email"
+                  className="add-candidate-field-label-mandatory"
                 >
                   Email
                 </label>
@@ -203,20 +196,20 @@ const AddCandidateModal = ({
                   id="email"
                   className={`form-input ${emailError ?
                     "add-candidate-field-error" : ""}`}
-                  placeholder='Candidate Email'
+                  placeholder="Candidate Email"
                   value={email || ""}
                   onChange={(e) => {setEmail(e.target.value);
                     setEmailError("");}}
-                  autoComplete='off'
+                  autoComplete="off"
                 />
-                {emailError && <p className='validation-error'>{emailError}</p>}
+                {emailError && <p className="validation-error">{emailError}</p>}
               </div>
             </div>
-            <div className='row'>
+            <div className="row">
               <div className={cx("col-6","add-candidate-field")}>
                 <label
                   htmlFor="mobileNumber"
-                  className='add-candidate-field-label-mandatory'
+                  className="add-candidate-field-label-mandatory"
                 >
                   Mobile Number
                 </label>
@@ -225,19 +218,19 @@ const AddCandidateModal = ({
                   id="mobileNumber"
                   className={`form-input ${mobileNumberError ?
                     "add-candidate-field-error" : ""}`}
-                  placeholder='Candidate Mobile'
+                  placeholder="Candidate Mobile"
                   value={mobileNumber  || ""}
                   onChange={(e) => {setMobileNumber(e.target.value);
                     setMobileNumberError("");}}
                   pattern="[0-9]{10}"
-                  autoComplete='off'/>
+                  autoComplete="off"/>
                 {mobileNumberError &&
-                <p className='validation-error'>{mobileNumberError}</p>}
+                <p className="validation-error">{mobileNumberError}</p>}
               </div>
               <div className={cx("col-6","add-candidate-field")}>
                 <label
                   htmlFor="yearsOfExperience"
-                  className='add-candidate-field-label-mandatory'
+                  className="add-candidate-field-label-mandatory"
                 >
                   Years of Experience
                 </label>
@@ -246,22 +239,22 @@ const AddCandidateModal = ({
                   id="yearsOfExperience"
                   className={`form-input ${yearsOfExperienceError ?
                     "add-candidate-field-error" : ""}`}
-                  placeholder='Candidate Experience'
+                  placeholder="Candidate Experience"
                   value={yearsOfExperience || ""}
                   onChange={(e) => {setYearsOfExperience(e.target.value);
                     setYearsOfExperienceError("");}}
-                  autoComplete='off'
-                  min='0'
+                  autoComplete="off"
+                  min="0"
                 />
                 {yearsOfExperienceError &&
-                <p className='validation-error'>{yearsOfExperienceError}</p>}
+                <p className="validation-error">{yearsOfExperienceError}</p>}
               </div>
             </div>
-            <div className='row'>
+            <div className="row">
               <div className={cx("col-6","add-candidate-field")}>
                 <label
-                  htmlFor='primaryTechSkills'
-                  className='add-candidate-field-label-mandatory'
+                  htmlFor="primaryTechSkills"
+                  className="add-candidate-field-label-mandatory"
                 >
                   Primary Tech Skills
                 </label>
@@ -278,7 +271,7 @@ const AddCandidateModal = ({
                   error={selectedPrimarySkillsError}
                 />
                 {selectedPrimarySkillsError &&
-                <p className='validation-error'>
+                <p className="validation-error">
                   {selectedPrimarySkillsError}
                 </p>}
               </div>
@@ -306,9 +299,9 @@ const AddCandidateModal = ({
                 />
               </div>
             </div>
-            <div className='row'>
+            <div className="row">
               <div className={cx("col-6","add-candidate-field")}>
-                <label htmlFor="rRNumber" className='add-candidate-field-label'>
+                <label htmlFor="rRNumber" className="add-candidate-field-label">
                   RR#
                 </label>
                 <input
@@ -317,16 +310,16 @@ const AddCandidateModal = ({
                   className="form-input"
                   value={rRNumber || ""}
                   onChange={(e) => setRRNumber(e.target.value)}
-                  autoComplete='off'
+                  autoComplete="off"
                   pattern="[0-9]{10}"
                 />
               </div>
             </div>
             {(storeModalData && storeModalData.mode !== "EDIT") && (
-              <div className='row'>
-                <div className='col-12'>
+              <div className="row">
+                <div className="col-12">
                   <Checkbox
-                    id='mycheckbox'
+                    id="mycheckbox"
                     label="Share link with candidate"
                     checked={isChecked}
                     onChange={handleCheckboxChange}

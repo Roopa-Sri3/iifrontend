@@ -1,13 +1,16 @@
 .questions-container{
     background-color: #EBEEF3;
-    min-height: 685px;
-    padding: 80px 40px 60px 40px;
+    padding: 20px;
 }
 
 .question-card{
     background-color: #FFFFFF;
     padding: 15px 50px;
     border-radius: 5px;
+}
+
+.previous-button-hide{
+    display:none;
 }
 
 .number{
