@@ -22,6 +22,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [error, setError] = useState("");
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -36,8 +37,6 @@ function Login() {
   const verifyCredentials = (username, password) => {
     // Verify if any of the credentials matches
     // then find that object and set the store with the respective values.
-    // const user = LOGIN_MOCKUP_DATA.find(user => user.username === email
-    //   && user.password === password);
     dispatch(
       PostUserCredentials({
         data: {
@@ -45,18 +44,16 @@ function Login() {
           password,
         },
         onSuccess: (response) => {
-          console.log("Success");
-          console.log(response);
           const token = response.token;
           dispatch(PostToken({
             data: {
               token,
             },
             onSuccess: (userDetails) => {
-              const resposeDetails = userDetails && userDetails.response;
-              if (resposeDetails) {
+              const responseDetails = userDetails && userDetails.response;
+              if (responseDetails) {
                 dispatch(setUserDetails({
-                  ...resposeDetails
+                  ...responseDetails
                 }));
                 navigate("/dashboard");
               }
@@ -65,7 +62,7 @@ function Login() {
           }));
         },
         onError: (e) => {
-          console.error(e);
+          setError("Invalid Username or Password");
         }
       })
     );
@@ -78,13 +75,17 @@ function Login() {
     const emailCheck = emailPattern.test(email);
     const passwordCheck = passwordPattern.test(password);
 
+    if(email === "" && password === ""){
+      setEmailError("Please enter valid email address");
+      setPasswordError("Please enter valid password");
+    }
     if (email.trim() === "" || !emailCheck) {
-      setEmailError("Please enter valid email address.");
+      setEmailError("Please enter valid email address");
     }
     else {
       setEmailError("");
       if (password.trim() === "" || !passwordCheck) {
-        setPasswordError("Please enter valid password.");
+        setPasswordError("Please enter valid password");
       }
       else {
         setPasswordError("");
@@ -146,6 +147,7 @@ function Login() {
             id="submit"
             className='basic-button'
           />
+          {error && <p className="error-message">{error}</p>}
         </form>
       </div>
     </div>
