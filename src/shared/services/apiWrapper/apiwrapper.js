@@ -80,6 +80,38 @@ class APIWrapper extends HTTPClient {
     });
   }
 
+  async getFileDownload({
+    onSuccess = () => {},
+    onError = () => {},
+  }) {
+    return this.get({
+      url: "/interviewinsights/downloadTemplate",
+      onSuccess,
+      onError,
+    });
+  }
+
+  async postUploadFile({
+    file,
+    onSuccess = () => {},
+    onError = () => {},
+  }) {
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("createdBy", "Srinu");
+    formData.append("modifiedBy", "Sidhu");
+    this.headers = {
+      "Content-Type" : "multipart/form-data",
+    };
+
+    return this.post({
+      url: "/interviewinsights/uploadExcelFile",
+      data: formData,
+      onSuccess,
+      onError,
+    });
+  }
+
 }
 
 export default APIWrapper;

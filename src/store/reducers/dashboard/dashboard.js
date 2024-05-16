@@ -62,3 +62,29 @@ export const EditCandidate = ({
     onError,
   });
 };
+
+export const GetFileDownload = ({
+  onSuccess = () => {},
+  onError = () => {},
+}) => async(dispatch) => {
+  const apiWrapper = new APIWrapper(dispatch);
+
+  await apiWrapper.getFileDownload({
+    onSuccess,
+    onError,
+  });
+};
+
+export const PostUploadFile = ({
+  file,
+  onSuccess = () => {},
+  onError = () => {},
+}) => async(dispatch) => {
+  const apiWrapper = new APIWrapper(dispatch);
+
+  await apiWrapper.postUploadFile({
+    file,
+    onSuccess,
+    onError,
+  });
+};
