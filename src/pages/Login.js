@@ -62,7 +62,7 @@ function Login() {
           }));
         },
         onError: (e) => {
-          setError("Invalid Username or Password");
+          setError("Invalid email address or password");
         }
       })
     );
@@ -76,16 +76,16 @@ function Login() {
     const passwordCheck = passwordPattern.test(password);
 
     if(email === "" && password === ""){
-      setEmailError("Please enter valid email address");
-      setPasswordError("Please enter valid password");
+      setEmailError("Please enter email address");
+      setPasswordError("Please enter password");
     }
     if (email.trim() === "" || !emailCheck) {
-      setEmailError("Please enter valid email address");
+      setEmailError("Please enter email address");
     }
     else {
       setEmailError("");
       if (password.trim() === "" || !passwordCheck) {
-        setPasswordError("Please enter valid password");
+        setPasswordError("Please enter password");
       }
       else {
         setPasswordError("");
@@ -143,7 +143,7 @@ function Login() {
             {passwordError && <p className='error-message'>{passwordError}</p>}
           </div>
           <Button
-            label="Login"
+            label="Sign In"
             id="submit"
             className='basic-button'
           />
