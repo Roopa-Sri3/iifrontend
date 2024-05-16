@@ -75,8 +75,8 @@ const AddCandidateModal = ({
 
   const validateForm = () => {
     let isValid = true;
-    if (!fullName || !(fullName.length > 3)) {
-      setFullNameError("Please enter full name");
+    if (!fullName || fullName.length < 2 || fullName.length > 50 || !/^[a-zA-Z]+(?: [a-zA-Z]+)*$/.test(fullName) || /\s{2,}/.test(fullName) || /\bnull\b/i.test(fullName)) {
+      setFullNameError("Please Enter full name");
       isValid = false;
     }
     if (!mobileNumber || !/^\d{10}$/.test(mobileNumber)) {
