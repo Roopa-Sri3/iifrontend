@@ -1,8 +1,8 @@
-import { useDispatch, useSelector } from "react-redux";
-import "./Timer.css";
-import { GetDuration } from "../../store/selector/app/app";
 import { useEffect, useRef, useState } from "react";
-import { endExam, setTimeUp } from "../../store/reducers/app/app";
+import { useDispatch, useSelector } from "react-redux";
+import { GetDuration } from "../../store/selector/screen/screen";
+import { endExam, setTimeUp } from "../../store/reducers/screen/screen";
+import "./Timer.css";
 
 const Timer = (handleTimeUp) => {
   const dispatch = useDispatch();
@@ -32,7 +32,6 @@ const Timer = (handleTimeUp) => {
   const formatTime = (time) =>{
     const minutes = Math.floor(time / 60);
     const seconds = time % 60;
-    // eslint-disable-next-line max-len
     return `${minutes < 10 ? "0" : ""}${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
   };
 

@@ -18,11 +18,6 @@ const appSlice = createSlice({
     messageType : "",
     timeoutId: null,
     apiCounter: 0,
-    assessment:{
-      duration: null,
-      isTimeUp: null,
-      isRunning: null,
-    }
   },
   reducers: {
     setLogin: (state, action) => {
@@ -83,20 +78,6 @@ const appSlice = createSlice({
     clearTimeoutId: (state) =>{
       state.timeoutId = null;
     },
-    setDuration: (state) => {
-      state.assessment.duration = 1;
-      state.assessment.isTimeUp = false;
-    },
-    setTimeUp: (state) => {
-      state.assessment.isTimeUp = true;
-      state.assessment.duration = null;
-    },
-    startExam: (state) => {
-      state.assessment.isRunning = true;
-    },
-    endExam: (state) => {
-      state.assessment.isRunning = false;
-    },
   },
 });
 
@@ -113,10 +94,6 @@ export const {
   clearAlert,
   setTimeoutId,
   clearTimeoutId,
-  setDuration,
-  setTimeUp,
-  startExam,
-  endExam,
 } = appSlice.actions;
 
 export default appSlice.reducer;

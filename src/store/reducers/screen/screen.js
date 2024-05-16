@@ -1,5 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
+  duration: null,
+  isTimeUp: null,
+  isRunning: null,
   currentQuestion : 1,
   questions: [
     {
@@ -61,6 +64,20 @@ const screenSlice = createSlice({
   name: "screen",
   initialState,
   reducers: {
+    setDuration: (state) => {
+      state.duration = 1;
+      state.isTimeUp = false;
+    },
+    setTimeUp: (state) => {
+      state.isTimeUp = true;
+      state.duration = null;
+    },
+    startExam: (state) => {
+      state.isRunning = true;
+    },
+    endExam: (state) => {
+      state.isRunning = false;
+    },
     handleQuestionClick: (state, action) => {
       state.currentQuestion = action.payload;
     },
@@ -82,6 +99,15 @@ const screenSlice = createSlice({
   },
 });
 
-export const { handleQuestionClick, handleSaveAndNext, handlePrevious , updateAnswers} = screenSlice.actions;
+export const {
+  setDuration,
+  setTimeUp,
+  startExam,
+  endExam,
+  handleQuestionClick,
+  handleSaveAndNext,
+  handlePrevious,
+  updateAnswers,
+} = screenSlice.actions;
 
 export default screenSlice.reducer;

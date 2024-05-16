@@ -1,11 +1,12 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { IsModalOpen } from "../../../store/selector/app";
+import { IsModalOpen } from "../../../store/selector/app/app";
 import Modal from "../../core/modal/Modal";
 import "./ExamSubmitModal.css";
 import Button from "../../core/button";
 import { useNavigate } from "react-router-dom";
-import { closeModal, endExam } from "../../../store/reducers/app/app";
+import { endExam } from "../../../store/reducers/screen/screen";
+import { closeModal} from "../../../store/reducers/app/app";
 
 const ExamSubmitModal = () => {
   const dispatch = useDispatch();

@@ -2,10 +2,17 @@ import React from "react";
 import Button from "../core/button/button";
 import Questionbutton from "../Questionbutton/Questionbutton";
 import "./Questionsnavigate.css";
+import { useDispatch } from "react-redux";
+import { openModal } from "../../store/reducers/app/app";
 
 function Questionsnavigate() {
+  const dispatch = useDispatch();
+
   const handleSubmit = () =>{
-    prompt("Are you sure you want to submit the exam?");
+    dispatch(openModal({
+      modalName: "ExamSubmitModal",
+      modalData: {}
+    }));
   };
 
   return (

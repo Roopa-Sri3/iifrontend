@@ -2,7 +2,6 @@
 import React, { /*useState*/ }from "react";
 import { useSelector,} from "react-redux";
 import {
-  GetExamStatus,
   IsUserLoggedIn,/* GetUserName, GetUserRole*/ }  from "../../store/selector/app";
 
 import Innovalogo from "../../dashboard-header-components/Logo";
@@ -12,14 +11,14 @@ import Expand from "../../components/core/assets/svgs/Expand";
 // import LogoutIcons from '../../components/core/assets/svgs/LougoutIcons';
 
 import companylogo from "../../assets/Images/company-symbol.png";
-import "./Header.css";
 import Timer from "../../components/timer/Timer";
+import { GetExamStatus } from "../../store/selector/screen";
+import "./Header.css";
 
 const Header = () => {
   const isLoggedIn = useSelector(IsUserLoggedIn);
 
   const examStarted = useSelector(GetExamStatus);
-  console.log("examStarted : ",examStarted);
 
   // const userName = useSelector(GetUserName);
   // const userRole = useSelector(GetUserRole);
