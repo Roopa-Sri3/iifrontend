@@ -103,6 +103,11 @@
   display: inline-flex;
 }
 
+.no-records-found{
+  text-align: center;
+  color: red;
+}
+
 .config-question{
     position: absolute;
     right: 0;

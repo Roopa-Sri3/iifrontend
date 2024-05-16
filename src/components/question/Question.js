@@ -31,14 +31,12 @@ const Question = () => {
       answer: answerValue,
     };
     setSelectedOption(null);
-    console.log(updatedAnswers);
     dispatch(updateAnswers(updatedAnswers));
     dispatch(handleSaveAndNext(presentquestion));
   };
 
   const handleOptionChange = (optionValue) => {
     setSelectedOption(optionValue);
-    console.log(optionValue);
   };
 
   const handleCodeChange = (event) => {

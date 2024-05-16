@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../components/core/button/button";
 import SubFooter from "../components/table/SubFooter/SubFooter";
@@ -13,20 +13,24 @@ import { openModal, } from "../store/reducers/app/app";
 import {
   AddCandidate,
   EditCandidate,
-  GetTechSkills
+  GetCandidateDetails,
+  GetTechSkills,
 } from "../store/reducers/dashboard/dashboard.js";
 import { GetUserRole } from "../store/selector/app";
-import { candidates, statuses } from "../shared/constants";
+import { GetStoreCandidates, GetStoreCandidatesTotalCount } from "../store/selector/dashboard/dashboard.js";
 import Search from "../components/assets/svgs/Search";
 import AddIcon from "../components/assets/svgs/AddIcon.js";
 import StatusFilter from "../components/table/statuFilter/StatuFilter.js";
 import LogoutModal from "../components/modals/logoutModal/LogoutModal.js";
 import "./Dashboard.css";
+import { statuses } from "../shared/constants.js";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
-
+  const candidates = useSelector(GetStoreCandidates);
+  const candidatesTotalCount = useSelector(GetStoreCandidatesTotalCount);
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchFieldValue, setSearchFieldValue] = useState("");
   const recordsPerPage = 10;
   const [selectedStatus] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
@@ -39,46 +43,30 @@ const Dashboard = () => {
     }));
   }, [dispatch]);
 
-  const fetchCurrentPageRecords = ({
-    pageNO = 1,
-  }) => {
-    console.log({
-      pageNO,
-      searchTerm,
-      statusFilter
-    });
-  };
+  useEffect(() => {
+    const data = {
+      statuses: statusFilter.map((status) => status.value),
+      page: currentPage,
+      search: searchTerm
+    };
+    dispatch(GetCandidateDetails({
+      data,
+      onSuccess: () => { },
+      onError: () => { },
+    }));
 
-  // useEffect(() => {
-  //   /**
-  //    * seach,
-  //    * status,
-  //    * pageNO
-  //    * Call Action creator whichj internally calls API.
-  //    */
-  //   fetchCurrentPageRecords();
-
-  // }, [statusFilter, searchTerm]);
-
-  const filteredCandidates = candidates.filter((candidate) => {
-    const matchesStatusFilter = statusFilter.length === 0 || statusFilter.some((i) => i.value === candidate.status);
-    const matchesSearchTerm = candidate.candidateName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      candidate.techSkills.toLowerCase().includes(searchTerm.toLowerCase());
-    return matchesStatusFilter && matchesSearchTerm;
-  });
+  }, [currentPage, statusFilter, searchTerm, dispatch]);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
-    fetchCurrentPageRecords({
-      pageNO: pageNumber,
-    });
   };
 
   const handleSearch = (event) => {
+    setCurrentPage(1);
     setSearchTerm(event.target.value);
   };
 
-  const totalPages = Math.ceil(filteredCandidates.length / recordsPerPage);
+  const totalPages = Math.ceil(candidatesTotalCount / recordsPerPage);
 
   const role = useSelector(GetUserRole);
 
@@ -146,8 +134,9 @@ const Dashboard = () => {
                 className="search-text"
                 type="search"
                 placeholder="Search Candidate Name, Tech Skills"
-                value={searchTerm}
-                onChange={handleSearch}
+                value={searchFieldValue}
+                onChange={(e) => { setSearchFieldValue(e.target.value); }}
+                onBlur={handleSearch}
               />
               <Search />
             </div>
@@ -172,12 +161,17 @@ const Dashboard = () => {
                 ]}
                 headerActions={headerActions}
               />
-              <SubLayout
-                data={filteredCandidates}
-                currentPage={currentPage}
-                recordsPerPage={recordsPerPage}
-                filteredCandidates={filteredCandidates}
-              />
+              {candidates.length > 0 ? (
+                <SubLayout
+                  currentPage={currentPage}
+                  recordsPerPage={recordsPerPage}
+                  filteredCandidates={candidates}
+                />
+              ) : (
+                <tr>
+                  <td colSpan="6" className="no-records-found">No Records Found</td>
+                </tr>
+              )}
             </table>
             <SubFooter
               data={candidates}
@@ -186,7 +180,7 @@ const Dashboard = () => {
               totalRecords={candidates.length}
               recordsPerPage={recordsPerPage}
               onPageChange={handlePageChange}
-              filteredCandidates={filteredCandidates}
+              filteredCandidates={candidates}
               selectedStatus={selectedStatus}
             />
           </div>
