@@ -5,6 +5,7 @@ import "./App.css";
 
 const router = createBrowserRouter(ROUTES_CONFIG);
 function App() {
+
   return (
     <Layout>
       <RouterProvider router={router} />

@@ -3,8 +3,44 @@ import HTTPClient from "../httpclient";
 class APIWrapper extends HTTPClient {
   constructor(dispatch = () => {}) {
     super();
-    this.baseURL = "http://10.139.166.48:8080/InterviewInsights-0.0.1-SNAPSHOT";
+    this.baseURL = "http://10.139.166.48:8081/InterviewInsights-0.0.1-SNAPSHOT";
     this.dispatch = dispatch;
+  }
+
+  async postUserCredentials({
+    data,
+    onSuccess = () => {},
+    onError = () => {},
+  }) {
+
+    this.headers = {
+      "Content-Type": "application/json",
+    };
+
+    return this.post({
+      url: "/interview/authenticate",
+      data,
+      onSuccess,
+      onError,
+    });
+  }
+
+  async postToken({
+    data,
+    onSuccess = () => {},
+    onError = () => {},
+  }) {
+
+    this.headers = {
+      "Content-Type": "application/json",
+    };
+
+    return this.post({
+      url: "/user/getUserDetails",
+      data,
+      onSuccess,
+      onError,
+    });
   }
 
   async getTechSkills({
