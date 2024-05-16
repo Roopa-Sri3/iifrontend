@@ -30,5 +30,5 @@ frontend-deploy:
         - ssh-keyscan 10.139.166.48 >> ~/.ssh/known_hosts
         - chmod 644 ~/.ssh/known_hosts
   script:
-      - mv --recursive ./build /var/www/
+      - mv ./build /var/www/
     
