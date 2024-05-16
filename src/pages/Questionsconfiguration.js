@@ -11,6 +11,7 @@ import { PostUploadFile } from "../store/reducers/dashboard/dashboard";
 import { setAlert } from "../store/reducers/app/app";
 import { useDispatch } from "react-redux";
 import "./Questionsconfiguration.css";
+import LogoutModal from "../components/modals/logoutModal/LogoutModal";
 
 function Questionsconfiguration() {
 
@@ -110,6 +111,7 @@ function Questionsconfiguration() {
           </ol>
         </div>
       </div>
+      <LogoutModal />
     </div>
   );
 }

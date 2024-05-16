@@ -21,6 +21,7 @@ import { GetStoreCandidates, GetStoreCandidatesTotalCount } from "../store/selec
 import Search from "../components/assets/svgs/Search";
 import AddIcon from "../components/assets/svgs/AddIcon.js";
 import StatusFilter from "../components/table/statuFilter/StatuFilter.js";
+import LogoutModal from "../components/modals/logoutModal/LogoutModal.js";
 import "./Dashboard.css";
 import { statuses } from "../shared/constants.js";
 
@@ -208,6 +209,7 @@ const Dashboard = () => {
           handleAddOrEditCandidate={handleAddOrEditCandidate}
         />
         <FeedbackModal />
+        <LogoutModal />
       </div>
     </div>
   );
