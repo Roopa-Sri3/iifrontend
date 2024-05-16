@@ -1,10 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import cx from "classnames";
-<<<<<<< HEAD
-import OptionItem from "./option-item";
-=======
 import OptionsMenu from "../optionsMenu/OptionsMenu";
->>>>>>> 961e1b93b1d01f9004e248ba9efc551a4d129102
 import ChevronRight from "../../assets/svgs/ChevronRight";
 import DeSelect from "../../assets/svgs/DeSelect";
 import Search from "../../assets/svgs/Search";
@@ -108,17 +104,12 @@ const MultiSelect = ({
     <div className="drop-box" ref={dropboxRef}>
       <div className={cx(
         "drop-box-header",
-<<<<<<< HEAD
-        className,
-        disabled ? "disabled" : ""
-=======
         {
           "drop-box-header-disabled": disabled,
         },
         {
           "drop-box-header-error": error,
         }
->>>>>>> 961e1b93b1d01f9004e248ba9efc551a4d129102
       )}
       role="button"
       tabIndex="0"

@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "../button";
-import { GetFileDownload } from "../../../store/reducers/app/app";
+import { GetFileDownload } from "../../../store/reducers/dashboard/dashboard";
 import { useDispatch } from "react-redux";
 import { downloadUrl } from "../../../shared/constants";
 import "./Download.css";
@@ -12,11 +12,9 @@ const Download = () => {
     dispatch(GetFileDownload({
       onSuccess: () => {
         window.open(downloadUrl,"_blank");
-        alert("Download Successful");
       },
       onError: (e) => {
         console.error(e);
-        alert("Failed to download");
       },
     }));
   };

@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import APIWrapper from "../../../shared/services/apiWrapper/apiwrapper";
 
 const appSlice = createSlice({
   name: "app",
@@ -68,32 +67,6 @@ const appSlice = createSlice({
     },
   },
 });
-
-export const GetFileDownload = ({
-  onSuccess = () => {},
-  onError = () => {},
-}) => async(dispatch) => {
-  const apiWrapper = new APIWrapper(dispatch);
-
-  await apiWrapper.getFileDownload({
-    onSuccess,
-    onError,
-  });
-};
-
-export const PostUploadFile = ({
-  file,
-  onSuccess = () => {},
-  onError = () => {},
-}) => async(dispatch) => {
-  const apiWrapper = new APIWrapper(dispatch);
-
-  await apiWrapper.postUploadFile({
-    file,
-    onSuccess,
-    onError,
-  });
-};
 
 export const {
   setLogin,

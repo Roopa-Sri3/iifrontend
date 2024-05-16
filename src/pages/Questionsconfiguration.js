@@ -7,7 +7,8 @@ import BackarrowIcon from "../components/assets/svgs/BackarrowIcon";
 import FileIcon from "../components/assets/svgs/FileIcon";
 import DeletefileIcon from "../components/assets/svgs/DeletefileIcon";
 import {instructions} from "../shared/constants";
-import { PostUploadFile } from "../store/reducers/app/app";
+import { PostUploadFile } from "../store/reducers/dashboard/dashboard";
+import { setAlert } from "../store/reducers/app/app";
 import { useDispatch } from "react-redux";
 import "./Questionsconfiguration.css";
 
@@ -37,21 +38,15 @@ function Questionsconfiguration() {
   };
 
   const handleSubmit = () => {
-    if (selectedFile){
-      dispatch(PostUploadFile({
-        file: selectedFile,
-        onSuccess: () => {
-          alert("File uploaded successfully");
-        },
-        onError: (error) => {
-          console.error(error);
-          alert("Failed to upload file");
-        },
-      }));
-    }
-    else{
-      alert("File should be selected");
-    }
+    dispatch(PostUploadFile({
+      file: selectedFile,
+      onSuccess: () => {
+        dispatch(setAlert({ message: "File uploaded successfully", messageType: "success" }));
+      },
+      onError: () => {
+        dispatch(setAlert({ message: "File upload unsuccessful", messageType: "failure" }));
+      },
+    }));
   };
 
   return(
@@ -104,6 +99,7 @@ function Questionsconfiguration() {
             className="final-upload"
             handleClick={handleSubmit}
             label="Upload"
+            disabled = {!selectedFile}
           >
           </Button>
         </div>

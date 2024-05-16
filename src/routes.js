@@ -4,7 +4,7 @@ import ProtectLoginRoute from "./privateRoutes/protectLoginRoute";
 import ProtectedDashboardRoute from "./privateRoutes/protectDashboardRoute";
 import Questionsconfiguration from "./pages/Questionsconfiguration";
 import Unauthorized from "./pages/Unauthorized";
-import Assessmentscreen from "./pages/Assessmenscreen";
+import Assessmentscreen from "./pages/Assessmentscreen";
 
 const ROUTES_CONFIG = [
   {
