@@ -14,7 +14,7 @@ const dashboardSlice = createSlice({
   initialState: initialState,
   reducers: {
     setSkills: (state, action) => {
-      state.skillsOptions = action.payload.skills;
+      state.skillsOptions = action.payload;
     },
     setCandidates: (state, action) => {
       console.log(action.payload);
@@ -84,6 +84,32 @@ export const EditCandidate = ({
 
   await apiWrapper.editCandidate({
     data,
+    onSuccess,
+    onError,
+  });
+};
+
+export const GetFileDownload = ({
+  onSuccess = () => {},
+  onError = () => {},
+}) => async(dispatch) => {
+  const apiWrapper = new APIWrapper(dispatch);
+
+  await apiWrapper.getFileDownload({
+    onSuccess,
+    onError,
+  });
+};
+
+export const PostUploadFile = ({
+  file,
+  onSuccess = () => {},
+  onError = () => {},
+}) => async(dispatch) => {
+  const apiWrapper = new APIWrapper(dispatch);
+
+  await apiWrapper.postUploadFile({
+    file,
     onSuccess,
     onError,
   });

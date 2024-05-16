@@ -7,6 +7,42 @@ class APIWrapper extends HTTPClient {
     this.dispatch = dispatch;
   }
 
+  async postUserCredentials({
+    data,
+    onSuccess = () => {},
+    onError = () => {},
+  }) {
+
+    this.headers = {
+      "Content-Type": "application/json",
+    };
+
+    return this.post({
+      url: "/interview/authenticate",
+      data,
+      onSuccess,
+      onError,
+    });
+  }
+
+  async postToken({
+    data,
+    onSuccess = () => {},
+    onError = () => {},
+  }) {
+
+    this.headers = {
+      "Content-Type": "application/json",
+    };
+
+    return this.post({
+      url: "/user/getUserDetails",
+      data,
+      onSuccess,
+      onError,
+    });
+  }
+
   async getTechSkills({
     onSuccess = () => {},
     onError = () => {},
@@ -51,7 +87,39 @@ class APIWrapper extends HTTPClient {
   }) {
     return this.put({
       data,
-      url:"/interviewinsights/4ca936a4-f3b8-451a-9803-1a09ff415f4d",
+      url:"/interviewinsights/fb954df5-bd69-4d20-85d2-849ba6bc9501",
+      onSuccess,
+      onError,
+    });
+  }
+
+  async getFileDownload({
+    onSuccess = () => {},
+    onError = () => {},
+  }) {
+    return this.get({
+      url: "/interviewinsights/downloadTemplate",
+      onSuccess,
+      onError,
+    });
+  }
+
+  async postUploadFile({
+    file,
+    onSuccess = () => {},
+    onError = () => {},
+  }) {
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("createdBy", "Srinu");
+    formData.append("modifiedBy", "Sidhu");
+    this.headers = {
+      "Content-Type" : "multipart/form-data",
+    };
+
+    return this.post({
+      url: "/interviewinsights/uploadExcelFile",
+      data: formData,
       onSuccess,
       onError,
     });

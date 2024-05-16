@@ -1,24 +1,17 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { openModal } from "../store/reducers/app/app";
+import { GetStoreSkills } from "../store/selector/dashboard/dashboard";
 import EditComponent from "../assets/svgs/editImage";
 import ShareComponent from "../assets/svgs/shareImage";
 import VisibilityComponent from "../assets/svgs/visibilityImage";
 import DownloadIcon from "../assets/svgs/downloadIcon";
 import "./CandidateRow.css";
 
-const options = [
-  {label:"Java", value:1},
-  {label:"Python", value:2},
-  {label:"C", value:3},
-  {label:"C++", value:4},
-  {label:"PHP", value:5},
-  {label:"CSS", value:6}
-];
-
 const CandidateRow = ({ candidate }) => {
   const dispatch = useDispatch();
-  // const isPdfReport = candidate.fileUrl.endsWith(".pdf");
+  const options = useSelector(GetStoreSkills);
+  // const isPdfReport = candidate.report.endsWith(".pdf");
   const handleOpenModal = () => {
     dispatch(openModal(
       {
@@ -30,18 +23,22 @@ const CandidateRow = ({ candidate }) => {
   };
   const handleEditClick = () => {
     const rowCandidateData = {
-      ...candidate,
-      fullName: "abinash",
-      email: "191fa04101@gmail.com",
-      mobileNumber:"6309574567",
-      yearsOfExperience: 1,
-      primaryTechSkill: 2,
-      secondaryTechSkills: [1, 4, 6],
-      rRNumber: "",
-      status: "completed",
-      fileUrl: "c::/file",
-      rating: 1,
-      comments: "dfgf"
+      "candidateId": "CAND12359",
+      "fullName": "Benjamin Clark",
+      "status": "completed",
+      "fileUrl": "\nhttp://example.com/reports/benjaminclark.pdf"
+      ,
+      "rating": 5,
+      "comments": "Pioneering research in biotech",
+      "email": "benjaminclark@gmail.com",
+      "yearsOfExperience": 4,
+      "mobileNo": "6309574567",
+      "rrNo": "RR1015",
+      "primaryTechSkills": "html",
+      "secondaryTechSkills": [
+        "C++",
+        ".net"
+      ]
     };
 
     dispatch(openModal(
@@ -50,9 +47,10 @@ const CandidateRow = ({ candidate }) => {
         modalData: {
           mode:"EDIT",
           ...rowCandidateData,
-          selectedPrimarySkills: [options.find((option) => option.value === rowCandidateData.primaryTechSkill)],
+          mobileNumber:rowCandidateData.mobileNo,
+          selectedPrimarySkills: [options.find((option) => option.label === rowCandidateData.primaryTechSkills)],
           selectedSecondarySkills: options.filter(
-            (option) => rowCandidateData.secondaryTechSkills.length === 0 ? [] : rowCandidateData.secondaryTechSkills.includes(option.value)
+            (option) => rowCandidateData.secondaryTechSkills.length === 0 ? [] : rowCandidateData.secondaryTechSkills.includes(option.label)
           )
         }
       }));

@@ -8,12 +8,14 @@ import AddCandidateModalHeader from "./AddCandidateModalHeader";
 import AddCandidateModalActions from "./AddCandidateModalActions";
 import {closeModal} from "../../../store/reducers/app/app";
 import { IsModalOpen, GetModalData } from "../../../store/selector/app/app";
+import { GetStoreSkills } from "../../../store/selector/dashboard/dashboard";
 import "./AddCandidateModal.css";
 
 const AddCandidateModal = ({
   handleAddOrEditCandidate = () => {}
 }) => {
   const dispatch = useDispatch();
+  const options = useSelector(GetStoreSkills);
 
   const IsAddCandidateModalOpen = useSelector(
     (state) => IsModalOpen(state, "AddCandidateModal"),
@@ -48,15 +50,6 @@ const AddCandidateModal = ({
     setSelectedSecondarySkills(selectedValues);
   };
 
-  const options = [
-    {label:"Java", value:1},
-    {label:"Python", value:2},
-    {label:"C", value:3},
-    {label:"C++", value:4},
-    {label:"PHP", value:5},
-    {label:"CSS", value:6}
-  ];
-
   useEffect(() => {
     if (storeModalData && storeModalData.mode === "EDIT") {
       const candidateData = {...storeModalData};
@@ -82,7 +75,7 @@ const AddCandidateModal = ({
 
   const validateForm = () => {
     let isValid = true;
-    if (!fullName) {
+    if (!fullName || !(fullName.length > 3)) {
       setFullNameError("Please enter full name");
       isValid = false;
     }
@@ -90,7 +83,7 @@ const AddCandidateModal = ({
       setMobileNumberError("Enter valid number");
       isValid = false;
     }
-    if (!email || !/^\S+@gmail.com/.test(email)) {
+    if (!email || !/^[a-zA-Z0-9.-]+@gmail\.com$/.test(email)) {
       setEmailError("Please enter email");
       isValid = false;
     }
@@ -186,7 +179,6 @@ const AddCandidateModal = ({
                   onChange={(e) => {setFullName(e.target.value);
                     setFullNameError("");}}
                   autoComplete="off"
-                  minLength="4"
                 />
                 {fullNameError &&
                 <p className="validation-error">{fullNameError}</p>}
