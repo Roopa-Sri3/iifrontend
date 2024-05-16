@@ -4,8 +4,6 @@ stages:
 
 frontend_build:
     stage: build
-    only:
-        - $CI_MERGE_REQUEST_TARGET_BRANCH_NAME
     tags:
         - capstone
         - linux
