@@ -1,7 +1,9 @@
 
 import React, { /*useState*/ }from "react";
 import { useSelector,} from "react-redux";
-import { IsUserLoggedIn,/* GetUserName, GetUserRole*/ }  from "../../store/selector/app";
+import {
+  GetExamStatus,
+  IsUserLoggedIn,/* GetUserName, GetUserRole*/ }  from "../../store/selector/app";
 
 import Innovalogo from "../../dashboard-header-components/Logo";
 import Title from "../../dashboard-header-components/Title";
@@ -11,9 +13,14 @@ import Expand from "../../components/core/assets/svgs/Expand";
 
 import companylogo from "../../Images/company-symbol.png";
 import "./Header.css";
+import Timer from "../../components/timer/Timer";
 
 const Header = () => {
   const isLoggedIn = useSelector(IsUserLoggedIn);
+
+  const examStarted = useSelector(GetExamStatus);
+  console.log("examStarted : ",examStarted);
+
   // const userName = useSelector(GetUserName);
   // const userRole = useSelector(GetUserRole);
   // const [isOpen, setIsOpen] = useState(false);
@@ -25,9 +32,12 @@ const Header = () => {
   return (
     <div className="header">
       <Innovalogo src={companylogo} alt="companylogo" className='innova-logo' />
+
+      {!(window.location.pathname === "/") &&
+        <Title text="Interview Insights" className="interview-insights-title" />
+      }
       {isLoggedIn && (
         <div className='logged-in-app-header'>
-          <Title text="Interview Insights" className="interview-insights-title" />
           <div className="round">
             <RoundButton />
             <Expand className="expand-icon"/>
@@ -44,6 +54,11 @@ const Header = () => {
           </div>
         </div>
       )}
+      {examStarted &&
+        <div className='header-timer'>
+          <Timer />
+        </div>
+      }
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "../core/button";
-import "./Question.css";
 import RadioGroup from "../core/radioGroup/RadioGroup";
+import "./Question.css";
 
 const Question = ({
   questionNumber,

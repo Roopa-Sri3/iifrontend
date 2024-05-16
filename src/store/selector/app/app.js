@@ -27,3 +27,9 @@ export const GetProfileShortcutName = (state) => {
   }
   return "UU"; // TODO: IF NO NAME??
 };
+
+export const GetDuration = (state) => state.app.assessment.duration;
+
+export const GetExamStatus = (state) => state.app.assessment.isRunning;
+
+export const GetIsTimeUp = (state) => state.app.assessment.isTimeUp;
