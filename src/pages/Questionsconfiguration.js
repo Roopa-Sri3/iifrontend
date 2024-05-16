@@ -27,6 +27,7 @@ function Questionsconfiguration() {
     const files = event.target.files;
     if (files.length > 0) {
       setSelectedFile(files[0]);
+      console.log(selectedFile);
     }
     else{
       setSelectedFile(null);
