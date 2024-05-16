@@ -43,6 +43,19 @@ const Dashboard = () => {
     }));
   }, [dispatch]);
 
+  const fetchCandidates = () => {
+    const data = {
+      statuses: statusFilter.map((status) => status.value),
+      page: currentPage,
+      search: searchTerm
+    };
+    dispatch(GetCandidateDetails({
+      data,
+      onSuccess: () => { },
+      onError: () => { },
+    }));
+  };
+
   useEffect(() => {
     const data = {
       statuses: statusFilter.map((status) => status.value),
@@ -54,7 +67,6 @@ const Dashboard = () => {
       onSuccess: () => { },
       onError: () => { },
     }));
-
   }, [currentPage, statusFilter, searchTerm, dispatch]);
 
   const handlePageChange = (pageNumber) => {
@@ -84,13 +96,18 @@ const Dashboard = () => {
     if (mode === "EDIT") {
       dispatch(EditCandidate({
         data: { ...formData },
-        onSuccess: () => { },
+        onSuccess: () => {
+          fetchCandidates();
+        },
         onError: () => { }
       }));
     } else {
       dispatch(AddCandidate({
         data: { ...formData },
-        onSuccess: () => { },
+        onSuccess: () => {
+          // Need to refresh the data in table
+          fetchCandidates();
+        },
         onError: () => { }
       }));
     }
@@ -125,72 +142,75 @@ const Dashboard = () => {
   return (
     <div className="dashboard">
       <UserDisplay />
-      {role === "HR" &&
-        <div>
-          <div className="dashboard-filters-and-actions">
-            <div className="candidate-insights">Candidate Insights</div>
-            <div className="search-field">
-              <input
-                className="search-text"
-                type="search"
-                placeholder="Search Candidate Name, Tech Skills"
-                value={searchFieldValue}
-                onChange={(e) => { setSearchFieldValue(e.target.value); }}
-                onBlur={handleSearch}
-              />
-              <Search />
-            </div>
-            {role === "HR" &&
+      <div>
+        <div className="dashboard-filters-and-actions">
+          <div className="candidate-insights">Candidate Insights</div>
+          <div className="search-field">
+            <input
+              className="search-text"
+              type="search"
+              placeholder="Search Candidate Name, Tech Skills"
+              value={searchFieldValue}
+              onChange={(e) => { setSearchFieldValue(e.target.value); }}
+              onBlur={handleSearch}
+            />
+            <Search />
+          </div>
+          {role === "ADMIN" &&
+            <div></div>
+          }
+          {role === "HR" &&
               <Button
                 label="Add Candidate"
                 handleClick={handleAddCandidate}
                 children={<AddIcon />}
               />
-            }
-          </div>
-          <div className="card">
-            <table>
-              <SubHeader
-                columns={[
-                  "Candidate Name",
-                  "Tech Skills",
-                  "Status",
-                  "View/Dashboard Report",
-                  "Feedback",
-                  "Actions",
-                ]}
-                headerActions={headerActions}
+          }
+        </div>
+        <div className="card">
+          <table>
+            <SubHeader
+              columns={[
+                "Candidate Name",
+                "Tech Skills",
+                "Status",
+                "View/Dashboard Report",
+                "Feedback",
+                "Actions",
+              ]}
+              headerActions={headerActions}
+            />
+            {candidates.length > 0 ? (
+              <SubLayout
+                currentPage={currentPage}
+                recordsPerPage={recordsPerPage}
+                filteredCandidates={candidates}
               />
-              {candidates.length > 0 ? (
-                <SubLayout
-                  currentPage={currentPage}
-                  recordsPerPage={recordsPerPage}
-                  filteredCandidates={candidates}
-                />
-              ) : (
+            ) : (
+              <tbody>
                 <tr>
                   <td colSpan="6" className="no-records-found">No Records Found</td>
                 </tr>
-              )}
-            </table>
-            <SubFooter
-              data={candidates}
-              currentPage={currentPage}
-              totalPages={totalPages}
-              totalRecords={candidates.length}
-              recordsPerPage={recordsPerPage}
-              onPageChange={handlePageChange}
-              filteredCandidates={candidates}
-              selectedStatus={selectedStatus}
-            />
-          </div>
-          <AddCandidateModal
-            handleAddOrEditCandidate={handleAddOrEditCandidate}
+              </tbody>
+            )}
+          </table>
+          <SubFooter
+            data={candidates}
+            currentPage={currentPage}
+            totalPages={totalPages}
+            totalRecords={candidates.length}
+            recordsPerPage={recordsPerPage}
+            onPageChange={handlePageChange}
+            filteredCandidates={candidates}
+            selectedStatus={selectedStatus}
           />
-          <FeedbackModal />
         </div>
-      }
-      <LogoutModal />
+        <AddCandidateModal
+          handleAddOrEditCandidate={handleAddOrEditCandidate}
+        />
+        <FeedbackModal />
+        <LogoutModal />
+      </div>
     </div>
   );
 };
