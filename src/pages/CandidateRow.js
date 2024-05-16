@@ -21,25 +21,7 @@ const CandidateRow = ({ candidate }) => {
         }
       }));
   };
-  const handleEditClick = () => {
-    const rowCandidateData = {
-      "candidateId": "CAND12359",
-      "fullName": "Benjamin Clark",
-      "status": "completed",
-      "fileUrl": "\nhttp://example.com/reports/benjaminclark.pdf"
-      ,
-      "rating": 5,
-      "comments": "Pioneering research in biotech",
-      "email": "benjaminclark@gmail.com",
-      "yearsOfExperience": 4,
-      "mobileNo": "6309574567",
-      "rrNo": "RR1015",
-      "primaryTechSkills": "html",
-      "secondaryTechSkills": [
-        "C++",
-        ".net"
-      ]
-    };
+  const handleEditClick = (rowCandidateData) => {
 
     dispatch(openModal(
       {
@@ -48,9 +30,9 @@ const CandidateRow = ({ candidate }) => {
           mode:"EDIT",
           ...rowCandidateData,
           mobileNumber:rowCandidateData.mobileNo,
-          selectedPrimarySkills: [options.find((option) => option.label === rowCandidateData.primaryTechSkills)],
+          selectedPrimarySkills: [options.find((option) => option.label === rowCandidateData.primaryTechSkills)], // TODO : Need to chaneg after API Update
           selectedSecondarySkills: options.filter(
-            (option) => rowCandidateData.secondaryTechSkills.length === 0 ? [] : rowCandidateData.secondaryTechSkills.includes(option.label)
+            (option) => rowCandidateData.secondaryTechSkills.length === 0 ? [] : rowCandidateData.secondaryTechSkills.includes(option.label) // TODO : Need to chaneg after API Update
           )
         }
       }));
@@ -73,7 +55,7 @@ const CandidateRow = ({ candidate }) => {
       <td>
         <div className="cd-report">
           <div className="report-text">
-            {candidate.fileUrl}
+            {candidate.status === "Completed" ? candidate.fileUrl : "No Report"}
           </div>
           <DownloadIcon
             style={{ cursor: candidate.fileUrl !== "null" ? "pointer" : "not-allowed" }}
@@ -103,10 +85,10 @@ const CandidateRow = ({ candidate }) => {
           className="edit-icon"
           role="button"
           tabIndex="0"
-          onClick = {handleEditClick}
+          onClick = {() => handleEditClick(candidate)}
           onKeyDown={(event) => {
             if(event.key === "Enter" || event.key === " "){
-              handleEditClick();
+              handleEditClick(candidate);
             }
           }}
         >
