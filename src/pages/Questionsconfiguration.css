@@ -159,3 +159,7 @@
     list-style-type: lower-roman;
 }
 
+.delete-button{
+    cursor : pointer;
+}
+

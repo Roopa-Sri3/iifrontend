@@ -27,7 +27,9 @@ function Questionsconfiguration() {
     console.log(files);
     if (files.length > 0) {
       setSelectedFile(files[0]);
-    } else {
+      console.log(selectedFile);
+    }
+    else{
       setSelectedFile(null);
     }
   };
@@ -35,6 +37,7 @@ function Questionsconfiguration() {
   const handleDeleteFile = () => {
     console.log("Deleted", selectedFile);
     setSelectedFile(null);
+    document.getElementById("file-input").value = null;
   };
 
   const handleSubmit = () => {
