@@ -43,18 +43,6 @@ const UserDisplay = () => {
           </div>
         )}
       </div>
-      <div className='user-details-line2 roleName'>
-        {/* <div className='first-row'>Candidate</div> */}
-        {/* {(userRole === "HR") && (
-          <div className='second-row'>Till Date: 113</div>
-        )} */}
-      </div>
-      {/* {(userRole === "ADMIN") && (
-        <button className='config-question' onClick={handleNavigate}>
-            Import Questions
-        </button>
-      )} */}
-
     </div>
 
   );

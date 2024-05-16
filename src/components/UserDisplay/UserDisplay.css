@@ -5,7 +5,7 @@
     background: linear-gradient(90deg, #326D62 0%, #0E5291 51.6%, #0E034F 100%);
     color: white;
     padding: 5px 10px;
-    border-radius: 5px;
+    border-radius: 5px; 
     height: 70px;
 }
 
@@ -21,6 +21,12 @@
     padding:10px;
     display: flex;
     justify-content: flex-end;
+}
+.dashboard-user-details{
+   padding:15px;
+}
+.candidates-count{
+   padding:15px;
 }
 
 * {
@@ -51,4 +57,7 @@
 
 .second-row {
   text-align: left;
+}
+.candidates-count{
+  align-self: flex-end;
 }
