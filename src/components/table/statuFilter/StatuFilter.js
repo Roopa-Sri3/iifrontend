@@ -1,26 +1,32 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import OptionsMenu from "../../core/optionsMenu/OptionsMenu";
+import useOutsideClickHandler from "../../core/useOutsideClickHandler/useOutsideClickHandler";
 import FilterComponent from "../../../assets/svgs/filterImage";
 import "./StatuFilter.css";
-import useOutsideClickHandler from "../../core/useOutsideClickHandler/useOutsideClickHandler";
 
 function StatuFilter({
-  showFilter, // Not from prop
   statuses,
   statusFilter,
   handleCheckboxChange,
-  handleFilterComponentClick, // Not from prop
 }) {
   const statusFilterRef = useRef(null);
-  // Move the state to here.
+  const [showFilter, setShowFilter] = useState(false);
+
+  const handleFilterComponentClick = () => {
+    setShowFilter(!showFilter);
+  };
+
+  const handleOutsideClick = () => {
+    setShowFilter(false);
+  };
 
   useOutsideClickHandler({
     ref: statusFilterRef,
-    outsideClickHandler: handleFilterComponentClick, // Set the state to false.
+    outsideClickHandler: handleOutsideClick,
   });
 
   return (
-    <div className="statsu-filter" ref={statusFilterRef}>
+    <div className="status-filter" ref={statusFilterRef}>
       <FilterComponent
         className='filter'
         onClick={handleFilterComponentClick}

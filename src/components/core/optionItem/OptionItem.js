@@ -1,6 +1,6 @@
 import React from "react";
 import cx from "classnames";
-import "./option-item.css";
+import "./OptionItem.css";
 
 const OptionItem = ({
   id,
@@ -25,7 +25,7 @@ const OptionItem = ({
     />
     <label
       htmlFor={id}
-      className={cx("option-item-field-label", disabled ? "disabled" : "" )}
+      className={cx("option-item-field-label", disabled ? "disabled" : " ")}
     >
       {label}
     </label>

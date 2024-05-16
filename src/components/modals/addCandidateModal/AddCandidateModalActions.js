@@ -41,7 +41,7 @@ const AddCandidateModalActions = ({
 
   return (
     <div>
-      <center className='add-button'>
+      <center className="add-button">
         <Button
           label={buttonLabel}
           handleClick={handleAddCandidate}
