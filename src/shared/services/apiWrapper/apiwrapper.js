@@ -7,6 +7,42 @@ class APIWrapper extends HTTPClient {
     this.dispatch = dispatch;
   }
 
+  async postUserCredentials({
+    data,
+    onSuccess = () => {},
+    onError = () => {},
+  }) {
+
+    this.headers = {
+      "Content-Type": "application/json",
+    };
+
+    return this.post({
+      url: "/interview/authenticate",
+      data,
+      onSuccess,
+      onError,
+    });
+  }
+
+  async postToken({
+    data,
+    onSuccess = () => {},
+    onError = () => {},
+  }) {
+
+    this.headers = {
+      "Content-Type": "application/json",
+    };
+
+    return this.post({
+      url: "/user/getUserDetails",
+      data,
+      onSuccess,
+      onError,
+    });
+  }
+
   async getTechSkills({
     onSuccess = () => {},
     onError = () => {},
