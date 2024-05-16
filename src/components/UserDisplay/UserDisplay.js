@@ -1,39 +1,59 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { GetUserRole } from "../../store/selector/app";
-import { GetProfileName } from "../../store/selector/app";
+import Button from "../core/button";
+import { GetProfileName, GetUserDesignation, GetUserRole } from "../../store/selector/app";
+import DownloadIcon from "../../assets/svgs/downloadIcon";
 import "./UserDisplay.css";
 
 const UserDisplay = () => {
   const profileName = useSelector(GetProfileName);
   const userRole = useSelector(GetUserRole);
+  const designation = useSelector(GetUserDesignation);
 
   const navigate = useNavigate();
 
   const handleNavigate = () => {
-    navigate("/admin/questions_configure");
+    navigate("/admin/questions-configure");
   };
 
-  return (
-    <div className='user-display'>
-      <div className='user-details-line1 profileName'>
-        <div className='first-row'>{profileName}</div>
+  return(
+    <div className="user-display">
+      <div className="dashboard-user-details">
+        <div>{profileName}</div>
+        <div>{designation}</div>
+      </div>
+      <div>
+        {(userRole === "ADMIN") && (
+          <Button
+            className="import-questions-button"
+            handleClick={handleNavigate}
+            label="Import Questions"
+          >
+            <DownloadIcon
+              fillColor="white"
+            />
+          </Button>
+        )}
         {(userRole === "HR") && (
-          <div className='second-row'>Candidates</div>
+          <div className="candidates-count">
+            <div>Candidates</div>
+
+            <div>Till Date : 113</div>
+          </div>
         )}
       </div>
       <div className='user-details-line2 roleName'>
-        <div className='first-row'>{userRole}</div>
-        {(userRole === "HR") && (
+        {/* <div className='first-row'>Candidate</div> */}
+        {/* {(userRole === "HR") && (
           <div className='second-row'>Till Date: 113</div>
-        )}
+        )} */}
       </div>
-      {(userRole === "ADMIN") && (
+      {/* {(userRole === "ADMIN") && (
         <button className='config-question' onClick={handleNavigate}>
             Import Questions
         </button>
-      )}
+      )} */}
 
     </div>
 

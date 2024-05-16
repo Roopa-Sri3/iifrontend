@@ -2,7 +2,7 @@ export const IsUserLoggedIn = (state) => state.app.isUserLoggedIn;
 
 export const GetUserName = (state) => state.app.userName;
 
-export const GetProfileName = (state) => state.app.profileName;
+export const GetProfileName = (state) => state.app.firstName + state.app.lastName;
 
 export const IsModalOpen = (state, name) => state.app.modal.modalName === name;
 
@@ -16,16 +16,11 @@ export const GetTimeoutId = (state) => state.app.timeoutId;
 
 export const GetUserRole = (state) => state.app.role;
 
-export const GetProfileShortcutName = (state) => {
-  const profileName = state.app.profileName;
-  if (profileName) {
-    const names = profileName.split(" ");
+export const GetUserDesignation = (state) => state.app.designation;
 
-    if (names.length >= 2) {
-      return names[0][0] + names[1][0];
-    }
-    return "NO_PROFILE_NAME";
-  }
-  return "NO_PROFILE_NAME";
+export const GetProfileShortcutName = (state) => {
+  const firstName = state.app.firstName || "";
+  const lastName = state.app.lastName || "";
+  return firstName[0].toUpperCase() + lastName[0].toUpperCase() || "UU"; // TODO: IF NO NAME??
 };
 

@@ -22,7 +22,16 @@
   display: flex;
   align-items: center;
   border: none;
-  }
+}
+
+.user-profile {
+  width: 56.76px;
+  height: 41.76px;
+  top: 9.12px;
+  left: 1294.03px;
+  padding: 6px 0px 0px 0px;
+  gap: 5px;
+}
 
 .interview-insights-title {
   display: flex;
@@ -52,8 +61,7 @@
   width: 230px;
   height: 115px;
   border-radius: 4px 0px 0px 0px;
- }
-
+}
 .user-name {
   align-self: flex-start; 
 }

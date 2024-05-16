@@ -1,4 +1,16 @@
-.config-question{
+.user-display{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(90deg, #326D62 0%, #0E5291 51.6%, #0E034F 100%);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    height: 70px;
+}
+
+
+.import-questions-button{
     background-color: #4595ff;
     border: none;
     text-align: center;
@@ -7,23 +19,12 @@
     border-radius: 5px;
     color:white;
     padding:10px;
+    display: flex;
+    justify-content: flex-end;
 }
 
 * {
   box-sizing: border-box;
-}
-
-.user-display {
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  justify-content: space-between;
-  background: linear-gradient(90deg, #326d62 0%, #0e5291 51.6%, #0e034f 100%);
-  color: white;
-  margin: 3px;
-  border-radius: 8px;
-  z-index: -1;
-  padding: 18px 25px;
 }
 
 .user-details-line1 {

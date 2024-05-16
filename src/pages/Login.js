@@ -8,10 +8,12 @@ import background from "../assets/Images/BlueBackground.png";
 import image from "../assets/Images/Group.png";
 import imagetext from "../assets/Images/Login-Text.png";
 import Button from "../components/core/button/button";
-// eslint-disable-next-line max-len
-import {LOGIN_MOCKUP_DATA, emailPattern, passwordPattern} from "../shared/constants";
-// eslint-disable-next-line max-len
-import { setUserDetails } from "../store/reducers/app/app";
+import {emailPattern, passwordPattern} from "../shared/constants";
+import {
+  PostToken,
+  PostUserCredentials,
+  setUserDetails,
+} from "../store/reducers/app/app";
 
 function Login() {
   const dispatch = useDispatch();
@@ -20,6 +22,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [error, setError] = useState("");
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -31,19 +34,38 @@ function Login() {
     setPasswordError(false);
   };
 
-  const verifyCredentials = (userName, password) => {
+  const verifyCredentials = (username, password) => {
     // Verify if any of the credentials matches
     // then find that object and set the store with the respective values.
-    const user = LOGIN_MOCKUP_DATA.find(user => user.username === email
-      && user.password === password);
-    if (user) {
-      dispatch(setUserDetails({
-        userName: user.username,
-        profileName: user.profileName,
-        role: user.role,
-      }));
-      return true;
-    }
+    dispatch(
+      PostUserCredentials({
+        data: {
+          username,
+          password,
+        },
+        onSuccess: (response) => {
+          const token = response.token;
+          dispatch(PostToken({
+            data: {
+              token,
+            },
+            onSuccess: (userDetails) => {
+              const responseDetails = userDetails && userDetails.response;
+              if (responseDetails) {
+                dispatch(setUserDetails({
+                  ...responseDetails
+                }));
+                navigate("/dashboard");
+              }
+            },
+            onError: () => {}
+          }));
+        },
+        onError: (e) => {
+          setError("Invalid Username or Password");
+        }
+      })
+    );
   };
 
   const handleSubmit = (e) => {
@@ -53,22 +75,21 @@ function Login() {
     const emailCheck = emailPattern.test(email);
     const passwordCheck = passwordPattern.test(password);
 
+    if(email === "" && password === ""){
+      setEmailError("Please enter valid email address");
+      setPasswordError("Please enter valid password");
+    }
     if (email.trim() === "" || !emailCheck) {
-      setEmailError("Please enter valid email address.");
+      setEmailError("Please enter valid email address");
     }
     else {
       setEmailError("");
       if (password.trim() === "" || !passwordCheck) {
-        setPasswordError("Please enter valid password.");
+        setPasswordError("Please enter valid password");
       }
       else {
         setPasswordError("");
-        if(verifyCredentials(email, password)){
-          navigate("/dashboard");
-        }
-        else {
-          alert("Invalid Username or Password");
-        }
+        verifyCredentials(email, password);
       }
     }
   };
@@ -126,6 +147,7 @@ function Login() {
             id="submit"
             className='basic-button'
           />
+          {error && <p className="error-message">{error}</p>}
         </form>
       </div>
     </div>
