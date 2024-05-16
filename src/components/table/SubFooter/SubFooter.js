@@ -26,7 +26,6 @@ const SubFooter = ({
     pageNumbers.push(i);
   }
 
-  filteredCandidates.filter(candidate => candidate.status === selectedStatus);
   const indexOfFirstRecord = Math.max(1, ((currentPage - 1) * recordsPerPage) + 1);
   let indexOfLastRecord = Math.min((currentPage * recordsPerPage), totalCandidates);
 

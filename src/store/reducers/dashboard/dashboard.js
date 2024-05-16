@@ -17,7 +17,6 @@ const dashboardSlice = createSlice({
       state.skillsOptions = action.payload;
     },
     setCandidates: (state, action) => {
-      console.log(action.payload);
       state.dashBoardCandidates = action.payload;
     },
   }
@@ -56,7 +55,6 @@ export const GetCandidateDetails = ({
     onSuccess,
     onError,
   });
-  console.log(candidatesResponse.data);
 
   dispatch(setCandidates(candidatesResponse.data));
 };

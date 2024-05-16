@@ -24,7 +24,6 @@ function Questionsconfiguration() {
 
   const handleFiles = (event) => {
     const files = event.target.files;
-    console.log(files);
     if (files.length > 0) {
       setSelectedFile(files[0]);
     } else {
@@ -33,7 +32,6 @@ function Questionsconfiguration() {
   };
 
   const handleDeleteFile = () => {
-    console.log("Deleted", selectedFile);
     setSelectedFile(null);
   };
 
