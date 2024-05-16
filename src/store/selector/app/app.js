@@ -17,7 +17,7 @@ export const GetTimeoutId = (state) => state.app.timeoutId;
 export const GetUserRole = (state) => state.app.role;
 
 export const GetProfileShortcutName = (state) => {
-  const profileName = state.app.profileName;
+   const profileName = state.app.profileName;
   if (profileName) {
     const names = profileName.split(" ");
 
@@ -27,5 +27,5 @@ export const GetProfileShortcutName = (state) => {
     return "NO_PROFILE_NAME";
   }
   return "NO_PROFILE_NAME";
-};
+ };
 

@@ -8,10 +8,12 @@ import background from "../assets/Images/BlueBackground.png";
 import image from "../assets/Images/Group.png";
 import imagetext from "../assets/Images/Login-Text.png";
 import Button from "../components/core/button/button";
-// eslint-disable-next-line max-len
-import {LOGIN_MOCKUP_DATA, emailPattern, passwordPattern} from "../shared/constants";
-// eslint-disable-next-line max-len
-import { setUserDetails } from "../store/reducers/app/app";
+import {emailPattern, passwordPattern} from "../shared/constants";
+import {
+  PostToken,
+  PostUserCredentials,
+  setUserDetails,
+} from "../store/reducers/app/app";
 
 function Login() {
   const dispatch = useDispatch();
@@ -31,19 +33,42 @@ function Login() {
     setPasswordError(false);
   };
 
-  const verifyCredentials = (userName, password) => {
+  const verifyCredentials = (username, password) => {
     // Verify if any of the credentials matches
     // then find that object and set the store with the respective values.
-    const user = LOGIN_MOCKUP_DATA.find(user => user.username === email
-      && user.password === password);
-    if (user) {
-      dispatch(setUserDetails({
-        userName: user.username,
-        profileName: user.profileName,
-        role: user.role,
-      }));
-      return true;
-    }
+    // const user = LOGIN_MOCKUP_DATA.find(user => user.username === email
+    //   && user.password === password);
+    dispatch(
+      PostUserCredentials({
+        data: {
+          username,
+          password,
+        },
+        onSuccess: (response) => {
+          console.log("Success");
+          console.log(response);
+          const token = response.token;
+          dispatch(PostToken({
+            data: {
+              token,
+            },
+            onSuccess: (userDetails) => {
+              const resposeDetails = userDetails && userDetails.response;
+              if (resposeDetails) {
+                dispatch(setUserDetails({
+                  ...resposeDetails
+                }));
+                navigate("/dashboard");
+              }
+            },
+            onError: () => {}
+          }));
+        },
+        onError: (e) => {
+          console.error(e);
+        }
+      })
+    );
   };
 
   const handleSubmit = (e) => {
@@ -63,12 +88,7 @@ function Login() {
       }
       else {
         setPasswordError("");
-        if(verifyCredentials(email, password)){
-          navigate("/dashboard");
-        }
-        else {
-          alert("Invalid Username or Password");
-        }
+        verifyCredentials(email, password);
       }
     }
   };
