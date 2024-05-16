@@ -1,3 +1,6 @@
+workflow:
+  rules:
+    - if: $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "develop"
 stages:
     - build
     - deploy
