@@ -1,4 +1,6 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { GetStoreCandidatesTotalCount } from "../../../store/selector/dashboard/dashboard";
 import "./SubFooter.css";
 
 const SubFooter = ({
@@ -10,6 +12,7 @@ const SubFooter = ({
   selectedStatus,
 }) => {
   const pageNumbers = [];
+  const totalCandidates = useSelector(GetStoreCandidatesTotalCount);
 
   let startPage = 1;
   let endPage = totalPages;
@@ -24,47 +27,53 @@ const SubFooter = ({
   }
 
   filteredCandidates.filter(candidate => candidate.status === selectedStatus);
-  const totalFilteredRecords = filteredCandidates.length;
-  const indexOfFirstRecord =
-    Math.max(1, ((currentPage - 1) * recordsPerPage) + 1);
-  const indexOfLastRecord =
-    Math.min((currentPage * recordsPerPage), totalFilteredRecords);
+  const indexOfFirstRecord = Math.max(1, ((currentPage - 1) * recordsPerPage) + 1);
+  let indexOfLastRecord = Math.min((currentPage * recordsPerPage), totalCandidates);
+
+  if (currentPage === totalPages && totalCandidates % recordsPerPage !== 0) {
+    indexOfLastRecord = totalCandidates;
+  }
 
   return (
     <div className="pagination-root">
-      <button
-        className="page-number-btn"
-        onClick={() => onPageChange(1)}
-        disabled={currentPage === 1}>{"<<"}</button>
-      <button className="page-number-btn"
-        onClick={() => onPageChange(currentPage - 1)}
-        disabled={currentPage === 1}>{"<"}</button>
-      {pageNumbers.map(number => (
-        <button
-          key={number}
-          onClick={() => onPageChange(number)}
-          className={`page-number-btn page-button ${
-            currentPage === number ? "active" : ""}`}
-        >
-          {number}
-        </button>
-      ))}
-      {pageNumbers[pageNumbers.length - 1] < totalPages && (
-        <button
-          className="page-number-btn"
-          onClick={() => onPageChange(currentPage + 1)}
-          disabled={currentPage === totalPages}>{">"}
-        </button>
+      {totalCandidates > 0 && (
+        <>
+          <button
+            className="page-number-btn"
+            onClick={() => onPageChange(1)}
+            disabled={currentPage === 1}>{"<<"}</button>
+          <button
+            className="page-number-btn"
+            onClick={() => onPageChange(currentPage - 1)}
+            disabled={currentPage === 1}>{"<"}</button>
+          {pageNumbers.map(number => (
+            <button
+              key={number}
+              onClick={() => onPageChange(number)}
+              className={`page-number-btn page-button ${
+                currentPage === number ? "active" : ""}`}
+            >
+              {number}
+            </button>
+          ))}
+          {pageNumbers[pageNumbers.length - 1] < totalPages && (
+            <button
+              className="page-number-btn"
+              onClick={() => onPageChange(currentPage + 1)}
+              disabled={currentPage === totalPages}>{">"}
+            </button>
+          )}
+          {pageNumbers[pageNumbers.length - 1] < totalPages && (
+            <button
+              className="page-number-btn"
+              onClick={() => onPageChange(totalPages)}
+              disabled={currentPage === totalPages}>{">>"}</button>
+          )}
+          <div className="current-page-entries">
+            Showing {indexOfFirstRecord} to {indexOfLastRecord} of {totalCandidates} entries
+          </div>
+        </>
       )}
-      {pageNumbers[pageNumbers.length - 1] < totalPages && (
-        <button className="page-number-btn"
-          onClick={() => onPageChange(totalPages)}
-          disabled={currentPage === totalPages}>{">>"}</button>
-      )}
-      <div className="current-page-entries">
-          Showing {indexOfFirstRecord} to {indexOfLastRecord} of{" "}
-        {totalFilteredRecords} entries
-      </div>
     </div>
   );
 };

@@ -3,6 +3,10 @@ import APIWrapper from "../../../shared/services/apiWrapper/apiwrapper";
 
 const initialState = {
   skillsOptions:[],
+  dashBoardCandidates: {
+    candidateDetails: [],
+    totalCount: 0,
+  },
 };
 
 const dashboardSlice = createSlice({
@@ -12,11 +16,16 @@ const dashboardSlice = createSlice({
     setSkills: (state, action) => {
       state.skillsOptions = action.payload.skills;
     },
+    setCandidates: (state, action) => {
+      console.log(action.payload);
+      state.dashBoardCandidates = action.payload;
+    },
   }
 });
 
 export const {
   setSkills,
+  setCandidates,
 } = dashboardSlice.actions;
 
 export default dashboardSlice.reducer;
@@ -33,6 +42,23 @@ export const GetTechSkills = ({
   });
 
   dispatch(setSkills(skills));
+};
+
+export const GetCandidateDetails = ({
+  data,
+  onSuccess = () => {},
+  onError = () => {},
+} = {}) => async(dispatch) => {
+  const apiWrapper = new APIWrapper(dispatch);
+
+  const candidatesResponse = await apiWrapper.getCandidateDetails({
+    data,
+    onSuccess,
+    onError,
+  });
+  console.log(candidatesResponse.data);
+
+  dispatch(setCandidates(candidatesResponse.data));
 };
 
 export const AddCandidate = ({
