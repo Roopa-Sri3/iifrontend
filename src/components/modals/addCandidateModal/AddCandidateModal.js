@@ -99,8 +99,7 @@ const AddCandidateModal = ({
     {
       setYearsOfExperienceError("Please enter years of experience");
       isValid = false;
-    }
-    if (isNaN(yearsOfExperience) || yearsOfExperience < 0 || yearsOfExperience > 25 )
+    } else if (isNaN(yearsOfExperience) || yearsOfExperience < 0 || yearsOfExperience > 25 || yearsOfExperience.includes("."))
     {
       setYearsOfExperienceError("Please enter valid years of experience");
       isValid = false;
