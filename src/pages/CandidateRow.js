@@ -22,7 +22,6 @@ const CandidateRow = ({ candidate }) => {
       }));
   };
   const handleEditClick = (rowCandidateData) => {
-
     dispatch(openModal(
       {
         modalName: "AddCandidateModal",
@@ -57,7 +56,7 @@ const CandidateRow = ({ candidate }) => {
       <td>
         <div className="cd-report">
           <div className="report-text">
-            {candidate.status === "Completed" ? candidate.fileUrl : "No Report"}
+            {candidate.status === "Completed" ? candidate.fileUrl : "No report"}
           </div>
           <DownloadIcon
             style={{ cursor: candidate.fileUrl !== "null" ? "pointer" : "not-allowed" }}
@@ -78,7 +77,7 @@ const CandidateRow = ({ candidate }) => {
             </span>
           </div>
         ) : (
-          <div className="feedback-container">NA</div>
+          <div className="feedback-container">N/A</div>
         )}
       </td>
       <td>

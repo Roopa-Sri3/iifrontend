@@ -73,9 +73,9 @@ const Dashboard = () => {
     setCurrentPage(pageNumber);
   };
 
-  const handleSearch = (event) => {
+  const handleSearch = () => {
     setCurrentPage(1);
-    setSearchTerm(event.target.value);
+    setSearchTerm(searchFieldValue);
   };
 
   const totalPages = Math.ceil(candidatesTotalCount / recordsPerPage);
@@ -118,7 +118,6 @@ const Dashboard = () => {
       dispatch(AddCandidate({
         data: { ...formData },
         onSuccess: () => {
-          // Need to refresh the data in table
           fetchCandidates();
 
           const message = formData.shareLink ? "Candidateadded and link shared successfully" : "Candidate added successfully";
@@ -178,6 +177,11 @@ const Dashboard = () => {
               value={searchFieldValue}
               onChange={(e) => { setSearchFieldValue(e.target.value); }}
               onBlur={handleSearch}
+              onKeyDown = {(event) => {
+                if (event.key === "Enter") {
+                  handleSearch();
+                }
+              }}
             />
             <Search />
           </div>
@@ -199,7 +203,7 @@ const Dashboard = () => {
                 "Candidate Name",
                 "Tech Skills",
                 "Status",
-                "View/Dashboard Report",
+                "View/Download Report",
                 "Feedback",
                 "Actions",
               ]}
