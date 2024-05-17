@@ -15,10 +15,8 @@ frontend_build:
     artifacts:
         paths: 
             - ./build
-    rules:
-        - if: '$CI_COMMIT_REF_NAME == "develop"'
-        - changes:
-            - .gitlab-ci.yml
+    only:
+        - develop
         
 frontend-deploy:
   stage: deploy
@@ -36,10 +34,8 @@ frontend-deploy:
   script:
       #- mv ./build /var/www/
       - scp -r /home/roopagaddam/builds/W3MLysJnj/0/capstone_2024/interview-insights/interview-insights-web/build  roopagaddam@10.139.166.48:/var/www/
-  rules:
-        - if: '$CI_COMMIT_REF_NAME == "develop"'
-        - changes:
-            - .gitlab-ci.yml
+  only:
+      - develop
 
 
 
