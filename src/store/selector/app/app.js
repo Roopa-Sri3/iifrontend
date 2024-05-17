@@ -1,6 +1,10 @@
 export const IsUserLoggedIn = (state) => state.app.isUserLoggedIn;
 
+export const IsUserLoading = (state) => state.app.isUserLoading;
+
 export const GetUserName = (state) => state.app.userName;
+
+export const GetToken = (state) => state.app.token;
 
 export const IsModalOpen = (state, name) => state.app.modal.modalName === name;
 
