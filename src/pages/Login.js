@@ -4,15 +4,16 @@ import { useNavigate } from "react-router-dom";
 import Input from "../components/core/Input/Input";
 import Label from "../components/core/Label/Label";
 import "./Login.css";
-import background from "../Images/BlueBackground.png";
-import image from "../Images/Group.png";
-import imagetext from "../Images/Login-Text.png";
+import background from "../assets/Images/BlueBackground.png";
+import image from "../assets/Images/Group.png";
+import imagetext from "../assets/Images/Login-Text.png";
 import Button from "../components/core/button/button";
 import {emailPattern, passwordPattern} from "../shared/constants";
 import {
   PostToken,
   PostUserCredentials,
   setUserDetails,
+  setToken
 } from "../store/reducers/app/app";
 
 function Login() {
@@ -26,6 +27,7 @@ function Login() {
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
+    console.log(email);
     setEmailError(false);
   };
 
@@ -45,6 +47,8 @@ function Login() {
         },
         onSuccess: (response) => {
           const token = response.token;
+          sessionStorage.setItem("Token", token);
+          dispatch(setToken({token}));
           dispatch(PostToken({
             data: {
               token,
@@ -79,13 +83,19 @@ function Login() {
       setEmailError("Please enter email address");
       setPasswordError("Please enter password");
     }
-    if (email.trim() === "" || !emailCheck) {
+    if (email.trim() === "") {
       setEmailError("Please enter email address");
+    }
+    else if(!emailCheck){
+      setEmailError("Please enter valid email address");
     }
     else {
       setEmailError("");
-      if (password.trim() === "" || !passwordCheck) {
+      if (password.trim() === "") {
         setPasswordError("Please enter password");
+      }
+      else if(!passwordCheck){
+        setPasswordError("Please enter valid password");
       }
       else {
         setPasswordError("");

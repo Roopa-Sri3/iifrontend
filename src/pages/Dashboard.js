@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../components/core/button/button";
 import SubFooter from "../components/table/SubFooter/SubFooter";
@@ -13,31 +13,28 @@ import { openModal, } from "../store/reducers/app/app";
 import {
   AddCandidate,
   EditCandidate,
-  GetTechSkills,
+  GetTechSkills
 } from "../store/reducers/dashboard/dashboard.js";
 import { GetUserRole } from "../store/selector/app";
 import { candidates, statuses } from "../shared/constants";
-// import StatusFilter from "./StatusFilter";
 import Search from "../components/assets/svgs/Search";
 import AddIcon from "../components/assets/svgs/AddIcon.js";
+import StatusFilter from "../components/table/statuFilter/StatuFilter.js";
 import "./Dashboard.css";
-import StatuFilter from "../components/table/statuFilter/StatuFilter.js";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
-  // Reed the page records from store.
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [recordsPerPage] = useState(10); // Remove it from state.
-  const [showFilter, setShowFilter] = useState(false); // Move it to StatuFilter component.
+  const recordsPerPage = 10;
   const [selectedStatus] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState([]);
 
   useEffect(() => {
     dispatch(GetTechSkills({
-      onSuccess: () => {},
-      onError: () => {},
+      onSuccess: () => { },
+      onError: () => { },
     }));
   }, [dispatch]);
 
@@ -62,22 +59,18 @@ const Dashboard = () => {
 
   // }, [statusFilter, searchTerm]);
 
-  const filteredCandidates = candidates.filter(
-    (candidate) =>
-      (!selectedStatus || candidate.status === selectedStatus) &&
-      (candidate.candidateName.toLowerCase().includes(searchTerm.toLowerCase())
-      || candidate.techSkills.toLowerCase().includes(searchTerm.toLowerCase()))
-  );
+  const filteredCandidates = candidates.filter((candidate) => {
+    const matchesStatusFilter = statusFilter.length === 0 || statusFilter.some((i) => i.value === candidate.status);
+    const matchesSearchTerm = candidate.candidateName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      candidate.techSkills.toLowerCase().includes(searchTerm.toLowerCase());
+    return matchesStatusFilter && matchesSearchTerm;
+  });
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
     fetchCurrentPageRecords({
       pageNO: pageNumber,
     });
-  };
-
-  const handleFilterComponentClick = () => {
-    setShowFilter(!showFilter);
   };
 
   const handleSearch = (event) => {
@@ -101,15 +94,15 @@ const Dashboard = () => {
   }) => {
     if (mode === "EDIT") {
       dispatch(EditCandidate({
-        data: {...formData},
-        onSuccess: () => {},
-        onError: () => {}
+        data: { ...formData },
+        onSuccess: () => { },
+        onError: () => { }
       }));
     } else {
       dispatch(AddCandidate({
-        data: {...formData},
-        onSuccess: () => {},
-        onError: () => {}
+        data: { ...formData },
+        onSuccess: () => { },
+        onError: () => { }
       }));
     }
   };
@@ -120,36 +113,20 @@ const Dashboard = () => {
         ...statusFilter,
         optionSelected,
       ]);
+      setCurrentPage(1);
     } else {
       setStatusFilter(statusFilter.filter((status) => status.value !== optionSelected.value));
+      setCurrentPage(1);
     }
   };
 
   const headerActions = [
     null,
     null,
-    // <div className="statsu-filter">
-    //   <FilterComponent
-    //     className='filter'
-    //     onClick={handleFilterComponentClick}
-    //   />
-    //   {showFilter && (
-    //     <div className='drop-box-menu'>
-    //       <OptionsMenu
-    //         id="dashBoardStatusFilter"
-    //         options={statuses}
-    //         handleCheckbox={handleCheckboxChange}
-    //         selectedOptions={statusFilter}
-    //       />
-    //     </div>
-    //   )}
-    // </div>,
-    <StatuFilter
-      showFilter={showFilter}
+    <StatusFilter
       statuses={statuses}
       statusFilter={statusFilter}
       handleCheckboxChange={handleCheckboxChange}
-      handleFilterComponentClick={handleFilterComponentClick}
     />,
     null,
     null,
@@ -159,70 +136,64 @@ const Dashboard = () => {
   return (
     <div className="dashboard">
       <UserDisplay />
-      { role === "HR" &&
-      <div>
-        <div className="dashboard-filters-and-actions">
-          <div className="candidate-insights">Candidate Insights</div>
-          <div className="search-field">
-            <input
-              className="search-text"
-              type="search"
-              placeholder="Search Candidate Name, Tech Skills"
-              value={searchTerm}
-              onChange={handleSearch}
-            />
-            <Search />
+      {role === "HR" &&
+        <div>
+          <div className="dashboard-filters-and-actions">
+            <div className="candidate-insights">Candidate Insights</div>
+            <div className="search-field">
+              <input
+                className="search-text"
+                type="search"
+                placeholder="Search Candidate Name, Tech Skills"
+                value={searchTerm}
+                onChange={handleSearch}
+              />
+              <Search />
+            </div>
+            {role === "HR" &&
+              <Button
+                label="Add Candidate"
+                handleClick={handleAddCandidate}
+                children={<AddIcon />}
+              />
+            }
           </div>
-          { role === "HR" &&
-        <Button
-          label="Add Candidate"
-          handleClick={handleAddCandidate}
-          children={<AddIcon />}
-        />
-          }
-        </div>
-        <div className="card">
-          <table>
-            <SubHeader
-              columns={[
-                "Candidate Name",
-                "Tech Skills",
-                "Status",
-                "View/Dashboard Report",
-                "Feedback",
-                "Actions",
-              ]}
-              headerActions={headerActions}
-            />
-            <SubLayout
-              data={filteredCandidates}
+          <div className="card">
+            <table>
+              <SubHeader
+                columns={[
+                  "Candidate Name",
+                  "Tech Skills",
+                  "Status",
+                  "View/Dashboard Report",
+                  "Feedback",
+                  "Actions",
+                ]}
+                headerActions={headerActions}
+              />
+              <SubLayout
+                data={filteredCandidates}
+                currentPage={currentPage}
+                recordsPerPage={recordsPerPage}
+                filteredCandidates={filteredCandidates}
+              />
+            </table>
+            <SubFooter
+              data={candidates}
               currentPage={currentPage}
+              totalPages={totalPages}
+              totalRecords={candidates.length}
               recordsPerPage={recordsPerPage}
+              onPageChange={handlePageChange}
               filteredCandidates={filteredCandidates}
+              selectedStatus={selectedStatus}
             />
-          </table>
-          <SubFooter
-            data={candidates}
-            currentPage={currentPage}
-            totalPages={totalPages}
-            totalRecords={candidates.length}
-            recordsPerPage={recordsPerPage}
-            onPageChange={handlePageChange}
-            filteredCandidates={filteredCandidates}
-            selectedStatus={selectedStatus}
+          </div>
+          <AddCandidateModal
+            handleAddOrEditCandidate={handleAddOrEditCandidate}
           />
-          {/* {showFilter &&
-          (<StatusFilter
-            onFilterChange={handleFilterChange}
-            onClose={() => setShowFilter(false)}
-            selectedStatus={selectedStatus}
-          />)} */}
+          <FeedbackModal />
         </div>
-        <AddCandidateModal
-          handleAddOrEditCandidate={handleAddOrEditCandidate}
-        />
-        <FeedbackModal />
-      </div>
       }
     </div>
   );

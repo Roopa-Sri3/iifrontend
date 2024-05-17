@@ -1,6 +1,7 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { openModal } from "../store/reducers/app/app";
+import { GetStoreSkills } from "../store/selector/dashboard/dashboard";
 import EditComponent from "../assets/svgs/editImage";
 import ShareComponent from "../assets/svgs/shareImage";
 import VisibilityComponent from "../assets/svgs/visibilityImage";
@@ -9,6 +10,7 @@ import "./CandidateRow.css";
 
 const CandidateRow = ({ candidate }) => {
   const dispatch = useDispatch();
+  const options = useSelector(GetStoreSkills);
   const isPdfReport = candidate.report.endsWith(".pdf");
   const handleOpenModal = () => {
     dispatch(openModal(
@@ -21,18 +23,22 @@ const CandidateRow = ({ candidate }) => {
   };
   const handleEditClick = () => {
     const rowCandidateData = {
-      ...candidate,
-      fullName: "abinash",
-      email: "191fa04101@gmail.com",
-      mobileNumber:"6309574567",
-      yearsOfExperience: 1,
-      primaryTechSkill: "Java",
-      secondaryTechSkills: ["C", "Python", "PHP"],
-      rRNumber: "",
-      status: "completed",
-      fileUrl: "c::/file",
-      rating: 1,
-      comments: "dfgf"
+      "candidateId": "CAND12359",
+      "fullName": "Benjamin Clark",
+      "status": "completed",
+      "fileUrl": "\nhttp://example.com/reports/benjaminclark.pdf"
+      ,
+      "rating": 5,
+      "comments": "Pioneering research in biotech",
+      "email": "benjaminclark@gmail.com",
+      "yearsOfExperience": 4,
+      "mobileNo": "6309574567",
+      "rrNo": "RR1015",
+      "primaryTechSkills": "html",
+      "secondaryTechSkills": [
+        "C++",
+        ".net"
+      ]
     };
 
     dispatch(openModal(
@@ -41,18 +47,17 @@ const CandidateRow = ({ candidate }) => {
         modalData: {
           mode:"EDIT",
           ...rowCandidateData,
-          selectedPrimarySkills:[
-            {label: rowCandidateData.primaryTechSkill,
-              value: rowCandidateData.primaryTechSkill}
-          ],
-          selectedSecondarySkills:
-          rowCandidateData.secondaryTechSkills.map(secondarySkill =>
-            ({label: secondarySkill, value: secondarySkill})),
+          mobileNumber:rowCandidateData.mobileNo,
+          selectedPrimarySkills: [options.find((option) => option.label === rowCandidateData.primaryTechSkills)],
+          selectedSecondarySkills: options.filter(
+            (option) => rowCandidateData.secondaryTechSkills.length === 0 ? [] : rowCandidateData.secondaryTechSkills.includes(option.label)
+          )
         }
       }));
   };
+
   return (
-    <tr className='candidate-row'>
+    <tr className="candidate-row">
       <td>{candidate.candidateName}</td>
       <td>{candidate.techSkills}</td>
       <td className={candidate.status ===
@@ -60,8 +65,8 @@ const CandidateRow = ({ candidate }) => {
         {candidate.status}
       </td>
       <td>
-        <div className='cd-report'>
-          <div className='report-text'>
+        <div className="cd-report">
+          <div className="report-text">
             {candidate.report}
           </div>
           <DownloadIcon
@@ -71,7 +76,7 @@ const CandidateRow = ({ candidate }) => {
         </div>
       </td>
       <td>
-        <div className='feedback-container'>
+        <div className="feedback-container">
           {candidate.feedback}
           <VisibilityComponent
             style={{marginLeft: "40px",cursor:"pointer"}}
