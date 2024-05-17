@@ -26,6 +26,7 @@
 
 .feedback-container{
   display:inline-flex ;
+  font-weight: bold;
 }
 
 .save-icon {
