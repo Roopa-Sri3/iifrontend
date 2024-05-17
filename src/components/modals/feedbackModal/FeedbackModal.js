@@ -59,7 +59,7 @@ const FeedbackModal = () => {
             {renderRatingStars()}
             <p className="heading">Feedback Comments</p>
             <div className="bordered-box">
-              <p className="box-text">{storeModalData.comment}</p>
+              <p className="box-text">{storeModalData.comments}</p>
             </div>
           </div>
         </Modal>

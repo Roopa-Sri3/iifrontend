@@ -48,7 +48,7 @@ const appSlice = createSlice({
       state.profileName = "";
       state.role = "";
     },
-    openModal: (state,action) => {
+    openModal: (state, action) => {
       state.modal.modalName = action.payload.modalName;
       state.modal.modalData = action.payload.modalData;
     },
@@ -75,7 +75,7 @@ const appSlice = createSlice({
     setTimeoutId: (state, action) => {
       state.timeoutId = action.payload;
     },
-    clearTimeoutId: (state) =>{
+    clearTimeoutId: (state) => {
       state.timeoutId = null;
     },
   },

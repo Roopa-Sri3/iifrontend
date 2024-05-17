@@ -19,7 +19,7 @@ const ROUTES_CONFIG = [
     children: [
       {
         path: "/dashboard",
-        element: <Dashboard />,
+        element: (<Dashboard />)
       },
     ]
   },

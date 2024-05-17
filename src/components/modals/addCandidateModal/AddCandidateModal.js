@@ -75,7 +75,7 @@ const AddCandidateModal = ({
 
   const validateForm = () => {
     let isValid = true;
-    if (!fullName) {
+    if (!fullName || !(fullName.length > 3)) {
       setFullNameError("Please enter full name");
       isValid = false;
     }
@@ -83,7 +83,7 @@ const AddCandidateModal = ({
       setMobileNumberError("Enter valid number");
       isValid = false;
     }
-    if (!email || !/^\S+@gmail.com/.test(email)) {
+    if (!email || !/^[a-zA-Z0-9.-]+@gmail\.com$/.test(email)) {
       setEmailError("Please enter email");
       isValid = false;
     }
@@ -179,7 +179,6 @@ const AddCandidateModal = ({
                   onChange={(e) => {setFullName(e.target.value);
                     setFullNameError("");}}
                   autoComplete="off"
-                  minLength="4"
                 />
                 {fullNameError &&
                 <p className="validation-error">{fullNameError}</p>}
