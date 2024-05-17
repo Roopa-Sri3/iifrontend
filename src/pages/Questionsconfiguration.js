@@ -1,4 +1,4 @@
-import {React, useState} from "react";
+import {React, useState, useRef} from "react";
 import {useNavigate} from "react-router-dom";
 import FileUpload from "../components/core/fileUpload/FileUpload";
 import Button from "../components/core/button";
@@ -11,9 +11,10 @@ import { PostUploadFile } from "../store/reducers/dashboard/dashboard";
 import { setAlert } from "../store/reducers/app/app";
 import { useDispatch } from "react-redux";
 import "./Questionsconfiguration.css";
+import LogoutModal from "../components/modals/logoutModal/LogoutModal";
 
 function Questionsconfiguration() {
-
+  const fileRef = useRef();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleNavigation = () => {
@@ -24,17 +25,17 @@ function Questionsconfiguration() {
 
   const handleFiles = (event) => {
     const files = event.target.files;
-    console.log(files);
     if (files.length > 0) {
       setSelectedFile(files[0]);
-    } else {
+    }
+    else{
       setSelectedFile(null);
     }
   };
 
   const handleDeleteFile = () => {
-    console.log("Deleted", selectedFile);
     setSelectedFile(null);
+    fileRef.current.value = null;
   };
 
   const handleSubmit = () => {
@@ -72,6 +73,7 @@ function Questionsconfiguration() {
           </div>
           <div className="upload-questions-section">
             <FileUpload
+              fileRef={fileRef}
               identifier="file-input"
               labelText="Upload Questions"
               disabled={false}
@@ -112,6 +114,7 @@ function Questionsconfiguration() {
           </ol>
         </div>
       </div>
+      <LogoutModal />
     </div>
   );
 }

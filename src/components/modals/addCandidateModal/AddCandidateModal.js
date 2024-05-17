@@ -141,7 +141,7 @@ const AddCandidateModal = ({
       handleAddOrEditCandidate({
         ...formData,
         mode: storeModalData && storeModalData.mode,
-        formData: console.log(JSON.stringify(formData)),
+        candidateId: storeModalData.candidateId,
       });
       resetForm();
       dispatch(closeModal());

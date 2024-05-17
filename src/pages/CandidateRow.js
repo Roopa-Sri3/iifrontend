@@ -11,7 +11,7 @@ import "./CandidateRow.css";
 const CandidateRow = ({ candidate }) => {
   const dispatch = useDispatch();
   const options = useSelector(GetStoreSkills);
-  const isPdfReport = candidate.report.endsWith(".pdf");
+  // const isPdfReport = candidate.report.endsWith(".pdf");
   const handleOpenModal = () => {
     dispatch(openModal(
       {
@@ -21,25 +21,7 @@ const CandidateRow = ({ candidate }) => {
         }
       }));
   };
-  const handleEditClick = () => {
-    const rowCandidateData = {
-      "candidateId": "CAND12359",
-      "fullName": "Benjamin Clark",
-      "status": "completed",
-      "fileUrl": "\nhttp://example.com/reports/benjaminclark.pdf"
-      ,
-      "rating": 5,
-      "comments": "Pioneering research in biotech",
-      "email": "benjaminclark@gmail.com",
-      "yearsOfExperience": 4,
-      "mobileNo": "6309574567",
-      "rrNo": "RR1015",
-      "primaryTechSkills": "html",
-      "secondaryTechSkills": [
-        "C++",
-        ".net"
-      ]
-    };
+  const handleEditClick = (rowCandidateData) => {
 
     dispatch(openModal(
       {
@@ -48,9 +30,9 @@ const CandidateRow = ({ candidate }) => {
           mode:"EDIT",
           ...rowCandidateData,
           mobileNumber:rowCandidateData.mobileNo,
-          selectedPrimarySkills: [options.find((option) => option.label === rowCandidateData.primaryTechSkills)],
+          selectedPrimarySkills: [options.find((option) => option.label === rowCandidateData.primaryTechSkills)], // TODO : Need to chaneg after API Update
           selectedSecondarySkills: options.filter(
-            (option) => rowCandidateData.secondaryTechSkills.length === 0 ? [] : rowCandidateData.secondaryTechSkills.includes(option.label)
+            (option) => rowCandidateData.secondaryTechSkills.length === 0 ? [] : rowCandidateData.secondaryTechSkills.includes(option.label) // TODO : Need to chaneg after API Update
           )
         }
       }));
@@ -58,8 +40,14 @@ const CandidateRow = ({ candidate }) => {
 
   return (
     <tr className="candidate-row">
-      <td>{candidate.candidateName}</td>
-      <td>{candidate.techSkills}</td>
+      <td>{candidate.fullName}</td>
+      <td>{candidate.primaryTechSkills}
+        {candidate.secondaryTechSkills.length > 0 && (
+          <span>
+            , {candidate.secondaryTechSkills.join(", ")}
+          </span>
+        )}
+      </td>
       <td className={candidate.status ===
         "Completed" ? "status-completed" : ""}>
         {candidate.status}
@@ -67,25 +55,29 @@ const CandidateRow = ({ candidate }) => {
       <td>
         <div className="cd-report">
           <div className="report-text">
-            {candidate.report}
+            {candidate.status === "Completed" ? candidate.fileUrl : "No Report"}
           </div>
           <DownloadIcon
-            style={{ cursor: isPdfReport ? "pointer" : "not-allowed" }}
-            fillColor={isPdfReport ? "#196AD6" : "#6F7683"}
+            style={{ cursor: candidate.fileUrl !== "null" ? "pointer" : "not-allowed" }}
+            fillColor={candidate.fileUrl !== "null" ? "#196AD6" : "#6F7683"}
           />
         </div>
       </td>
       <td>
-        <div className="feedback-container">
-          {candidate.feedback}
-          <VisibilityComponent
-            style={{marginLeft: "40px",cursor:"pointer"}}
-            onClick={handleOpenModal}/>
-          <span className="comments-text"
-            style={{ marginLeft: "10px" }}>
+        {candidate.status === "Completed" ? (
+          <div className="feedback-container">
+            {candidate.rating}
+            <VisibilityComponent
+              style={{marginLeft: "40px",cursor:"pointer"}}
+              onClick={handleOpenModal}/>
+            <span className="comments-text"
+              style={{ marginLeft: "10px" }}>
             Comments
-          </span>
-        </div>
+            </span>
+          </div>
+        ) : (
+          <div className="feedback-container">NA</div>
+        )}
       </td>
       <td>
         {candidate.actions}
@@ -93,10 +85,10 @@ const CandidateRow = ({ candidate }) => {
           className="edit-icon"
           role="button"
           tabIndex="0"
-          onClick = {handleEditClick}
+          onClick = {() => handleEditClick(candidate)}
           onKeyDown={(event) => {
             if(event.key === "Enter" || event.key === " "){
-              handleEditClick();
+              handleEditClick(candidate);
             }
           }}
         >
