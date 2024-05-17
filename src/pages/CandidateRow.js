@@ -30,9 +30,11 @@ const CandidateRow = ({ candidate }) => {
           ...rowCandidateData,
           mobileNumber:rowCandidateData.mobileNo,
           selectedPrimarySkills: [options.find((option) => option.label === rowCandidateData.primaryTechSkills)], // TODO : Need to chaneg after API Update
-          selectedSecondarySkills: rowCandidateData.secondaryTechSkills.length === 0 ? [] : options.filter(
-            (option) =>  rowCandidateData.secondaryTechSkills.includes(option.label) // TODO : Need to chaneg after API Update
-          )
+          selectedSecondarySkills: rowCandidateData.secondaryTechSkills.length === 0
+            ? []
+            : options.filter(
+              (option) => rowCandidateData.secondaryTechSkills.includes(option.label) // TODO : Need to chaneg after API Update
+            )
         }
       }));
   };
