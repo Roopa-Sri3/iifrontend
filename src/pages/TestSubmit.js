@@ -18,7 +18,7 @@ const TestSubmit = () => {
           <p id='test-description'>Please Submit your feedback</p>
         </div>
 
-        <div className='feedback-container'>
+        <div className='test-submit-feedback'>
           <div id='feedback-title'>Feedback</div>
           <div className='feedback-card'>
             <p className='feedback-sub-title'>Overall assessment experience</p>
