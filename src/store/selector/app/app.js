@@ -2,7 +2,7 @@ export const IsUserLoggedIn = (state) => state.app.isUserLoggedIn;
 
 export const GetUserName = (state) => state.app.userName;
 
-export const GetProfileName = (state) => state.app.firstName + state.app.lastName;
+export const GetProfileName = (state) => state.app.firstName ? state.app.firstName + " " + state.app.lastName : state.app.lastName;
 
 export const IsModalOpen = (state, name) => state.app.modal.modalName === name;
 
