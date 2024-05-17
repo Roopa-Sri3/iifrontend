@@ -18,7 +18,8 @@ const AddCandidateModalActions = ({
 
     if (isValid) {
       onSubmit();
-    } else {
+    }
+    if(!isValid && isChecked) {
       dispatch(setAlert({
         message: "Failed to send",
         messageType: "failure"
