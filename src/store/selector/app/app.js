@@ -6,6 +6,8 @@ export const GetUserName = (state) => state.app.userName;
 
 export const GetToken = (state) => state.app.token;
 
+export const GetProfileName = (state) => state.app.firstName ? state.app.firstName + " " + state.app.lastName : state.app.lastName;
+
 export const IsModalOpen = (state, name) => state.app.modal.modalName === name;
 
 export const GetModalData = (state) => state.app.modal.modalData;
@@ -18,8 +20,11 @@ export const GetTimeoutId = (state) => state.app.timeoutId;
 
 export const GetUserRole = (state) => state.app.role;
 
+export const GetUserDesignation = (state) => state.app.designation;
+
 export const GetProfileShortcutName = (state) => {
   const firstName = state.app.firstName || "";
   const lastName = state.app.lastName || "";
   return firstName[0].toUpperCase() + lastName[0].toUpperCase() || "UU"; // TODO: IF NO NAME??
 };
+

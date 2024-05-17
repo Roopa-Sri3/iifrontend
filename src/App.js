@@ -8,6 +8,7 @@ import { IsUserLoggedIn } from "./store/selector/app";
 import { PostToken, setIsUserLoading, setUserDetails } from "./store/reducers/app/app";
 
 const router = createBrowserRouter(ROUTES_CONFIG);
+
 function App() {
   // const dispatch = useDispatch();
 
