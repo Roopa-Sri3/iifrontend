@@ -35,7 +35,6 @@ function Questionsconfiguration() {
   };
 
   const handleDeleteFile = () => {
-    console.log("Deleted File",selectedFile);
     setSelectedFile(null);
     fileRef.current.value = null;
   };
