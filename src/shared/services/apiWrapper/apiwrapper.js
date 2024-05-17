@@ -85,9 +85,13 @@ class APIWrapper extends HTTPClient {
     onSuccess = () => {},
     onError = () => {},
   }) {
+    const {
+      candidateId,
+      ...formData
+    } = data;
     return this.put({
-      data,
-      url:"/interviewinsights/fb954df5-bd69-4d20-85d2-849ba6bc9501",
+      data: formData,
+      url:`/interviewinsights/${candidateId}`,
       onSuccess,
       onError,
     });
