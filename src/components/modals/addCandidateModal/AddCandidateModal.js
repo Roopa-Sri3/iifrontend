@@ -60,7 +60,7 @@ const AddCandidateModal = ({
       setSelectedPrimarySkills(candidateData.selectedPrimarySkills);
       setIsPrimarySkillSelected(true);
       setSelectedSecondarySkills(candidateData.selectedSecondarySkills);
-      setRRNumber(candidateData.rRNumber);
+      setRRNumber(candidateData.rrNo);
     }
     else {
       setFullName("");
