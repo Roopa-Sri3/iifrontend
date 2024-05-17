@@ -9,7 +9,7 @@ import
 AddCandidateModal
   from "../components/modals/addCandidateModal/AddCandidateModal";
 import FeedbackModal from "../components/modals/feedbackModal/FeedbackModal";
-import { openModal, } from "../store/reducers/app/app";
+import { openModal, setAlert, } from "../store/reducers/app/app";
 import {
   AddCandidate,
   EditCandidate,
@@ -91,23 +91,48 @@ const Dashboard = () => {
 
   const handleAddOrEditCandidate = ({
     mode,
+    candidateId,
     ...formData
   }) => {
     if (mode === "EDIT") {
       dispatch(EditCandidate({
-        data: { ...formData },
+        data: {
+          candidateId,
+          ...formData
+        },
         onSuccess: () => {
           fetchCandidates();
+          dispatch(setAlert({
+            message: "Candidate details updated successfully",
+            messageType: "success"
+          }));
         },
-        onError: () => { }
+        onError: () => {
+          dispatch(setAlert({
+            message: "Failed to send",
+            messageType: "failure"
+          }));
+        }
       }));
     } else {
       dispatch(AddCandidate({
         data: { ...formData },
         onSuccess: () => {
           fetchCandidates();
+
+          const message = formData.shareLink ? "Candidateadded and link shared successfully" : "Candidate added successfully";
+
+          dispatch(setAlert({
+            message,
+            messageType: "success"
+          }));
         },
-        onError: () => { }
+        onError: () => {
+          dispatch(setAlert({
+            message : "Failed to send",
+            messageType: "failure"
+          }));
+        }
       }));
     }
   };

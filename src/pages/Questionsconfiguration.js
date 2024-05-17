@@ -1,4 +1,4 @@
-import {React, useState} from "react";
+import {React, useState, useRef} from "react";
 import {useNavigate} from "react-router-dom";
 import FileUpload from "../components/core/fileUpload/FileUpload";
 import Button from "../components/core/button";
@@ -14,7 +14,7 @@ import "./Questionsconfiguration.css";
 import LogoutModal from "../components/modals/logoutModal/LogoutModal";
 
 function Questionsconfiguration() {
-
+  const fileRef = useRef();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleNavigation = () => {
@@ -27,13 +27,15 @@ function Questionsconfiguration() {
     const files = event.target.files;
     if (files.length > 0) {
       setSelectedFile(files[0]);
-    } else {
+    }
+    else{
       setSelectedFile(null);
     }
   };
 
   const handleDeleteFile = () => {
     setSelectedFile(null);
+    fileRef.current.value = null;
   };
 
   const handleSubmit = () => {
@@ -71,6 +73,7 @@ function Questionsconfiguration() {
           </div>
           <div className="upload-questions-section">
             <FileUpload
+              fileRef={fileRef}
               identifier="file-input"
               labelText="Upload Questions"
               disabled={false}

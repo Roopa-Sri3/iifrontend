@@ -18,15 +18,6 @@ const AddCandidateModalActions = ({
 
     if (isValid) {
       onSubmit();
-
-      const message = isChecked ?
-        "Candidate added and link shared successfully"
-        : "Candidate added successfully";
-
-      dispatch(setAlert({
-        message,
-        messageType: "success"
-      }));
     } else {
       dispatch(setAlert({
         message: "Failed to send",
