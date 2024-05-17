@@ -60,7 +60,7 @@ const AddCandidateModal = ({
       setSelectedPrimarySkills(candidateData.selectedPrimarySkills);
       setIsPrimarySkillSelected(true);
       setSelectedSecondarySkills(candidateData.selectedSecondarySkills);
-      setRRNumber(candidateData.rRNumber);
+      setRRNumber(candidateData.rrNo);
     }
     else {
       setFullName("");
@@ -75,8 +75,8 @@ const AddCandidateModal = ({
 
   const validateForm = () => {
     let isValid = true;
-    if (!fullName || !(fullName.length > 3)) {
-      setFullNameError("Please enter full name");
+    if (!fullName || fullName.length < 2 || fullName.length > 50 || !/^[a-zA-Z]+(?: [a-zA-Z]+)*$/.test(fullName) || /\s{2,}/.test(fullName) || /\bnull\b/i.test(fullName)) {
+      setFullNameError("Please Enter full name");
       isValid = false;
     }
     if (!mobileNumber || !/^\d{10}$/.test(mobileNumber)) {
@@ -141,7 +141,7 @@ const AddCandidateModal = ({
       handleAddOrEditCandidate({
         ...formData,
         mode: storeModalData && storeModalData.mode,
-        formData: console.log(JSON.stringify(formData)),
+        candidateId: storeModalData.candidateId,
       });
       resetForm();
       dispatch(closeModal());
