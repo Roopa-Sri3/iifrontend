@@ -87,7 +87,7 @@ const AddCandidateModal = ({
       setEmailError("Please enter email");
       isValid = false;
     }
-    if (!yearsOfExperience || isNaN(yearsOfExperience) || yearsOfExperience < 0)
+    if (!yearsOfExperience || isNaN(yearsOfExperience) || yearsOfExperience < 0 || yearsOfExperience > 25 )
     {
       setYearsOfExperienceError("Please enter years of experience");
       isValid = false;
@@ -221,7 +221,6 @@ const AddCandidateModal = ({
                   value={mobileNumber  || ""}
                   onChange={(e) => {setMobileNumber(e.target.value);
                     setMobileNumberError("");}}
-                  pattern="[0-9]{10}"
                   autoComplete="off"/>
                 {mobileNumberError &&
                 <p className="validation-error">{mobileNumberError}</p>}
@@ -243,7 +242,6 @@ const AddCandidateModal = ({
                   onChange={(e) => {setYearsOfExperience(e.target.value);
                     setYearsOfExperienceError("");}}
                   autoComplete="off"
-                  min="0"
                 />
                 {yearsOfExperienceError &&
                 <p className="validation-error">{yearsOfExperienceError}</p>}
@@ -310,7 +308,6 @@ const AddCandidateModal = ({
                   value={rRNumber || ""}
                   onChange={(e) => setRRNumber(e.target.value)}
                   autoComplete="off"
-                  pattern="[0-9]{10}"
                 />
               </div>
             </div>
