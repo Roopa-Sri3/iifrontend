@@ -95,11 +95,11 @@ const AddCandidateModal = ({
       setMobileNumberError("Please enter valid mobile number");
       isValid = false;
     }
-    if (!yearsOfExperience)
+    if (yearsOfExperience === "")
     {
       setYearsOfExperienceError("Please enter years of experience");
       isValid = false;
-    } else if (isNaN(yearsOfExperience) || yearsOfExperience < 0 || yearsOfExperience > 25 || yearsOfExperience.includes("."))
+    } else if (!/^\d+$/.test(yearsOfExperience) || yearsOfExperience < 0 || yearsOfExperience > 25)
     {
       setYearsOfExperienceError("Please enter valid years of experience");
       isValid = false;
