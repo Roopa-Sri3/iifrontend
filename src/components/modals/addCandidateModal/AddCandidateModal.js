@@ -75,25 +75,37 @@ const AddCandidateModal = ({
 
   const validateForm = () => {
     let isValid = true;
-    if (!fullName || fullName.length < 2 || fullName.length > 50 || !/^[a-zA-Z]+(?: [a-zA-Z]+)*$/.test(fullName) || /\s{2,}/.test(fullName) || /\bnull\b/i.test(fullName)) {
-      setFullNameError("Please Enter full name");
+    if(fullName === ""){
+      setFullNameError("Please enter Full name");
+      isValid = false;
+    } else if ((fullName.length < 2) || (fullName.length > 50) || !/^[a-zA-Z]+(?: [a-zA-Z]+)*$/.test(fullName) || /\s{2,}/.test(fullName) || /\bnull\b/i.test(fullName)) {
+      setFullNameError("Please enter valid name");
       isValid = false;
     }
-    if (!mobileNumber || !/^\d{10}$/.test(mobileNumber)) {
-      setMobileNumberError("Enter valid number");
+    if (email === "") {
+      setEmailError("Please enter email address");
+      isValid = false;
+    } else if (!/^[a-zA-Z0-9.-]+@gmail\.com$/.test(email)) {
+      setEmailError("Please enter valid email address");
       isValid = false;
     }
-    if (!email || !/^[a-zA-Z0-9.-]+@gmail\.com$/.test(email)) {
-      setEmailError("Please enter email");
+    if (mobileNumber === "") {
+      setMobileNumberError("");
+    } else if (!/^\d{10}$/.test(mobileNumber)) {
+      setMobileNumberError("Please enter valid mobile number");
       isValid = false;
     }
-    if (!yearsOfExperience || isNaN(yearsOfExperience) || yearsOfExperience < 0)
+    if (!yearsOfExperience)
     {
       setYearsOfExperienceError("Please enter years of experience");
       isValid = false;
+    } else if (isNaN(yearsOfExperience) || yearsOfExperience < 0 || yearsOfExperience > 25 || yearsOfExperience.includes("."))
+    {
+      setYearsOfExperienceError("Please enter valid years of experience");
+      isValid = false;
     }
     if(selectedPrimarySkills.length === 0){
-      setSelectedPrimarySkillsError("Primary skill is required");
+      setSelectedPrimarySkillsError("Please enter Primary tech skills");
       isValid = false;
     }
 
@@ -208,7 +220,7 @@ const AddCandidateModal = ({
               <div className={cx("col-6","add-candidate-field")}>
                 <label
                   htmlFor="mobileNumber"
-                  className="add-candidate-field-label-mandatory"
+                  className="add-candidate-field-label"
                 >
                   Mobile Number
                 </label>
@@ -221,7 +233,6 @@ const AddCandidateModal = ({
                   value={mobileNumber  || ""}
                   onChange={(e) => {setMobileNumber(e.target.value);
                     setMobileNumberError("");}}
-                  pattern="[0-9]{10}"
                   autoComplete="off"/>
                 {mobileNumberError &&
                 <p className="validation-error">{mobileNumberError}</p>}
@@ -243,7 +254,6 @@ const AddCandidateModal = ({
                   onChange={(e) => {setYearsOfExperience(e.target.value);
                     setYearsOfExperienceError("");}}
                   autoComplete="off"
-                  min="0"
                 />
                 {yearsOfExperienceError &&
                 <p className="validation-error">{yearsOfExperienceError}</p>}
@@ -310,7 +320,6 @@ const AddCandidateModal = ({
                   value={rRNumber || ""}
                   onChange={(e) => setRRNumber(e.target.value)}
                   autoComplete="off"
-                  pattern="[0-9]{10}"
                 />
               </div>
             </div>
