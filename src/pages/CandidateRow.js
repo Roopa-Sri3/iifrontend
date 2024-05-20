@@ -22,7 +22,6 @@ const CandidateRow = ({ candidate }) => {
       }));
   };
   const handleEditClick = (rowCandidateData) => {
-
     dispatch(openModal(
       {
         modalName: "AddCandidateModal",
@@ -31,9 +30,11 @@ const CandidateRow = ({ candidate }) => {
           ...rowCandidateData,
           mobileNumber:rowCandidateData.mobileNo,
           selectedPrimarySkills: [options.find((option) => option.label === rowCandidateData.primaryTechSkills)], // TODO : Need to chaneg after API Update
-          selectedSecondarySkills: options.filter(
-            (option) => rowCandidateData.secondaryTechSkills.length === 0 ? [] : rowCandidateData.secondaryTechSkills.includes(option.label) // TODO : Need to chaneg after API Update
-          )
+          selectedSecondarySkills: rowCandidateData.secondaryTechSkills.length === 0
+            ? []
+            : options.filter(
+              (option) => rowCandidateData.secondaryTechSkills.includes(option.label) // TODO : Need to chaneg after API Update
+            )
         }
       }));
   };
@@ -55,7 +56,7 @@ const CandidateRow = ({ candidate }) => {
       <td>
         <div className="cd-report">
           <div className="report-text">
-            {candidate.status === "Completed" ? candidate.fileUrl : "No Report"}
+            {candidate.status === "Completed" ? candidate.fileUrl : "No report"}
           </div>
           <DownloadIcon
             style={{ cursor: candidate.fileUrl !== "null" ? "pointer" : "not-allowed" }}
@@ -76,7 +77,7 @@ const CandidateRow = ({ candidate }) => {
             </span>
           </div>
         ) : (
-          <div className="feedback-container">NA</div>
+          <div className="feedback-container">N/A</div>
         )}
       </td>
       <td>

@@ -27,11 +27,13 @@ function Login() {
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
     setEmailError(false);
+    setError(false);
   };
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
     setPasswordError(false);
+    setError(false);
   };
 
   const verifyCredentials = (username, password) => {
@@ -79,13 +81,19 @@ function Login() {
       setEmailError("Please enter email address");
       setPasswordError("Please enter password");
     }
-    if (email.trim() === "" || !emailCheck) {
+    if (email.trim() === "") {
       setEmailError("Please enter email address");
+    }
+    else if(!emailCheck){
+      setEmailError("Please enter valid email address");
     }
     else {
       setEmailError("");
-      if (password.trim() === "" || !passwordCheck) {
+      if (password.trim() === "") {
         setPasswordError("Please enter password");
+      }
+      else if(!passwordCheck){
+        setPasswordError("Please enter valid password");
       }
       else {
         setPasswordError("");
@@ -95,26 +103,26 @@ function Login() {
   };
 
   return (
-    <div className='page'>
-      <div className='login-body-page'>
-        <img src={background} alt='' className='background-image'></img>
-        <div className='login-image-block'>
-          <img src={imagetext} alt='' className='image-text'></img>
-          <img src={image} alt=''></img>
+    <div className="page">
+      <div className="login-body-page">
+        <img src={background} alt="" className="background-image"></img>
+        <div className="login-image-block">
+          <img src={imagetext} alt="" className="image-text"></img>
+          <img src={image} alt=""></img>
         </div>
         <form className="login-container" onSubmit={handleSubmit}>
-          <p className='login-welcome-style'>
+          <p className="login-welcome-style">
             Welcome to
-            <span className='interview-insights-name'>
+            <span className="interview-insights-name">
               &nbsp;Interview Insights
             </span>
           </p>
-          <h3 className='signin-text'>Sign in</h3>
-          <div className='label-and-input'>
+          <h3 className="signin-text">Sign in</h3>
+          <div className="label-and-input">
             <Label
               htmlFor="email"
               text="Email address"
-              className='label-text'
+              className="label-text"
             />
             <Input
               type="email"
@@ -124,13 +132,13 @@ function Login() {
               autoComplete="off"
               className={emailError ? "error" : "basic-input"}
             />
-            {emailError && <p className='error-message'>{emailError}</p>}
+            {emailError && <p className="error-message">{emailError}</p>}
           </div>
-          <div className='label-and-input'>
+          <div className="label-and-input">
             <Label
               htmlFor="password"
               text="Password"
-              className='label-text'
+              className="label-text"
             />
             <Input
               type="password"
@@ -140,12 +148,12 @@ function Login() {
               autoComplete="off"
               className={passwordError ? "error" : "basic-input"}
             />
-            {passwordError && <p className='error-message'>{passwordError}</p>}
+            {passwordError && <p className="error-message">{passwordError}</p>}
           </div>
           <Button
             label="Sign In"
             id="submit"
-            className='basic-button'
+            className="basic-button"
           />
           {error && <p className="error-message">{error}</p>}
         </form>

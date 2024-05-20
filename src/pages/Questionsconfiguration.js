@@ -72,11 +72,11 @@ function Questionsconfiguration() {
       onError: () => {
         if (selectedFile.size > (4 * 1024 * 1024)) {
           dispatch(setAlert({ message: "File size exceeded", messageType: "failure" }));
-          setSelectedFile(null);
+          fileRef.current.value = null;
         }
         else if (selectedFile.type !== "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") {
           dispatch(setAlert({ message: "Invalid file type.", messageType: "failure" }));
-          setSelectedFile(null);
+          fileRef.current.value = null;
         }
         else{
           dispatch(setAlert({ message: "File upload unsuccessful", messageType: "failure" }));

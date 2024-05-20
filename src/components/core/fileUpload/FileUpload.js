@@ -14,7 +14,7 @@ function FileUpload({
       <label className="button-tag"
         htmlFor={identifier}
       >
-        <UploadIcon />
+        <UploadIcon className="file-upload-image"/>
         <p className="upload-text">Click to Upload</p>
       </label>
       <input

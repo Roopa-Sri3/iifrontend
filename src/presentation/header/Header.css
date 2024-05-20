@@ -21,6 +21,8 @@
   display: flex;
   align-items: center;
   border: none;
+  margin-left: auto;
+  padding-right: 20px;
 }
 
 .user-profile {
@@ -43,11 +45,13 @@
   padding: 0px 10px 0px 10px;
   transform: translateY(10%);
   font-size: 18px;
+  margin-right: auto;
 }
 
 .innova-logo {
-  width: 50px;
- }
+  width: 55px;
+  margin-left:12px;  
+}
 
 .expand {
   display: flex;
@@ -115,4 +119,8 @@
 }
 .round-button {
   cursor: auto !important;
+}
+.header-timer{
+  margin-left: auto;
+  padding-right: 20px;
 }
