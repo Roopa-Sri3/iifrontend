@@ -95,7 +95,10 @@ const CandidateRow = ({ candidate }) => {
         >
           <EditComponent />
         </span>
-        <ShareComponent className="share-icon"/>
+        <ShareComponent
+          style={{ cursor: (candidate.status === "new" || candidate.status === "expired") ? "pointer" : "not-allowed" }}
+          fillColor={(candidate.status === "new" || candidate.status === "expired") ? "#383838" : "#D0D5DD"}
+        />
       </td>
     </tr>
   );
