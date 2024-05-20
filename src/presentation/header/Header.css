@@ -49,8 +49,9 @@
 }
 
 .innova-logo {
-  width: 50px;
- }
+  width: 55px;
+  margin-left:12px;  
+}
 
 .expand {
   display: flex;

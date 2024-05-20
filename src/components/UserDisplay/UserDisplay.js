@@ -2,7 +2,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Button from "../core/button";
-import { GetProfileName, GetUserDesignation, GetUserRole } from "../../store/selector/app";
+import { GetProfileName, GetUserDesignation, GetUserRole} from "../../store/selector/app";
+import { GetStoreCandidatesTotalCount } from "../../store/selector/dashboard";
 import DownloadIcon from "../../assets/svgs/downloadIcon";
 import "./UserDisplay.css";
 
@@ -10,6 +11,7 @@ const UserDisplay = () => {
   const profileName = useSelector(GetProfileName);
   const userRole = useSelector(GetUserRole);
   const designation = useSelector(GetUserDesignation);
+  const candidatesTotalCount = useSelector(GetStoreCandidatesTotalCount);
 
   const navigate = useNavigate();
 
@@ -39,7 +41,7 @@ const UserDisplay = () => {
           <div className="candidates-count">
             <div>Candidates</div>
 
-            <div>Till Date : 113</div>
+            <div>Till Date :{candidatesTotalCount} </div>
           </div>
         )}
       </div>
