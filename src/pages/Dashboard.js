@@ -120,7 +120,7 @@ const Dashboard = () => {
         onSuccess: () => {
           fetchCandidates();
 
-          const message = formData.shareLink ? "Candidateadded and link shared successfully" : "Candidate added successfully";
+          const message = formData.shareLink ? "Candidate added and link shared successfully" : "Candidate added successfully";
 
           dispatch(setAlert({
             message,
