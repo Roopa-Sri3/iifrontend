@@ -34,19 +34,53 @@ function Questionsconfiguration() {
     }
   };
 
+  // const handleFiles = (event) => {
+  //   const files = event.target.files;
+  //   if (files.length > 0) {
+  //     const selected = files[0];
+  //     if (selected.size > (4 * 1024 * 1024)) {
+  //       dispatch(setAlert({ message: "File size exceeded", messageType: "failure" }));
+  //       setSelectedFile(null);
+  //     }
+
+  //     if (selected.type !== "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") {
+  //       dispatch(setAlert({ message: "Invalid file type.", messageType: "failure" }));
+  //     }
+
+  //     else {
+  //       setSelectedFile(selected);
+  //     }
+  //   }
+  //   else
+  //   {
+  //     setSelectedFile(null);
+  //   }
+  // };
+
   const handleDeleteFile = () => {
     setSelectedFile(null);
     fileRef.current.value = null;
   };
 
   const handleSubmit = () => {
+
     dispatch(PostUploadFile({
       file: selectedFile,
       onSuccess: () => {
         dispatch(setAlert({ message: "File uploaded successfully", messageType: "success" }));
       },
       onError: () => {
-        dispatch(setAlert({ message: "File upload unsuccessful", messageType: "failure" }));
+        if (selectedFile.size > (4 * 1024 * 1024)) {
+          dispatch(setAlert({ message: "File size exceeded", messageType: "failure" }));
+          setSelectedFile(null);
+        }
+        else if (selectedFile.type !== "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") {
+          dispatch(setAlert({ message: "Invalid file type.", messageType: "failure" }));
+          setSelectedFile(null);
+        }
+        else{
+          dispatch(setAlert({ message: "File upload unsuccessful", messageType: "failure" }));
+        }
       },
     }));
   };
@@ -89,7 +123,7 @@ function Questionsconfiguration() {
                 <div className="file-info-layout">
                   <span className="file-name">{selectedFile.name}</span>
                   <span className="file-size">
-                    {(selectedFile.size / 1024).toFixed(2)} MB
+                    {(selectedFile.size / (1024 * 1024)).toFixed(2)} MB
                   </span>
                 </div>
               </div>
