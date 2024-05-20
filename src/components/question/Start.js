@@ -1,25 +1,14 @@
-import React, { useEffect } from "react";
-import Button from "../core/button";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  setDuration,
-  startExam
-} from "../../store/reducers/screen/screen";
-import { GetExamStatus, GetIsTimeUp } from "../../store/selector/screen/screen";
 import { useNavigate } from "react-router-dom";
+import Button from "../core/button";
+import { setDuration, startExam } from "../../store/reducers/screen/screen";
+import { GetExamStatus } from "../../store/selector/screen/screen";
 
 const Start = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const examStarted = useSelector(GetExamStatus);
-  const isTimeUp = useSelector(GetIsTimeUp);
-
-  useEffect(() => {
-
-    if (isTimeUp) {
-      navigate("/test-submitted");
-    }
-  }, [isTimeUp, navigate]);
 
   const handleStartExam = () => {
     dispatch(startExam());

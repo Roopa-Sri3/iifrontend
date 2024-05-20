@@ -1,9 +1,9 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import Button from "../core/button/button";
 import Questionbutton from "../Questionbutton/Questionbutton";
-import "./Questionsnavigate.css";
-import { useDispatch } from "react-redux";
 import { openModal } from "../../store/reducers/app/app";
+import "./Questionsnavigate.css";
 
 function Questionsnavigate() {
   const dispatch = useDispatch();
