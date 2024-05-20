@@ -1,5 +1,4 @@
 .alert{
-    width: 320px;
     display: flex;
     align-items: center;
     transform: translateX(-50%) translateY(-50%);
@@ -13,9 +12,6 @@
     z-index: 1000;
     
     &.alert.success{
-        position: absolute;
-        width: auto;
-        max-width: 350px;
         border: 1px solid #24AD00;
         background-color: #BDFFB2;
 
@@ -25,8 +21,6 @@
     }
 
     &.alert.failure{
-        position: absolute;
-        max-width: 210px;
         border: 1px solid #C91313;
         background-color: #EBCECE;
 
@@ -55,13 +49,9 @@
     margin-right: 10px;
 }
 .alert-text{
-    width: auto;
+    display: flex;
     height: 17px;
-    top: 9px;
-    left: 53px;
-    gap: 0px;
     margin-right: 10px;
-    font-family: Inter;
     font-size: 14px;
     font-weight: 400;
     line-height: 16.94px;
@@ -70,7 +60,6 @@
 }
 .close{
     display: flex;
-    position:absolute;
     right: 9px;
     width: 18px;
     height: 18px;
@@ -78,3 +67,4 @@
     background: none;
     padding: 0;
 }
+
