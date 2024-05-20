@@ -41,7 +41,7 @@ const UserDisplay = () => {
           <div className="candidates-count">
             <div>Candidates</div>
 
-            <div>Till Date :{candidatesTotalCount} </div>
+            <div>Till Date: {candidatesTotalCount} </div>
           </div>
         )}
       </div>
