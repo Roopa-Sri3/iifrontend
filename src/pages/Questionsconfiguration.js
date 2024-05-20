@@ -34,29 +34,6 @@ function Questionsconfiguration() {
     }
   };
 
-  // const handleFiles = (event) => {
-  //   const files = event.target.files;
-  //   if (files.length > 0) {
-  //     const selected = files[0];
-  //     if (selected.size > (4 * 1024 * 1024)) {
-  //       dispatch(setAlert({ message: "File size exceeded", messageType: "failure" }));
-  //       setSelectedFile(null);
-  //     }
-
-  //     if (selected.type !== "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") {
-  //       dispatch(setAlert({ message: "Invalid file type.", messageType: "failure" }));
-  //     }
-
-  //     else {
-  //       setSelectedFile(selected);
-  //     }
-  //   }
-  //   else
-  //   {
-  //     setSelectedFile(null);
-  //   }
-  // };
-
   const handleDeleteFile = () => {
     setSelectedFile(null);
     fileRef.current.value = null;
