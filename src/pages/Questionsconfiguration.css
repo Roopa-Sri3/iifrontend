@@ -100,6 +100,9 @@
 .file-info-layout{
     display: flex;
     flex-direction: column;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .file-layout{
@@ -120,7 +123,7 @@
     color:black;
     text-overflow: ellipsis;
     overflow: hidden;
-    white-space: no-wrap;
+    white-space: nowrap;
 }
 
 .instructions-list{

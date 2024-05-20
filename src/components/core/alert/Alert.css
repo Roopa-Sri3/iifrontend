@@ -7,9 +7,6 @@
     left: 50%;
     padding: 9px 14px;
     border-radius: 5px;
-    white-space: nowrap;
-    opacity: 100%;
-    z-index: 1000;
     
     &.alert.success{
         border: 1px solid #24AD00;
@@ -45,7 +42,6 @@
     height: 24px;
     top: 9px;
     left: 14px;
-    gap: 0px;
     margin-right: 10px;
 }
 .alert-text{
