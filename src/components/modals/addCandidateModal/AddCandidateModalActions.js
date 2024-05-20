@@ -20,18 +20,12 @@ const AddCandidateModalActions = ({
       onSubmit();
     }
     else{
-      if(isChecked) {
-        dispatch(setAlert({
-          message: "Failed to send",
-          messageType: "failure"
-        }));
-      }
-      else{
-        dispatch(setAlert({
-          message: "Failed to add candidate",
-          messageType: "failure"
-        }));
-      }
+      const message = isChecked ? "Failed to send link and add candidate" : "Failed to add candidate";
+
+      dispatch(setAlert({
+        message,
+        messageType: "failure"
+      }));
     }
   };
 
