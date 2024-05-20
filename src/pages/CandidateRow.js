@@ -11,7 +11,8 @@ import "./CandidateRow.css";
 const CandidateRow = ({ candidate }) => {
   const dispatch = useDispatch();
   const options = useSelector(GetStoreSkills);
-  // const isPdfReport = candidate.report.endsWith(".pdf");
+  const isStatusNewOrExpired = candidate.status === "new" || candidate.status === "expired";
+
   const handleOpenModal = () => {
     dispatch(openModal(
       {
@@ -96,8 +97,8 @@ const CandidateRow = ({ candidate }) => {
           <EditComponent />
         </span>
         <ShareComponent
-          style={{ cursor: (candidate.status === "new" || candidate.status === "expired") ? "pointer" : "not-allowed" }}
-          fillColor={(candidate.status === "new" || candidate.status === "expired") ? "#383838" : "#D0D5DD"}
+          className = {`share-icon ${isStatusNewOrExpired ? "active" : ""}`}
+          fillColor={isStatusNewOrExpired ? "#383838" : "#D0D5DD"}
         />
       </td>
     </tr>
