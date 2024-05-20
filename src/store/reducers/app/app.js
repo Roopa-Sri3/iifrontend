@@ -6,6 +6,7 @@ const appSlice = createSlice({
   initialState: {
     isUserLoggedIn: false,
     isUserLoading: true,
+    token: "",
     userName: "",
     firstName: "",
     lastName: "",
@@ -53,8 +54,11 @@ const appSlice = createSlice({
     },
     resetApp: (state) => {
       state.isUserLoggedIn = false;
+      state.isUserLoading = false;
       state.userName = "";
-      state.profileName = "";
+      state.firstName = "";
+      state.lastName = "";
+      state.designation = "";
       state.role = "";
       state.token = "";
     },
@@ -95,6 +99,7 @@ export const {
   setLogin,
   resetApp,
   setUserName,
+  setIsUserLoading,
   setToken,
   setUserDetails,
   openModal,

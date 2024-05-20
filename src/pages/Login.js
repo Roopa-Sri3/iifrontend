@@ -29,11 +29,13 @@ function Login() {
     setEmail(e.target.value);
     console.log(email);
     setEmailError(false);
+    setError(false);
   };
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
     setPasswordError(false);
+    setError(false);
   };
 
   const verifyCredentials = (username, password) => {

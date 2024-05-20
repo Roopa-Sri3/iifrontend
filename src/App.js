@@ -10,46 +10,47 @@ import { PostToken, setIsUserLoading, setUserDetails } from "./store/reducers/ap
 const router = createBrowserRouter(ROUTES_CONFIG);
 
 function App() {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // const isStoreHasUserData = useSelector(IsUserLoggedIn);
+  const isStoreHasUserData = useSelector(IsUserLoggedIn);
 
-  // useEffect(() => {
-  //   /**
-  //    * If user refresh the page and if we have his tocken and id in local store
-  //    * We can get the user details and updaet the store, because on refresh the store will reset.
-  //    * So need to updaet the values.
-  //    **/
-  //   const localStoreToken = sessionStorage.getItem("Token");
-  //   if (
-  //     !isStoreHasUserData
-  //     && localStoreToken
-  //   ) {
-  //     dispatch(
-  //       PostToken({
-  //         data: localStoreToken,
-  //         onSuccess: (userDetails) => {
-  //           const responseDetails = userDetails && userDetails.response;
-  //           if (responseDetails) {
-  //             dispatch(setUserDetails({
-  //               ...responseDetails
-  //             }));
-  //           }
-  //           else {
-  //             dispatch(setIsUserLoading({
-  //               isUserLoading: false,
-  //             }));
-  //           }
-  //         }
-  //       })
-  //     );
-  //   }
-  //   else{
-  //     dispatch(setIsUserLoading({
-  //       isUserLoading: false,
-  //     }));
-  //   }
-  // }, [dispatch, isStoreHasUserData]);
+  useEffect(() => {
+    /**
+     * If user refresh the page and if we have his tocken and id in local store
+     * We can get the user details and updaet the store, because on refresh the store will reset.
+     * So need to updaet the values.
+     **/
+    const localStoreToken = sessionStorage.getItem("Token");
+    // console.log(localStoreToken);
+    if (
+      !isStoreHasUserData
+      && localStoreToken
+    ) {
+      dispatch(
+        PostToken({
+          data: localStoreToken,
+          onSuccess: (userDetails) => {
+            const responseDetails = userDetails && userDetails.response;
+            if (responseDetails) {
+              dispatch(setUserDetails({
+                ...responseDetails
+              }));
+            }
+            else {
+              dispatch(setIsUserLoading({
+                isUserLoading: false,
+              }));
+            }
+          }
+        })
+      );
+    }
+    else{
+      dispatch(setIsUserLoading({
+        isUserLoading: false,
+      }));
+    }
+  }, [dispatch, isStoreHasUserData]);
 
   return (
     <Layout>
