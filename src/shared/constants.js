@@ -13,7 +13,7 @@ export const instructions =
   "Upload Your File: Click the 'Upload File' button and select the modified template file from your computer.",
   "Review Before Importing: After uploading, review the questions to ensure they are correctly formatted and appear as expected.",
   "Upload Questions: Finally, click 'Upload Questions' to add the questions to your database.",
-  "Note: Only upload files with a maximum size of [400Kb] to ensure smooth processing."
+  "Note: Only upload files with a maximum size of [4Mb] to ensure smooth processing."
 ];
 
 export const options = [

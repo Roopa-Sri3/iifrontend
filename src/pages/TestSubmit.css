@@ -1,0 +1,59 @@
+.test-submit-container{
+    background-color: #EBEEF3;
+    min-height: 680px;
+    padding: 30px 100px;
+}
+.submit-msg{
+    padding-bottom: 25px;
+}
+#test-submit{
+    margin-top: 15px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19.36px;
+    color: #383838;
+}
+#test-description{
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 14.52px;
+    color: #6F7683;
+}
+.test-submit-feedback{
+    max-width: 750px;
+    min-height: 300px;
+    display: block;
+}
+#feedback-title{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19.36px;
+    text-align: left;
+    color: #2C2C2C;
+    margin-bottom: 10px;
+}
+.feedback-card{
+    max-width: 750px;
+    min-height: 360px;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+    padding: 20px;
+}
+.feedback-sub-title{
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16.94px;
+    text-align: left;
+    color: #000000;
+}
+.feedback-textarea{
+    min-width: 700px;
+    min-height: 130px;
+    border-radius: 5px;
+    border: 1px solid #D9E0E6;
+    resize: none;
+}
+#feedback-submit{
+    margin-top: 10px;
+    float: right;
+}

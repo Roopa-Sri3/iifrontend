@@ -1,11 +1,11 @@
 .questions-container{
     background-color: #EBEEF3;
-    padding: 20px;
+    padding: 20px 40px;
 }
 
 .question-card{
     background-color: #FFFFFF;
-    padding: 15px 50px;
+    padding: 15px 40px;
     border-radius: 5px;
 }
 

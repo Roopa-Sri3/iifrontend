@@ -109,7 +109,7 @@ const Dashboard = () => {
         },
         onError: () => {
           dispatch(setAlert({
-            message: "Failed to send",
+            message: "Failed to update details",
             messageType: "failure"
           }));
         }
@@ -120,7 +120,7 @@ const Dashboard = () => {
         onSuccess: () => {
           fetchCandidates();
 
-          const message = formData.shareLink ? "Candidateadded and link shared successfully" : "Candidate added successfully";
+          const message = formData.shareLink ? "Candidate added and link shared successfully" : "Candidate added successfully";
 
           dispatch(setAlert({
             message,
@@ -128,8 +128,10 @@ const Dashboard = () => {
           }));
         },
         onError: () => {
+          const message = formData.shareLink ? "Failed to send link and add candidate" : "Failed to add candidate";
+
           dispatch(setAlert({
-            message : "Failed to send",
+            message,
             messageType: "failure"
           }));
         }

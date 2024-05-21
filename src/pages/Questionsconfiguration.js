@@ -27,6 +27,7 @@ function Questionsconfiguration() {
     const files = event.target.files;
     if (files.length > 0) {
       setSelectedFile(files[0]);
+      console.log(selectedFile);
     }
     else{
       setSelectedFile(null);
@@ -39,13 +40,24 @@ function Questionsconfiguration() {
   };
 
   const handleSubmit = () => {
+
     dispatch(PostUploadFile({
       file: selectedFile,
       onSuccess: () => {
         dispatch(setAlert({ message: "File uploaded successfully", messageType: "success" }));
       },
       onError: () => {
-        dispatch(setAlert({ message: "File upload unsuccessful", messageType: "failure" }));
+        if (selectedFile.size > (4 * 1024 * 1024)) {
+          dispatch(setAlert({ message: "File size exceeded", messageType: "failure" }));
+          fileRef.current.value = null;
+        }
+        else if (selectedFile.type !== "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") {
+          dispatch(setAlert({ message: "Invalid file type.", messageType: "failure" }));
+          fileRef.current.value = null;
+        }
+        else{
+          dispatch(setAlert({ message: "File upload unsuccessful", messageType: "failure" }));
+        }
       },
     }));
   };
@@ -88,7 +100,7 @@ function Questionsconfiguration() {
                 <div className="file-info-layout">
                   <span className="file-name">{selectedFile.name}</span>
                   <span className="file-size">
-                    {(selectedFile.size / 1024).toFixed(2)} MB
+                    {(selectedFile.size / (1024 * 1024)).toFixed(2)} MB
                   </span>
                 </div>
               </div>

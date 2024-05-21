@@ -49,8 +49,12 @@
   cursor:'pointer';
 }
 
-.share-icon{
-  cursor:pointer;
+.share-icon {
+  cursor: not-allowed;
+}
+
+.share-icon.active {
+  cursor: pointer;
 }
 
 .filter-icon{

@@ -10,11 +10,16 @@ import LogoutIcons from "../../components/core/assets/svgs/LougoutIcons";
 import companylogo from "../../assets/Images/company-symbol.png";
 import { openModal } from "../../store/reducers/app/app";
 
+import Timer from "../../components/timer/Timer";
+import { GetExamStatus } from "../../store/selector/screen";
 import "./Header.css";
 
 const Header = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(IsUserLoggedIn);
+
+  const examStarted = useSelector(GetExamStatus);
+
   const profileName = useSelector(GetProfileName);
   const userRole = useSelector(GetUserRole);
   const [isOpen, setIsOpen] = useState(false);
@@ -33,10 +38,12 @@ const Header = () => {
   return (
     <div className="header">
       <Innovalogo src={companylogo} alt="companylogo" className='innova-logo' />
+
+      {!(window.location.pathname === "/") &&
+        <Title text="Interview Insights" className="interview-insights-title" />
+      }
       {isLoggedIn && (
-        <div className="logged-in-app-header">
-          <Title text="Interview Insights"
-            className="interview-insights-title" />
+        <div className='logged-in-app-header'>
           <div className="round">
             <RoundButton />
             <Expand className="expand-icon" onClick={toggleExpand} />
@@ -68,6 +75,11 @@ const Header = () => {
           </div>
         </div>
       )}
+      {examStarted &&
+        <div className='header-timer'>
+          <Timer />
+        </div>
+      }
     </div>
   );
 };
