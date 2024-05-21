@@ -1,8 +1,3 @@
-.addcandidate-checkbox-container{ 
-    display: flex;
-    align-items: flex-start;
-    margin-left: 22px;
-    margin-bottom: 20px; 
+.add-candidate-submit-button{
+    min-width:450px;
 }
-
-

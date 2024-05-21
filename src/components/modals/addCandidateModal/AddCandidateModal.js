@@ -91,7 +91,7 @@ const AddCandidateModal = ({
     }
     if (mobileNumber === "") {
       setMobileNumberError("");
-    } else if (!/^\d{10}$/.test(mobileNumber)) {
+    } else if (!/^\d{10}$/.test(mobileNumber) || mobileNumber === "0000000000") {
       setMobileNumberError("Please enter valid mobile number");
       isValid = false;
     }
@@ -305,6 +305,7 @@ const AddCandidateModal = ({
                   maxSelection="3"
                   selectedValues={selectedSecondarySkills}
                   disabled={!isPrimarySkillSelected}
+                  excludedOptions={selectedPrimarySkills}
                 />
               </div>
             </div>
