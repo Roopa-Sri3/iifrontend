@@ -1,54 +1,55 @@
 .complete-file-content-view {
     display: flex;
+    margin: 5px;
     align-items: center;
     background-color: #ebeef3;
     border-radius: 5px;
     height: 65px;
     margin-top: 18px;
     border: 2px solid #eaeef3;
-}
-
-.file-document-layout {
+  }
+  
+  .file-document-layout {
     display: flex;
     margin: 2px 20px;
     background-color: #ffffff;
     height: 45px;
     width: 85%;
     border-radius: 5px;
-}
-
-.error-layout {
+  }
+  
+  .error-layout {
     border: 2px solid #FF2828;
-}
-
-.file-information-layout {
+  }
+  
+  .file-information-layout {
     display: flex;
     flex-direction: column;
-}
-
-.file-icon-layout {
+  }
+  
+  .file-icon-layout {
     align-self: center;
     padding-left: 10px;
     padding-right: 10px;
-}
-
-.file-size {
+  }
+  
+  .file-size {
     font-size: 10px;
     font-weight: bold;
     color: #727885;
-}
-
-.file-name {
+  }
+  
+  .file-name {
     font-size: 15px;
     font-weight: bold;
     color: black;
     text-overflow: ellipsis;
     overflow: hidden;
-    white-space: no-wrap;
-}
-
-.delete-button {
+    white-space: nowrap;
+  }
+  
+  .delete-button {
     cursor: pointer;
     border: 1px solid #ebeef3;
-}
-
+  }
+  

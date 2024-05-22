@@ -1,5 +1,5 @@
 import React from "react";
-import uploadicon from "../../../assets/Images/uploadicon.svg";
+import uploadIcon from "../../../assets/Images/uploadIcon.svg";
 import "./fileUploader.css";
 
 function FileUploader({
@@ -14,27 +14,23 @@ function FileUploader({
   return (
     <>
       <div className="overall-content-container">
-
-        {/*eslint-disable-next-line jsx-a11y/label-has-associated-control*/}
+        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
         <label className="upload-tag" htmlFor={identifier}>
-
           <div className="imageicon-container">
-            <img src={uploadicon} alt="Upload Icon" /></div>
+            <img src={uploadIcon} alt="Upload Icon" />
+          </div>
           <div>
-
-            <p className="upload-text">
-              {displayText}</p>
-
+            <p className="upload-text">{displayText}</p>
             {secondaryText && (
               <p className={`secondary-text ${secondaryTextClassName}`}>
                 {secondaryText}
               </p>
-
             )}
           </div>
         </label>
       </div>
-      <input className="input-file-upload-button"
+      <input
+        className="input-file-upload-button"
         id={identifier}
         type="file"
         multiple={canAttachMultiple}

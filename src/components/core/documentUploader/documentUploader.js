@@ -5,7 +5,7 @@ import FileUploader from "../fileUploader";
 import UploadItems from "../uploadItems";
 import "./documentUploader.css";
 
-const DocumentUploader = ({ displayText, secondaryText}) => {
+const DocumentUploader = ({ displayText, secondaryText }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [errorMessage, setErrorMessage] = useState(" ");
   const [isFileValid, setIsFileValid] = useState(false);
@@ -27,8 +27,7 @@ const DocumentUploader = ({ displayText, secondaryText}) => {
     }
     const fileType = file.type;
     const fileSizeInBytes = file.size;
-    return validFileTypes.includes(fileType)
-     && fileSizeInBytes <= maxFileSizeInBytes;
+    return validFileTypes.includes(fileType) && fileSizeInBytes <= maxFileSizeInBytes;
   };
 
   const clearErrorMessage = () => {
@@ -36,12 +35,10 @@ const DocumentUploader = ({ displayText, secondaryText}) => {
   };
 
   const handleSubmit = () => {
-
     if (!isFileValid) {
       handleInvalidFile("File format or size is incorrect.");
       return;
     }
-
     handleValidFile();
   };
 
@@ -96,7 +93,6 @@ const DocumentUploader = ({ displayText, secondaryText}) => {
           className="upload-button"
           onClick={handleSubmit}
           disabled={!selectedFile || errorMessage}
-
         >
           Upload
         </button>
