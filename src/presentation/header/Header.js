@@ -5,8 +5,8 @@ import { IsUserLoggedIn, GetProfileName, GetUserRole } from "../../store/selecto
 import Innovalogo from "../../dashboard-header-components/Logo";
 import Title from "../../dashboard-header-components/Title";
 import RoundButton from "../../dashboard-header-components/RoundButton";
-import Expand from "../../components/core/assets/svgs/Expand";
-import LogoutIcons from "../../components/core/assets/svgs/LougoutIcons";
+import Expand from "../../components/assets/svgs/Expand";
+import LogoutIcons from "../../components/assets/svgs/LougoutIcons";
 import { openModal } from "../../store/reducers/app/app";
 
 import Timer from "../../components/timer/Timer";
@@ -36,7 +36,7 @@ const Header = () => {
   };
   return (
     <div className="header">
-      <Innovalogo src={companylogo} alt="companylogo" className='innova-logo' />
+      <Innovalogo src={Innovalogo} alt="companylogo" className='innova-logo' />
 
       {!(window.location.pathname === "/") &&
         <Title text="Interview Insights" className="interview-insights-title" />
