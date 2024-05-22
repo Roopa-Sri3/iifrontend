@@ -1,0 +1,14 @@
+thead {
+  background-color: #FAFCFF;
+  border: 0.5px solid #D9E0E6;
+  padding: 10px;
+  color: #333;
+}
+
+.candidate-th {
+  padding: 10px;
+}
+
+.th-section-with-filter{
+  display: flex;
+}

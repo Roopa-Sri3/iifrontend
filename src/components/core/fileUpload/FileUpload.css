@@ -1,6 +1,7 @@
-.upload-image{
+.file-upload-image{
     margin-left: 16px;
-    height: 20px;
+    height: 40px;
+    z-index: 10;
 }
 
 .input-file-upload-button{

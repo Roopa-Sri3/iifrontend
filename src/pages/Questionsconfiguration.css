@@ -1,6 +1,6 @@
 .questions-main{
     background-color: #ebeef3;
-    height:620px;
+    height:650px;
 }
 
 .containerhead {
@@ -40,7 +40,6 @@
     flex:1;
     flex-direction: column;
     background-color: #ffffff;
-    height:450px;
     border-radius: 5px 0px 0px 5px;
     align-items: center;
     padding: 10px;
@@ -50,7 +49,7 @@
     flex: 0.6;
     display: flex;
     background-color: #f9f9f9;
-    padding:9px;
+    padding:5px;
     flex-direction: column;
     border-radius: 0px 5px 5px 0px;
 }
@@ -100,6 +99,9 @@
 .file-info-layout{
     display: flex;
     flex-direction: column;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .file-layout{
@@ -120,11 +122,11 @@
     color:black;
     text-overflow: ellipsis;
     overflow: hidden;
-    white-space: no-wrap;
+    white-space: nowrap;
 }
 
 .instructions-list{
-    font-size: 15px;
+    font-size: 14px;
 }
 
 .inst-head{
@@ -133,6 +135,9 @@
 }
 
 .final-upload {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border:none;
     color:#ffffff;
     background-color: #4595ff;
@@ -142,6 +147,10 @@
     margin-left: 40%;
     margin-top: 10px;
     margin-bottom: 10px;
+
+    &:disabled{
+        background-color: #93979b;
+    }
 }
 
 .back-arrow-icon{
@@ -150,5 +159,10 @@
 
 .list-layout{
     list-style-type: lower-roman;
+    padding-bottom: 10px;
+}
+
+.delete-button{
+    cursor : pointer;
 }
 

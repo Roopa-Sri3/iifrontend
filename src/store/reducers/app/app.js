@@ -1,18 +1,21 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
+import APIWrapper from "../../../shared/services/apiWrapper/apiwrapper";
 
 const appSlice = createSlice({
-  name: 'app',
+  name: "app",
   initialState: {
     isUserLoggedIn: false,
-    userName: '',
-    profileName: '',
-    role: '',
+    userName: "",
+    firstName: "",
+    lastName: "",
+    designation: "",
+    role: "",
     modal:{
-      modalName: '',
+      modalName: "",
       modalData: null,
     },
-    message : '',
-    messageType : '',
+    message : "",
+    messageType : "",
     timeoutId: null,
     apiCounter: 0,
   },
@@ -24,23 +27,33 @@ const appSlice = createSlice({
       state.userName = action.payload.userName;
     },
     setUserDetails: (state, action) => {
-      state.userName = action.payload.userName;
-      state.profileName = action.payload.profileName;
-      state.role = action.payload.role;
+      const {
+        username,
+        firstName,
+        lastName,
+        designation,
+        role,
+      } = action.payload;
+
+      state.userName = username;
+      state.firstName = firstName;
+      state.lastName = lastName;
+      state.designation = designation;
+      state.role = role;
       state.isUserLoggedIn = true;
     },
     resetApp: (state) => {
       state.isUserLoggedIn = false;
-      state.userName = '';
-      state.profileName = '';
-      state.role = '';
+      state.userName = "";
+      state.profileName = "";
+      state.role = "";
     },
-    openModal: (state,action) => {
+    openModal: (state, action) => {
       state.modal.modalName = action.payload.modalName;
       state.modal.modalData = action.payload.modalData;
     },
     closeModal: (state) => {
-      state.modal.modalName = '';
+      state.modal.modalName = "";
       state.modal.modalData = null;
     },
     incrementApiCounter: (state) => {
@@ -56,13 +69,13 @@ const appSlice = createSlice({
       state.messageType = action.payload.messageType;
     },
     clearAlert: (state,action) => {
-      state.message = '';
-      state.messageType = '';
+      state.message = "";
+      state.messageType = "";
     },
     setTimeoutId: (state, action) => {
       state.timeoutId = action.payload;
     },
-    clearTimeoutId: (state) =>{
+    clearTimeoutId: (state) => {
       state.timeoutId = null;
     },
   },
@@ -84,3 +97,31 @@ export const {
 } = appSlice.actions;
 
 export default appSlice.reducer;
+
+export const PostUserCredentials = ({
+  data,
+  onSuccess = () => {},
+  onError = () => {},
+} = {}) => async(dispatch) => {
+  const apiWrapper = new APIWrapper(dispatch);
+
+  await apiWrapper.postUserCredentials({
+    data,
+    onSuccess,
+    onError,
+  });
+};
+
+export const PostToken = ({
+  data,
+  onSuccess = () => {},
+  onError = () => {},
+} = {}) => async(dispatch) => {
+  const apiWrapper = new APIWrapper(dispatch);
+
+  await apiWrapper.postToken({
+    data,
+    onSuccess,
+    onError,
+  });
+};

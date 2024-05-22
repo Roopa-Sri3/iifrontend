@@ -1,0 +1,45 @@
+.submit-modal-text{
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 16.94px;
+    color: #383838;
+}
+.submit-actions{
+    margin: 25px 0px;
+}
+ 
+.modal-no-button{
+    min-width: 75px;
+    background-color:#FFFFFF;
+    color: #4595FF;
+    border: 1px solid #4595FF;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19px;
+    padding: 8px 25px;
+    margin-right: 20px;
+    text-align: center;
+}
+ 
+.modal-no-button .label{
+    margin-right: 0px;
+}
+ 
+.modal-yes-button{
+    min-width: 75px;
+    background-color: #4595FF;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19px;
+    padding: 8px 25px;
+    align-items: center;
+ 
+}
+ 
+.modal-yes-button .label{
+    margin-right: 0px;
+}

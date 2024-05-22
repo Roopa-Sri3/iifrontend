@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 // import cx from 'classnames';
-import './button.css';
+import "./button.css";
 
 const Button = ({
   label,
@@ -10,7 +10,7 @@ const Button = ({
   disabled = false,
   children,
 }) => {
-  const buttonClass = className ? className : 'button';
+  const buttonClass = className ? `${className} button` : "button";
   return (
     <button
       id={id}
@@ -18,8 +18,8 @@ const Button = ({
       onClick={handleClick}
       disabled={disabled}
     >
-      <div className="buttonContainer">
-        <div className="label">{label}</div>
+      <div className={children ? "buttonContainer" : ""}>
+        <div className={children ? "label" : ""}>{label}</div>
         {children}
       </div>
     </button>

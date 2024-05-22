@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 function Label ({
   htmlFor,
@@ -9,6 +9,7 @@ function Label ({
   return (
     <label
       htmlFor={htmlFor}
+      className={className}
       {...restLabelProps}
     >
       {text}

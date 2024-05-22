@@ -1,8 +1,8 @@
-import React from 'react';
-import Header from '../header/Header';
-import Footer from '../footer/Footer';
-import Toaster from '../../components/container/toaster/Toaster';
-import './Layout.css';
+import React from "react";
+import Header from "../header/Header";
+import Footer from "../footer/Footer";
+import Toaster from "../../components/container/toaster/Toaster";
+import "./Layout.css";
 
 /**
  * Creates a genaric Layout for all pages. Except for Login.
