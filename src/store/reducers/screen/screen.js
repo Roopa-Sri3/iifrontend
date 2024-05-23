@@ -59,7 +59,6 @@ const initialState = {
       questionType: "single-select",
     },
   ],
-  // questions: [],
   answers: [],
 };
 
@@ -117,19 +116,19 @@ export const GetAssessmentQuestions = ({
   });
 };
 
-// export const PostAssessmentAnswers = ({
-//   data,
-//   onSuccess = () => {},
-//   onError = () => {},
-// }) => async(dispatch) => {
-//   const apiWrapper = new APIWrapper(dispatch);
+export const PostAssessmentAnswers = ({
+  data,
+  onSuccess = () => {},
+  onError = () => {},
+}) => async(dispatch) => {
+  const apiWrapper = new APIWrapper(dispatch);
 
-//   await apiWrapper.postAssessmentAnswers({
-//     data,
-//     onSuccess,
-//     onError,
-//   });
-// };
+  await apiWrapper.postAssessmentAnswers({
+    data,
+    onSuccess,
+    onError,
+  });
+};
 
 export const {
   setDuration,

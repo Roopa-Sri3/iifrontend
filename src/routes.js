@@ -33,7 +33,6 @@ const ROUTES_CONFIG = [
   },
   {
     path: "/candidate",
-    // element:  <ProtectedDashboardRoute />,
     children: [
       {
         path: "/candidate/assessment-screen",

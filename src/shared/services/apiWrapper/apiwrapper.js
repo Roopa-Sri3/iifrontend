@@ -123,18 +123,18 @@ class APIWrapper extends HTTPClient {
     });
   }
 
-  // async postAssessmentAnswers({
-  //   data,
-  //   onSuccess = () => {},
-  //   onError = () => {},
-  // }) {
-  //   return this.get({
-  //     url: "",
-  //     data,
-  //     onSuccess,
-  //     onError,
-  //   });
-  // }
+  async postAssessmentAnswers({
+    data,
+    onSuccess = () => {},
+    onError = () => {},
+  }) {
+    return this.get({
+      url: "",
+      data,
+      onSuccess,
+      onError,
+    });
+  }
 
   async postUploadFile({
     file,
