@@ -10,8 +10,7 @@ const Button = ({
   disabled = false,
   children,
 }) => {
-  // const buttonClass = className ? `${className} button` : "button";
-  const buttonClass = className ? className : "button";
+  const buttonClass = className ? `${className} button` : "button";
   return (
     <button
       id={id}
