@@ -1,4 +1,5 @@
 import HTTPClient from "../httpclient";
+import {setQuestions} from "../../../store/reducers/screen/screen";
 
 class APIWrapper extends HTTPClient {
   constructor(dispatch = () => {}) {
@@ -103,6 +104,33 @@ class APIWrapper extends HTTPClient {
   }) {
     return this.get({
       url: "/interviewinsights/downloadTemplate",
+      onSuccess,
+      onError,
+    });
+  }
+
+  async getAssessmentQuestions({
+    onSuccess = () => {},
+    onError = () => {},
+  }) {
+    return this.get({
+      url: "/",
+      onSuccess : (response) => {
+        this.dispatch(setQuestions(response.data));
+        onSuccess();
+      },
+      onError,
+    });
+  }
+
+  async postAssessmentAnswers({
+    data,
+    onSuccess = () => {},
+    onError = () => {},
+  }) {
+    return this.get({
+      url: "",
+      data,
       onSuccess,
       onError,
     });
