@@ -10,9 +10,9 @@
 
 
 .button-tag{
-  display: inline-block;
+  display: block;
   padding: 0.5em 1em;
-  border: dotted;
+  border: 2px dotted;
   background-color: #f9f9f9;
   color: #333;
   font-size: 15px;

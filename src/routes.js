@@ -32,8 +32,14 @@ const ROUTES_CONFIG = [
     element: <Unauthorized />
   },
   {
-    path: "/candidate/assessment-screen",
-    element: <Assessmentscreen />
+    path: "/candidate",
+    // element:  <ProtectedDashboardRoute />,
+    children: [
+      {
+        path: "/candidate/assessment-screen",
+        element: <Assessmentscreen />
+      },
+    ]
   },
   {
     path: "/exam",
