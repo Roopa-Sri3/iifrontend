@@ -13,6 +13,7 @@ import {
   PostToken,
   PostUserCredentials,
   setUserDetails,
+  setToken
 } from "../store/reducers/app/app";
 
 function Login() {
@@ -47,6 +48,8 @@ function Login() {
         },
         onSuccess: (response) => {
           const token = response.token;
+          sessionStorage.setItem("Token", token);
+          dispatch(setToken({token}));
           dispatch(PostToken({
             data: {
               token,

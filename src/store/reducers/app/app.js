@@ -5,6 +5,8 @@ const appSlice = createSlice({
   name: "app",
   initialState: {
     isUserLoggedIn: false,
+    isUserLoading: true,
+    // token: "",
     userName: "",
     firstName: "",
     lastName: "",
@@ -26,6 +28,13 @@ const appSlice = createSlice({
     setUserName: (state, action) => {
       state.userName = action.payload.userName;
     },
+    setIsUserLoading: (state, action) => {
+      state.isUserLoading = action.payload.isUserLoading;
+    },
+    setToken: (state, action) => {
+      const { token } = action.payload;
+      state.token = token;
+    },
     setUserDetails: (state, action) => {
       const {
         username,
@@ -41,11 +50,15 @@ const appSlice = createSlice({
       state.designation = designation;
       state.role = role;
       state.isUserLoggedIn = true;
+      state.isUserLoading = false;
     },
     resetApp: (state) => {
       state.isUserLoggedIn = false;
+      state.isUserLoading = true;
       state.userName = "";
-      state.profileName = "";
+      state.firstName = "";
+      state.lastName = "";
+      state.designation = "";
       state.role = "";
     },
     openModal: (state, action) => {
@@ -85,6 +98,8 @@ export const {
   setLogin,
   resetApp,
   setUserName,
+  setIsUserLoading,
+  setToken,
   setUserDetails,
   openModal,
   closeModal,

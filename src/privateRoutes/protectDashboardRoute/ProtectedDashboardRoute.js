@@ -1,10 +1,15 @@
 import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { IsUserLoggedIn } from "../../store/selector/app";
+import { IsUserLoading, IsUserLoggedIn } from "../../store/selector/app";
 
 const ProtectedDashboardRoute = () => {
+  const isUserLoading = useSelector(IsUserLoading);
   const isUserLoggedIn = useSelector(IsUserLoggedIn);
+
+  if (isUserLoading) {
+    return <>Loading...</>;
+  }
 
   return isUserLoggedIn ? <Outlet /> : <Navigate to="/unauthorized" />;
 };

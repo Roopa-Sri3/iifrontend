@@ -15,6 +15,7 @@ const MultiSelect = ({
   maxSelection,
   disabled = false,
   error = false,
+  excludedOptions = [],
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState([]);
@@ -89,9 +90,10 @@ const MultiSelect = ({
     };
   }, []);
 
-  const filterOptions = options.filter((option) =>
-    option.label.toLowerCase().includes(searchItem.toLowerCase())
-  );
+  const filterOptions = options.filter((option) => (
+    option.label.toLowerCase().includes(searchItem.toLowerCase()) &&
+      !excludedOptions.some((excludedOption) => excludedOption.label === option.label)
+  ));
 
   const disabledOptions = selectedOptions.length >= maxSelection ?
     options.filter(
@@ -117,27 +119,28 @@ const MultiSelect = ({
       onKeyDown={handleKeyDown}
       >
         <div className="selected-options">
-          {selectedOptions && selectedOptions.map((option) => (
-            <div
-              key={option.value}
-              className="selected-option"
-            >
-              {option.label}
-              <span
-                className="deselect-option"
-                role="button"
-                tabIndex="0"
-                onClick={() => handleOptionClick(option)}
-                onKeyDown={(event) => {
-                  if (event.key === "Enter" || event.key === " ") {
-                    handleOptionClick(option);
-                  }
-                }}
+          {selectedOptions &&
+            selectedOptions.map((option) => (
+              <div
+                key={option.value}
+                className="selected-option"
               >
-                {selectedOptions.includes(option) && (<DeSelect />)}
-              </span>
-            </div>
-          ))}
+                {option.label}
+                <span
+                  className="deselect-option"
+                  role="button"
+                  tabIndex="0"
+                  onClick={() => handleOptionClick(option)}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter" || event.key === " ") {
+                      handleOptionClick(option);
+                    }
+                  }}
+                >
+                  {selectedOptions.includes(option) && (<DeSelect />)}
+                </span>
+              </div>
+            ))}
         </div>
         {label}
         <span className="drop-box-icon">
