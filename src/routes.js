@@ -5,6 +5,8 @@ import ProtectedDashboardRoute from "./privateRoutes/protectDashboardRoute";
 import Questionsconfiguration from "./pages/Questionsconfiguration";
 import Unauthorized from "./pages/Unauthorized";
 import AssessmentInstructions from "./pages/AssessmentInstructions";
+import TestSubmit from "../src/pages/TestSubmit";
+import Assessmentscreen from "./pages/Assessmentscreen";
 
 const ROUTES_CONFIG = [
   {
@@ -17,13 +19,13 @@ const ROUTES_CONFIG = [
     children: [
       {
         path: "/dashboard",
-        element: <Dashboard />,
+        element: (<Dashboard />)
+      },
+      {
+        path: "/admin/questions-configure",
+        element: <Questionsconfiguration />
       },
     ]
-  },
-  {
-    path: "/admin/questions_configure",
-    element: <Questionsconfiguration />
   },
   {
     path: "/unauthorized",
@@ -33,6 +35,14 @@ const ROUTES_CONFIG = [
     path: "/candidate/assessment-instructions",
     element: <AssessmentInstructions />
   },
+  {
+    path: "/candidate/assessment-screen",
+    element: <Assessmentscreen />
+  },
+  {
+    path: "/candidate/test-submitted",
+    element: <TestSubmit />
+  }
 ];
 
 export default ROUTES_CONFIG;

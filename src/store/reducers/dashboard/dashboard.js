@@ -3,6 +3,10 @@ import APIWrapper from "../../../shared/services/apiWrapper/apiwrapper";
 
 const initialState = {
   skillsOptions:[],
+  dashBoardCandidates: {
+    candidateDetails: [],
+    totalCount: 0,
+  },
 };
 
 const dashboardSlice = createSlice({
@@ -10,13 +14,17 @@ const dashboardSlice = createSlice({
   initialState: initialState,
   reducers: {
     setSkills: (state, action) => {
-      state.skillsOptions = action.payload.skills;
+      state.skillsOptions = action.payload;
+    },
+    setCandidates: (state, action) => {
+      state.dashBoardCandidates = action.payload;
     },
   }
 });
 
 export const {
   setSkills,
+  setCandidates,
 } = dashboardSlice.actions;
 
 export default dashboardSlice.reducer;
@@ -33,6 +41,22 @@ export const GetTechSkills = ({
   });
 
   dispatch(setSkills(skills));
+};
+
+export const GetCandidateDetails = ({
+  data,
+  onSuccess = () => {},
+  onError = () => {},
+} = {}) => async(dispatch) => {
+  const apiWrapper = new APIWrapper(dispatch);
+
+  const candidatesResponse = await apiWrapper.getCandidateDetails({
+    data,
+    onSuccess,
+    onError,
+  });
+
+  dispatch(setCandidates(candidatesResponse.data));
 };
 
 export const AddCandidate = ({
@@ -58,6 +82,32 @@ export const EditCandidate = ({
 
   await apiWrapper.editCandidate({
     data,
+    onSuccess,
+    onError,
+  });
+};
+
+export const GetFileDownload = ({
+  onSuccess = () => {},
+  onError = () => {},
+}) => async(dispatch) => {
+  const apiWrapper = new APIWrapper(dispatch);
+
+  await apiWrapper.getFileDownload({
+    onSuccess,
+    onError,
+  });
+};
+
+export const PostUploadFile = ({
+  file,
+  onSuccess = () => {},
+  onError = () => {},
+}) => async(dispatch) => {
+  const apiWrapper = new APIWrapper(dispatch);
+
+  await apiWrapper.postUploadFile({
+    file,
     onSuccess,
     onError,
   });

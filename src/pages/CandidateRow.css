@@ -14,7 +14,8 @@
 }
 
 .cd-report {
-  display: inline-flex;
+  display: flex;
+  align-items: center;
 }
 
 .report-text{
@@ -25,6 +26,7 @@
 
 .feedback-container{
   display:inline-flex ;
+  font-weight: bold;
 }
 
 .save-icon {
@@ -47,8 +49,12 @@
   cursor:'pointer';
 }
 
-.share-icon{
-  cursor:pointer;
+.share-icon {
+  cursor: not-allowed;
+}
+
+.share-icon.active {
+  cursor: pointer;
 }
 
 .filter-icon{

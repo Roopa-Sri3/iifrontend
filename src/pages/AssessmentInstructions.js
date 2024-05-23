@@ -1,12 +1,26 @@
 import React, { useState } from "react";
 import { assessmentInstructions } from "../shared/constants";
 import "./AssessmentInstructions.css";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import Button from "../components/core/button";
+import { setDuration, startExam } from "../store/reducers/screen/screen";
+import { GetExamStatus } from "../store/selector/screen";
 
 const AssessmentInstructions = () => {
   const [isConfirmed, setIsConfirmed] = useState(false);
 
   const handleConfirmation = () => {
     setIsConfirmed(!isConfirmed);
+  };
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const examStarted = useSelector(GetExamStatus);
+
+  const handleStartExam = () => {
+    dispatch(startExam());
+    dispatch(setDuration());
   };
 
   return (
@@ -37,16 +51,16 @@ const AssessmentInstructions = () => {
           I confirm that I have read and understood all the exam instructions
           </label>
         </div>
-        <button
-          id="start-exam"
-          disabled={!isConfirmed}
-          className={`start-exam-button ${isConfirmed ? "enabled" : ""}`}
-          onClick={() => {
-            alert("Exam started!");
-          }}
-        >
-          Start Exam
-        </button>
+        {!examStarted ?
+          (
+            <Button
+              label="Start Exam"
+              handleClick={handleStartExam}
+              disabled={!isConfirmed}
+              className={`start-exam-button ${isConfirmed ? "enabled" : ""}`}
+            />
+          ) : navigate("/candidate/assessment-screen")
+        }
       </div>
     </div>
   );

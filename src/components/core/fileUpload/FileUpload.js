@@ -3,19 +3,22 @@ import UploadIcon from "../../assets/svgs/UploadIcon";
 import "./FileUpload.css";
 
 function FileUpload({
+  fileRef,
   identifier,
   canAttachMultiple,
   disabled,
-  handleFiles}) {
+  handleFiles,
+}) {
   return(
     <>
       <label className="button-tag"
         htmlFor={identifier}
       >
-        <UploadIcon />
+        <UploadIcon className="file-upload-image"/>
         <p className="upload-text">Click to Upload</p>
       </label>
       <input
+        ref={fileRef}
         className="input-file-upload-button"
         id={identifier}
         type="file"
