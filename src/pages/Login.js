@@ -27,7 +27,6 @@ function Login() {
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
-    console.log(email);
     setEmailError(false);
     setError(false);
   };

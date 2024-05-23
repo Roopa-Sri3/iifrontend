@@ -18,10 +18,9 @@ function App() {
     /**
      * If user refresh the page and if we have his tocken and id in local store
      * We can get the user details and updaet the store, because on refresh the store will reset.
-     * So need to updaet the values.
+     * So need to update the values.
      **/
     const localStoreToken = sessionStorage.getItem("Token");
-    // console.log(localStoreToken);
     if (
       !isStoreHasUserData
       && localStoreToken

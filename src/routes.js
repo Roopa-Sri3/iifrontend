@@ -19,11 +19,11 @@ const ROUTES_CONFIG = [
         path: "/dashboard",
         element: (<Dashboard />)
       },
+      {
+        path: "/admin/questions-configure",
+        element: <Questionsconfiguration />
+      },
     ]
-  },
-  {
-    path: "/admin/questions-configure",
-    element: <Questionsconfiguration />
   },
   {
     path: "/unauthorized",
