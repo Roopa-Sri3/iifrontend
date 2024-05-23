@@ -48,11 +48,9 @@
   padding:8px;
   border:1px solid #ccc;
   box-sizing:border-box;
-  margin:5px 5px 3px 5px;
+  margin:5px 3px 3px 5px;
   border-radius:5px;
   height:30px;
-  position: sticky;
-  top:0;
 }
 
 .drop-box-menu .option-item-field-label{
@@ -125,7 +123,7 @@
   .multiselect-search-icon{
     position: absolute;
     top: 7px;
-    right: 12px;
+    right: 15px;
   }
 }
 

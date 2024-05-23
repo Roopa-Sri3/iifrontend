@@ -56,7 +56,7 @@ function Questionsconfiguration() {
           fileRef.current.value = null;
         }
         else{
-          dispatch(setAlert({ message: "File upload unsuccessful", messageType: "failure" }));
+          dispatch(setAlert({ message: "Failed to upload", messageType: "failure" }));
         }
       },
     }));

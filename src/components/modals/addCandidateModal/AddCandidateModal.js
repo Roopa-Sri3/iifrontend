@@ -44,6 +44,12 @@ const AddCandidateModal = ({
     setSelectedPrimarySkills(selectedValues);
     setSelectedPrimarySkillsError("");
     setIsPrimarySkillSelected(selectedValues.length > 0);
+
+    const updatedSecondarySkills = selectedSecondarySkills.filter(
+      (skill) => !selectedValues.some(
+        (primarySkill) => primarySkill.value === skill.value));
+
+    setSelectedSecondarySkills(updatedSecondarySkills);
   };
 
   const handleSecondarySkills = (selectedValues) => {
@@ -91,7 +97,7 @@ const AddCandidateModal = ({
     }
     if (mobileNumber === "") {
       setMobileNumberError("");
-    } else if (!/^\d{10}$/.test(mobileNumber)) {
+    } else if (!/^\d{10}$/.test(mobileNumber) || mobileNumber === "0000000000") {
       setMobileNumberError("Please enter valid mobile number");
       isValid = false;
     }
@@ -144,8 +150,7 @@ const AddCandidateModal = ({
         mobileNo:mobileNumber,
         yearsOfExperience,
         primaryTechSkill : selectedPrimarySkills[0].value,
-        secondaryTechSkill :
-        selectedSecondarySkills.map(skill => skill.value),
+        secondaryTechSkill : selectedSecondarySkills.map(skill => skill.value),
         rrNo:rRNumber,
         shareLink:isChecked,
       };
@@ -303,8 +308,9 @@ const AddCandidateModal = ({
                   options={options || []}
                   onChange={handleSecondarySkills}
                   maxSelection="3"
-                  selectedValues={selectedSecondarySkills}
+                  selectedValues={selectedPrimarySkills.length === 0 ? [] : selectedSecondarySkills}
                   disabled={!isPrimarySkillSelected}
+                  excludedOptions={selectedPrimarySkills}
                 />
               </div>
             </div>

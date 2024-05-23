@@ -10,7 +10,7 @@ const Button = ({
   disabled = false,
   children,
 }) => {
-  const buttonClass = className ? className : "button";
+  const buttonClass = className ? `${className} button` : "button";
   return (
     <button
       id={id}
@@ -18,7 +18,7 @@ const Button = ({
       onClick={handleClick}
       disabled={disabled}
     >
-      <div className="buttonContainer">
+      <div className={children ? "buttonContainer" : ""}>
         <div className={children ? "label" : ""}>{label}</div>
         {children}
       </div>

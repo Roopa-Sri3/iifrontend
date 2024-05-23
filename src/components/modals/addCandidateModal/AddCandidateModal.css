@@ -44,3 +44,9 @@
 .my-form{
   padding: 0px 20px;
 }
+
+.col-12{ 
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px; 
+}
