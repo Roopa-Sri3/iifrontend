@@ -1,9 +1,9 @@
-import React from 'react';
-import CallIcon from '../../assets/svgs/CallIcon';
-import MailIcon from '../../assets/svgs/MailIcon';
-import ExperienceIcon from '../../assets/svgs/ExperienceIcon';
-import Infocard from './Infocard/Infocard';
-import './CandidateProfileView.css';
+import React from "react";
+import CallIcon from "../../assets/svgs/CallIcon";
+import MailIcon from "../../assets/svgs/MailIcon";
+import ExperienceIcon from "../../assets/svgs/ExperienceIcon";
+import Infocard from "./Infocard/Infocard";
+import "./CandidateProfileView.css";
 
 function CandidateProfileView() {
   return (

@@ -42,6 +42,10 @@ const ROUTES_CONFIG = [
   {
     path: "/test-submitted",
     element: <TestSubmit />
+  },
+  {
+    path:"/candiate-profie-view",
+    element: <CandidateProfileView />
   }
 ];
 
