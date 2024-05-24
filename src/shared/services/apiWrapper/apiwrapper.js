@@ -157,6 +157,26 @@ class APIWrapper extends HTTPClient {
     });
   }
 
+  async postIdProofDetails({
+    file,
+    candidateId,
+    onSuccess = () => {},
+    onError = () => {},
+  }) {
+    const formData = new FormData();
+    formData.append("file", file);
+
+    this.headers = {
+      "Content-Type": "multipart/form-data",
+    };
+
+    return this.post({
+      url: `/interviewinsights/uploadProof/${candidateId}`,
+      data: formData,
+      onSuccess,
+      onError,
+    });
+  }
 }
 
 export default APIWrapper;
