@@ -33,7 +33,7 @@ const ROUTES_CONFIG = [
     children: [
       {
         path: "/candidate/assessment-screen",
-        element: <Assessmentscreen />
+        // element: <Assessmentscreen />
       },
       {
         path: "/candidate/CandidateProfileView",
@@ -43,11 +43,11 @@ const ROUTES_CONFIG = [
   },
   {
     path: "/exam",
-    element: <Start />
+    // element: <Start />
   },
   {
     path: "/test-submitted",
-    element: <TestSubmit />
+    //element: <TestSubmit />
   }
 ];
 
