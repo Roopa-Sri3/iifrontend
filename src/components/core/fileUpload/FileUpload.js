@@ -10,12 +10,12 @@ function FileUpload({
   handleFiles,
 }) {
   return(
-    <>
+    <div>
       <label className="button-tag"
         htmlFor={identifier}
       >
         <UploadIcon className="file-upload-image"/>
-        <p className="upload-text">Click to Upload</p>
+        <p className="upload-text">Click to upload</p><br></br>
       </label>
       <input
         ref={fileRef}
@@ -26,7 +26,7 @@ function FileUpload({
         disabled={disabled}
         onChange={handleFiles}
       />
-    </>
+    </div>
   );
 }
 export default FileUpload;

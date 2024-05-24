@@ -20,6 +20,7 @@ const LogoutModal = () => {
 
   const handleYesButton = () => {
     dispatch(resetApp());
+    sessionStorage.removeItem("Token");
     dispatch(closeModal());
     navigate("/");
   };

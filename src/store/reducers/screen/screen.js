@@ -1,4 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
+import APIWrapper from "../../../shared/services/apiWrapper/apiwrapper";
+
 const initialState = {
   duration: null,
   isTimeUp: null,
@@ -78,6 +80,9 @@ const screenSlice = createSlice({
     endExam: (state) => {
       state.isRunning = false;
     },
+    setQuestions: (state, action) => {
+      state.questions = action.payload;
+    },
     handleQuestionClick: (state, action) => {
       state.currentQuestion = action.payload;
     },
@@ -99,11 +104,38 @@ const screenSlice = createSlice({
   },
 });
 
+export const GetAssessmentQuestions = ({
+  onSuccess = () => {},
+  onError = () => {},
+}) => async(dispatch) => {
+  const apiWrapper = new APIWrapper(dispatch);
+
+  await apiWrapper.getAssessmentQuestions({
+    onSuccess,
+    onError,
+  });
+};
+
+export const PostAssessmentAnswers = ({
+  data,
+  onSuccess = () => {},
+  onError = () => {},
+}) => async(dispatch) => {
+  const apiWrapper = new APIWrapper(dispatch);
+
+  await apiWrapper.postAssessmentAnswers({
+    data,
+    onSuccess,
+    onError,
+  });
+};
+
 export const {
   setDuration,
   setTimeUp,
   startExam,
   endExam,
+  setQuestions,
   handleQuestionClick,
   handleSaveAndNext,
   handlePrevious,

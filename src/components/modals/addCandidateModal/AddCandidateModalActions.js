@@ -34,14 +34,13 @@ const AddCandidateModalActions = ({
     isChecked ? "Add Candidate and share Link" : "Add Candidate";
 
   return (
-    <div>
-      <center className="add-button">
-        <Button
-          label={buttonLabel}
-          handleClick={handleAddCandidate}
-        />
-      </center>
-    </div>
+    <center className="add-button">
+      <Button
+        label={buttonLabel}
+        handleClick={handleAddCandidate}
+        className={"add-candidate-submit-button"}
+      />
+    </center>
   );
 };
 

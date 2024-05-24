@@ -21,19 +21,24 @@ const ROUTES_CONFIG = [
         path: "/dashboard",
         element: (<Dashboard />)
       },
+      {
+        path: "/admin/questions-configure",
+        element: <Questionsconfiguration />
+      },
     ]
-  },
-  {
-    path: "/admin/questions-configure",
-    element: <Questionsconfiguration />
   },
   {
     path: "/unauthorized",
     element: <Unauthorized />
   },
   {
-    path: "/candidate/assessment-screen",
-    element: <Assessmentscreen />
+    path: "/candidate",
+    children: [
+      {
+        path: "/candidate/assessment-screen",
+        element: <Assessmentscreen />
+      },
+    ]
   },
   {
     path: "/exam",

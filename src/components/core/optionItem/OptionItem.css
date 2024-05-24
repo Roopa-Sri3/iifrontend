@@ -1,6 +1,7 @@
 .option-item {
     .option-item-field-label{
-        cursor: pointer;        
+        cursor: pointer; 
+        font-weight: normal;       
      } 
 
      &.disabled {

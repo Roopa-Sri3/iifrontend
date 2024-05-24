@@ -53,6 +53,9 @@
 }
 
 .previous-button{
+    display:flex;
+    align-items: center;
+    justify-content: center;
     background-color:#FFFFFF;
     color: #4595FF;
     border: 1px solid #4595FF;
@@ -62,9 +65,13 @@
     line-height: 19px;
     padding: 8px 15px;
     margin-right: 20px;
+    height: 40px;
 }
 
 .save-next{
+    display:flex;
+    align-items: center;
+    justify-content: center;
     background-color: #4595FF;
     color: #FFFFFF;
     border: none;
@@ -73,4 +80,5 @@
     font-weight: 500;
     line-height: 19px;
     padding: 8px 15px;
+    height:40px;
 }

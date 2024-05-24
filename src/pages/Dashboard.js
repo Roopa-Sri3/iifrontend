@@ -18,6 +18,7 @@ import {
 } from "../store/reducers/dashboard/dashboard.js";
 import { GetUserRole } from "../store/selector/app";
 import { GetStoreCandidates, GetStoreCandidatesTotalCount } from "../store/selector/dashboard/dashboard.js";
+import ClearTextIcon from "../components/assets/svgs/CrossMark.js";
 import Search from "../components/assets/svgs/Search";
 import AddIcon from "../components/assets/svgs/AddIcon.js";
 import StatusFilter from "../components/table/statuFilter/StatuFilter.js";
@@ -120,7 +121,7 @@ const Dashboard = () => {
         onSuccess: () => {
           fetchCandidates();
 
-          const message = formData.shareLink ? "Candidateadded and link shared successfully" : "Candidate added successfully";
+          const message = formData.shareLink ? "Candidate added and link shared successfully" : "Candidate added successfully";
 
           dispatch(setAlert({
             message,
@@ -177,7 +178,9 @@ const Dashboard = () => {
               type="search"
               placeholder="Search Candidate Name, Tech Skills"
               value={searchFieldValue}
-              onChange={(e) => { setSearchFieldValue(e.target.value); }}
+              onChange={(e) => {
+                setSearchFieldValue(e.target.value);
+              }}
               onBlur={handleSearch}
               onKeyDown = {(event) => {
                 if (event.key === "Enter") {
@@ -185,7 +188,16 @@ const Dashboard = () => {
                 }
               }}
             />
-            <Search />
+            {searchFieldValue.length > 0 && (
+              <ClearTextIcon
+                onClick={() => {
+                  setSearchFieldValue("");
+                  setSearchTerm("");
+                  fetchCandidates();
+                }}
+              />
+            )}
+            <Search/>
           </div>
           {role === "ADMIN" &&
             <div></div>
@@ -200,7 +212,7 @@ const Dashboard = () => {
         </div>
         <div className="card">
           <table>
-            <SubHeader
+            <SubHeader className="column-heading"
               columns={[
                 "Candidate Name",
                 "Tech Skills",

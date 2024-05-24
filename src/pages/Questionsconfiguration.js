@@ -9,13 +9,15 @@ import DeletefileIcon from "../components/assets/svgs/DeletefileIcon";
 import {instructions} from "../shared/constants";
 import { PostUploadFile } from "../store/reducers/dashboard/dashboard";
 import { setAlert } from "../store/reducers/app/app";
-import { useDispatch } from "react-redux";
+import { GetToken } from "../store/selector/app";
+import { useDispatch, useSelector } from "react-redux";
 import "./Questionsconfiguration.css";
 import LogoutModal from "../components/modals/logoutModal/LogoutModal";
 
 function Questionsconfiguration() {
   const fileRef = useRef();
   const dispatch = useDispatch();
+  const adminToken = useSelector(GetToken);
   const navigate = useNavigate();
   const handleNavigation = () => {
     navigate("/dashboard");
@@ -43,6 +45,7 @@ function Questionsconfiguration() {
 
     dispatch(PostUploadFile({
       file: selectedFile,
+      adminToken,
       onSuccess: () => {
         dispatch(setAlert({ message: "File uploaded successfully", messageType: "success" }));
       },
@@ -56,7 +59,7 @@ function Questionsconfiguration() {
           fileRef.current.value = null;
         }
         else{
-          dispatch(setAlert({ message: "File upload unsuccessful", messageType: "failure" }));
+          dispatch(setAlert({ message: "Failed to upload", messageType: "failure" }));
         }
       },
     }));
