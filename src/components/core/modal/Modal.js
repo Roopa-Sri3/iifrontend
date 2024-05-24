@@ -1,4 +1,4 @@
-import React,{useRef,useEffect} from "react";
+import React  from "react";
 import cx from "classnames";
 import "./Modal.css";
 
@@ -9,26 +9,7 @@ function Modal({
   actions,
   className,
   size,
-  onClose,
 }) {
-  const modalRef = useRef(null);
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (modalRef.current && !modalRef.current.contains(event.target)) {
-        onClose();
-      }
-    };
-    if (show) {
-      document.addEventListener("mousedown", handleClickOutside);
-    } else {
-      document.removeEventListener("mousedown", handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [onClose, show]);
   return (
     <>
       {show
@@ -39,7 +20,7 @@ function Modal({
               <div
                 className={cx("modal-dialog", "modal-dialog-centered", size)}
               >
-                <div className={cx("modal-content", className)} ref={modalRef} >
+                <div className={cx("modal-content", className)}>
                   <div className='modal-header'>
                     {modalHeader}
                   </div>
