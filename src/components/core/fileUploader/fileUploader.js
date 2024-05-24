@@ -1,5 +1,5 @@
 import React from "react";
-import uploadIcon from "../../../assets/Images/uploadIcon.svg";
+import UploadIcon from "../../../assets/svgs/uploadIcon";
 import "./fileUploader.css";
 
 function FileUploader({
@@ -14,10 +14,9 @@ function FileUploader({
   return (
     <>
       <div className="overall-content-container">
-        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
         <label className="upload-tag" htmlFor={identifier}>
           <div className="imageicon-container">
-            <img src={uploadIcon} alt="Upload Icon" />
+            <UploadIcon/>
           </div>
           <div>
             <p className="upload-text">{displayText}</p>
@@ -42,4 +41,3 @@ function FileUploader({
 }
 
 export default FileUploader;
-

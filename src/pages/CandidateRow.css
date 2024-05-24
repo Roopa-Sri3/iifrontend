@@ -1,5 +1,5 @@
 .candidate-row{
-  border: 1px solid #D9E0E6;
+  border-bottom: 1px solid #D9E0E6;
 }
 
 .comments-text {
@@ -26,7 +26,7 @@
 
 .feedback-container{
   display:inline-flex ;
-  font-weight: bold;
+  font-weight: 500;
 }
 
 .save-icon {
