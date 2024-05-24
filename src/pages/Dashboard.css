@@ -139,3 +139,7 @@ input::-webkit-search-cancel-button {
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: medium;
 }
+
+.addCandidateButton{
+  padding:0 10px 0 10px;
+}
