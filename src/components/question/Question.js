@@ -12,7 +12,10 @@ const Question = () => {
   const questions = useSelector(getQuestions);
   const totalQuestions = questions.length;
   const presentquestion = useSelector(selectCurrentQuestion);
+  console.log(presentquestion);
+  // const presentquestionId = questions[presentquestion];
   const currQuestion = questions.find((question) => question.questionId === presentquestion);
+  console.log(currQuestion);
   const answerForQuestion = answers.find((answer) => answer && answer.questionId === currQuestion.questionId);
   const savedAnswer = answerForQuestion ? answerForQuestion.answer : "";
 
@@ -32,6 +35,7 @@ const Question = () => {
     };
     setSelectedOption(null);
     dispatch(updateAnswers(updatedAnswers));
+    console.log(updatedAnswers);
     dispatch(handleSaveAndNext(presentquestion));
   };
 

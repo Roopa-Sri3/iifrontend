@@ -10,11 +10,12 @@
     color: #ffffff;
     background-color: #46c569;
     border-radius: 5px;
-    margin-right: 25px;
+    margin-right: 40px;
     font-size: 15px;
     border: none;
     padding: 8.5px 20px;
-    height:40px;
+    height:36px;
+    box-shadow: none;
 }
 
 .questions-pagination-layout{

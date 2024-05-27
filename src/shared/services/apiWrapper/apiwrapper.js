@@ -1,6 +1,4 @@
 import HTTPClient from "../httpclient";
-import {setQuestions} from "../../../store/reducers/screen/screen";
-
 class APIWrapper extends HTTPClient {
   constructor(dispatch = () => {}) {
     super();
@@ -115,10 +113,7 @@ class APIWrapper extends HTTPClient {
   }) {
     return this.get({
       url: "/",
-      onSuccess : (response) => {
-        this.dispatch(setQuestions(response.data));
-        onSuccess();
-      },
+      onSuccess,
       onError,
     });
   }
@@ -129,7 +124,7 @@ class APIWrapper extends HTTPClient {
     onError = () => {},
   }) {
     return this.get({
-      url: "",
+      url: "/",
       data,
       onSuccess,
       onError,
