@@ -81,8 +81,7 @@ const CandidateRow = ({ candidate }) => {
           <div className="feedback-container">N/A</div>
         )}
       </td>
-      <td>
-        {candidate.actions}
+      <td className="actions-column">
         <span
           className="edit-icon"
           role="button"

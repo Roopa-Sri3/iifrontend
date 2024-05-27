@@ -90,7 +90,7 @@ class APIWrapper extends HTTPClient {
     } = data;
     return this.put({
       data: formData,
-      url:`/interviewinsights/${candidateId}`,
+      url:`/interviewinsights/editcandidate/${candidateId}`,
       onSuccess,
       onError,
     });
