@@ -5,7 +5,6 @@ import "./uploadItems.css";
 
 const UploadItems = ({ file, onDelete, errorMessage, uploadFailed }) => {
   const handleDeleteFile = () => {
-    console.log("Deleted", file);
     onDelete();
   };
 
