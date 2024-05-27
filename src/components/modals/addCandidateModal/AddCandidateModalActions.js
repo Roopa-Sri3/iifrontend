@@ -30,7 +30,7 @@ const AddCandidateModalActions = ({
   };
 
   const isEditMode = storeModalData.mode === "EDIT";
-  const buttonLabel = isEditMode ? "Save Changes" :
+  const buttonLabel = isEditMode ? "Save changes" :
     isChecked ? "Add Candidate and share Link" : "Add Candidate";
 
   return (
@@ -38,7 +38,7 @@ const AddCandidateModalActions = ({
       <Button
         label={buttonLabel}
         handleClick={handleAddCandidate}
-        className={"add-candidate-submit-button"}
+        className="add-candidate-submit-button"
       />
     </center>
   );

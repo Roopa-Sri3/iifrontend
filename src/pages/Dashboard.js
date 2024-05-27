@@ -208,6 +208,7 @@ const Dashboard = () => {
           }
           {role === "HR" &&
               <Button
+                className="addCandidateButton"
                 label="Add Candidate"
                 handleClick={handleAddCandidate}
                 children={<AddIcon />}
