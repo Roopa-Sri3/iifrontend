@@ -4,10 +4,7 @@ import ProtectLoginRoute from "./privateRoutes/protectLoginRoute";
 import ProtectedDashboardRoute from "./privateRoutes/protectDashboardRoute";
 import Questionsconfiguration from "./pages/Questionsconfiguration";
 import Unauthorized from "./pages/Unauthorized";
-import Start from "./components/question/Start";
-import TestSubmit from "../src/pages/TestSubmit";
-import Assessmentscreen from "./pages/Assessmentscreen";
-
+import CandidateProfileview from "./components/core/CandidateProfileView";
 const ROUTES_CONFIG = [
   {
     path: "/",
@@ -21,32 +18,38 @@ const ROUTES_CONFIG = [
         path: "/dashboard",
         element: (<Dashboard />)
       },
+      {
+        path: "/admin/questions-configure",
+        element: <Questionsconfiguration />
+      },
     ]
-  },
-  {
-    path: "/admin/questions-configure",
-    element: <Questionsconfiguration />
   },
   {
     path: "/unauthorized",
     element: <Unauthorized />
   },
   {
-    path: "/candidate/assessment-screen",
-    element: <Assessmentscreen />
+    path: "/candidate",
+    children: [
+      {
+        path: "/candidate/assessment-screen",
+        // element: <Assessmentscreen />
+      },
+      {
+        path: "/candidate/CandidateProfileView",
+        element:<CandidateProfileview/>
+      }
+    ]
   },
   {
     path: "/exam",
-    element: <Start />
+    // element: <Start />
   },
   {
     path: "/test-submitted",
-    element: <TestSubmit />
+    // element: <TestSubmit />
   },
-  {
-    path:"/candiate-profie-view",
-    element: <CandidateProfileView />
-  }
+
 ];
 
 export default ROUTES_CONFIG;

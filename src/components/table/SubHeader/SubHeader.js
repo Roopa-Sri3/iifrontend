@@ -2,7 +2,7 @@ import React from "react";
 import "./SubHeader.css";
 
 const SubHeader = ({ columns, headerActions }) => (
-  <thead>
+  <thead className="table-heading">
     <tr>
       {columns.map((column, index) => (
         <th key={index} className='candidate-th'>

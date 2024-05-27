@@ -7,6 +7,9 @@
     font-weight: bold; 
     border: none;
     background-color: #daeaff;
+    padding:0px;
+    height: 10px;
+    margin-left: 5px;
 }
 
 .download-layout{

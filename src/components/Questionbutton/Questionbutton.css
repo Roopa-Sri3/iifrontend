@@ -23,6 +23,7 @@
     background-color: #fff;
     cursor: pointer;
     margin: 15px 5px 15px 15px;
+    padding: 0px;
 }
   
 .question-button:hover {
