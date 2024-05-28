@@ -33,10 +33,12 @@
  
   .icon-container{
     margin-top: 50px;
+    margin-left: 20px;
     }
    
   .icon-item{
     margin: 20px;
+    gap: 5px;
    }
  
  .vertical-line {
@@ -158,4 +160,8 @@
 .upload-button[disabled] {
   background-color: #C0C0C0;
   color: #ffffff;
+}
+.candidate-name{
+  margin-left: 1px;
+  color: #F9F9F9;
 }

@@ -72,14 +72,19 @@ function CandidateProfileView() {
           <div className="vertical-line"></div>
           <div className="icon-wrapper">
             <div className="icon-container">
+              <div className="candidate-name">John Doe</div>
               <div className="icon-item">
                 <CallIcon />
+                <span className="candidate-number" style={{ color: "#F9F9F9", "paddingLeft" : "20px"}}>1234567890</span>
               </div>
               <div className="icon-item">
                 <MailIcon />
+                <span className="candidate-mail" style={{  color: "#F9F9F9", "paddingLeft" : "20px" }}>johndoe@example.com</span>
               </div>
               <div className="icon-item">
                 <ExperienceIcon />
+                <span className="candidate-experience" style={{  color: "#F9F9F9", "paddingLeft" : "20px" }}>5 years</span>
+
               </div>
             </div>
           </div>
