@@ -55,8 +55,6 @@ export const GetCandidateDetails = ({
     onSuccess,
     onError,
   });
-  console.log("Candidate DEtails =>", candidatesResponse);
-
   dispatch(setCandidates(candidatesResponse.data));
 };
 

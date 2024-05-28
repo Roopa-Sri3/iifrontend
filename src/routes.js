@@ -39,7 +39,7 @@ const ROUTES_CONFIG = [
         element: <Assessmentscreen />
       },
       {
-        path: "/candidate/CandidateProfileView",
+        path: "/candidate/candidate-profile-view",
         element:<CandidateProfileview/>
       }
     ]
