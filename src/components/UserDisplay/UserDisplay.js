@@ -34,7 +34,6 @@ const UserDisplay = () => {
       }
 
       catch (error) {
-        console.error("Error fetching candidateTillDate:", error);
         setCandidateTillDate("Error");
       }
     };
