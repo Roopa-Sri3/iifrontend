@@ -108,11 +108,12 @@ class APIWrapper extends HTTPClient {
   }
 
   async getAssessmentQuestions({
+    candidateId,
     onSuccess = () => {},
     onError = () => {},
   }) {
     return this.get({
-      url: "/",
+      url: `/interviewapi/getQuestions?candidateId=${candidateId}`,
       onSuccess,
       onError,
     });
@@ -137,9 +138,10 @@ class APIWrapper extends HTTPClient {
     onError = () => {},
   }) {
     const formData = new FormData();
+    const adminToken = sessionStorage.getItem("Token");
     formData.append("file", file);
-    formData.append("createdBy", "Srinu");
-    formData.append("modifiedBy", "Sidhu");
+    formData.append("createdBy", adminToken);
+    formData.append("modifiedBy", adminToken);
     this.headers = {
       "Content-Type" : "multipart/form-data",
     };

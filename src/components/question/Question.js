@@ -12,7 +12,7 @@ const Question = () => {
   const questions = useSelector(getQuestions);
   const totalQuestions = questions.length;
   const presentquestion = useSelector(selectCurrentQuestion);
-  console.log(presentquestion);
+  // console.log(presentquestion);
   // const presentquestionId = questions[presentquestion];
   const currQuestion = questions.find((question) => question.questionId === presentquestion);
   console.log(currQuestion);
@@ -35,7 +35,7 @@ const Question = () => {
     };
     setSelectedOption(null);
     dispatch(updateAnswers(updatedAnswers));
-    console.log(updatedAnswers);
+    // console.log(updatedAnswers);
     dispatch(handleSaveAndNext(presentquestion));
   };
 
@@ -54,9 +54,9 @@ const Question = () => {
         <div className="question">
           <h6 className="heading">Answer the Question</h6>
           <div className="question-text">
-            {currQuestion.questionText}
+            {currQuestion.question}
           </div>
-          {currQuestion.questionType === "single-select" &&
+          {!currQuestion.programmingQuestion &&
           <div className="sinlge-option">
             <RadioGroup
               label="Choose answer"
@@ -66,7 +66,7 @@ const Question = () => {
             />
           </div>
           }
-          {currQuestion.questionType === "coding" &&
+          {currQuestion.programmingQuestion &&
             <div className="coding">
               Write code here
               <textarea
