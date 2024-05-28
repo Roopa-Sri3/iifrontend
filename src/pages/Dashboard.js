@@ -18,9 +18,9 @@ import {
 } from "../store/reducers/dashboard/dashboard.js";
 import { GetUserRole } from "../store/selector/app";
 import { GetStoreCandidates, GetStoreCandidatesTotalCount } from "../store/selector/dashboard/dashboard.js";
-import ClearTextIcon from "../components/assets/svgs/CrossMark.js";
-import Search from "../components/assets/svgs/Search";
-import AddIcon from "../components/assets/svgs/AddIcon.js";
+import ClearTextIcon from  "../assets/svgs/CrossMark.js";
+import Search from "../assets/svgs/Search.js";
+import AddIcon from "../assets/svgs/AddIcon.js";
 import StatusFilter from "../components/table/statuFilter/StatuFilter.js";
 import LogoutModal from "../components/modals/logoutModal/LogoutModal.js";
 import "./Dashboard.css";
