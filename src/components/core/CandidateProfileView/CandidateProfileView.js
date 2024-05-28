@@ -5,9 +5,9 @@ import { useNavigate } from "react-router-dom";
 import { PostIdProofDetails } from "../../../../src/store/reducers/dashboard/dashboard";
 import DocumentUploader from "../documentUploader/documentUploader";
 import RightArrowIcon from "../../../assets/svgs/rightArrowIcon";
-import CallIcon from "../../assets/svgs/CallIcon";
-import MailIcon from "../../assets/svgs/MailIcon";
-import ExperienceIcon from "../../assets/svgs/ExperienceIcon";
+import CallIcon from "../../../assets/svgs/CallIcon";
+import MailIcon from "../../../assets/svgs/MailIcon";
+import ExperienceIcon from "../../../assets/svgs/ExperienceIcon";
 import Infocard from "./Infocard/Infocard";
 import "./CandidateProfileView.css";
 

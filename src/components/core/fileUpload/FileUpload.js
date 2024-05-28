@@ -1,5 +1,5 @@
 import React from "react";
-import UploadIcon from "../../assets/svgs/UploadIcon";
+import UploadIcon from "../../../assets/svgs/UploadIcon";
 import "./FileUpload.css";
 
 function FileUpload({

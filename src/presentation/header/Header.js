@@ -5,8 +5,8 @@ import { IsUserLoggedIn, GetProfileName, GetUserRole } from "../../store/selecto
 import Innovalogo from "../../dashboard-header-components/Logo";
 import Title from "../../dashboard-header-components/Title";
 import RoundButton from "../../dashboard-header-components/RoundButton";
-import Expand from "../../components/assets/svgs/Expand";
-import LogoutIcons from "../../components/assets/svgs/LougoutIcons";
+import Expand from "../../assets/svgs/Expand";
+import LogoutIcons from "../../assets/svgs/LougoutIcons";
 import companylogo from "../../assets/Images/company-symbol.png";
 import { openModal } from "../../store/reducers/app/app";
 
