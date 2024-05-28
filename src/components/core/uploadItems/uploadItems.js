@@ -1,5 +1,5 @@
 import React from "react";
-import FileIcon from "../../../assets/svgs/FileIcon";
+import FileIcon from "../../../assets/svgs/";
 import DeletefileIcon from "../../../assets/svgs/DeletefileIcon";
 import "./uploadItems.css";
 
