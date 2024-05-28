@@ -112,3 +112,19 @@ export const PostUploadFile = ({
     onError,
   });
 };
+
+export const PostIdProofDetails = ({
+  file,
+  candidateId,
+  onSuccess = () => {},
+  onError = () => {},
+}) => async(dispatch) => {
+  const apiWrapper = new APIWrapper(dispatch);
+
+  await apiWrapper.postIdProofDetails({
+    file,
+    candidateId,
+    onSuccess,
+    onError,
+  });
+};

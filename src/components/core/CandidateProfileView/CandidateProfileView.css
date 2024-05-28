@@ -1,53 +1,114 @@
+.complete-screen-container{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+ 
+ .header-container{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #EBEEF3;
+ }
+ 
+ .Candidate-box {
+  width: 59%;
+  bottom: 40px;
+  height: 30%;
+  padding: 10px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #326D62 0%, #0E5291 51.6%, #0E034F 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 90px auto 0;
+  flex-direction: row;
+  justify-content: space-between;
+  position: relative;
+  }
+ 
+  .icon-wrapper{
+     height: 100%;
+    }
+ 
+  .icon-container{
+    margin-top: 50px;
+    }
+   
+  .icon-item{
+    margin: 20px;
+   }
+ 
+ .vertical-line {
+    position: absolute;
+    left: 300px;
+    align-items: center;
+    justify-content: center;
+    width: 1px;
+    height: 120px;
+    bottom: 27px;
+    background-color: #fff;
+   }
+ 
+  .support-email{
+     color: #F9F9F9;
+     font-size: 12px;
+     position: absolute;  
+     bottom: 0px;
+     right: 10px;  
+    }
+ 
 .profile-viewer.container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  height: 95vh;
+  height: 54vh;
   background-color: #EBEEF3;
   max-width: 100%;
 }
-
+ 
 .id-proof-title {
   display: flex;
   width: 60%;
   font-weight: 700;
 }
-
+ 
 .id-proof.container {
   background-color: #FFFFFF;
   width: 60%;
 }
-
+ 
 .id-proof-text {
   font-weight: 450;
   padding-top: 5px;
   margin-bottom: 5px;
+  padding-left: 10px;
 }
-
+ 
 .id-proof-text::after {
   content: " *";
   color: #FF2828;
 }
-
+ 
 .id-proof-super-container {
   background-color: #FFFFFF;
   width: 60%;
+  border-radius: 5px;
 }
-
+ 
 .button-container {
   display: flex;
   align-items: center;
   justify-content: flex-end;
 }
-
+ 
 .next-page-container {
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
   width: 60%;
 }
-
+ 
 .next-page-button {
   display: flex;
   font-weight: 550;
@@ -56,24 +117,24 @@
   color: #C0C0C0;
   background-color: #EBEEF3;
 }
-
+ 
 .arrow-container{
   display: flex;
   padding: 7px 2px;
 }
-
+ 
 .next-page-button:hover {
   color: #4595FF;
 }
-
+ 
 .next-page-button svg path {
-  fill: #C0C0C0; 
+  fill: #C0C0C0;
 }
-
+ 
 .next-page-button:hover svg path {
   fill: #4595ff;
 }
-
+ 
 .button-layout {
   display: flex;
   justify-content: flex-end;
@@ -83,7 +144,7 @@
   padding-left: 12px;
   padding-top: 10px;
 }
-
+ 
 .upload-button {
   background-color: #4595FF;
   color: #ffffff;
@@ -93,61 +154,8 @@
   cursor: pointer;
   padding: 5px 20px;
 }
-
+ 
 .upload-button[disabled] {
   background-color: #C0C0C0;
   color: #ffffff;
 }
-
-
- .Candidate-box {
-  width: 900px;
-  height: 200px;
-  padding: 10px; 
-  border-radius: 6px;
-  background: linear-gradient(90deg, #326D62 0%, #0E5291 51.6%, #0E034F 100%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 90px auto 0;
-  flex-direction: row; /* Change the flex-direction to row */
-  justify-content: space-between;
-  position: relative;
-   } 
-
-  .icon-wrapper {
-    
-  
-    height: 100%; 
-    
-   }
-
-   .icon-container { 
-    margin-top: 50px;
-    
-   }
-   /* .icon-wrapper > div {
-    margin: 30px 3px 5px 29px; 
-   } */
-   .icon-item{
-   
-    margin: 20px; 
-   }
- .vertical-line {
-    position: absolute;
-    left: 300px;
-    align-items: center;
-    justify-content: center;
-    width: 1px; 
-    height: 120px;
-    bottom: 27px;
-    background-color: #fff;
-   }
-  .support-email{
-     color: #F9F9F9;
-     font-size: 12px;
-     position: absolute;  
-     bottom: 0px; 
-     right: 10px;  
-
-  }
