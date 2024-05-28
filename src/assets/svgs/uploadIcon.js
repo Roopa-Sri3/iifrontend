@@ -1,32 +1,18 @@
-import React from "react";
 
-const UploadIcon = () => (
-  <svg
-    width="38"
-    height="38"
-    viewBox="0 0 38 38"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <circle cx="18.8462" cy="18.8462" r="18.3462" fill="white" stroke="#D9E0E6" />
-    <mask
-      id="mask0_938_8432"
-      style={{ maskType: "alpha" }}
-      maskUnits="userSpaceOnUse"
-      x="9"
-      y="9"
-      width="19"
-      height="19"
-    >
-      <rect x="9.84619" y="9.84619" width="18" height="18" fill="#D9D9D9" />
-    </mask>
-    <g mask="url(#mask0_938_8432)">
-      <path
-        d="M18.0962 21.8467V15.7342L16.1462 17.6842L15.0962 16.5967L18.8462 12.8467L22.5962 16.5967L21.5462 17.6842L19.5962 15.7342V21.8467H18.0962ZM14.3462 24.8467C13.9337 24.8467 13.5806 24.6998 13.2868 24.4061C12.9931 24.1123 12.8462 23.7592 12.8462 23.3467V21.0967H14.3462V23.3467H23.3462V21.0967H24.8462V23.3467C24.8462 23.7592 24.6993 24.1123 24.4056 24.4061C24.1118 24.6998 23.7587 24.8467 23.3462 24.8467H14.3462Z"
-        fill="#2F3950"
-      />
-    </g>
-  </svg>
-);
+import * as React from "react";
+
+function UploadIcon() {
+  return (
+    <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="18.9226" cy="19.0693" r="18.3462" fill="white" stroke="#D9E0E6" />
+      <mask id="mask0_241_1097" style={{"maskType": "alpha"}} maskUnits="userSpaceOnUse" x="9" y="10" width="19" height="19">
+        <rect x="9.92285" y="10.0693" width="18" height="18" fill="#D9D9D9" />
+      </mask>
+      <g mask="url(#mask0_241_1097)">
+        <path d="M18.1729 22.0698V15.9573L16.2229 17.9073L15.1729 16.8198L18.9229 13.0698L22.6729 16.8198L21.6229 17.9073L19.6729 15.9573V22.0698H18.1729ZM14.4229 25.0698C14.0104 25.0698 13.6572 24.9229 13.3635 24.6292C13.0697 24.3354 12.9229 23.9823 12.9229 23.5698V21.3198H14.4229V23.5698H23.4229V21.3198H24.9229V23.5698C24.9229 23.9823 24.776 24.3354 24.4822 24.6292C24.1885 24.9229 23.8354 25.0698 23.4229 25.0698H14.4229Z" fill="#2F3950" />
+      </g>
+    </svg>
+  );
+}
 
 export default UploadIcon;
