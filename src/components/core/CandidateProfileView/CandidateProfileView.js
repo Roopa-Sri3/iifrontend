@@ -4,7 +4,7 @@ import { setAlert } from "../../../store/reducers/app/app";
 import { useNavigate } from "react-router-dom";
 import { PostIdProofDetails } from ".././../../../src/store/reducers/candidate/candidate";
 import DocumentUploader from "../documentUploader/documentUploader";
-import RightArrowIcon from "../../../assets/svgs/rightArrowIcon";
+import RightArrowIcon from "../../../assets/svgs/RightArrowIcon";
 import CallIcon from "../../assets/svgs/CallIcon";
 import MailIcon from "../../assets/svgs/MailIcon";
 import ExperienceIcon from "../../assets/svgs/ExperienceIcon";
