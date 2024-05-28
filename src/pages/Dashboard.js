@@ -18,7 +18,6 @@ import {
 } from "../store/reducers/dashboard/dashboard.js";
 import { GetUserRole } from "../store/selector/app";
 import { GetStoreCandidates, GetStoreCandidatesTotalCount } from "../store/selector/dashboard/dashboard.js";
-import { GetToken } from "../store/selector/app";
 import ClearTextIcon from "../components/assets/svgs/CrossMark.js";
 import Search from "../components/assets/svgs/Search";
 import AddIcon from "../components/assets/svgs/AddIcon.js";
@@ -29,7 +28,7 @@ import { statuses } from "../shared/constants.js";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
-  const hrToken = useSelector(GetToken);
+  const hrToken = sessionStorage.getItem("Token");
   const candidates = useSelector(GetStoreCandidates);
   const candidatesTotalCount = useSelector(GetStoreCandidatesTotalCount);
   const [currentPage, setCurrentPage] = useState(1);

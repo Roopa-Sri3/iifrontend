@@ -99,7 +99,7 @@ const CandidateRow = ({ candidate }) => {
             <EditComponent />
           </span>
           <ShareComponent
-            className = {`share-button ${isStatusNewOrExpired ? "active" : ""}`}
+            className = {`share-icon ${isStatusNewOrExpired ? "active" : ""}`}
             fillColor={isStatusNewOrExpired ? "#383838" : "#D0D5DD"}
           />
         </td>
