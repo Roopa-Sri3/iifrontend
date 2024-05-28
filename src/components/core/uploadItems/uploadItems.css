@@ -1,6 +1,6 @@
 .complete-file-content-view {
     display: flex;
-    margin: 10px;
+    width:100%;
     align-items: center;
     background-color: #ebeef3;
     border-radius: 5px;
@@ -11,10 +11,10 @@
   
   .file-document-layout {
     display: flex;
-    margin: 2px 20px;
+    margin: 2px 17px;
     background-color: #ffffff;
     height: 45px;
-    width: 85%;
+    width: 87%;
     border-radius: 5px;
   }
   

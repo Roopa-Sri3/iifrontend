@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setAlert } from "../../../store/reducers/app/app";
 import { useNavigate } from "react-router-dom";
-import { PostIdProofDetails } from "../../../../src/store/reducers/dashboard/dashboard";
+import { PostIdProofDetails } from ".././../../../src/store/reducers/candidate/candidate";
 import DocumentUploader from "../documentUploader/documentUploader";
 import RightArrowIcon from "../../../assets/svgs/rightArrowIcon";
 import CallIcon from "../../assets/svgs/CallIcon";
@@ -47,7 +47,7 @@ function CandidateProfileView() {
       if (isValidFile) {
         dispatch(PostIdProofDetails({
           file: selectedFile,
-          candidateId:"CAND12348",
+          candidateId:"00329248-165d-45e4-96dd-dcd1b3f31dac",
           onSuccess: () => {
             dispatch(setAlert({ message: "File uploaded successfully", messageType: "success" }));
             setErrorMessage("");

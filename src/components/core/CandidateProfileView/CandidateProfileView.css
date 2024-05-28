@@ -13,6 +13,7 @@
 
  .Candidate-box {
   width: 59%;
+  bottom: 40px;
   height: 30%;
   padding: 10px; 
   border-radius: 6px;
@@ -55,13 +56,11 @@
      position: absolute;  
      bottom: 0px; 
      right: 10px;  
-
-  }
+    }
 
 .profile-viewer.container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   height: 54vh;
   background-color: #EBEEF3;
@@ -83,6 +82,7 @@
   font-weight: 450;
   padding-top: 5px;
   margin-bottom: 5px;
+  padding-left: 5px;
 }
 
 .id-proof-text::after {
@@ -139,7 +139,6 @@
   display: flex;
   justify-content: flex-end;
   margin-bottom: 12px;
-  margin-right: 2px;
   cursor: pointer;
   padding-left: 12px;
   padding-top: 10px;
