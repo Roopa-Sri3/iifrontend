@@ -26,6 +26,7 @@ const UserDisplay = () => {
           },
           onSuccess: (userDetails) => {
             const responseDetails = userDetails && userDetails.response;
+            console.log("User Details =>", responseDetails);
             if (responseDetails) {
               setCandidateTillDate(responseDetails.candidateTillDate);
             }
