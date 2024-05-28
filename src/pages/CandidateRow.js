@@ -13,7 +13,7 @@ const CandidateRow = ({ candidate }) => {
   const dispatch = useDispatch();
   const role = useSelector(GetUserRole);
   const options = useSelector(GetStoreSkills);
-  const isStatusNewOrExpired = candidate.status === "new" || candidate.status === "expired";
+  const isStatusNewOrExpired = candidate.status === "New" || candidate.status === "Expired";
 
   const handleOpenModal = () => {
     dispatch(openModal(
@@ -99,7 +99,7 @@ const CandidateRow = ({ candidate }) => {
             <EditComponent />
           </span>
           <ShareComponent
-            className = {`share-icon ${isStatusNewOrExpired ? "active" : ""}`}
+            className = {`share-button ${isStatusNewOrExpired ? "active" : ""}`}
             fillColor={isStatusNewOrExpired ? "#383838" : "#D0D5DD"}
           />
         </td>
