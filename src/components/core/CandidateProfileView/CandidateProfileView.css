@@ -96,6 +96,7 @@
   background-color: #FFFFFF;
   width: 60%;
   border-radius: 5px;
+  border-radius: 5px;
 }
  
 .button-container {
@@ -141,7 +142,6 @@
   display: flex;
   justify-content: flex-end;
   margin-bottom: 12px;
-  margin-right: 2px;
   cursor: pointer;
   padding-left: 12px;
   padding-top: 10px;
