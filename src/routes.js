@@ -7,6 +7,8 @@ import Unauthorized from "./pages/Unauthorized";
 import Start from "./components/question/Start";
 import TestSubmit from "../src/pages/TestSubmit";
 import Assessmentscreen from "./pages/Assessmentscreen";
+import VerifyAssessmentDetails from "./pages/VerifyAssessmentDetails";
+import LinkExpired from "./pages/LinkExpired";
 
 const ROUTES_CONFIG = [
   {
@@ -38,6 +40,14 @@ const ROUTES_CONFIG = [
         path: "/candidate/assessment-screen",
         element: <Assessmentscreen />
       },
+      {
+        path: "/candidate/verify-assessment-details",
+        element: <VerifyAssessmentDetails />
+      },
+      {
+        path: "/candidate/link-expired",
+        element: <LinkExpired />
+      }
     ]
   },
   {
