@@ -38,44 +38,40 @@
   display: flex;
   align-items: center;
   color: white;
-  height: 35px;
+  height: 40px;
   border-radius: 6px;
   margin-left: 29px;
   box-shadow: 0 0 3px 1px rgba(255, 255, 255, 0.5);
-  padding: 0px 10px 0px 10px;
+  padding: 0px 20px 0px 20px;
   transform: translateY(10%);
   font-size: 18px;
   margin-right: auto;
 }
 
 .innova-logo {
-  width: 80px;
+  width: 85px;
+  height: 40px;
   margin-left:12px;  
-}
-
-.expand {
-  display: flex;
-  align-items: center;
-  margin-top: 1px;
 }
 
 .user-details {
   display: flex;
-  width: 230px;
   height: 115px;
   border-radius: 4px 0px 0px 0px;
 }
 .user-name {
   align-self: flex-start; 
+  flex:1;
 }
 
 .user-role {
   align-self: flex-start;
+  flex:1;
   color: #929292;
 }
 
 .expand-div {
-  width: 230px;
+  width: 230px; 
   height: auto;
   border: 2px solid Whitesmoke;
   border-radius: 5px;
@@ -86,9 +82,9 @@
   padding: 12px;
   background-color:#F5F5F7;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   flex-direction: column;
-
+  
 }
 
 .expand-div hr {
@@ -102,21 +98,21 @@
   cursor: pointer;
 }
 
-
-.logout-icon {
-  align-self: flex-start;
-  display: inline-block;
-  }
-
- .logout-icon > div {
-  display: inline-flex;
-  align-items: center;
+.logout-button{
+  display: flex;
+   align-items: center;
+   width: 100%;
  }
 
-.logout-button {
-  border: none;
-  background: none;
+.logout-section{
+  display: flex;
+  width: auto;
 }
+.logout-section > h6 {
+  margin-top: 12px;
+  margin-left: 5px;
+}
+
 .round-button {
   cursor: auto !important;
 }
