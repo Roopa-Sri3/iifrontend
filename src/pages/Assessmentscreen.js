@@ -17,7 +17,7 @@ function Assessmentscreen(){
   }, [isTimeUp, navigate]);
 
   return(
-    <div>
+    <div className="assess-sreen-layout">
       <div>
         <Questionsnavigate />
       </div>

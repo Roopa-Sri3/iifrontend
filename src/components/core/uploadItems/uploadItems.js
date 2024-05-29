@@ -1,6 +1,6 @@
 import React from "react";
 import FileIcon from "../../../components/assets/svgs/FileIcon";
-import DeletefileIcon from "../../../components/assets/svgs/DeletefileIcon";
+import DeletefileIcon from "../../../assets/svgs/DeletefileIcon";
 import "./uploadItems.css";
 
 const UploadItems = ({ file, onDelete, errorMessage, uploadFailed }) => {

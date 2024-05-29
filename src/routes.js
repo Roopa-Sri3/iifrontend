@@ -3,6 +3,9 @@ import Dashboard from "./pages/Dashboard";
 import ProtectLoginRoute from "./privateRoutes/protectLoginRoute";
 import ProtectedDashboardRoute from "./privateRoutes/protectDashboardRoute";
 import Questionsconfiguration from "./pages/Questionsconfiguration";
+import Start from "./components/question/Start";
+import TestSubmit from "./pages/TestSubmit";
+import Assessmentscreen from "./pages/Assessmentscreen";
 import Unauthorized from "./pages/Unauthorized";
 import CandidateProfileview from "./components/core/CandidateProfileView";
 const ROUTES_CONFIG = [

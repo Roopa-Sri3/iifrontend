@@ -3,21 +3,19 @@ import {useNavigate} from "react-router-dom";
 import FileUpload from "../components/core/fileUpload/FileUpload";
 import Button from "../components/core/button";
 import Download from "../components/core/download/Download";
-import BackarrowIcon from "../components/assets/svgs/BackarrowIcon";
-import FileIcon from "../components/assets/svgs/FileIcon";
-import DeletefileIcon from "../components/assets/svgs/DeletefileIcon";
+import BackarrowIcon from "../assets/svgs/BackarrowIcon";
+import FileIcon from "../assets/svgs/BackarrowIcon";
+import DeletefileIcon from "../assets/svgs/BackarrowIcon";
 import {instructions} from "../shared/constants";
 import { PostUploadFile } from "../store/reducers/dashboard/dashboard";
 import { setAlert } from "../store/reducers/app/app";
-import { GetToken } from "../store/selector/app";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import "./Questionsconfiguration.css";
 import LogoutModal from "../components/modals/logoutModal/LogoutModal";
 
 function Questionsconfiguration() {
   const fileRef = useRef();
   const dispatch = useDispatch();
-  const adminToken = useSelector(GetToken);
   const navigate = useNavigate();
   const handleNavigation = () => {
     navigate("/dashboard");
@@ -45,7 +43,6 @@ function Questionsconfiguration() {
 
     dispatch(PostUploadFile({
       file: selectedFile,
-      adminToken,
       onSuccess: () => {
         dispatch(setAlert({ message: "File uploaded successfully", messageType: "success" }));
       },

@@ -1,8 +1,6 @@
 import HTTPClient from "../httpclient";
-import {setQuestions} from "../../../store/reducers/screen/screen";
-
 class APIWrapper extends HTTPClient {
-  constructor(dispatch = () => {}) {
+  constructor(dispatch = () => { }) {
     super();
     this.baseURL = "http://10.139.166.48:8081/InterviewInsights-0.0.1-SNAPSHOT";
     this.dispatch = dispatch;
@@ -10,8 +8,8 @@ class APIWrapper extends HTTPClient {
 
   async postUserCredentials({
     data,
-    onSuccess = () => {},
-    onError = () => {},
+    onSuccess = () => { },
+    onError = () => { },
   }) {
 
     this.headers = {
@@ -28,8 +26,8 @@ class APIWrapper extends HTTPClient {
 
   async postToken({
     data,
-    onSuccess = () => {},
-    onError = () => {},
+    onSuccess = () => { },
+    onError = () => { },
   }) {
 
     this.headers = {
@@ -45,11 +43,11 @@ class APIWrapper extends HTTPClient {
   }
 
   async getTechSkills({
-    onSuccess = () => {},
-    onError = () => {},
+    onSuccess = () => { },
+    onError = () => { },
   }) {
     return this.get({
-      url:"/interviewapi/techSkill/getTechSkills",
+      url: "/interviewapi/techSkill/getTechSkills",
       onSuccess,
       onError,
     });
@@ -57,12 +55,12 @@ class APIWrapper extends HTTPClient {
 
   async getCandidateDetails({
     data,
-    onSuccess = () => {},
-    onError = () => {},
+    onSuccess = () => { },
+    onError = () => { },
   }) {
     return this.post({
       data,
-      url:"/interviewinsights/searchcandidates",
+      url: "/interviewinsights/searchcandidates",
       onSuccess,
       onError,
     });
@@ -70,12 +68,12 @@ class APIWrapper extends HTTPClient {
 
   async addCandidate({
     data,
-    onSuccess = () => {},
-    onError = () => {},
+    onSuccess = () => { },
+    onError = () => { },
   }) {
     return this.post({
       data,
-      url:"/interviewinsights/addcandidate",
+      url: "/interviewinsights/addcandidate",
       onSuccess,
       onError,
     });
@@ -83,8 +81,8 @@ class APIWrapper extends HTTPClient {
 
   async editCandidate({
     data,
-    onSuccess = () => {},
-    onError = () => {},
+    onSuccess = () => { },
+    onError = () => { },
   }) {
     const {
       candidateId,
@@ -92,15 +90,15 @@ class APIWrapper extends HTTPClient {
     } = data;
     return this.put({
       data: formData,
-      url:`/interviewinsights/editcandidate/${candidateId}`,
+      url: `/interviewinsights/editcandidate/${candidateId}`,
       onSuccess,
       onError,
     });
   }
 
   async getFileDownload({
-    onSuccess = () => {},
-    onError = () => {},
+    onSuccess = () => { },
+    onError = () => { },
   }) {
     return this.get({
       url: "/interviewinsights/downloadTemplate",
@@ -110,26 +108,24 @@ class APIWrapper extends HTTPClient {
   }
 
   async getAssessmentQuestions({
+    candidateId,
     onSuccess = () => {},
     onError = () => {},
   }) {
     return this.get({
-      url: "/",
-      onSuccess : (response) => {
-        this.dispatch(setQuestions(response.data));
-        onSuccess();
-      },
+      url: `/interviewapi/getQuestions?candidateId=${candidateId}`,
+      onSuccess,
       onError,
     });
   }
 
   async postAssessmentAnswers({
     data,
-    onSuccess = () => {},
-    onError = () => {},
+    onSuccess = () => { },
+    onError = () => { },
   }) {
     return this.get({
-      url: "",
+      url: "/",
       data,
       onSuccess,
       onError,
@@ -138,15 +134,16 @@ class APIWrapper extends HTTPClient {
 
   async postUploadFile({
     file,
-    onSuccess = () => {},
-    onError = () => {},
+    onSuccess = () => { },
+    onError = () => { },
   }) {
     const formData = new FormData();
+    const adminToken = sessionStorage.getItem("Token");
     formData.append("file", file);
-    formData.append("createdBy", "Srinu");
-    formData.append("modifiedBy", "Sidhu");
+    formData.append("createdBy", adminToken);
+    formData.append("modifiedBy", adminToken);
     this.headers = {
-      "Content-Type" : "multipart/form-data",
+      "Content-Type": "multipart/form-data",
     };
 
     return this.post({
