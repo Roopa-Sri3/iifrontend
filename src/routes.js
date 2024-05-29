@@ -3,11 +3,11 @@ import Dashboard from "./pages/Dashboard";
 import ProtectLoginRoute from "./privateRoutes/protectLoginRoute";
 import ProtectedDashboardRoute from "./privateRoutes/protectDashboardRoute";
 import Questionsconfiguration from "./pages/Questionsconfiguration";
-import Unauthorized from "./pages/Unauthorized";
 import Start from "./components/question/Start";
-import TestSubmit from "../src/pages/TestSubmit";
+import TestSubmit from "./pages/TestSubmit";
 import Assessmentscreen from "./pages/Assessmentscreen";
-
+import Unauthorized from "./pages/Unauthorized";
+import CandidateProfileview from "./components/core/CandidateProfileView";
 const ROUTES_CONFIG = [
   {
     path: "/",
@@ -38,6 +38,10 @@ const ROUTES_CONFIG = [
         path: "/candidate/assessment-screen",
         element: <Assessmentscreen />
       },
+      {
+        path: "/candidate/candidate-profile-view",
+        element:<CandidateProfileview/>
+      }
     ]
   },
   {
