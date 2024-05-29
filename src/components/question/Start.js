@@ -12,9 +12,11 @@ const Start = () => {
   const examStarted = useSelector(GetExamStatus);
 
   const handleStartExam = () => {
+    const candidateId = "e0b8f691-5e87-4f92-a9f3-a170116d2d0d";
     dispatch(startExam());
     dispatch(setDuration());
     dispatch(GetAssessmentQuestions({
+      candidateId,
       onSuccess: () => {
         console.log("Questions fetched successfully");
       },

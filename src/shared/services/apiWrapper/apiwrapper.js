@@ -1,6 +1,4 @@
 import HTTPClient from "../httpclient";
-import { setQuestions } from "../../../store/reducers/screen/screen";
-
 class APIWrapper extends HTTPClient {
   constructor(dispatch = () => { }) {
     super();
@@ -110,15 +108,13 @@ class APIWrapper extends HTTPClient {
   }
 
   async getAssessmentQuestions({
-    onSuccess = () => { },
-    onError = () => { },
+    candidateId,
+    onSuccess = () => {},
+    onError = () => {},
   }) {
     return this.get({
-      url: "/",
-      onSuccess: (response) => {
-        this.dispatch(setQuestions(response.data));
-        onSuccess();
-      },
+      url: `/interviewapi/getQuestions?candidateId=${candidateId}`,
+      onSuccess,
       onError,
     });
   }
@@ -129,7 +125,7 @@ class APIWrapper extends HTTPClient {
     onError = () => { },
   }) {
     return this.get({
-      url: "",
+      url: "/",
       data,
       onSuccess,
       onError,
@@ -142,9 +138,10 @@ class APIWrapper extends HTTPClient {
     onError = () => { },
   }) {
     const formData = new FormData();
+    const adminToken = sessionStorage.getItem("Token");
     formData.append("file", file);
-    formData.append("createdBy", "Srinu");
-    formData.append("modifiedBy", "Sidhu");
+    formData.append("createdBy", adminToken);
+    formData.append("modifiedBy", adminToken);
     this.headers = {
       "Content-Type": "multipart/form-data",
     };

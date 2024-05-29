@@ -28,6 +28,7 @@ import { statuses } from "../shared/constants.js";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
+  const hrToken = sessionStorage.getItem("Token");
   const candidates = useSelector(GetStoreCandidates);
   const candidatesTotalCount = useSelector(GetStoreCandidatesTotalCount);
   const [currentPage, setCurrentPage] = useState(1);
@@ -48,7 +49,8 @@ const Dashboard = () => {
     const data = {
       statuses: statusFilter.map((status) => status.value),
       page: currentPage,
-      search: searchTerm
+      search: searchTerm,
+      token: hrToken,
     };
     dispatch(GetCandidateDetails({
       data,
@@ -61,14 +63,15 @@ const Dashboard = () => {
     const data = {
       statuses: statusFilter.map((status) => status.value),
       page: currentPage,
-      search: searchTerm
+      search: searchTerm,
+      token: hrToken,
     };
     dispatch(GetCandidateDetails({
       data,
       onSuccess: () => { },
       onError: () => { },
     }));
-  }, [currentPage, statusFilter, searchTerm, dispatch]);
+  }, [currentPage, statusFilter, searchTerm, hrToken, dispatch]);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -214,13 +217,19 @@ const Dashboard = () => {
         <div className="card">
           <table>
             <SubHeader className="column-heading"
-              columns={[
+              columns={role === "HR" ? [
                 "Candidate Name",
                 "Tech Skills",
                 "Status",
                 "View/Download Report",
                 "Feedback",
                 "Actions",
+              ] : [
+                "Candidate Name",
+                "Tech Skills",
+                "Status",
+                "View/Download Report",
+                "Feedback",
               ]}
               headerActions={headerActions}
             />
