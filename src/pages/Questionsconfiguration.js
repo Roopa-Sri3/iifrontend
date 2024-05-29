@@ -3,9 +3,9 @@ import {useNavigate} from "react-router-dom";
 import FileUpload from "../components/core/fileUpload/FileUpload";
 import Button from "../components/core/button";
 import Download from "../components/core/download/Download";
-import BackarrowIcon from "../components/assets/svgs/BackarrowIcon";
-import FileIcon from "../components/assets/svgs/FileIcon";
-import DeletefileIcon from "../components/assets/svgs/DeletefileIcon";
+import BackarrowIcon from "../assets/svgs/BackarrowIcon";
+import FileIcon from "../assets/svgs/BackarrowIcon";
+import DeletefileIcon from "../assets/svgs/BackarrowIcon";
 import {instructions} from "../shared/constants";
 import { PostUploadFile } from "../store/reducers/dashboard/dashboard";
 import { setAlert } from "../store/reducers/app/app";
@@ -56,7 +56,7 @@ function Questionsconfiguration() {
           fileRef.current.value = null;
         }
         else{
-          dispatch(setAlert({ message: "Failed to upload", messageType: "failure" }));
+          dispatch(setAlert({ message: "File upload unsuccessful", messageType: "failure" }));
         }
       },
     }));

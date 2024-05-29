@@ -3,9 +3,8 @@ import Dashboard from "./pages/Dashboard";
 import ProtectLoginRoute from "./privateRoutes/protectLoginRoute";
 import ProtectedDashboardRoute from "./privateRoutes/protectDashboardRoute";
 import Questionsconfiguration from "./pages/Questionsconfiguration";
-import Unauthorized from "./pages/Unauthorized";
 import Start from "./components/question/Start";
-import TestSubmit from "../src/pages/TestSubmit";
+import TestSubmit from "./pages/TestSubmit";
 import Assessmentscreen from "./pages/Assessmentscreen";
 import LinkExpired from "./pages/LinkExpired";
 import VerifyAssessmentDetails from "./pages/VerifyAssessmentDetails";
@@ -47,7 +46,7 @@ const ROUTES_CONFIG = [
       {
         path: "/candidate/verify-assessment-details",
         element : <VerifyAssessmentDetails />
-      }
+      },
     ]
   },
   {
