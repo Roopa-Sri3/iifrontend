@@ -14,12 +14,21 @@
   justify-content: space-between;
   align-items:center;
   overflow-y:scroll;
-  max-height:50px;
+  height:44px;
 }
 
-.grey-border{
-  border: 1px solid #D0D5DD;
-  border-bottom:0;
+.drop-box-header-disabled{
+  cursor: not-allowed;
+  opacity:0.5;
+}
+
+.drop-box-header-disabled:hover{
+  cursor: not-allowed;
+  opacity:0.5;
+}
+
+.drop-box-header-error{
+  border-color: red;
 }
 
 .drop-box-menu{
@@ -39,11 +48,9 @@
   padding:8px;
   border:1px solid #ccc;
   box-sizing:border-box;
-  margin:5px 5px 3px 5px;
+  margin:5px 3px 3px 5px;
   border-radius:5px;
   height:30px;
-  position: sticky;
-  top:0;
 }
 
 .drop-box-menu .option-item-field-label{
@@ -116,7 +123,7 @@
   .multiselect-search-icon{
     position: absolute;
     top: 7px;
-    right: 12px;
+    right: 15px;
   }
 }
 

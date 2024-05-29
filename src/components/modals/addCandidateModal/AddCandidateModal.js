@@ -7,56 +7,55 @@ import Checkbox from "../../core/checkbox/checkbox";
 import AddCandidateModalHeader from "./AddCandidateModalHeader";
 import AddCandidateModalActions from "./AddCandidateModalActions";
 import {closeModal} from "../../../store/reducers/app/app";
-import { IsModalOpen, GetModalData } from "../../../store/selector/app/app";
+import { IsModalOpen, GetModalData, GetToken } from "../../../store/selector/app/app";
+import { GetStoreSkills } from "../../../store/selector/dashboard/dashboard";
 import "./AddCandidateModal.css";
 
 const AddCandidateModal = ({
   handleAddOrEditCandidate = () => {}
 }) => {
   const dispatch = useDispatch();
-
+  const options = useSelector(GetStoreSkills);
+  const token = useSelector(GetToken);
   const IsAddCandidateModalOpen = useSelector(
     (state) => IsModalOpen(state, "AddCandidateModal"),
   );
-
   const storeModalData = useSelector(GetModalData);
 
   const [fullName,setFullName] = useState("");
   const [email,setEmail] = useState("");
   const [mobileNumber,setMobileNumber] = useState("");
-  const [yearsOfExperience,setYearsOfExperience] = useState("");
+  const [years,setYears] = useState("");
+  const [months,setMonths] = useState("");
   const [selectedPrimarySkills, setSelectedPrimarySkills] = useState([]);
   const [selectedSecondarySkills, setSelectedSecondarySkills] = useState([]);
   const [rRNumber,setRRNumber] = useState("");
   const [isChecked, setIsChecked] = useState(false);
+  const [isPrimarySkillSelected, setIsPrimarySkillSelected] = useState(false);
 
   const [fullNameError, setFullNameError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [mobileNumberError, setMobileNumberError] = useState("");
   const [yearsOfExperienceError, setYearsOfExperienceError] = useState("");
-  const [
-    selectedPrimarySkillsError,
-    setSelectedPrimarySkillsError
-  ] = useState("");
-  const [
-    selectedSecondarySkillsError,
-    setSelectedSecondarySkillsError
-  ] = useState("");
+  const [monthsOfExperienceError, setMonthsOfExperienceError] = useState("");
+  const [selectedPrimarySkillsError, setSelectedPrimarySkillsError] = useState("");
+  const [selectedSecondarySkillsError, setSelectedSecondarySkillsError] = useState("");
 
   const handlePrimarySkills = (selectedValues) => {
     setSelectedPrimarySkills(selectedValues);
+    setSelectedPrimarySkillsError("");
+    setIsPrimarySkillSelected(selectedValues.length > 0);
+
+    const updatedSecondarySkills = selectedSecondarySkills.filter(
+      (skill) => !selectedValues.some(
+        (primarySkill) => primarySkill.value === skill.value));
+
+    setSelectedSecondarySkills(updatedSecondarySkills);
   };
+
   const handleSecondarySkills = (selectedValues) => {
     setSelectedSecondarySkills(selectedValues);
   };
-
-  const options = [
-    {id:1, label:"Java", value:"Java"},
-    {id:2, label:"Python", value:"Python"},
-    {id:3, label:"C", value:"C"},
-    {id:4, label:"C++", value:"C++"},
-    {id:5, label:"PHP", value:"PHP"}
-  ];
 
   useEffect(() => {
     if (storeModalData && storeModalData.mode === "EDIT") {
@@ -64,16 +63,19 @@ const AddCandidateModal = ({
       setFullName(candidateData.fullName);
       setEmail(candidateData.email);
       setMobileNumber(candidateData.mobileNumber);
-      setYearsOfExperience(candidateData.yearsOfExperience);
+      setYears(candidateData.years);
+      setMonths(candidateData.months);
       setSelectedPrimarySkills(candidateData.selectedPrimarySkills);
+      setIsPrimarySkillSelected(true);
       setSelectedSecondarySkills(candidateData.selectedSecondarySkills);
-      setRRNumber(candidateData.rRNumber);
+      setRRNumber(candidateData.rrNo);
     }
     else {
       setFullName("");
       setEmail("");
       setMobileNumber("");
-      setYearsOfExperience("");
+      setYears("");
+      setMonths("");
       setSelectedPrimarySkills([]);
       setSelectedSecondarySkills([]);
       setRRNumber("");
@@ -82,29 +84,57 @@ const AddCandidateModal = ({
 
   const validateForm = () => {
     let isValid = true;
-    if (!fullName) {
-      setFullNameError("Please enter full name");
+    if(fullName === ""){
+      setFullNameError("Please enter Full name");
+      isValid = false;
+    } else if ((fullName.length < 2) || (fullName.length > 50) || !/^[a-zA-Z]+(?: [a-zA-Z]+)*$/.test(fullName) || /\s{2,}/.test(fullName) || /\bnull\b/i.test(fullName)) {
+      setFullNameError("Please enter valid name");
       isValid = false;
     }
-    if (!mobileNumber || !/^\d{10}$/.test(mobileNumber)) {
-      setMobileNumberError("Enter valid number");
+
+    if (email === "") {
+      setEmailError("Please enter email address");
+      isValid = false;
+    } else if (!/^[a-zA-Z0-9.-]+@gmail\.com$/.test(email)) {
+      setEmailError("Please enter valid email address");
       isValid = false;
     }
-    if (!email || !/^\S+@gmail.com/.test(email)) {
-      setEmailError("Please enter email");
+
+    if (mobileNumber === "") {
+      setMobileNumberError("");
+    } else if (!/^\d{10}$/.test(mobileNumber) || mobileNumber === "0000000000") {
+      setMobileNumberError("Please enter valid mobile number");
       isValid = false;
     }
-    if (!yearsOfExperience || isNaN(yearsOfExperience) || yearsOfExperience < 0)
-    {
-      setYearsOfExperienceError("Please enter years of experience");
-      isValid = false;
+
+    if (years === "" || months === "") {
+      if (years === "" && months === "") {
+        setYearsOfExperienceError("Please enter years of experience");
+        setMonthsOfExperienceError("Please enter years of experience");
+        isValid = false;
+      } else if(years === ""){
+        setYearsOfExperienceError("Please enter years of experience");
+        isValid = false;
+      } else if (months === "") {
+        setMonthsOfExperienceError("Please enter years of experience");
+        isValid = false;
+      }
+    } else {
+      if ((!/^\d+$/.test(years) || years < 0 || years > 25) && (!/^\d+$/.test(months) || months < 0 || months > 12)) {
+        setYearsOfExperienceError("Please enter valid years of experience");
+        setMonthsOfExperienceError("Please enter valid years of experience");
+        isValid = false;
+      } else if (!/^\d+$/.test(years) || years < 0 || years > 25) {
+        setYearsOfExperienceError("Please enter valid years of experience");
+        isValid = false;
+      } else if (!/^\d+$/.test(months) || months < 0 || months > 12) {
+        setMonthsOfExperienceError("Please enter valid years of experience");
+        isValid = false;
+      }
     }
+
     if(selectedPrimarySkills.length === 0){
-      setSelectedPrimarySkillsError("Primary skill is required");
-      isValid = false;
-    }
-    if(selectedSecondarySkills.length === 0){
-      setSelectedSecondarySkillsError("Secondary skill is required");
+      setSelectedPrimarySkillsError("Please enter Primary tech skills");
       isValid = false;
     }
 
@@ -115,14 +145,18 @@ const AddCandidateModal = ({
     setFullName("");
     setEmail("");
     setMobileNumber("");
-    setYearsOfExperience("");
+    setYears("");
+    setMonths("");
     setSelectedPrimarySkills([]);
     setSelectedSecondarySkills([]);
+    setIsPrimarySkillSelected(false);
     setRRNumber("");
+    setIsChecked(false);
     setFullNameError("");
     setEmailError("");
     setMobileNumberError("");
     setYearsOfExperienceError("");
+    setMonthsOfExperienceError("");
     setSelectedPrimarySkillsError("");
     setSelectedSecondarySkillsError("");
   };
@@ -132,24 +166,31 @@ const AddCandidateModal = ({
     dispatch(closeModal());
   };
 
+  const capitalizedFullName = fullName.replace(/\b\w/g, function(char) {
+    return char.toUpperCase();
+  });
+
   const handleSubmit = () => {
     const isValid = validateForm();
     if (isValid){
       const formData = {
-        fullName,
+        fullName:capitalizedFullName,
         email,
         mobileNo:mobileNumber,
-        yearsOfExperience,
+        years,
+        months,
         primaryTechSkill : selectedPrimarySkills[0].value,
-        secondaryTechSkill :
-        selectedSecondarySkills.map(skill => skill.value),
+        secondaryTechSkill : selectedSecondarySkills.map(skill => skill.value),
         rrNo:rRNumber,
         shareLink:isChecked,
+        createdBy:storeModalData && storeModalData.mode === "EDIT" ? undefined : token,
+        modifiedBy:storeModalData && storeModalData.mode === "EDIT" ? token : undefined,
       };
 
       handleAddOrEditCandidate({
         ...formData,
         mode: storeModalData && storeModalData.mode,
+        candidateId: storeModalData.candidateId,
       });
       resetForm();
       dispatch(closeModal());
@@ -187,7 +228,6 @@ const AddCandidateModal = ({
                   onChange={(e) => {setFullName(e.target.value);
                     setFullNameError("");}}
                   autoComplete="off"
-                  minLength="4"
                 />
                 {fullNameError &&
                 <p className="validation-error">{fullNameError}</p>}
@@ -217,7 +257,7 @@ const AddCandidateModal = ({
               <div className={cx("col-6","add-candidate-field")}>
                 <label
                   htmlFor="mobileNumber"
-                  className="add-candidate-field-label-mandatory"
+                  className="add-candidate-field-label"
                 >
                   Mobile Number
                 </label>
@@ -230,32 +270,53 @@ const AddCandidateModal = ({
                   value={mobileNumber  || ""}
                   onChange={(e) => {setMobileNumber(e.target.value);
                     setMobileNumberError("");}}
-                  pattern="[0-9]{10}"
                   autoComplete="off"/>
                 {mobileNumberError &&
                 <p className="validation-error">{mobileNumberError}</p>}
               </div>
-              <div className={cx("col-6","add-candidate-field")}>
+              <div className={cx("col-6", "add-candidate-field")}>
                 <label
                   htmlFor="yearsOfExperience"
                   className="add-candidate-field-label-mandatory"
                 >
                   Years of Experience
                 </label>
-                <input
-                  type="text"
-                  id="yearsOfExperience"
-                  className={`form-input ${yearsOfExperienceError ?
-                    "add-candidate-field-error" : ""}`}
-                  placeholder="Candidate Experience"
-                  value={yearsOfExperience || ""}
-                  onChange={(e) => {setYearsOfExperience(e.target.value);
-                    setYearsOfExperienceError("");}}
-                  autoComplete="off"
-                  min="0"
-                />
+                <div className="experience-input-container">
+                  <div className="experience-input-field">
+                    <input
+                      type="text"
+                      id="years"
+                      className={`form-input ${yearsOfExperienceError ? "add-candidate-field-error" : ""}`}
+                      value={years || ""}
+                      onChange={(e) => {
+                        setYears(e.target.value);
+                        setYearsOfExperienceError("");
+                      }}
+                      autoComplete="off"
+                    />
+                    <span>Years<p>(0-25)</p></span>
+                  </div>
+                  <div className="experience-input-field">
+                    <input
+                      type="text"
+                      id="months"
+                      className={`form-input ${monthsOfExperienceError ? "add-candidate-field-error" : ""}`}
+                      value={months || ""}
+                      onChange={(e) => {
+                        setMonths(e.target.value);
+                        setMonthsOfExperienceError("");
+                      }}
+                      autoComplete="off"
+                    />
+                    <span>Months<p>(0-12)</p></span>
+                  </div>
+                </div>
                 {yearsOfExperienceError &&
-                <p className="validation-error">{yearsOfExperienceError}</p>}
+                  <p className="validation-error">{yearsOfExperienceError}</p>
+                }
+                {(!yearsOfExperienceError && monthsOfExperienceError) &&
+                  <p className="validation-error">{monthsOfExperienceError}</p>
+                }
               </div>
             </div>
             <div className="row">
@@ -269,14 +330,14 @@ const AddCandidateModal = ({
                 <MultiSelect
                   id="primaryTechSkills"
                   label=""
-                  className={
-                    `form-input ${selectedPrimarySkillsError ?
-                      "add-candidate-field-error" : ""}`
-                  }
+                  className={cx("form-input", {
+                    "add-candidate-field-error": selectedPrimarySkillsError,
+                  })}
                   options={options || []}
                   onChange={handlePrimarySkills}
                   maxSelection="1"
                   selectedValues={selectedPrimarySkills}
+                  error={selectedPrimarySkillsError}
                 />
                 {selectedPrimarySkillsError &&
                 <p className="validation-error">
@@ -285,8 +346,10 @@ const AddCandidateModal = ({
               </div>
               <div className={cx("col-6","add-candidate-field")}>
                 <label
-                  htmlFor="secondaryTechSkills"
-                  className="add-candidate-field-label-mandatory"
+                  htmlFor='secondaryTechSkills'
+                  className={cx("add-candidate-field-label", {
+                    "drop-box-header-disabled": !isPrimarySkillSelected,
+                  })}
                 >
                   Secondary Tech Skills
                 </label>
@@ -300,13 +363,10 @@ const AddCandidateModal = ({
                   options={options || []}
                   onChange={handleSecondarySkills}
                   maxSelection="3"
-                  selectedValues={selectedSecondarySkills}
-                  initialDisabledOptions={selectedPrimarySkills}
+                  selectedValues={selectedPrimarySkills.length === 0 ? [] : selectedSecondarySkills}
+                  disabled={!isPrimarySkillSelected}
+                  excludedOptions={selectedPrimarySkills}
                 />
-                {selectedSecondarySkillsError &&
-                <p className="validation-error">
-                  {selectedSecondarySkillsError}
-                </p>}
               </div>
             </div>
             <div className="row">
@@ -321,7 +381,6 @@ const AddCandidateModal = ({
                   value={rRNumber || ""}
                   onChange={(e) => setRRNumber(e.target.value)}
                   autoComplete="off"
-                  pattern="[0-9]{10}"
                 />
               </div>
             </div>

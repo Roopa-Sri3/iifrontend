@@ -18,36 +18,29 @@ const AddCandidateModalActions = ({
 
     if (isValid) {
       onSubmit();
-
-      const message = isChecked ?
-        "Candidate added and link shared successfully"
-        : "Candidate added successfully";
+    }
+    else{
+      const message = isChecked ? "Failed to send link and add candidate" : "Failed to add candidate";
 
       dispatch(setAlert({
         message,
-        messageType: "success"
-      }));
-    } else {
-      dispatch(setAlert({
-        message: "Failed to send",
         messageType: "failure"
       }));
     }
   };
 
   const isEditMode = storeModalData.mode === "EDIT";
-  const buttonLabel = isEditMode ? "Save Changes" :
+  const buttonLabel = isEditMode ? "Save changes" :
     isChecked ? "Add Candidate and share Link" : "Add Candidate";
 
   return (
-    <div>
-      <center className="add-button">
-        <Button
-          label={buttonLabel}
-          handleClick={handleAddCandidate}
-        />
-      </center>
-    </div>
+    <center className="add-button">
+      <Button
+        label={buttonLabel}
+        handleClick={handleAddCandidate}
+        className="add-candidate-submit-button"
+      />
+    </center>
   );
 };
 

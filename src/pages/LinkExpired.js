@@ -1,5 +1,5 @@
 import React from "react";
-import LinkExpiredImg from "../Images/LinkExpiredImg.png";
+import LinkExpiredImg from "../../src/assets/Images/LinkExpiredImg.png";
 import "./LinkExpired.css";
 
 function LinkExpired(){

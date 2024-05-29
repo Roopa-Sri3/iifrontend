@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../components/core/button/button";
 import SubFooter from "../components/table/SubFooter/SubFooter";
@@ -9,102 +9,169 @@ import
 AddCandidateModal
   from "../components/modals/addCandidateModal/AddCandidateModal";
 import FeedbackModal from "../components/modals/feedbackModal/FeedbackModal";
-import { openModal, } from "../store/reducers/app/app";
+import { openModal, setAlert, } from "../store/reducers/app/app";
 import {
   AddCandidate,
   EditCandidate,
+  GetCandidateDetails,
   GetTechSkills,
 } from "../store/reducers/dashboard/dashboard.js";
 import { GetUserRole } from "../store/selector/app";
-import { candidates } from "../shared/constants";
-import StatusFilter from "./StatusFilter";
+import { GetStoreCandidates, GetStoreCandidatesTotalCount } from "../store/selector/dashboard/dashboard.js";
+import ClearTextIcon from "../components/assets/svgs/CrossMark.js";
 import Search from "../components/assets/svgs/Search";
 import AddIcon from "../components/assets/svgs/AddIcon.js";
-import FilterComponent from "../assets/svgs/filterImage";
+import StatusFilter from "../components/table/statuFilter/StatuFilter.js";
+import LogoutModal from "../components/modals/logoutModal/LogoutModal.js";
 import "./Dashboard.css";
+import { statuses } from "../shared/constants.js";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
+  const hrToken = sessionStorage.getItem("Token");
+  const candidates = useSelector(GetStoreCandidates);
+  const candidatesTotalCount = useSelector(GetStoreCandidatesTotalCount);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [searchFieldValue, setSearchFieldValue] = useState("");
+  const recordsPerPage = 10;
+  const [selectedStatus] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [statusFilter, setStatusFilter] = useState([]);
 
   useEffect(() => {
     dispatch(GetTechSkills({
-      onSuccess: () => {},
-      onError: () => {},
+      onSuccess: () => { },
+      onError: () => { },
     }));
   }, [dispatch]);
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const [recordsPerPage] = useState(10);
-  const [showFilter, setShowFilter] = useState(false);
-  const [selectedStatus, setSelectedStatus] = useState(null);
-  const [searchTerm, setSearchTerm] = useState("");
+  const fetchCandidates = () => {
+    const data = {
+      statuses: statusFilter.map((status) => status.value),
+      page: currentPage,
+      search: searchTerm,
+      token: hrToken,
+    };
+    dispatch(GetCandidateDetails({
+      data,
+      onSuccess: () => { },
+      onError: () => { },
+    }));
+  };
 
-  const filteredCandidates = candidates.filter(
-    (candidate) =>
-      (!selectedStatus || candidate.status === selectedStatus) &&
-      (candidate.candidateName.toLowerCase().includes(searchTerm.toLowerCase())
-      || candidate.techSkills.toLowerCase().includes(searchTerm.toLowerCase()))
-  );
+  useEffect(() => {
+    const data = {
+      statuses: statusFilter.map((status) => status.value),
+      page: currentPage,
+      search: searchTerm,
+      token: hrToken,
+    };
+    dispatch(GetCandidateDetails({
+      data,
+      onSuccess: () => { },
+      onError: () => { },
+    }));
+  }, [currentPage, statusFilter, searchTerm, hrToken, dispatch]);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
-  const handleFilterChange = (status) => {
-    setSelectedStatus(status);
+  const handleSearch = () => {
     setCurrentPage(1);
+    setSearchTerm(searchFieldValue);
   };
 
-  const handleFilterComponentClick = () => {
-    setShowFilter(!showFilter);
-  };
-
-  const handleSearch = (event) => {
-    setSearchTerm(event.target.value);
-  };
-
-  const totalPages = Math.ceil(filteredCandidates.length / recordsPerPage);
+  const totalPages = Math.ceil(candidatesTotalCount / recordsPerPage);
 
   const role = useSelector(GetUserRole);
 
   const handleAddCandidate = () => {
     dispatch(openModal({
       modalName: "AddCandidateModal",
-      modalData: {
-      }
+      modalData: {}
     }));
   };
 
   const handleAddOrEditCandidate = ({
     mode,
+    candidateId,
     ...formData
   }) => {
     if (mode === "EDIT") {
       dispatch(EditCandidate({
-        data: {...formData},
-        onSuccess: () => {},
-        onError: () => {}
+        data: {
+          candidateId,
+          ...formData
+        },
+        onSuccess: () => {
+          fetchCandidates();
+          dispatch(setAlert({
+            message: "Candidate details updated successfully",
+            messageType: "success"
+          }));
+        },
+        onError: () => {
+          dispatch(setAlert({
+            message: "Failed to update details",
+            messageType: "failure"
+          }));
+        }
       }));
     } else {
       dispatch(AddCandidate({
-        data: {...formData},
-        onSuccess: () => {},
-        onError: () => {}
+        data: { ...formData },
+        onSuccess: () => {
+          fetchCandidates();
+
+          const message = formData.shareLink ? "Candidate added and link shared successfully" : "Candidate added successfully";
+
+          dispatch(setAlert({
+            message,
+            messageType: "success"
+          }));
+        },
+        onError: () => {
+          const message = formData.shareLink ? "Failed to send link and add candidate" : "Failed to add candidate";
+
+          dispatch(setAlert({
+            message,
+            messageType: "failure"
+          }));
+        }
       }));
     }
   };
 
-  const headerActions =
-  [null,
+  const handleCheckboxChange = (optionSelected, selected) => {
+    if (selected) {
+      setStatusFilter([
+        ...statusFilter,
+        optionSelected,
+      ]);
+      setCurrentPage(1);
+    } else {
+      setStatusFilter(statusFilter.filter((status) => status.value !== optionSelected.value));
+      setCurrentPage(1);
+    }
+  };
+
+  const headerActions = [
     null,
-    <FilterComponent className="filter"
-      onClick={handleFilterComponentClick}/>,
-    null, null, null];
+    null,
+    <StatusFilter
+      statuses={statuses}
+      statusFilter={statusFilter}
+      handleCheckboxChange={handleCheckboxChange}
+    />,
+    null,
+    null,
+    null,
+  ];
 
   return (
     <div className="dashboard">
       <UserDisplay />
-      { role === "HR" &&
       <div>
         <div className="dashboard-filters-and-actions">
           <div className="candidate-insights">Candidate Insights</div>
@@ -113,35 +180,72 @@ const Dashboard = () => {
               className="search-text"
               type="search"
               placeholder="Search Candidate Name, Tech Skills"
-              value={searchTerm}
-              onChange={handleSearch}
+              value={searchFieldValue}
+              onChange={(e) => {
+                setSearchFieldValue(e.target.value);
+              }}
+              onBlur={handleSearch}
+              onKeyDown = {(event) => {
+                if (event.key === "Enter") {
+                  handleSearch();
+                }
+              }}
             />
-            <Search />
+            {searchFieldValue.length > 0 && (
+              <ClearTextIcon
+                onClick={() => {
+                  setSearchFieldValue("");
+                  setSearchTerm("");
+                  fetchCandidates();
+                }}
+              />
+            )}
+            <Search/>
           </div>
-          { role === "HR" &&
-        <Button
-          label="Add Candidate"
-          handleClick={handleAddCandidate}
-          children={<AddIcon />}
-        />
+          {role === "ADMIN" &&
+            <div></div>
+          }
+          {role === "HR" &&
+              <Button
+                className="addCandidateButton"
+                label="Add Candidate"
+                handleClick={handleAddCandidate}
+                children={<AddIcon />}
+              />
           }
         </div>
         <div className="card">
           <table>
-            <SubHeader columns={["Candidate Name",
-              "Tech Skills",
-              "Status",
-              "View/Dashboard Report",
-              "Feedback",
-              "Actions"]}
-            headerActions={headerActions}
+            <SubHeader className="column-heading"
+              columns={role === "HR" ? [
+                "Candidate Name",
+                "Tech Skills",
+                "Status",
+                "View/Download Report",
+                "Feedback",
+                "Actions",
+              ] : [
+                "Candidate Name",
+                "Tech Skills",
+                "Status",
+                "View/Download Report",
+                "Feedback",
+              ]}
+              headerActions={headerActions}
             />
-            <SubLayout
-              data={filteredCandidates}
-              currentPage={currentPage}
-              recordsPerPage={recordsPerPage}
-              filteredCandidates={filteredCandidates}
-            />
+            {candidates.length > 0 ? (
+              <SubLayout
+                currentPage={currentPage}
+                recordsPerPage={recordsPerPage}
+                filteredCandidates={candidates}
+              />
+            ) : (
+              <tbody>
+                <tr>
+                  <td colSpan="6" className="no-records-found">No Records Found</td>
+                </tr>
+              </tbody>
+            )}
           </table>
           <SubFooter
             data={candidates}
@@ -150,23 +254,16 @@ const Dashboard = () => {
             totalRecords={candidates.length}
             recordsPerPage={recordsPerPage}
             onPageChange={handlePageChange}
-            filteredCandidates={filteredCandidates}
+            filteredCandidates={candidates}
             selectedStatus={selectedStatus}
-            onStatusChange={handleFilterChange}
           />
-          {showFilter &&
-          (<StatusFilter
-            onFilterChange={handleFilterChange}
-            onClose={() => setShowFilter(false)}
-            selectedStatus={selectedStatus}
-          />)}
         </div>
         <AddCandidateModal
           handleAddOrEditCandidate={handleAddOrEditCandidate}
         />
         <FeedbackModal />
+        <LogoutModal />
       </div>
-      }
     </div>
   );
 };

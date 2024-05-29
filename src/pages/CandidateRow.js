@@ -1,15 +1,20 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { openModal } from "../store/reducers/app/app";
+import { GetStoreSkills } from "../store/selector/dashboard/dashboard";
 import EditComponent from "../assets/svgs/editImage";
 import ShareComponent from "../assets/svgs/shareImage";
 import VisibilityComponent from "../assets/svgs/visibilityImage";
 import DownloadIcon from "../assets/svgs/downloadIcon";
+import { GetUserRole } from "../store/selector/app";
 import "./CandidateRow.css";
 
 const CandidateRow = ({ candidate }) => {
   const dispatch = useDispatch();
-  const isPdfReport = candidate.report.endsWith(".pdf");
+  const role = useSelector(GetUserRole);
+  const options = useSelector(GetStoreSkills);
+  const isStatusNewOrExpired = candidate.status === "New" || candidate.status === "Expired";
+
   const handleOpenModal = () => {
     dispatch(openModal(
       {
@@ -19,42 +24,34 @@ const CandidateRow = ({ candidate }) => {
         }
       }));
   };
-  const handleEditClick = () => {
-    const rowCandidateData = {
-      ...candidate,
-      fullName: "abinash",
-      email: "191fa04101@gmail.com",
-      mobileNumber:"6309574567",
-      yearsOfExperience: 1,
-      primaryTechSkill: "Java",
-      secondaryTechSkills: ["C", "Python", "PHP"],
-      rRNumber: "",
-      status: "completed",
-      fileUrl: "c::/file",
-      rating: 1,
-      comments: "dfgf"
-    };
-
+  const handleEditClick = (rowCandidateData) => {
     dispatch(openModal(
       {
         modalName: "AddCandidateModal",
         modalData: {
           mode:"EDIT",
           ...rowCandidateData,
-          selectedPrimarySkills:[
-            {label: rowCandidateData.primaryTechSkill,
-              value: rowCandidateData.primaryTechSkill}
-          ],
-          selectedSecondarySkills:
-          rowCandidateData.secondaryTechSkills.map(secondarySkill =>
-            ({label: secondarySkill, value: secondarySkill})),
+          mobileNumber:rowCandidateData.mobileNo,
+          selectedPrimarySkills: [options.find((option) => option.label === rowCandidateData.primaryTechSkills)], // TODO : Need to chaneg after API Update
+          selectedSecondarySkills: rowCandidateData.secondaryTechSkills.length === 0
+            ? []
+            : options.filter(
+              (option) => rowCandidateData.secondaryTechSkills.includes(option.label) // TODO : Need to chaneg after API Update
+            )
         }
       }));
   };
+
   return (
     <tr className="candidate-row">
-      <td>{candidate.candidateName}</td>
-      <td>{candidate.techSkills}</td>
+      <td>{candidate.fullName}</td>
+      <td>{candidate.primaryTechSkills}
+        {candidate.secondaryTechSkills.length > 0 && (
+          <span>
+            , {candidate.secondaryTechSkills.join(", ")}
+          </span>
+        )}
+      </td>
       <td className={candidate.status ===
         "Completed" ? "status-completed" : ""}>
         {candidate.status}
@@ -62,43 +59,51 @@ const CandidateRow = ({ candidate }) => {
       <td>
         <div className="cd-report">
           <div className="report-text">
-            {candidate.report}
+            {candidate.status === "Completed" ? candidate.fileUrl : "No report"}
           </div>
           <DownloadIcon
-            style={{ cursor: isPdfReport ? "pointer" : "not-allowed" }}
-            fillColor={isPdfReport ? "#196AD6" : "#6F7683"}
+            style={{ cursor: candidate.fileUrl !== "null" ? "pointer" : "not-allowed" }}
+            fillColor={candidate.fileUrl !== "null" ? "#196AD6" : "#6F7683"}
           />
         </div>
       </td>
       <td>
-        <div className="feedback-container">
-          {candidate.feedback}
-          <VisibilityComponent
-            style={{marginLeft: "40px",cursor:"pointer"}}
-            onClick={handleOpenModal}/>
-          <span className="comments-text"
-            style={{ marginLeft: "10px" }}>
+        {candidate.status === "Completed" ? (
+          <div className="feedback-container">
+            {candidate.rating}
+            <VisibilityComponent
+              style={{marginLeft: "40px",cursor:"pointer"}}
+              onClick={handleOpenModal}/>
+            <span className="comments-text"
+              style={{ marginLeft: "10px" }}>
             Comments
+            </span>
+          </div>
+        ) : (
+          <div className="feedback-container">N/A</div>
+        )}
+      </td>
+      {role === "HR" && (
+        <td className="actions-column">
+          <span
+            className="edit-icon"
+            role="button"
+            tabIndex="0"
+            onClick = {() => handleEditClick(candidate)}
+            onKeyDown={(event) => {
+              if(event.key === "Enter" || event.key === " "){
+                handleEditClick(candidate);
+              }
+            }}
+          >
+            <EditComponent />
           </span>
-        </div>
-      </td>
-      <td>
-        {candidate.actions}
-        <span
-          className="edit-icon"
-          role="button"
-          tabIndex="0"
-          onClick = {handleEditClick}
-          onKeyDown={(event) => {
-            if(event.key === "Enter" || event.key === " "){
-              handleEditClick();
-            }
-          }}
-        >
-          <EditComponent />
-        </span>
-        <ShareComponent className="share-icon"/>
-      </td>
+          <ShareComponent
+            className = {`share-icon ${isStatusNewOrExpired ? "active" : ""}`}
+            fillColor={isStatusNewOrExpired ? "#383838" : "#D0D5DD"}
+          />
+        </td>
+      )}
     </tr>
   );
 };

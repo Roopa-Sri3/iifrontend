@@ -4,14 +4,17 @@ import { useNavigate } from "react-router-dom";
 import Input from "../components/core/Input/Input";
 import Label from "../components/core/Label/Label";
 import "./Login.css";
-import background from "../Images/BlueBackground.png";
-import image from "../Images/Group.png";
-import imagetext from "../Images/Login-Text.png";
+import background from "../assets/Images/BlueBackground.png";
+import image from "../assets/Images/Group.png";
+import imagetext from "../assets/Images/Login-Text.png";
 import Button from "../components/core/button/button";
-// eslint-disable-next-line max-len
-import {LOGIN_MOCKUP_DATA, emailPattern, passwordPattern} from "../shared/constants";
-// eslint-disable-next-line max-len
-import { setUserDetails } from "../store/reducers/app/app";
+import {emailPattern, passwordPattern} from "../shared/constants";
+import {
+  PostToken,
+  PostUserCredentials,
+  setUserDetails,
+  setToken
+} from "../store/reducers/app/app";
 
 function Login() {
   const dispatch = useDispatch();
@@ -20,30 +23,54 @@ function Login() {
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [error, setError] = useState("");
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
     setEmailError(false);
+    setError(false);
   };
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
     setPasswordError(false);
+    setError(false);
   };
 
-  const verifyCredentials = (userName, password) => {
+  const verifyCredentials = (username, password) => {
     // Verify if any of the credentials matches
     // then find that object and set the store with the respective values.
-    const user = LOGIN_MOCKUP_DATA.find(user => user.username === email
-      && user.password === password);
-    if (user) {
-      dispatch(setUserDetails({
-        userName: user.username,
-        profileName: user.profileName,
-        role: user.role,
-      }));
-      return true;
-    }
+    dispatch(
+      PostUserCredentials({
+        data: {
+          username,
+          password,
+        },
+        onSuccess: (response) => {
+          const token = response.token;
+          sessionStorage.setItem("Token", token);
+          dispatch(setToken({token}));
+          dispatch(PostToken({
+            data: {
+              token
+            },
+            onSuccess: (userDetails) => {
+              const responseDetails = userDetails && userDetails.response;
+              if (responseDetails) {
+                dispatch(setUserDetails({
+                  ...responseDetails
+                }));
+                navigate("/dashboard");
+              }
+            },
+            onError: () => {}
+          }));
+        },
+        onError: (e) => {
+          setError("Invalid email address or password");
+        }
+      })
+    );
   };
 
   const handleSubmit = (e) => {
@@ -53,47 +80,52 @@ function Login() {
     const emailCheck = emailPattern.test(email);
     const passwordCheck = passwordPattern.test(password);
 
-    if (email.trim() === "" || !emailCheck) {
-      setEmailError("Please enter valid email address.");
+    if(email === "" && password === ""){
+      setEmailError("Please enter email address");
+      setPasswordError("Please enter password");
+    }
+    if (email.trim() === "") {
+      setEmailError("Please enter email address");
+    }
+    else if(!emailCheck){
+      setEmailError("Please enter valid email address");
     }
     else {
       setEmailError("");
-      if (password.trim() === "" || !passwordCheck) {
-        setPasswordError("Please enter valid password.");
+      if (password.trim() === "") {
+        setPasswordError("Please enter password");
+      }
+      else if(!passwordCheck){
+        setPasswordError("Please enter valid password");
       }
       else {
         setPasswordError("");
-        if(verifyCredentials(email, password)){
-          navigate("/dashboard");
-        }
-        else {
-          alert("Invalid Username or Password");
-        }
+        verifyCredentials(email, password);
       }
     }
   };
 
   return (
-    <div className='page'>
-      <div className='login-body-page'>
-        <img src={background} alt='' className='background-image'></img>
-        <div className='login-image-block'>
-          <img src={imagetext} alt='' className='image-text'></img>
-          <img src={image} alt=''></img>
+    <div className="page">
+      <div className="login-body-page">
+        <img src={background} alt="" className="background-image"></img>
+        <div className="login-image-block">
+          <img src={imagetext} alt="" className="image-text"></img>
+          <img src={image} alt=""></img>
         </div>
         <form className="login-container" onSubmit={handleSubmit}>
-          <p className='login-welcome-style'>
+          <p className="login-welcome-style">
             Welcome to
-            <span className='interview-insights-name'>
+            <span className="interview-insights-name">
               &nbsp;Interview Insights
             </span>
           </p>
-          <h3 className='signin-text'>Sign in</h3>
-          <div className='label-and-input'>
+          <h3 className="signin-text">Sign in</h3>
+          <div className="label-and-input">
             <Label
               htmlFor="email"
               text="Email address"
-              className='label-text'
+              className="label-text"
             />
             <Input
               type="email"
@@ -103,13 +135,13 @@ function Login() {
               autoComplete="off"
               className={emailError ? "error" : "basic-input"}
             />
-            {emailError && <p className='error-message'>{emailError}</p>}
+            {emailError && <p className="error-message">{emailError}</p>}
           </div>
-          <div className='label-and-input'>
+          <div className="label-and-input">
             <Label
               htmlFor="password"
               text="Password"
-              className='label-text'
+              className="label-text"
             />
             <Input
               type="password"
@@ -119,13 +151,14 @@ function Login() {
               autoComplete="off"
               className={passwordError ? "error" : "basic-input"}
             />
-            {passwordError && <p className='error-message'>{passwordError}</p>}
+            {passwordError && <p className="error-message">{passwordError}</p>}
           </div>
           <Button
-            label="Login"
+            label="Sign In"
             id="submit"
-            className='basic-button'
+            className="basic-button"
           />
+          {error && <p className="error-message">{error}</p>}
         </form>
       </div>
     </div>

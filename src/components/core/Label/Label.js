@@ -4,6 +4,7 @@ function Label ({
   htmlFor,
   text,
   className,
+  children,
   ...restLabelProps
 }) {
   return (
@@ -13,6 +14,7 @@ function Label ({
       {...restLabelProps}
     >
       {text}
+      {children}
     </label>
   );
 }
