@@ -16,15 +16,15 @@ const QuestionButtons = () => {
     dispatch(handleQuestionClick(presentquestion));
   };
 
-  const questionButtons = questions.map((question) => (
-    <div key={question.questionId}>
+  const questionButtons = questions.map((question,index) => (
+    <div key={index}>
       <Button
         className={`question-button ${
           presentquestion === question.questionId ? "present" :
             answs.some((a) => a && a.questionId === question.questionId) ? "saved" : "unsaved"
         }`}
-        handleClick={() => handlequestionclick(question.questionId)}
-        label={question.questionId}
+        handleClick={() => handlequestionclick(index)}
+        label={index + 1}
       />
     </div>
   ));

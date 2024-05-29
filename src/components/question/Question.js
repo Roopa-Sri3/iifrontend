@@ -10,30 +10,32 @@ const Question = () => {
   const dispatch = useDispatch();
   const answers = useSelector(getAnswers);
   const questions = useSelector(getQuestions);
+  console.log(questions);
   const totalQuestions = questions.length;
   const presentquestion = useSelector(selectCurrentQuestion);
-  const currQuestion = questions.find((question) => question.questionId === presentquestion);
+  console.log(presentquestion);
+  const currQuestion = questions[presentquestion];
   console.log(currQuestion);
-  const answerForQuestion = answers.find((answer) => answer && answer.questionId === currQuestion.questionId);
+  const answerForQuestion = answers[presentquestion];
   const savedAnswer = answerForQuestion ? answerForQuestion.answer : "";
 
   const [selectedOption, setSelectedOption] = useState(null);
   const [codeValue, setCodeValue] = useState("");
 
-  const handlePreviousButton = (presentquestion) =>{
-    dispatch(handlePrevious(presentquestion));
+  const handlePreviousButton = () => {
+    dispatch(handlePrevious());
   };
 
-  const handleSaveAndNextButton = (presentquestion) => {
+  const handleSaveAndNextButton = () => {
     const updatedAnswers = [...answers];
     const answerValue = selectedOption ? selectedOption : codeValue || "";
-    updatedAnswers[currQuestion.questionId - 1] = {
+    updatedAnswers[presentquestion] = {
       questionId: currQuestion.questionId,
       answer: answerValue,
     };
     setSelectedOption(null);
     dispatch(updateAnswers(updatedAnswers));
-    dispatch(handleSaveAndNext(presentquestion));
+    dispatch(handleSaveAndNext());
   };
 
   const handleOptionChange = (optionValue) => {
@@ -47,7 +49,7 @@ const Question = () => {
   return (
     <div className="questions-container">
       <div className="question-card">
-        <h4 className="number">Question {presentquestion}/{totalQuestions}</h4>
+        <h4 className="number">Question {presentquestion + 1}/{totalQuestions}</h4>
         <div className="question">
           <h6 className="heading">Answer the Question</h6>
           <div className="question-text">
@@ -79,15 +81,14 @@ const Question = () => {
         </div>
         <div className="action-buttons">
           <Button
-            className=
-              {presentquestion >= 2 ? "previous-button" : "previous-button-hide"}
+            className={presentquestion > 0 ? "previous-button" : "previous-button-hide"}
             label={"Previous"}
-            handleClick={() => handlePreviousButton(presentquestion)}
+            handleClick={handlePreviousButton}
           />
           <Button
             className={"save-next"}
-            label={presentquestion >= totalQuestions ? "Save" : "Save & Next"}
-            handleClick={() => handleSaveAndNextButton(presentquestion)}
+            label={presentquestion >= totalQuestions - 1 ? "Save" : "Save & Next"}
+            handleClick={handleSaveAndNextButton}
           />
         </div>
       </div>
