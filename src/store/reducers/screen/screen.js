@@ -6,59 +6,8 @@ const initialState = {
   isTimeUp: null,
   isRunning: null,
   currentQuestion : 1,
-  questions: [
-    {
-      questionId: 1,
-      questionText: "What is the capital of France?",
-      options: [
-        { label:"Paris", value:"paris"},
-        { label:"London", value:"london"},
-        { label:"Berlin", value:"berlin"},
-        { label:"Madrid", value:"madrid"},],
-      questionType: "single-select"
-    },
-    {
-      questionId: 2,
-      questionText: "What is the largest planet in our solar system?",
-      options: [{ label:"Earth", value:"earth"},
-        { label:"Mercury", value:"mercury"},
-        { label:"Saturn", value:"saturn"},
-        { label:"Jupiter", value:"jupiter"},],
-      questionType: "single-select",
-    },
-    {
-      questionId: 3,
-      questionText: "Who is the highest scorer of IPL 2016?",
-      options: [{ label:"Virat", value:"virat"},
-        { label:"Gill", value:"gill"},
-        { label:"Sachin", value:"sachin"},
-        { label:"Dhoni", value:"dhoni"},],
-      questionType: "single-select",
-    },
-    {
-      questionId: 4,
-      questionText: "Write a C program to print first 10 multiples of 2?",
-      questionType: "coding"
-    },
-    {
-      questionId: 5,
-      questionText: "Who is the highest scorer of IPL 2016?",
-      options: [{ label:"Virat", value:"virat"},
-        { label:"Gill", value:"gill"},
-        { label:"Sachin", value:"sachin"},
-        { label:"Dhoni", value:"dhoni"},],
-      questionType: "single-select",
-    },
-    {
-      questionId: 6,
-      questionText: "Who is the highest scorer of IPL 2016?",
-      options: [{ label:"Virat", value:"virat"},
-        { label:"Gill", value:"gill"},
-        { label:"Sachin", value:"sachin"},
-        { label:"Dhoni", value:"dhoni"},],
-      questionType: "single-select",
-    },
-  ],
+  assessmentId: null,
+  questions :[],
   answers: [],
 };
 
@@ -80,8 +29,9 @@ const screenSlice = createSlice({
     endExam: (state) => {
       state.isRunning = false;
     },
-    setQuestions: (state, action) => {
-      state.questions = action.payload;
+    setAssessmentData: (state, action) => {
+      state.assessmentId = action.payload.assessmentId;
+      state.questions = action.payload.questions;
     },
     handleQuestionClick: (state, action) => {
       state.currentQuestion = action.payload;
@@ -105,15 +55,19 @@ const screenSlice = createSlice({
 });
 
 export const GetAssessmentQuestions = ({
+  candidateId,
   onSuccess = () => {},
   onError = () => {},
 }) => async(dispatch) => {
   const apiWrapper = new APIWrapper(dispatch);
 
-  await apiWrapper.getAssessmentQuestions({
+  const responseData = await apiWrapper.getAssessmentQuestions({
+    candidateId,
     onSuccess,
     onError,
   });
+  dispatch(setAssessmentData(responseData));
+  console.log(responseData);
 };
 
 export const PostAssessmentAnswers = ({
@@ -135,7 +89,7 @@ export const {
   setTimeUp,
   startExam,
   endExam,
-  setQuestions,
+  setAssessmentData,
   handleQuestionClick,
   handleSaveAndNext,
   handlePrevious,

@@ -1,7 +1,12 @@
 .file-upload-image{
-    margin-left: 16px;
     height: 40px;
-    z-index: 10;
+}
+
+.div-icon{
+    display: flex;
+    flex: 0.3;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .input-file-upload-button{
@@ -10,10 +15,9 @@
 
 
 .button-tag{
-  display: block;
-  padding: 0.5em 1em;
-  border: 2px dotted;
-  background-color: #f9f9f9;
+  display:flex;
+  padding: 10px 20px;
+  border: 2px dotted #d9e0e6;
   color: #333;
   font-size: 15px;
   font-weight: bold;
@@ -27,8 +31,23 @@
     border-color: #999;
 }
 
+.criteria-text{
+    color:#787f8b;
+    font-size: 12px;
+    margin: 0px;
+}
+
+.upload-label-text{
+    display: flex;
+    flex-direction: column;
+    flex:1;
+    justify-content: flex-start;
+    align-items: start;
+    margin-left: 20px;
+}
+
 .upload-text{
-    margin-left: 10px;
-    display: inline;
+    font-size: 14px;
+    margin-bottom:2px;
 }
 
