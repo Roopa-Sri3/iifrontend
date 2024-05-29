@@ -18,8 +18,9 @@ import {
 } from "../store/reducers/dashboard/dashboard.js";
 import { GetUserRole } from "../store/selector/app";
 import { GetStoreCandidates, GetStoreCandidatesTotalCount } from "../store/selector/dashboard/dashboard.js";
-import Search from "../components/assets/svgs/Search";
-import AddIcon from "../components/assets/svgs/AddIcon.js";
+import ClearTextIcon from  "../assets/svgs/CrossMark.js";
+import Search from "../assets/svgs/Search.js";
+import AddIcon from "../assets/svgs/AddIcon.js";
 import StatusFilter from "../components/table/statuFilter/StatuFilter.js";
 import LogoutModal from "../components/modals/logoutModal/LogoutModal.js";
 import "./Dashboard.css";
@@ -27,6 +28,7 @@ import { statuses } from "../shared/constants.js";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
+  const hrToken = sessionStorage.getItem("Token");
   const candidates = useSelector(GetStoreCandidates);
   const candidatesTotalCount = useSelector(GetStoreCandidatesTotalCount);
   const [currentPage, setCurrentPage] = useState(1);
@@ -47,7 +49,8 @@ const Dashboard = () => {
     const data = {
       statuses: statusFilter.map((status) => status.value),
       page: currentPage,
-      search: searchTerm
+      search: searchTerm,
+      token: hrToken,
     };
     dispatch(GetCandidateDetails({
       data,
@@ -60,14 +63,15 @@ const Dashboard = () => {
     const data = {
       statuses: statusFilter.map((status) => status.value),
       page: currentPage,
-      search: searchTerm
+      search: searchTerm,
+      token: hrToken,
     };
     dispatch(GetCandidateDetails({
       data,
       onSuccess: () => { },
       onError: () => { },
     }));
-  }, [currentPage, statusFilter, searchTerm, dispatch]);
+  }, [currentPage, statusFilter, searchTerm, hrToken, dispatch]);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -177,7 +181,9 @@ const Dashboard = () => {
               type="search"
               placeholder="Search Candidate Name, Tech Skills"
               value={searchFieldValue}
-              onChange={(e) => { setSearchFieldValue(e.target.value); }}
+              onChange={(e) => {
+                setSearchFieldValue(e.target.value);
+              }}
               onBlur={handleSearch}
               onKeyDown = {(event) => {
                 if (event.key === "Enter") {
@@ -185,13 +191,23 @@ const Dashboard = () => {
                 }
               }}
             />
-            <Search />
+            {searchFieldValue.length > 0 && (
+              <ClearTextIcon
+                onClick={() => {
+                  setSearchFieldValue("");
+                  setSearchTerm("");
+                  fetchCandidates();
+                }}
+              />
+            )}
+            <Search/>
           </div>
           {role === "ADMIN" &&
             <div></div>
           }
           {role === "HR" &&
               <Button
+                className="addCandidateButton"
                 label="Add Candidate"
                 handleClick={handleAddCandidate}
                 children={<AddIcon />}
@@ -200,14 +216,20 @@ const Dashboard = () => {
         </div>
         <div className="card">
           <table>
-            <SubHeader
-              columns={[
+            <SubHeader className="column-heading"
+              columns={role === "HR" ? [
                 "Candidate Name",
                 "Tech Skills",
                 "Status",
                 "View/Download Report",
                 "Feedback",
                 "Actions",
+              ] : [
+                "Candidate Name",
+                "Tech Skills",
+                "Status",
+                "View/Download Report",
+                "Feedback",
               ]}
               headerActions={headerActions}
             />

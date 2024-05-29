@@ -10,6 +10,7 @@
 
 .button-s{
     display: flex;
+    margin-left: 25px;
 }
 
 .question-button {
@@ -23,16 +24,14 @@
     background-color: #fff;
     cursor: pointer;
     margin: 15px 5px 15px 15px;
-}
-  
-.question-button:hover {
-    background-color: #f2f2f2;
+    padding: 0px;
+    box-shadow: none;
 }
   
 .present {
     border-color: #4595ff; 
     color: #4595ff; 
-    background-color: transparent; 
+    background-color: #ebeef3; 
 }
   
 .saved {

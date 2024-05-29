@@ -1,5 +1,5 @@
 import React from "react";
-// import cx from 'classnames';
+import cx from "classnames";
 import "./button.css";
 
 const Button = ({
@@ -9,20 +9,17 @@ const Button = ({
   className,
   disabled = false,
   children,
-}) => {
-  const buttonClass = className ? `${className} button` : "button";
-  return (
-    <button
-      id={id}
-      className={buttonClass}
-      onClick={handleClick}
-      disabled={disabled}
-    >
-      <div className={children ? "buttonContainer" : ""}>
-        <div className={children ? "label" : ""}>{label}</div>
-        {children}
-      </div>
-    </button>
-  );
-};
+}) => (
+  <button
+    id={id}
+    className={cx("buttonComponent", className)}
+    onClick={handleClick}
+    disabled={disabled}
+  >
+    <div className={children ? "buttonComponentContainer" : ""}>
+      <div className={children ? "buttonComponentLabel" : ""}>{label}</div>
+      {children}
+    </div>
+  </button>
+);
 export default Button;

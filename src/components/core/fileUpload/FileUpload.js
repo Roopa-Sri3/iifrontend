@@ -1,5 +1,6 @@
 import React from "react";
 import UploadIcon from "../../assets/svgs/UploadIcon";
+import Label from "../Label/Label";
 import "./FileUpload.css";
 
 function FileUpload({
@@ -10,13 +11,16 @@ function FileUpload({
   handleFiles,
 }) {
   return(
-    <>
-      <label className="button-tag"
-        htmlFor={identifier}
-      >
-        <UploadIcon className="file-upload-image"/>
-        <p className="upload-text">Click to Upload</p>
-      </label>
+    <div>
+      <Label className="button-tag" htmlFor={identifier}>
+        <div className="div-icon">
+          <UploadIcon className="file-upload-image"/>
+        </div>
+        <div className="upload-label-text">
+          <p className="upload-text">Click to upload</p>
+          <p className="criteria-text"> Supported files CSV, XLSX with max size 4MB</p>
+        </div>
+      </Label>
       <input
         ref={fileRef}
         className="input-file-upload-button"
@@ -26,7 +30,7 @@ function FileUpload({
         disabled={disabled}
         onChange={handleFiles}
       />
-    </>
+    </div>
   );
 }
 export default FileUpload;

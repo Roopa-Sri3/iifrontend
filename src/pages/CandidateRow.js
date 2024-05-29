@@ -6,12 +6,14 @@ import EditComponent from "../assets/svgs/editImage";
 import ShareComponent from "../assets/svgs/shareImage";
 import VisibilityComponent from "../assets/svgs/visibilityImage";
 import DownloadIcon from "../assets/svgs/downloadIcon";
+import { GetUserRole } from "../store/selector/app";
 import "./CandidateRow.css";
 
 const CandidateRow = ({ candidate }) => {
   const dispatch = useDispatch();
+  const role = useSelector(GetUserRole);
   const options = useSelector(GetStoreSkills);
-  const isStatusNewOrExpired = candidate.status === "new" || candidate.status === "expired";
+  const isStatusNewOrExpired = candidate.status === "New" || candidate.status === "Expired";
 
   const handleOpenModal = () => {
     dispatch(openModal(
@@ -81,26 +83,27 @@ const CandidateRow = ({ candidate }) => {
           <div className="feedback-container">N/A</div>
         )}
       </td>
-      <td>
-        {candidate.actions}
-        <span
-          className="edit-icon"
-          role="button"
-          tabIndex="0"
-          onClick = {() => handleEditClick(candidate)}
-          onKeyDown={(event) => {
-            if(event.key === "Enter" || event.key === " "){
-              handleEditClick(candidate);
-            }
-          }}
-        >
-          <EditComponent />
-        </span>
-        <ShareComponent
-          className = {`share-icon ${isStatusNewOrExpired ? "active" : ""}`}
-          fillColor={isStatusNewOrExpired ? "#383838" : "#D0D5DD"}
-        />
-      </td>
+      {role === "HR" && (
+        <td className="actions-column">
+          <span
+            className="edit-icon"
+            role="button"
+            tabIndex="0"
+            onClick = {() => handleEditClick(candidate)}
+            onKeyDown={(event) => {
+              if(event.key === "Enter" || event.key === " "){
+                handleEditClick(candidate);
+              }
+            }}
+          >
+            <EditComponent />
+          </span>
+          <ShareComponent
+            className = {`share-icon ${isStatusNewOrExpired ? "active" : ""}`}
+            fillColor={isStatusNewOrExpired ? "#383838" : "#D0D5DD"}
+          />
+        </td>
+      )}
     </tr>
   );
 };

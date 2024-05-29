@@ -1,5 +1,6 @@
 .dashboard {
   padding: 20px 30px;
+  background-color: #ebeef3;
 }
 
 .dashboard-filters-and-actions {
@@ -8,7 +9,12 @@
   margin-top: 10px;
   align-items: center;
 }
-  
+
+input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
 
   .card {
     display: flex;
@@ -76,21 +82,22 @@
   display: flex;
   align-items: center;
   position: relative;
-  border: 1px solid #c2b5b5;
   border-radius: 5px;
   padding:5px;
   cursor: pointer;
+  background-color: white;
 }
 
 .search-field input {
   border:none;
-  width: 400px;
+  width: 350px;
 }
 
 
 .search-text:focus{
   outline: none;
   box-shadow: none;
+  cursor: pointer;
 }
 
 .img-search{
@@ -98,6 +105,10 @@
   right:5;
 }
 
+.column-heading{
+  display: flex;
+  justify-content: space-between;
+}
 
 .candidate-insights{
   font-weight: bold;
@@ -127,4 +138,8 @@
     text-decoration: none;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: medium;
+}
+
+.addCandidateButton{
+  padding:0 10px 0 10px;
 }
