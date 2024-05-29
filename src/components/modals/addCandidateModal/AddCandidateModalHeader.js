@@ -1,6 +1,6 @@
 import React from "react";
 import UserLogo from "../../../assets/svgs/UserLogo";
-import CloseLogo from  "../../../assets/svgs/CloseLogo";
+import CloseLogo from "../../../assets/svgs/CloseLogo";
 import "./AddCandidateModalHeader.css";
 
 function AddCandidateModalHeader({onClose}) {

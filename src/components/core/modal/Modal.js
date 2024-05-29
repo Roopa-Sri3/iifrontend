@@ -1,4 +1,4 @@
-import React from "react";
+import React  from "react";
 import cx from "classnames";
 import "./Modal.css";
 
@@ -20,7 +20,7 @@ function Modal({
               <div
                 className={cx("modal-dialog", "modal-dialog-centered", size)}
               >
-                <div className={cx("modal-content", className)} >
+                <div className={cx("modal-content", className)}>
                   <div className='modal-header'>
                     {modalHeader}
                   </div>

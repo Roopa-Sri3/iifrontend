@@ -1,5 +1,5 @@
 import React from "react";
-import CheckCircle from "../components/assets/svgs/CheckCircle";
+import CheckCircle from "../assets/svgs/CheckCircle";
 import Button from "../components/core/button/button";
 import "./TestSubmit.css";
 

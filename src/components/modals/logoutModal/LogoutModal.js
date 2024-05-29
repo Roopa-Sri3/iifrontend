@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { IsModalOpen } from "../../../store/selector/app";
 import { closeModal, resetApp } from "../../../store/reducers/app/app";
@@ -14,7 +14,6 @@ const LogoutModal = () => {
   const IsLogoutModalOpen = useSelector(
     (state) => IsModalOpen(state, "LogoutModal"),
   );
-
   const handleNoButton = () => {
     dispatch(closeModal());
   };
@@ -26,10 +25,14 @@ const LogoutModal = () => {
     navigate("/");
   };
 
+  const handleCloseModal = () => {
+    dispatch(closeModal());
+  };
   return (
     <Modal
       show={IsLogoutModalOpen}
       size='none'
+      onClose={handleCloseModal}
     >
       <center>
         <p className='submit-modal-text'>

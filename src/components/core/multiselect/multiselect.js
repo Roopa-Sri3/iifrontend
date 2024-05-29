@@ -3,7 +3,7 @@ import cx from "classnames";
 import OptionsMenu from "../optionsMenu/OptionsMenu";
 import ChevronRight from "../../../assets/svgs/ChevronRight";
 import DeSelect from "../../../assets/svgs/DeSelect";
-import Search from "../../../assets/svgs/Search";
+import Search from  "../../../assets/svgs/Search";
 import "./multiselect.css";
 
 const MultiSelect = ({

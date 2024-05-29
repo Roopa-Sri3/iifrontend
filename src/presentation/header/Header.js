@@ -1,4 +1,4 @@
-import React, { useState  }from "react";
+import React, { useState,useEffect} from "react";
 import { useDispatch, useSelector} from "react-redux";
 import { IsUserLoggedIn, GetProfileName, GetUserRole } from "../../store/selector/app";
 
@@ -12,6 +12,7 @@ import { openModal } from "../../store/reducers/app/app";
 
 import Timer from "../../components/timer/Timer";
 import { GetExamStatus } from "../../store/selector/screen";
+import { closeModal } from "../../store/reducers/app/app";
 import "./Header.css";
 
 const Header = () => {
@@ -23,6 +24,7 @@ const Header = () => {
   const profileName = useSelector(GetProfileName);
   const userRole = useSelector(GetUserRole);
   const [isOpen, setIsOpen] = useState(false);
+
   const toggleExpand = () => {
     setIsOpen(!isOpen);
   };
@@ -35,6 +37,34 @@ const Header = () => {
     }));
     setIsOpen(false);
   };
+
+  useEffect(() => {
+    if (isOpen) {
+      const handleClickOutside = (event) => {
+        if (!event.target.closest(".expand-icon")) {
+          setIsOpen(false);
+        }
+      };
+
+      document.addEventListener("click", handleClickOutside);
+
+      const handleScroll = () => {
+        setIsOpen(false);
+      };
+
+      document.addEventListener("click", handleClickOutside);
+      window.addEventListener("scroll", handleScroll);
+
+      return () => {
+        document.removeEventListener("click", handleClickOutside);
+      };
+    }
+  }, [isOpen]);
+
+  if(isOpen){
+    dispatch(closeModal());
+  }
+
   return (
     <div className="header">
       <Innovalogo src={companylogo} alt="companylogo" className='innova-logo' />
@@ -48,26 +78,26 @@ const Header = () => {
             <RoundButton />
             <Expand className="expand-icon" onClick={toggleExpand} />
             {isOpen && (
-              <div className="expand-div"  >
+              <div className="expand-div">
                 <h6 className="user-name">{profileName}</h6>
                 <h6 className="user-role">{userRole}</h6>
                 <hr></hr>
-                <div className="logout-icon">
-                  <div>
-                    <LogoutIcons />
-                    <button
-                      className = "logout-button"
-                      tabIndex="0"
-                      onClick={handleLogoutClick}
-                      onKeyDown={(event) => {
-                        if (event.key === "Enter" || event.key === " ") {
-                          handleLogoutClick();
-                        }
-                      }}
-                    >
-                      <h6
-                      >Logout</h6>
-                    </button>
+                <div
+                  className = "logout-button"
+                  role="button"
+                  tabIndex="0"
+                  onClick={handleLogoutClick}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter" || event.key === " ") {
+                      handleLogoutClick();
+                    }
+                  }}
+                >
+                  <div className="logout-section">
+                    <div className="logout-icon">
+                      <LogoutIcons />
+                    </div>
+                    <h6>Logout</h6>
                   </div>
                 </div>
               </div>
