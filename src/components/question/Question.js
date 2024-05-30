@@ -20,8 +20,6 @@ const Question = () => {
 
   const [selectedOption, setSelectedOption] = useState(null);
   const [codeValue, setCodeValue] = useState("");
-  console.log(savedAnswer);
-  console.log(selectedOption);
 
   useEffect(() => {
     setSelectedOption(savedAnswer);
@@ -42,8 +40,6 @@ const Question = () => {
     };
     setSelectedOption(null);
     dispatch(updateAnswers(updatedAnswers));
-    console.log(updatedAnswers);
-    console.log(updatedAnswers[presentquestion]);
     dispatch(PostAssessmentAnswers({
       data: updatedAnswers[presentquestion],
       onSuccess: () => {
