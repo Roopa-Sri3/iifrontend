@@ -7,7 +7,6 @@ const initialState = {
   isRunning: null,
   warningLimit: 1,
   tabSwitchCount: 0,
-  currentQuestion : 1,
   currentQuestion : 0,
   assessmentId: null,
   questions :[],
