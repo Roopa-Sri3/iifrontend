@@ -10,7 +10,6 @@ function VerifyAssessmentDetails () {
   const location = useLocation();
   const urlParams = new URLSearchParams(location.search);
   const candidateId = urlParams.get("candidateId");
-  console.log(candidateId);
   dispatch(VerifyCandidateStatus({
     candidateId,
     onSuccess: (res) => {
@@ -18,7 +17,6 @@ function VerifyAssessmentDetails () {
         navigate("/candidate/link-expired");
       }
       else{
-        console.log("hii");
         const candidateDetails = res && res.response;
         dispatch(setCandidateDetails({
           ...candidateDetails
