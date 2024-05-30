@@ -1,9 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import { VerifyCandidateStatus } from "../store/reducers/app/app";
-import { setCandidateDetails } from "../store/reducers/app/app";
 import Loading from "./Loading";
+import { VerifyCandidateStatus, setCandidateDetails } from "../store/reducers/candidate/candidate";
 
 function VerifyAssessmentDetails () {
   const dispatch = useDispatch();
@@ -15,9 +14,7 @@ function VerifyAssessmentDetails () {
   dispatch(VerifyCandidateStatus({
     candidateId,
     onSuccess: (res) => {
-      // console.log(res);
       if(res.message === "The link has expired"){
-        // <Navigate to="/link-expired" />;
         navigate("/candidate/link-expired");
       }
       else{
@@ -26,12 +23,12 @@ function VerifyAssessmentDetails () {
         dispatch(setCandidateDetails({
           ...candidateDetails
         }));
-      // navigate to upload aadhaar page
+        // navigate to upload aadhaar page
+        // navigate("/candidate/candidate-profile-view");
       }
     },
     onError: (e) => {
       console.log(e.response.data.message);
-      // <Navigate to="/unauthorized" />;
       navigate("/unauthorized");
     }
   }));

@@ -91,27 +91,6 @@ const appSlice = createSlice({
     clearTimeoutId: (state) => {
       state.timeoutId = null;
     },
-    setCandidateDetails: (state, action) => {
-      const {
-        candidateName,
-        phoneNumber,
-        email,
-        experience,
-        primarySkill,
-        secondarySkills,
-        rrNo,
-        linkExpired,
-      } = action.payload;
-
-      state.candidateName = candidateName;
-      state.phoneNumber = phoneNumber;
-      state.email = email;
-      state.experience = experience;
-      state.primarySkill = primarySkill;
-      state.secondarySkills = secondarySkills;
-      state.rrNo = rrNo;
-      state.linkExpired = linkExpired;
-    },
   },
 });
 
@@ -158,20 +137,6 @@ export const PostToken = ({
 
   await apiWrapper.postToken({
     data,
-    onSuccess,
-    onError,
-  });
-};
-
-export const VerifyCandidateStatus = ({
-  candidateId,
-  onSuccess = () => {},
-  onError = () => {},
-} = {}) => async(dispatch) => {
-  const apiWrapper = new APIWrapper(dispatch);
-
-  await apiWrapper.verifyCandidateStatus({
-    candidateId,
     onSuccess,
     onError,
   });
