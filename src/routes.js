@@ -12,8 +12,6 @@ import LinkExpired from "./pages/LinkExpired";
 import ThankYou from "./pages/ThankYou";
 import CandidateProfileview from "./components/core/CandidateProfileView";
 
-import CandidateProfileview from "./components/core/CandidateProfileView";
-
 const ROUTES_CONFIG = [
   {
     path: "/",
@@ -48,6 +46,7 @@ const ROUTES_CONFIG = [
         path: "/candidate/candidate-profile-view",
         element:<CandidateProfileview/>
       },
+      {
         path: "/candidate/assessment-instructions",
         element: <AssessmentInstructions />
       },
@@ -68,10 +67,6 @@ const ROUTES_CONFIG = [
         element: <ThankYou />
       }
     ]
-  },
-  {
-    path: "/exam",
-    element: <Start />
   },
 ];
 
