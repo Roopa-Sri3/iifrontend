@@ -9,6 +9,7 @@ function Modal({
   actions,
   className,
   size,
+  headerClassName,
 }) {
   return (
     <>
@@ -21,7 +22,7 @@ function Modal({
                 className={cx("modal-dialog", "modal-dialog-centered", size)}
               >
                 <div className={cx("modal-content", className)}>
-                  <div className='modal-header'>
+                  <div className={cx("modal-header", headerClassName)}>
                     {modalHeader}
                   </div>
                   <div className="modal-body">

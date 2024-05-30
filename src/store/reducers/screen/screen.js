@@ -5,6 +5,8 @@ const initialState = {
   duration: null,
   isTimeUp: null,
   isRunning: null,
+  warningLimit: 1,
+  tabSwitchCount: 0,
   currentQuestion : 0,
   assessmentId: null,
   questions :[],
@@ -28,6 +30,9 @@ const screenSlice = createSlice({
     },
     endExam: (state) => {
       state.isRunning = false;
+    },
+    incrementTabSwitchCount: (state) => {
+      state.tabSwitchCount += 1;
     },
     setAssessmentData: (state, action) => {
       state.assessmentId = action.payload.assessmentId;
@@ -89,6 +94,7 @@ export const {
   setTimeUp,
   startExam,
   endExam,
+  incrementTabSwitchCount,
   setAssessmentData,
   handleQuestionClick,
   handleSaveAndNext,

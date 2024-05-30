@@ -4,7 +4,7 @@ import "./AssessmentInstructions.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/core/button";
-import { setDuration, startExam } from "../store/reducers/screen/screen";
+import { GetAssessmentQuestions, setDuration, startExam } from "../store/reducers/screen/screen";
 import { GetExamStatus } from "../store/selector/screen";
 import { GetCandidateName } from "../store/selector/candidate";
 
@@ -23,6 +23,18 @@ const AssessmentInstructions = () => {
   const handleStartExam = () => {
     dispatch(startExam());
     dispatch(setDuration());
+    const candidateId = sessionStorage.getItem("candidateId");
+    dispatch(startExam());
+    dispatch(setDuration());
+    dispatch(GetAssessmentQuestions({
+      candidateId,
+      onSuccess: () => {
+        console.log("Questions fetched successfully");
+      },
+      onError: () => {
+        console.error("Error fetching questions");
+      }
+    }));
   };
 
   return (
