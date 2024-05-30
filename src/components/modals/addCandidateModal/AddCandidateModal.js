@@ -183,8 +183,7 @@ const AddCandidateModal = ({
         secondaryTechSkill : selectedSecondarySkills.map(skill => skill.value),
         rrNo:rRNumber,
         shareLink:isChecked,
-        createdBy:storeModalData && storeModalData.mode === "EDIT" ? undefined : token,
-        modifiedBy:storeModalData && storeModalData.mode === "EDIT" ? token : undefined,
+        token: token,
       };
 
       handleAddOrEditCandidate({
