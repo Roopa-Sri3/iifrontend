@@ -55,8 +55,7 @@ export const GetCandidateDetails = ({
     onSuccess,
     onError,
   });
-  console.log(candidatesResponse);
-  dispatch(setCandidates(candidatesResponse.data.candidateDetails));
+  dispatch(setCandidates(candidatesResponse.data));
 };
 
 export const AddCandidate = ({
