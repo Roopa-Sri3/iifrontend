@@ -1,53 +1,107 @@
+.complete-screen-container{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+ 
+.header-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #EBEEF3;
+  max-width: 100%;
+ }
+ 
+.Candidate-box {
+  display: flex;
+  flex-direction: row;
+  align-items: left;
+}
+   
+.candidate-container {
+    width: 59%;
+    bottom: 40px;
+    height: 30%;
+    padding: 10px;
+    border-radius: 6px;
+    background: linear-gradient(90deg, #326D62 0%, #0E5291 51.6%, #0E034F 100%);
+    justify-content: space-between;
+    margin-top:34px;
+}
+ 
+.icon-wrapper{
+     height: 100%;
+ }
+ 
+.icon-container{
+    margin-top: 10px;
+    margin-left: 20px;
+  }
+   
+.icon-item{
+    margin: 20px;
+    gap: 5px;
+  }
+
+.support-email{
+     color: #F9F9F9;
+     font-size: 12px;
+     display:block;
+  }
+ 
 .profile-viewer.container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  height: 95vh;
+  height: 54vh;
   background-color: #EBEEF3;
   max-width: 100%;
 }
-
+ 
 .id-proof-title {
   display: flex;
   width: 60%;
   font-weight: 700;
+  padding-top:10px;
 }
-
+ 
 .id-proof.container {
   background-color: #FFFFFF;
   width: 60%;
 }
-
+ 
 .id-proof-text {
   font-weight: 450;
   padding-top: 5px;
   margin-bottom: 5px;
+  padding-left: 10px;
 }
-
+ 
 .id-proof-text::after {
   content: " *";
   color: #FF2828;
 }
-
+ 
 .id-proof-super-container {
   background-color: #FFFFFF;
   width: 60%;
+  border-radius: 5px;
+  border-radius: 5px;
 }
-
+ 
 .button-container {
   display: flex;
   align-items: center;
   justify-content: flex-end;
 }
-
+ 
 .next-page-container {
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
   width: 60%;
 }
-
+ 
 .next-page-button {
   display: flex;
   font-weight: 550;
@@ -56,34 +110,33 @@
   color: #C0C0C0;
   background-color: #EBEEF3;
 }
-
+ 
 .arrow-container{
   display: flex;
   padding: 7px 2px;
 }
-
+ 
 .next-page-button:hover {
   color: #4595FF;
 }
-
+ 
 .next-page-button svg path {
-  fill: #C0C0C0; 
+  fill: #C0C0C0;
 }
-
+ 
 .next-page-button:hover svg path {
   fill: #4595ff;
 }
-
+ 
 .button-layout {
   display: flex;
   justify-content: flex-end;
   margin-bottom: 12px;
-  margin-right: 2px;
   cursor: pointer;
   padding-left: 12px;
   padding-top: 10px;
 }
-
+ 
 .upload-button {
   background-color: #4595FF;
   color: #ffffff;
@@ -93,10 +146,80 @@
   cursor: pointer;
   padding: 5px 20px;
 }
-
+ 
 .upload-button[disabled] {
   background-color: #C0C0C0;
   color: #ffffff;
 }
+.candidate-name{
+   color: #F9F9F9;
+  font-size: 15px;
+  margin-bottom: 30px;
+  display: flex;
+  gap: 10px;
+}
+.skills-container{
+  display: flex;
+  align-items:flex-start;
+  flex-direction: column;
+  color: #F9F9F9;
+  margin-top: 20px;
+  margin-left:10px;
+  padding-right:150px;
+  padding-bottom: 1px;
+}
+.green-background{
+  background-color: #1AB900;
+}
+.blue-background{
+  background-color:  #4595FF;
+}
+.skills{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.vertical-line {
+  display:flex;
+  padding-top:45px;
+}
 
+.Candidate-info-container{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
 
+.Skill-set-container{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.email-address-container{
+  align-items: right;
+  color: #F9F9F9;
+  font-size: 12px;
+  float: right;
+}
+.email-detail-contact{
+  display:flex;
+  align-items: end;
+  margin-top:28px;
+  padding-top:49px;
+}
+
+.candidate-number{
+  color: #F9F9F9;
+  padding-left: 20px;
+}
+
+.candidate-mail{
+   color: #F9F9F9;
+    padding-left: 20px
+}
+
+.candidate-experience{
+  color: #F9F9F9;
+   padding-left: 20px;
+}
