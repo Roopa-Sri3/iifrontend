@@ -4,6 +4,7 @@ import cx from "classnames";
 import "./RadioGroup.css";
 
 const RadioGroup = ({
+  groupId,
   label,
   options,
   className,
@@ -27,22 +28,22 @@ const RadioGroup = ({
         className="radio-group-label"
       />
       {options.map((option) => (
-        <div className='radio-option' key={option.value}>
+        <div className='radio-option' key={`${groupId}-${option}`}>
           <input
             type="radio"
-            value={option.value}
-            checked={selectedValue === option.value}
-            onChange={() => handleOptionChange(option.value)}
+            value={option}
+            checked={selectedValue === option}
+            onChange={() => handleOptionChange(option)}
           />
           <div
             role="button"
             tabIndex="0"
             className={`radio-option-label
-            ${selectedValue === option.value ? "selected" : ""}`}
-            onClick={() => handleOptionChange(option.value)}
-            onKeyDown={handleKeyDown(option.value)}
+            ${selectedValue === option ? "selected" : ""}`}
+            onClick={() => handleOptionChange(option)}
+            onKeyDown={(event) => handleKeyDown(event, option)}
           >
-            {option.label}
+            {option}
           </div>
         </div>
       ))}

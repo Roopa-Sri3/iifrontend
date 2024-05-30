@@ -8,6 +8,7 @@ const initialState = {
   warningLimit: 1,
   tabSwitchCount: 0,
   currentQuestion : 1,
+  currentQuestion : 0,
   assessmentId: null,
   questions :[],
   answers: [],
@@ -42,7 +43,7 @@ const screenSlice = createSlice({
       state.currentQuestion = action.payload;
     },
     handleSaveAndNext: (state, action) => {
-      if (state.currentQuestion === state.questions.length)
+      if (state.currentQuestion === state.questions.length - 1)
       {
         state.currentQuestion = action.payload;
       }
