@@ -132,11 +132,11 @@ class APIWrapper extends HTTPClient {
 
   async postAssessmentAnswers({
     data,
-    onSuccess = () => { },
-    onError = () => { },
+    onSuccess = () => {},
+    onError = () => {},
   }) {
-    return this.get({
-      url: "/",
+    return this.post({
+      url: "/interviewinsights/assessmentSaveResponse",
       data,
       onSuccess,
       onError,
