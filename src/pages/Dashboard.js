@@ -35,7 +35,7 @@ const Dashboard = () => {
   const [searchFieldValue, setSearchFieldValue] = useState("");
   const recordsPerPage = 10;
   const [selectedStatus] = useState(null);
-  const [searchTerm, setSearchTerm] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState([]);
 
   useEffect(() => {
@@ -195,7 +195,7 @@ const Dashboard = () => {
               <ClearTextIcon
                 onClick={() => {
                   setSearchFieldValue("");
-                  setSearchTerm(null);
+                  setSearchTerm("");
                   fetchCandidates();
                 }}
               />

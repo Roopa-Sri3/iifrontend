@@ -2,10 +2,9 @@ import HTTPClient from "../httpclient";
 class APIWrapper extends HTTPClient {
   constructor(dispatch = () => { }) {
     super();
-    this.baseURL = "http://10.139.166.48:8081/InterviewInsights-0.0.1-SNAPSHOT";
+    this.baseURL = "https://dev-interviewinsights.innovasolutions.com:7443/InterviewInsights-0.0.1-SNAPSHOT";
     this.dispatch = dispatch;
   }
-
   async postUserCredentials({
     data,
     onSuccess = () => { },
@@ -114,6 +113,18 @@ class APIWrapper extends HTTPClient {
   }) {
     return this.get({
       url: `/interviewapi/getQuestions?candidateId=${candidateId}`,
+      onSuccess,
+      onError,
+    });
+  }
+
+  async verifyCandidateStatus({
+    candidateId,
+    onSuccess = () => {},
+    onError = () => {},
+  }) {
+    return this.get({
+      url: `/interviewinsights/getCandidateDetails?candidateId=${candidateId}`,
       onSuccess,
       onError,
     });
