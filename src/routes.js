@@ -33,10 +33,6 @@ const ROUTES_CONFIG = [
     element: <Unauthorized />
   },
   {
-    path: "/candidate/assessment-instructions",
-    element: <AssessmentInstructions />
-  },
-  {
     path: "/candidate",
     children: [
       {
@@ -46,7 +42,11 @@ const ROUTES_CONFIG = [
       {
         path: "/candidate/candidate-profile-view",
         element:<CandidateProfileview/>
-      }
+      },
+      {
+        path: "/candidate/assessment-instructions",
+        element: <AssessmentInstructions />
+      },
     ]
   },
   {

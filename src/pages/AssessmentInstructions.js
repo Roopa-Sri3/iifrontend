@@ -6,9 +6,11 @@ import { useNavigate } from "react-router-dom";
 import Button from "../components/core/button";
 import { setDuration, startExam } from "../store/reducers/screen/screen";
 import { GetExamStatus } from "../store/selector/screen";
+import { GetCandidateName } from "../store/selector/candidate";
 
 const AssessmentInstructions = () => {
   const [isConfirmed, setIsConfirmed] = useState(false);
+  const candidateName = useSelector(GetCandidateName);
 
   const handleConfirmation = () => {
     setIsConfirmed(!isConfirmed);
@@ -28,7 +30,7 @@ const AssessmentInstructions = () => {
       <div className="instructions-card">
         <b className="inst-title">Instructions</b>
         <div className="instructions-box">
-          <p className="greeting">Hello <b>Micheal Arhen,</b></p>
+          <p className="greeting">Hello <b>{candidateName}</b></p>
           <p className="go-through">
             Go through the instructions before you commence the exam.
           </p>
