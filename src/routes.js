@@ -12,8 +12,6 @@ import LinkExpired from "./pages/LinkExpired";
 import ThankYou from "./pages/ThankYou";
 import CandidateProfileview from "./components/core/CandidateProfileView";
 
-
-
 const ROUTES_CONFIG = [
   {
     path: "/",
