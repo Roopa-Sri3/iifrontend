@@ -23,7 +23,7 @@ const AssessmentInstructions = () => {
   const handleStartExam = () => {
     dispatch(startExam());
     dispatch(setDuration());
-    const candidateId = "e0b8f691-5e87-4f92-a9f3-a170116d2d0d";
+    const candidateId = "00329248-165d-45e4-96dd-dcd1b3f31dac";
     dispatch(startExam());
     dispatch(setDuration());
     dispatch(GetAssessmentQuestions({
