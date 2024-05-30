@@ -52,7 +52,7 @@ function Login() {
           dispatch(setToken({token}));
           dispatch(PostToken({
             data: {
-              token,
+              token
             },
             onSuccess: (userDetails) => {
               const responseDetails = userDetails && userDetails.response;
