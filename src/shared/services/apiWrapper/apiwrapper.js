@@ -5,7 +5,6 @@ class APIWrapper extends HTTPClient {
     this.baseURL = "https://dev-interviewinsights.innovasolutions.com:7443/InterviewInsights-0.0.1-SNAPSHOT";
     this.dispatch = dispatch;
   }
-
   async postUserCredentials({
     data,
     onSuccess = () => { },
@@ -114,6 +113,18 @@ class APIWrapper extends HTTPClient {
   }) {
     return this.get({
       url: `/interviewapi/getQuestions?candidateId=${candidateId}`,
+      onSuccess,
+      onError,
+    });
+  }
+
+  async verifyCandidateStatus({
+    candidateId,
+    onSuccess = () => {},
+    onError = () => {},
+  }) {
+    return this.get({
+      url: `/interviewinsights/getCandidateDetails?candidateId=${candidateId}`,
       onSuccess,
       onError,
     });

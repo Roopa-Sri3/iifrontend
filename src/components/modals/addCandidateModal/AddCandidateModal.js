@@ -63,7 +63,7 @@ const AddCandidateModal = ({
       setFullName(candidateData.fullName);
       setEmail(candidateData.email);
       setMobileNumber(candidateData.mobileNumber);
-      setYears(candidateData.years);
+      setYears(candidateData.yearsOfExperience);
       setMonths(candidateData.months);
       setSelectedPrimarySkills(candidateData.selectedPrimarySkills);
       setIsPrimarySkillSelected(true);
@@ -120,14 +120,14 @@ const AddCandidateModal = ({
         isValid = false;
       }
     } else {
-      if ((!/^\d+$/.test(years) || years < 0 || years > 25) && (!/^\d+$/.test(months) || months < 0 || months > 12)) {
+      if ((!/^\d+$/.test(years) || years < 0 || years > 25) && (!/^\d+$/.test(months) || months < 0 || months > 11)) {
         setYearsOfExperienceError("Please enter valid years of experience");
         setMonthsOfExperienceError("Please enter valid years of experience");
         isValid = false;
       } else if (!/^\d+$/.test(years) || years < 0 || years > 25) {
         setYearsOfExperienceError("Please enter valid years of experience");
         isValid = false;
-      } else if (!/^\d+$/.test(months) || months < 0 || months > 12) {
+      } else if (!/^\d+$/.test(months) || months < 0 || months > 11) {
         setMonthsOfExperienceError("Please enter valid years of experience");
         isValid = false;
       }
@@ -177,14 +177,13 @@ const AddCandidateModal = ({
         fullName:capitalizedFullName,
         email,
         mobileNo:mobileNumber,
-        years,
+        yearsOfExperience: years,
         months,
         primaryTechSkill : selectedPrimarySkills[0].value,
         secondaryTechSkill : selectedSecondarySkills.map(skill => skill.value),
         rrNo:rRNumber,
         shareLink:isChecked,
-        createdBy:storeModalData && storeModalData.mode === "EDIT" ? undefined : token,
-        modifiedBy:storeModalData && storeModalData.mode === "EDIT" ? token : undefined,
+        token: token,
       };
 
       handleAddOrEditCandidate({
@@ -287,7 +286,7 @@ const AddCandidateModal = ({
                       type="text"
                       id="years"
                       className={`form-input ${yearsOfExperienceError ? "add-candidate-field-error" : ""}`}
-                      value={years || ""}
+                      value={years === null || years === undefined ? "" : years }
                       onChange={(e) => {
                         setYears(e.target.value);
                         setYearsOfExperienceError("");
@@ -301,14 +300,14 @@ const AddCandidateModal = ({
                       type="text"
                       id="months"
                       className={`form-input ${monthsOfExperienceError ? "add-candidate-field-error" : ""}`}
-                      value={months || ""}
+                      value={months === null ||  months === undefined ? "" : months }
                       onChange={(e) => {
                         setMonths(e.target.value);
                         setMonthsOfExperienceError("");
                       }}
                       autoComplete="off"
                     />
-                    <span>Months<p>(0-12)</p></span>
+                    <span>Months<p>(0-11)</p></span>
                   </div>
                 </div>
                 {yearsOfExperienceError &&
