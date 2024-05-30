@@ -1,13 +1,11 @@
 import React from "react";
+import cx from "classnames";
+import "./Infocard.css";
 
-function Infocard({ children, RRNo, primarySkill, secondarySkills }) {
-  return (
-    <div className="box">
-      <div style={{ width: "61px", height: "23px", padding: "4px 10px", gap: "10px", borderRadius: "5px 0 0 0", opacity: "0", background: "#4595FF" }}>
-        {children}
-      </div>
+const Infocard = ({text,background}) =>
+  (
+    <div className= {cx("box",background)}>
+      {text}
     </div>
   );
-}
-
 export default Infocard;

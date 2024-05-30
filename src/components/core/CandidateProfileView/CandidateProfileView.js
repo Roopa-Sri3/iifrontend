@@ -9,6 +9,7 @@ import CallIcon from "../../../assets/svgs/CallIcon";
 import MailIcon from "../../../assets/svgs/MailIcon";
 import ExperienceIcon from "../../../assets/svgs/ExperienceIcon";
 import Infocard from "./Infocard/Infocard";
+import { candidateDetails } from "./Constants";
 import "./CandidateProfileView.css";
 
 function CandidateProfileView() {
@@ -27,7 +28,6 @@ function CandidateProfileView() {
     if (file) {
       setSelectedFile(file);
       setIsValidFile(
-        //file.size > 10 * 1024 &&
         file.size <= 2 * 1024 * 1024 &&
         ["image/jpeg", "image/jpg", "image/png"].includes(file.type)
       );
@@ -69,30 +69,41 @@ function CandidateProfileView() {
     <>
       <div className="header-container">
         <div className="Candidate-box">
-          <div className="vertical-line"></div>
+          {/* <div className="vertical-line"></div> */}
           <div className="icon-wrapper">
             <div className="icon-container">
-              <div className="candidate-name">John Doe</div>
+              <div className="candidate-name">{candidateDetails.CandidateName}
+                <Infocard text={ candidateDetails.UniqueNumber} background="green-background"/>
+              </div>
               <div className="icon-item">
                 <CallIcon />
-                <span className="candidate-number" style={{ color: "#F9F9F9", "paddingLeft" : "20px"}}>1234567890</span>
+                <span className="candidate-number" style={{ color: "#F9F9F9", "paddingLeft" : "20px"}}>{candidateDetails.PhoneNumber} </span>
               </div>
               <div className="icon-item">
                 <MailIcon />
-                <span className="candidate-mail" style={{  color: "#F9F9F9", "paddingLeft" : "20px" }}>johndoe@example.com</span>
+                <span className="candidate-mail" style={{  color: "#F9F9F9", "paddingLeft" : "20px" }}>{candidateDetails.Email} </span>
               </div>
               <div className="icon-item">
                 <ExperienceIcon />
-                <span className="candidate-experience" style={{  color: "#F9F9F9", "paddingLeft" : "20px" }}>5 years</span>
-
+                <span className="candidate-experience" style={{  color: "#F9F9F9", "paddingLeft" : "20px" }}> {candidateDetails.Experience}</span>
+              </div>
+            </div>
+          </div>
+          <div className="skills-container">
+            <p>Skills:</p>
+            <div className="skills">
+              <div className = "primary-skills">
+                <Infocard text={candidateDetails.PrimarySkills}background="blue-background"/>
+              </div>
+              <div className="secondary-skills">
+                <Infocard text={candidateDetails.SecondarySkills} background="blue-background"/>
               </div>
             </div>
           </div>
           <div className="support-email">
-            <p>For further queries reach out to
-              firstname.lastname@innovasolutions.com </p>
+            <p> {candidateDetails.SupportEmail}</p>
           </div>
-          <Infocard />
+
         </div>
       </div>
       <div className="profile-viewer container">

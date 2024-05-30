@@ -12,7 +12,7 @@
  }
  
  .Candidate-box {
-  width: 59%;
+  width: 900px;
   bottom: 40px;
   height: 30%;
   padding: 10px;
@@ -24,7 +24,7 @@
   margin: 90px auto 0;
   flex-direction: row;
   justify-content: space-between;
-  position: relative;
+  /* position: relative; */
   }
  
   .icon-wrapper{
@@ -32,7 +32,7 @@
     }
  
   .icon-container{
-    margin-top: 50px;
+    margin-top: 10px;
     margin-left: 20px;
     }
    
@@ -48,16 +48,16 @@
     justify-content: center;
     width: 1px;
     height: 120px;
-    bottom: 27px;
+    bottom: 30px;
     background-color: #fff;
    }
  
   .support-email{
      color: #F9F9F9;
      font-size: 12px;
-     position: absolute;  
-     bottom: 0px;
-     right: 10px;  
+     display : flex;
+     justify-content: flex-end;
+     align-items: end;
     }
  
 .profile-viewer.container {
@@ -162,6 +162,27 @@
   color: #ffffff;
 }
 .candidate-name{
-  margin-left: 1px;
+   color: #F9F9F9;
+  font-size: 18px;
+  margin-bottom: 30px;
+  display: flex;
+  gap: 10px;
+}
+.skills-container{
+  display: flex;
+  align-items:flex-start;
+  flex-direction: column;
   color: #F9F9F9;
+  margin-top: 20px;
+}
+.green-background{
+  background-color: #1AB900;
+}
+.blue-background{
+  background-color:  #4595FF;
+}
+.skills{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
