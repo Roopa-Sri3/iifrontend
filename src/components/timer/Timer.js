@@ -4,7 +4,7 @@ import { GetDuration } from "../../store/selector/screen/screen";
 import { endExam, setTimeUp } from "../../store/reducers/screen/screen";
 import "./Timer.css";
 
-const Timer = (handleTimeUp) => {
+const Timer = () => {
   const dispatch = useDispatch();
 
   const duration = useSelector(GetDuration);
@@ -13,21 +13,19 @@ const Timer = (handleTimeUp) => {
 
   useEffect(() => {
     timeRef.current = setInterval(() => {
-      setTimeRemaining((prevTime) => {
-        if(prevTime <= 0){
-          //call handle exam submit
-          clearInterval(timeRef.current);
-
-          dispatch(setTimeUp());
-          dispatch(endExam());
-          return 0;
-        }
-        return prevTime - 1;
-      });
+      setTimeRemaining((prevTime) => prevTime - 1);
     }, 1000);
 
     return () => clearInterval(timeRef.current);
-  }, [dispatch]);
+  }, []);
+
+  useEffect(() => {
+    if (timeRemaining <= 0) {
+      clearInterval(timeRef.current);
+      dispatch(setTimeUp());
+      dispatch(endExam());
+    }
+  }, [dispatch, timeRemaining]);
 
   const formatTime = (time) =>{
     const minutes = Math.floor(time / 60);

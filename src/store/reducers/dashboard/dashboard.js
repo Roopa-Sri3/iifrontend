@@ -50,7 +50,6 @@ export const GetCandidateDetails = ({
   onError = () => {},
 } = {}) => async(dispatch) => {
   const apiWrapper = new APIWrapper(dispatch);
-
   const candidatesResponse = await apiWrapper.getCandidateDetails({
     data,
     onSuccess,

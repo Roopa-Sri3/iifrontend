@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Button from "../core/button";
@@ -26,12 +26,16 @@ const Start = () => {
     }));
   };
 
+  useEffect(()=>{
+    if (examStarted === true){
+      navigate("/candidate/assessment-screen");
+    }
+  },[examStarted, navigate]);
+
   return (
     <div>
-      {!examStarted ?
-        (
+      {(!examStarted) &&
           <Button label="Start Exam" handleClick={handleStartExam} />
-        ) : navigate("/candidate/assessment-screen")
       }
     </div>
 

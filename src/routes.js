@@ -9,7 +9,7 @@ import AssessmentInstructions from "./pages/AssessmentInstructions";
 import Assessmentscreen from "./pages/Assessmentscreen";
 import VerifyAssessmentDetails from "./pages/VerifyAssessmentDetails";
 import LinkExpired from "./pages/LinkExpired";
-
+import ThankYou from "./pages/ThankYou";
 import CandidateProfileview from "./components/core/CandidateProfileView";
 
 const ROUTES_CONFIG = [
@@ -43,6 +43,10 @@ const ROUTES_CONFIG = [
         element: <Assessmentscreen />
       },
       {
+        path: "/candidate/candidate-profile-view",
+        element:<CandidateProfileview/>
+      },
+      {
         path: "/candidate/assessment-instructions",
         element: <AssessmentInstructions />
       },
@@ -55,15 +59,15 @@ const ROUTES_CONFIG = [
         element: <LinkExpired />
       },
       {
-        path: "/candidate/candidate-profile-view",
-        element:<CandidateProfileview/>
+        path: "/candidate/feedback",
+        element: <TestSubmit />
       },
+      {
+        path: "/candidate/thank-you",
+        element: <ThankYou />
+      }
     ]
   },
-  {
-    path: "/candidate/test-submitted",
-    element: <TestSubmit />
-  }
 ];
 
 export default ROUTES_CONFIG;
