@@ -109,7 +109,6 @@ export const {
   clearAlert,
   setTimeoutId,
   clearTimeoutId,
-  setCandidateDetails
 } = appSlice.actions;
 
 export default appSlice.reducer;
