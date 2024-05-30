@@ -56,6 +56,7 @@ export const GetCandidateDetails = ({
     onSuccess,
     onError,
   });
+
   dispatch(setCandidates(candidatesResponse.data));
 };
 
