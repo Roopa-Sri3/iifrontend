@@ -21,7 +21,6 @@ const TabSwitchWarningModal = () => {
   return (
     <Modal
       show={isWarningModalOpen}
-      // size="none"
       headerClassName="no-padding-header"
       modalHeader={
         <div className="warning-header">

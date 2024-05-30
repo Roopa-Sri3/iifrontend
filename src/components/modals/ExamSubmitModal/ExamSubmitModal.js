@@ -24,9 +24,6 @@ const ExamSubmitModal = () => {
     dispatch(endExam());
     dispatch(closeModal());
     navigate("/candidate/feedback");
-    // window.open("/test-submitted", "_self");
-    // window.open("/test-submitted");
-    // add submit functionality if click on modal yes...
   };
 
   return (
