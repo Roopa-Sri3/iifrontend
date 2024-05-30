@@ -25,6 +25,35 @@ export const options = [
   {label:"CSS", value:6}
 ];
 
+export const assessmentInstructions =
+[
+  "This is an online assessment",
+
+  "You need to use google chrome browser for writing this assessment.",
+
+  "This assessment comprises of 14 multiple choice questions and 1(one) coding question. The time allocated for this assessment is 40 minutes. The timer will be displayed above the questions.",
+
+  "Only One answer should be selected for each question;please choose accordingly.",
+
+  "On selecting the answer you should click 'next question' button to go the next question and 'submit' button to submit the answer. To navigate to respective questions, you can use the circle icon. You can find only submit button at the last question to submit the assessment.",
+
+  "Note- please don't change tabs or refresh the page while writing the examination. All these are recorded and can lead to disqualification.",
+
+  "If you switch tabs the test will be automatically submitted when you exceed limited number of warnings.",
+
+  "Please ensure to submit the test before the time limit or else the test will be automatically submitted with in the time duration.",
+
+  "This test is designed to grade your ability on your skills based on your experience and domain.",
+
+  "Don’t close the tab or else test will get automatically submitted.",
+
+  "On top of the page, there's a submit button which, when clicked, will submit the exam.",
+
+  "Please note that the assessment can only be accessed once, and once submitted, it cannot be revisited.",
+
+  "Please ensure you have completed all questions before submitting.",
+];
+
 export const LOGIN_MOCKUP_DATA = [
   {
     username: "admin@innova.in",

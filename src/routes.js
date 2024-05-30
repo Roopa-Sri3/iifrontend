@@ -4,11 +4,13 @@ import ProtectLoginRoute from "./privateRoutes/protectLoginRoute";
 import ProtectedDashboardRoute from "./privateRoutes/protectDashboardRoute";
 import Questionsconfiguration from "./pages/Questionsconfiguration";
 import Unauthorized from "./pages/Unauthorized";
-import Start from "./components/question/Start";
 import TestSubmit from "../src/pages/TestSubmit";
+import AssessmentInstructions from "./pages/AssessmentInstructions";
 import Assessmentscreen from "./pages/Assessmentscreen";
 import VerifyAssessmentDetails from "./pages/VerifyAssessmentDetails";
 import LinkExpired from "./pages/LinkExpired";
+
+import CandidateProfileview from "./components/core/CandidateProfileView";
 
 const ROUTES_CONFIG = [
   {
@@ -41,21 +43,25 @@ const ROUTES_CONFIG = [
         element: <Assessmentscreen />
       },
       {
+        path: "/candidate/assessment-instructions",
+        element: <AssessmentInstructions />
+      },
+      {
         path: "/candidate/verify-assessment-details",
         element: <VerifyAssessmentDetails />
       },
       {
         path: "/candidate/link-expired",
         element: <LinkExpired />
-      }
+      },
+      {
+        path: "/candidate/candidate-profile-view",
+        element:<CandidateProfileview/>
+      },
     ]
   },
   {
-    path: "/exam",
-    element: <Start />
-  },
-  {
-    path: "/test-submitted",
+    path: "/candidate/test-submitted",
     element: <TestSubmit />
   }
 ];
