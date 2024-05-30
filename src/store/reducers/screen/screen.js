@@ -5,7 +5,7 @@ const initialState = {
   duration: null,
   isTimeUp: null,
   isRunning: null,
-  currentQuestion : 1,
+  currentQuestion : 0,
   assessmentId: null,
   questions :[],
   answers: [],
@@ -16,7 +16,7 @@ const screenSlice = createSlice({
   initialState,
   reducers: {
     setDuration: (state) => {
-      state.duration = 1;
+      state.duration = 40;
       state.isTimeUp = false;
     },
     setTimeUp: (state) => {
@@ -37,7 +37,7 @@ const screenSlice = createSlice({
       state.currentQuestion = action.payload;
     },
     handleSaveAndNext: (state, action) => {
-      if (state.currentQuestion === state.questions.length)
+      if (state.currentQuestion === state.questions.length - 1)
       {
         state.currentQuestion = action.payload;
       }
