@@ -49,13 +49,13 @@ export const GetCandidateDetails = ({
   onError = () => {},
 } = {}) => async(dispatch) => {
   const apiWrapper = new APIWrapper(dispatch);
-
   const candidatesResponse = await apiWrapper.getCandidateDetails({
     data,
     onSuccess,
     onError,
   });
-  dispatch(setCandidates(candidatesResponse.data));
+  console.log(candidatesResponse);
+  dispatch(setCandidates(candidatesResponse.data.candidateDetails));
 };
 
 export const AddCandidate = ({

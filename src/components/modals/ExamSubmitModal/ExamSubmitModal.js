@@ -23,7 +23,9 @@ const ExamSubmitModal = () => {
   const handleYesButton = () =>{
     dispatch(endExam());
     dispatch(closeModal());
-    navigate("/test-submitted");
+    navigate("/candidate/feedback");
+    // window.open("/test-submitted", "_self");
+    // window.open("/test-submitted");
     // add submit functionality if click on modal yes...
   };
 

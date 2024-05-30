@@ -4,6 +4,10 @@ export const GetExamStatus = (state) => state.screen.isRunning;
 
 export const GetIsTimeUp = (state) => state.screen.isTimeUp;
 
+export const GetTabSwitchCount = (state) => state.screen.tabSwitchCount;
+
+export const GetWarningLimit = (state) => state.screen.warningLimit;
+
 export const selectCurrentQuestion = (state) => state.screen.currentQuestion;
 
 export const getQuestions = (state) => state.screen.questions;

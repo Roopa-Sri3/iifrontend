@@ -7,7 +7,8 @@ import Start from "./components/question/Start";
 import TestSubmit from "./pages/TestSubmit";
 import Assessmentscreen from "./pages/Assessmentscreen";
 import Unauthorized from "./pages/Unauthorized";
-import CandidateProfileview from "./components/core/CandidateProfileView";
+import CandidateProfileview from "./components/core/CandidateProfileView";import ThankYou from "./pages/ThankYou";
+
 const ROUTES_CONFIG = [
   {
     path: "/",
@@ -41,6 +42,14 @@ const ROUTES_CONFIG = [
       {
         path: "/candidate/candidate-profile-view",
         element:<CandidateProfileview/>
+      },
+      {
+        path: "/candidate/feedback",
+        element: <TestSubmit />
+      },
+      {
+        path: "/candidate/thank-you",
+        element: <ThankYou />
       }
     ]
   },
@@ -48,10 +57,6 @@ const ROUTES_CONFIG = [
     path: "/exam",
     element: <Start />
   },
-  {
-    path: "/test-submitted",
-    element: <TestSubmit />
-  }
 ];
 
 export default ROUTES_CONFIG;
