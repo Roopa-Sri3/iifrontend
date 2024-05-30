@@ -118,6 +118,18 @@ class APIWrapper extends HTTPClient {
     });
   }
 
+  async verifyCandidateStatus({
+    candidateId,
+    onSuccess = () => {},
+    onError = () => {},
+  }) {
+    return this.get({
+      url: `/interviewinsights/getCandidateDetails?candidateId=${candidateId}`,
+      onSuccess,
+      onError,
+    });
+  }
+
   async postAssessmentAnswers({
     data,
     onSuccess = () => { },
