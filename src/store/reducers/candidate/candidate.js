@@ -3,6 +3,7 @@ import APIWrapper from "../../../shared/services/apiWrapper/apiwrapper";
 
 const initialState = {
   idProofStatus: null,
+  candidateId: "",
   candidateName: "",
   phoneNumber: "",
   email:"",
@@ -17,6 +18,10 @@ const candidateSlice = createSlice({
   name: "candidate",
   initialState: initialState,
   reducers: {
+    setCandidateId: (state, action) => {
+      const {candidateId} = action.payload;
+      state.candidateId = candidateId;
+    },
     setIdProofStatus: (state, action) => {
       state.idProofStatus = action.payload;
     },
@@ -45,6 +50,7 @@ const candidateSlice = createSlice({
 });
 
 export const {
+  setCandidateId,
   setIdProofStatus,
   setCandidateDetails,
 } = candidateSlice.actions;
