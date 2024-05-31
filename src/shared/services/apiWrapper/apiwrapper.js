@@ -165,25 +165,26 @@ class APIWrapper extends HTTPClient {
     });
   }
 
-  async postCandidateTillDate({
-    data,
-    onSuccess = () => { },
-    onError = () => { },
+  async postIdProofDetails({
+    file,
+    candidateId,
+    onSuccess = () => {},
+    onError = () => {},
   }) {
+    const formData = new FormData();
+    formData.append("file", file);
+
     this.headers = {
-      "Content-Type": "application/json",
+      "Content-Type": "multipart/form-data",
     };
 
     return this.post({
-      url: "user/getUserDetails",
-      data,
-      onSuccess: (response) => {
-        onSuccess(response.response.candidateTillDate);
-      },
+      url: `/interviewinsights/uploadProof/${candidateId}`,
+      data: formData,
+      onSuccess,
       onError,
     });
   }
-
 }
 
 export default APIWrapper;

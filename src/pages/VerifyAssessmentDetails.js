@@ -24,7 +24,7 @@ function VerifyAssessmentDetails () {
           ...candidateDetails
         }));
         // navigate to upload aadhaar page
-        navigate("/candidate/assessment-instructions");
+        navigate("/candidate/candidate-profile-view");
       }
     },
     onError: (e) => {
