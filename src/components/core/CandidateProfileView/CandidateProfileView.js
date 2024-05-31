@@ -137,9 +137,15 @@ function CandidateProfileView() {
                   <div className="primary-skills">
                     {skills.map((skill) => {
                       if (skill.value === primarySkill) {
-                        <Infocard text={skill.label}
-                          background="blue-background"
-                        />;}})}
+                        return (
+                          <Infocard
+                            text={skill.label}
+                            background="blue-background"
+                          />
+                        );
+                      }
+                      return null; // Add this line if you want to handle cases where the condition is not met
+                    })}
                   </div>
                   <div className="secondary-skills">
                     {secondarySkills.map((secondarySkill) =>
