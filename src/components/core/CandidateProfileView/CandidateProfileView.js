@@ -5,13 +5,15 @@ import { useNavigate } from "react-router-dom";
 import { PostIdProofDetails } from "../../../../src/store/reducers/candidate/candidate";
 import DocumentUploader from "../documentUploader/documentUploader";
 import RightArrowIcon from "../../../assets/svgs/rightArrowIcon";
-import CallIcon from "../../assets/svgs/CallIcon";
-import MailIcon from "../../assets/svgs/MailIcon";
-import ExperienceIcon from "../../assets/svgs/ExperienceIcon";
+import CallIcon from "../../../assets/svgs/CallIcon";
+import MailIcon from "../../../assets/svgs/MailIcon";
+import ExperienceIcon from "../../../assets/svgs/ExperienceIcon";
 import Infocard from "./Infocard/Infocard";
 import { candidateDetails } from "../../../components/core/CandidateProfileView/Infocard/Constants";
 import VerticalLine from "../../../assets/svgs/VerticalLine";
 import "./CandidateProfileView.css";
+import { GetTechSkills } from "../../../store/reducers/dashboard/dashboard";
+import { GetStoreSkills } from "../../../store/selector/dashboard/dashboard";
 
 function CandidateProfileView() {
   const navigate = useNavigate();
@@ -74,29 +76,31 @@ function CandidateProfileView() {
       <div className="header-container">
         <div className="candidate-container">
           <div className="Candidate-box">
-            <div className="icon-wrapper">
-              <div className="icon-container">
-                <div className="candidate-name">
-                  {candidateDetails.candidateName}
-                  <Infocard text={candidateDetails.uniqueNumber} background="green-background" />
-                </div>
-                <div className="icon-item">
-                  <CallIcon />
-                  <span className="candidate-number">
-                    {candidateDetails.phoneNumber}
-                  </span>
-                </div>
-                <div className="icon-item">
-                  <MailIcon />
-                  <span className="candidate-mail">
-                    {candidateDetails.Email}
-                  </span>
-                </div>
-                <div className="icon-item">
-                  <ExperienceIcon />
-                  <span className="candidate-experience">
-                    {candidateDetails.Experience}
-                  </span>
+            <div className="Candidate-info-container">
+              <div className="icon-wrapper">
+                <div className="icon-container">
+                  <div className="candidate-name">
+                    {candidateName}
+                    <Infocard text={rrNo} background="green-background" />
+                  </div>
+                  <div className="icon-item">
+                    <CallIcon />
+                    <span className="candidate-number">
+                      {phoneNumber}
+                    </span>
+                  </div>
+                  <div className="icon-item">
+                    <MailIcon />
+                    <span className="candidate-mail">
+                      {email}
+                    </span>
+                  </div>
+                  <div className="icon-item">
+                    <ExperienceIcon />
+                    <span className="candidate-experience">
+                     Experience {experience} Yr
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -109,17 +113,27 @@ function CandidateProfileView() {
                 <p>Skills:</p>
                 <div className="skills">
                   <div className="primary-skills">
-                    <Infocard text={candidateDetails.primarySkills} background="blue-background" />
+                    {skills.map((skill) => {
+                      if (skill.value === primarySkill) {
+                        <Infocard text={skill.label}
+                          background="blue-background"
+                        />;}})}
                   </div>
                   <div className="secondary-skills">
-                    <Infocard text={candidateDetails.secondarySkills} background="blue-background" />
+                    {secondarySkills.map((secondarySkill) =>
+                      (
+                        <Infocard
+                          text={
+                            skills.find((skill) => skill.value === secondarySkill)?.label}
+                          background= "blue-background"
+                        />))}
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div className="email-address-container">
-            {candidateDetails.supportEmail}
+          For further queries reach out to raghu@gmail.com
           </div>
         </div>
       </div>
