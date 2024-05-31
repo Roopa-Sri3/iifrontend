@@ -1,28 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch,useSelector } from "react-redux";
+import React, { useState, useRef } from "react";
+import { useDispatch } from "react-redux";
 import { setAlert } from "../../../store/reducers/app/app";
 import { useNavigate } from "react-router-dom";
 import { PostIdProofDetails } from "../../../../src/store/reducers/candidate/candidate";
 import DocumentUploader from "../documentUploader/documentUploader";
 import RightArrowIcon from "../../../assets/svgs/rightArrowIcon";
-import CallIcon from "../../../assets/svgs/CallIcon";
-import MailIcon from "../../../assets/svgs/MailIcon";
-import ExperienceIcon from "../../../assets/svgs/ExperienceIcon";
+import CallIcon from "../../../../src/assets/svgs/CallIcon";
+import MailIcon from "../../../../src/assets/svgs/MailIcon";
+import ExperienceIcon from "../../../../src/assets/svgs/ExperienceIcon";
 import Infocard from "./Infocard/Infocard";
 import "./CandidateProfileView.css";
-import {
-  GetCandidateName,
-  GetPhoneNumber,
-  GetEmail,
-  GetExperience,
-  GetPrimarySkill,
-  GetSecondarySkills,
-  GetRrNo,
-} from "../../../store/selector/app/app";
+import { candidateDetails } from "../../../components/core/CandidateProfileView/Infocard/Constants";
 import VerticalLine from "../../../assets/svgs/VerticalLine";
 import "./CandidateProfileView.css";
-import { GetTechSkills } from "../../../store/reducers/dashboard/dashboard";
-import { GetStoreSkills } from "../../../store/selector/dashboard/dashboard";
 
 function CandidateProfileView() {
   const navigate = useNavigate();
@@ -32,21 +22,7 @@ function CandidateProfileView() {
   const [errorMessage, setErrorMessage] = useState("");
   const [isValidFile, setIsValidFile] = useState(false);
   const [uploadFailed, setUploadFailed] = useState(false);
-  const candidateName = useSelector(GetCandidateName);
-  const phoneNumber = useSelector(GetPhoneNumber);
-  const email = useSelector(GetEmail);
-  const experience = useSelector(GetExperience);
-  const primarySkill = useSelector(GetPrimarySkill);
-  const secondarySkills = useSelector(GetSecondarySkills);
-  const rrNo = useSelector(GetRrNo);
-  const skills = useSelector(GetStoreSkills);
-
-  useEffect(() => {
-    dispatch(GetTechSkills({
-      onSuccess: () => { },
-      onError: () => { },
-    }));
-  }, [dispatch]);
+  const fileRef = useRef();
 
   const handleNextPage = () => {
     navigate("/candidate/assessment-instructions");
@@ -68,6 +44,7 @@ function CandidateProfileView() {
     setErrorMessage("");
     setIsValidFile(false);
     setUploadFailed(false);
+    fileRef.current.value = null;
   };
 
   const handleSubmit = () => {
@@ -98,31 +75,29 @@ function CandidateProfileView() {
       <div className="header-container">
         <div className="candidate-container">
           <div className="Candidate-box">
-            <div className="Candidate-info-container">
-              <div className="icon-wrapper">
-                <div className="icon-container">
-                  <div className="candidate-name">
-                    {candidateName}
-                    <Infocard text={rrNo} background="green-background" />
-                  </div>
-                  <div className="icon-item">
-                    <CallIcon />
-                    <span className="candidate-number">
-                      {phoneNumber}
-                    </span>
-                  </div>
-                  <div className="icon-item">
-                    <MailIcon />
-                    <span className="candidate-mail">
-                      {email}
-                    </span>
-                  </div>
-                  <div className="icon-item">
-                    <ExperienceIcon />
-                    <span className="candidate-experience">
-                     Experience {experience} Yr
-                    </span>
-                  </div>
+            <div className="icon-wrapper">
+              <div className="icon-container">
+                <div className="candidate-name">
+                  {candidateDetails.candidateName}
+                  <Infocard text={candidateDetails.uniqueNumber} background="green-background" />
+                </div>
+                <div className="icon-item">
+                  <CallIcon />
+                  <span className="candidate-number">
+                    {candidateDetails.phoneNumber}
+                  </span>
+                </div>
+                <div className="icon-item">
+                  <MailIcon />
+                  <span className="candidate-mail">
+                    {candidateDetails.Email}
+                  </span>
+                </div>
+                <div className="icon-item">
+                  <ExperienceIcon />
+                  <span className="candidate-experience">
+                    {candidateDetails.Experience}
+                  </span>
                 </div>
               </div>
             </div>
@@ -135,25 +110,17 @@ function CandidateProfileView() {
                 <p>Skills:</p>
                 <div className="skills">
                   <div className="primary-skills">
-                    {skills.map((skill) => (
-                      skill.value === primarySkill ? <Infocard text={skill.label} background="blue-background" /> : <></>
-                    ))}
+                    <Infocard text={candidateDetails.primarySkills} background="blue-background" />
                   </div>
                   <div className="secondary-skills">
-                    {secondarySkills.map((secondarySkill) =>
-                      (
-                        <Infocard
-                          text={
-                            skills.find((skill) => skill.value === secondarySkill)?.label}
-                          background= "blue-background"
-                        />))}
+                    <Infocard text={candidateDetails.secondarySkills} background="blue-background" />
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div className="email-address-container">
-          For further queries reach out to raghu@gmail.com
+            {candidateDetails.supportEmail}
           </div>
         </div>
       </div>
@@ -173,8 +140,9 @@ function CandidateProfileView() {
               errorMessage={errorMessage}
               handleDelete={handleDelete}
               uploadFailed={uploadFailed}
+              fileRef={fileRef}
             />
-            {errorMessage && <p className="error-message">{errorMessage}</p>}
+            {errorMessage && <p className="error-document-message">{errorMessage}</p>}
             <div className="button-layout">
               <button
                 className="upload-button"
