@@ -134,7 +134,6 @@ function CandidateProfileView() {
                 <p>Skills:</p>
                 <div className="skills">
                   <div className="primary-skills">
-                    {/* <Infocard text={primarySkill} background="blue-background" /> */}
                     {skills.map((skill) => {
                       if (skill.value === primarySkill) {
                         <Infocard text={skill.label}
@@ -142,7 +141,6 @@ function CandidateProfileView() {
                         />;}})}
                   </div>
                   <div className="secondary-skills">
-                    {/* <Infocard text={secondarySkills} background="blue-background" /> */}
                     {secondarySkills.map((secondarySkill) =>
                       (
                         <Infocard
