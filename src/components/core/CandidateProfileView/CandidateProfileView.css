@@ -223,3 +223,7 @@
   color: #F9F9F9;
    padding-left: 20px;
 }
+.secondary-skills{
+  display: flex;
+  gap: 10px;
+}
