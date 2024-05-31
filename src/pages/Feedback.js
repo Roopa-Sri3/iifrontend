@@ -6,10 +6,9 @@ import Button from "../components/core/button/button";
 import FeedbackStarIcon from "../assets/svgs/FeebackStarIcon";
 import { ratingLabels } from "../shared/constants";
 import { PostFeedback } from "../store/reducers/screen/screen";
-
-import "./Feedback.css";
 import { getAssessmentId } from "../store/selector/screen/screen";
 import { GetCandidateId } from "../store/selector/candidate/candidate";
+import "./Feedback.css";
 
 const TestSubmit = () => {
   const dispatch = useDispatch();
