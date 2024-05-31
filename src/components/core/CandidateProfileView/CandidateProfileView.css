@@ -53,7 +53,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 54vh;
+  height: 60vh;
   background-color: #EBEEF3;
   max-width: 100%;
 }
@@ -151,6 +151,7 @@
   background-color: #C0C0C0;
   color: #ffffff;
 }
+
 .candidate-name{
    color: #F9F9F9;
   font-size: 15px;
@@ -158,6 +159,7 @@
   display: flex;
   gap: 10px;
 }
+
 .skills-container{
   display: flex;
   align-items:flex-start;
@@ -171,23 +173,20 @@
 .green-background{
   background-color: #1AB900;
 }
+
 .blue-background{
   background-color:  #4595FF;
 }
+
 .skills{
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
+
 .vertical-line {
   display:flex;
   padding-top:45px;
-}
-
-.Candidate-info-container{
-  display:flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .Skill-set-container{
@@ -202,6 +201,7 @@
   font-size: 12px;
   float: right;
 }
+
 .email-detail-contact{
   display:flex;
   align-items: end;
