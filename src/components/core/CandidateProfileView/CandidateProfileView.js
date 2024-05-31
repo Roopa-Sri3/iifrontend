@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { setAlert } from "../../../store/reducers/app/app";
 import { useNavigate } from "react-router-dom";
@@ -9,7 +9,6 @@ import CallIcon from "../../assets/svgs/CallIcon";
 import MailIcon from "../../assets/svgs/MailIcon";
 import ExperienceIcon from "../../assets/svgs/ExperienceIcon";
 import Infocard from "./Infocard/Infocard";
-import "./CandidateProfileView.css";
 import { candidateDetails } from "../../../components/core/CandidateProfileView/Infocard/Constants";
 import VerticalLine from "../../../assets/svgs/VerticalLine";
 import "./CandidateProfileView.css";
@@ -22,6 +21,7 @@ function CandidateProfileView() {
   const [errorMessage, setErrorMessage] = useState("");
   const [isValidFile, setIsValidFile] = useState(false);
   const [uploadFailed, setUploadFailed] = useState(false);
+  const fileRef = useRef();
 
   const handleNextPage = () => {
     navigate("/candidate/assessment-instructions");
@@ -43,6 +43,7 @@ function CandidateProfileView() {
     setErrorMessage("");
     setIsValidFile(false);
     setUploadFailed(false);
+    fileRef.current.value = null;
   };
 
   const handleSubmit = () => {
@@ -138,6 +139,7 @@ function CandidateProfileView() {
               errorMessage={errorMessage}
               handleDelete={handleDelete}
               uploadFailed={uploadFailed}
+              fileRef={fileRef}
             />
             {errorMessage && <p className="error-document-message">{errorMessage}</p>}
             <div className="button-layout">
