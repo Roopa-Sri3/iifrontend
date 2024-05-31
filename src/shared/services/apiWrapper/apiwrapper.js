@@ -165,6 +165,25 @@ class APIWrapper extends HTTPClient {
     });
   }
 
+  async postCandidateTillDate({
+    data,
+    onSuccess = () => { },
+    onError = () => { },
+  }) {
+    this.headers = {
+      "Content-Type": "application/json",
+    };
+
+    return this.post({
+      url: "user/getUserDetails",
+      data,
+      onSuccess: (response) => {
+        onSuccess(response.response.candidateTillDate);
+      },
+      onError,
+    });
+  }
+
   async postIdProofDetails({
     file,
     candidateId,
