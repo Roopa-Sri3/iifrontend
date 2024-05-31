@@ -10,7 +10,7 @@ const UploadItems = ({ file, onDelete, errorMessage, uploadFailed }) => {
 
   return (
     <div className="complete-file-content-view">
-      <div className={`file-document-layout ${(uploadFailed || errorMessage) ? "error-layout" : ""}`}>
+      <div className={`file-document-layout ${(uploadFailed || errorMessage) ? "error-document-layout" : ""}`}>
         <div className="file-layout"><FileIcon /></div>
         <div className="file-info-layout">
           <span className="file-name">{file.name}</span>
