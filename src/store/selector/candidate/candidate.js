@@ -1,5 +1,7 @@
 export const GetCandidateName = (state) => state.candidate.candidateName;
 
+export const GetCandidateId = (state) => state.candidate.candidateId;
+
 export const GetPhoneNumber = (state) => state.candidate.phoneNumber;
 
 export const GetEmail = (state) => state.candidate.email;
