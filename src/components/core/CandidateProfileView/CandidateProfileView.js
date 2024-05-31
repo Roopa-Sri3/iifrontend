@@ -9,7 +9,6 @@ import CallIcon from "../../../assets/svgs/CallIcon";
 import MailIcon from "../../../assets/svgs/MailIcon";
 import ExperienceIcon from "../../../assets/svgs/ExperienceIcon";
 import Infocard from "./Infocard/Infocard";
-import "./CandidateProfileView.css";
 import {
   GetCandidateName,
   GetPhoneNumber,
@@ -20,9 +19,9 @@ import {
   GetRrNo,
 } from "../../../store/selector/app/app";
 import VerticalLine from "../../../assets/svgs/VerticalLine";
-import "./CandidateProfileView.css";
 import { GetTechSkills } from "../../../store/reducers/dashboard/dashboard";
 import { GetStoreSkills } from "../../../store/selector/dashboard/dashboard";
+import "./CandidateProfileView.css";
 
 function CandidateProfileView() {
   const navigate = useNavigate();
@@ -144,7 +143,7 @@ function CandidateProfileView() {
                           />
                         );
                       }
-                      return null; // Add this line if you want to handle cases where the condition is not met
+                      return null;
                     })}
                   </div>
                   <div className="secondary-skills">
