@@ -4,6 +4,7 @@ import "./fileUploader.css";
 
 function FileUploader({
   identifier,
+  fileRef,
   canAttachMultiple,
   disabled,
   handleFiles,
@@ -31,6 +32,7 @@ function FileUploader({
       <input
         className="input-file-upload-button"
         id={identifier}
+        ref={fileRef}
         type="file"
         multiple={canAttachMultiple}
         disabled={disabled}

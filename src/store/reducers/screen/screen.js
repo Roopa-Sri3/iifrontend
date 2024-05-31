@@ -5,7 +5,9 @@ const initialState = {
   duration: null,
   isTimeUp: null,
   isRunning: null,
-  currentQuestion : 1,
+  warningLimit: 1,
+  tabSwitchCount: 0,
+  currentQuestion : 0,
   assessmentId: null,
   questions :[],
   answers: [],
@@ -16,7 +18,7 @@ const screenSlice = createSlice({
   initialState,
   reducers: {
     setDuration: (state) => {
-      state.duration = 1;
+      state.duration = 40;
       state.isTimeUp = false;
     },
     setTimeUp: (state) => {
@@ -29,6 +31,9 @@ const screenSlice = createSlice({
     endExam: (state) => {
       state.isRunning = false;
     },
+    incrementTabSwitchCount: (state) => {
+      state.tabSwitchCount += 1;
+    },
     setAssessmentData: (state, action) => {
       state.assessmentId = action.payload.assessmentId;
       state.questions = action.payload.questions;
@@ -37,7 +42,7 @@ const screenSlice = createSlice({
       state.currentQuestion = action.payload;
     },
     handleSaveAndNext: (state, action) => {
-      if (state.currentQuestion === state.questions.length)
+      if (state.currentQuestion === state.questions.length - 1)
       {
         state.currentQuestion = action.payload;
       }
@@ -89,6 +94,7 @@ export const {
   setTimeUp,
   startExam,
   endExam,
+  incrementTabSwitchCount,
   setAssessmentData,
   handleQuestionClick,
   handleSaveAndNext,

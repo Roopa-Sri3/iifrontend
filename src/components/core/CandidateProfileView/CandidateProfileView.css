@@ -4,61 +4,50 @@
   justify-content: center;
 }
  
- .header-container{
-  display:flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #EBEEF3;
- }
- 
- .Candidate-box {
-  width: 900px;
-  bottom: 40px;
-  height: 30%;
-  padding: 10px;
-  border-radius: 6px;
-  background: linear-gradient(90deg, #326D62 0%, #0E5291 51.6%, #0E034F 100%);
+.header-container{
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 90px auto 0;
+  background-color: #EBEEF3;
+  max-width: 100%;
+ }
+ 
+.Candidate-box {
+  display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  /* position: relative; */
-  }
+  align-items: left;
+}
+   
+.candidate-container {
+    width: 59%;
+    bottom: 40px;
+    height: 30%;
+    padding: 10px;
+    border-radius: 6px;
+    background: linear-gradient(90deg, #326D62 0%, #0E5291 51.6%, #0E034F 100%);
+    justify-content: space-between;
+    margin-top:34px;
+}
  
-  .icon-wrapper{
+.icon-wrapper{
      height: 100%;
-    }
+ }
  
-  .icon-container{
+.icon-container{
     margin-top: 10px;
     margin-left: 20px;
-    }
+  }
    
-  .icon-item{
+.icon-item{
     margin: 20px;
     gap: 5px;
-   }
- 
- .vertical-line {
-    position: absolute;
-    left: 300px;
-    align-items: center;
-    justify-content: center;
-    width: 1px;
-    height: 120px;
-    bottom: 30px;
-    background-color: #fff;
-   }
- 
-  .support-email{
+  }
+
+.support-email{
      color: #F9F9F9;
      font-size: 12px;
-     display : flex;
-     justify-content: flex-end;
-     align-items: end;
-    }
+     display:block;
+  }
  
 .profile-viewer.container {
   display: flex;
@@ -73,6 +62,7 @@
   display: flex;
   width: 60%;
   font-weight: 700;
+  padding-top:10px;
 }
  
 .id-proof.container {
@@ -163,7 +153,7 @@
 }
 .candidate-name{
    color: #F9F9F9;
-  font-size: 18px;
+  font-size: 15px;
   margin-bottom: 30px;
   display: flex;
   gap: 10px;
@@ -174,6 +164,9 @@
   flex-direction: column;
   color: #F9F9F9;
   margin-top: 20px;
+  margin-left:10px;
+  padding-right:150px;
+  padding-bottom: 1px;
 }
 .green-background{
   background-color: #1AB900;
@@ -185,4 +178,48 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+.vertical-line {
+  display:flex;
+  padding-top:45px;
+}
+
+.Candidate-info-container{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Skill-set-container{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.email-address-container{
+  align-items: right;
+  color: #F9F9F9;
+  font-size: 12px;
+  float: right;
+}
+.email-detail-contact{
+  display:flex;
+  align-items: end;
+  margin-top:28px;
+  padding-top:49px;
+}
+
+.candidate-number{
+  color: #F9F9F9;
+  padding-left: 20px;
+}
+
+.candidate-mail{
+   color: #F9F9F9;
+    padding-left: 20px
+}
+
+.candidate-experience{
+  color: #F9F9F9;
+   padding-left: 20px;
 }

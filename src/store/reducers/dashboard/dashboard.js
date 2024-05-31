@@ -17,7 +17,8 @@ const dashboardSlice = createSlice({
       state.skillsOptions = action.payload;
     },
     setCandidates: (state, action) => {
-      state.dashBoardCandidates.candidateDetails = action.payload;
+      state.dashBoardCandidates.candidateDetails = action.payload.candidateDetails;
+      state.dashBoardCandidates.totalCount = action.payload.totalCount;
     },
   }
 });
@@ -49,12 +50,12 @@ export const GetCandidateDetails = ({
   onError = () => {},
 } = {}) => async(dispatch) => {
   const apiWrapper = new APIWrapper(dispatch);
-
   const candidatesResponse = await apiWrapper.getCandidateDetails({
     data,
     onSuccess,
     onError,
   });
+
   dispatch(setCandidates(candidatesResponse.data));
 };
 
