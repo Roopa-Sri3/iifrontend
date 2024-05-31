@@ -42,7 +42,7 @@ const AssessmentInstructions = () => {
       <div className="instructions-card">
         <b className="inst-title">Instructions</b>
         <div className="instructions-box">
-          <p className="greeting">Hello <b>{candidateName}</b>,</p>
+          <p className="greeting">Hello <b>{candidateName}</b></p>
           <p className="go-through">
             Go through the instructions before you commence the exam.
           </p>
