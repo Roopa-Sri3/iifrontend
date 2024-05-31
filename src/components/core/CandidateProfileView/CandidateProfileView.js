@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch,useSelector } from "react-redux";
 import { setAlert } from "../../../store/reducers/app/app";
 import { useNavigate } from "react-router-dom";
@@ -21,6 +21,8 @@ import {
 } from "../../../store/selector/app/app";
 import VerticalLine from "../../../assets/svgs/VerticalLine";
 import "./CandidateProfileView.css";
+import { GetTechSkills } from "../../../store/reducers/dashboard/dashboard";
+import { GetStoreSkills } from "../../../store/selector/dashboard/dashboard";
 
 function CandidateProfileView() {
   const navigate = useNavigate();
@@ -36,7 +38,16 @@ function CandidateProfileView() {
   const primarySkill = useSelector(GetPrimarySkill);
   const secondarySkills = useSelector(GetSecondarySkills);
   const rrNo = useSelector(GetRrNo);
+  const skills = useSelector(GetStoreSkills);
 
+  useEffect(() => {
+    dispatch(GetTechSkills({
+      onSuccess: () => { },
+      onError: () => { },
+    }));
+  }, [dispatch]);
+
+  console.log(skills);
   const handleNextPage = () => {
     navigate("/candidate/assessment-instructions");
   };
@@ -109,7 +120,7 @@ function CandidateProfileView() {
                   <div className="icon-item">
                     <ExperienceIcon />
                     <span className="candidate-experience">
-                      {experience}
+                     Experience {experience} Yr
                     </span>
                   </div>
                 </div>
@@ -123,17 +134,29 @@ function CandidateProfileView() {
                 <p>Skills:</p>
                 <div className="skills">
                   <div className="primary-skills">
-                    <Infocard text={primarySkill} background="blue-background" />
+                    {/* <Infocard text={primarySkill} background="blue-background" /> */}
+                    {skills.map((skill) => {
+                      if (skill.value === primarySkill) {
+                        <Infocard text={skill.label}
+                          background="blue-background"
+                        />;}})}
                   </div>
                   <div className="secondary-skills">
-                    <Infocard text={secondarySkills} background="blue-background" />
+                    {/* <Infocard text={secondarySkills} background="blue-background" /> */}
+                    {secondarySkills.map((secondarySkill) =>
+                      (
+                        <Infocard
+                          text={
+                            skills.find((skill) => skill.value === secondarySkill)?.label}
+                          background= "blue-background"
+                        />))}
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div className="email-address-container">
-            {/* {supportEmail} */}
+          For further queries reach out to raghu@gmail.com
           </div>
         </div>
       </div>
