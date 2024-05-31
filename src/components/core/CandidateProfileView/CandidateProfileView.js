@@ -27,6 +27,7 @@ import { GetStoreSkills } from "../../../store/selector/dashboard/dashboard";
 function CandidateProfileView() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const candidateId = sessionStorage.getItem("candidateId");
   const [selectedFile, setSelectedFile] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
   const [isValidFile, setIsValidFile] = useState(false);
@@ -75,7 +76,7 @@ function CandidateProfileView() {
       if (isValidFile) {
         dispatch(PostIdProofDetails({
           file: selectedFile,
-          candidateId: "00329248-165d-45e4-96dd-dcd1b3f31dac",
+          candidateId,
           onSuccess: () => {
             dispatch(setAlert({ message: "File uploaded successfully", messageType: "success" }));
             setErrorMessage("");
@@ -126,6 +127,7 @@ function CandidateProfileView() {
                 </div>
               </div>
             </div>
+
             <div className="Skill-set-container">
               <div className="vertical-line">
                 <VerticalLine />
