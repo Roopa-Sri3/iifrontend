@@ -48,7 +48,6 @@ function CandidateProfileView() {
     }));
   }, [dispatch]);
 
-  console.log(skills);
   const handleNextPage = () => {
     navigate("/candidate/assessment-instructions");
   };
