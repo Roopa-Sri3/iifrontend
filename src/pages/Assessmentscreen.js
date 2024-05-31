@@ -6,9 +6,9 @@ import Question from "../components/question";
 import ExamSubmitModal from "../components/modals/ExamSubmitModal";
 import TabSwitchWarningModal from "../components/modals/tabSwitchWarningModal/TabSwitchWarningModal";
 import { openModal } from "../store/reducers/app/app";
-import { endExam, setTimeUp } from "../store/reducers/screen/screen";
+import { PostAssessmentAnswers, endExam, setTimeUp } from "../store/reducers/screen/screen";
 import { incrementTabSwitchCount } from "../store/reducers/screen/screen";
-import { GetIsTimeUp, GetTabSwitchCount, GetWarningLimit } from "../store/selector/screen/screen";
+import { GetIsTimeUp, GetTabSwitchCount, GetWarningLimit, getAssessmentId } from "../store/selector/screen/screen";
 
 function Assessmentscreen(){
   const navigate = useNavigate();
@@ -16,6 +16,7 @@ function Assessmentscreen(){
   const isTimeUp = useSelector(GetIsTimeUp);
   const warningLimit = useSelector(GetWarningLimit);
   const tabSwitchCount = useSelector(GetTabSwitchCount);
+  const assessmentId = useSelector(getAssessmentId);
 
   useEffect(() => {
     const handleVisibilityChange = () => {
@@ -25,10 +26,22 @@ function Assessmentscreen(){
         if (tabSwitchCount < warningLimit) {
           dispatch(openModal({ modalName: "TabSwitchWarningModal" }));
         } else {
-          //write submit exam logic
-          dispatch(endExam());
-          dispatch(setTimeUp());
-          navigate("/candidate/feedback");
+          dispatch(PostAssessmentAnswers({
+            data:{
+              assessmentId : assessmentId,
+              action : "Tab Switch Warning Exceeded",
+            },
+            onSuccess: () => {
+              dispatch(endExam());
+              dispatch(setTimeUp());
+              navigate("/candidate/feedback");
+            },
+            onError: () => {
+              dispatch(endExam());
+              dispatch(setTimeUp());
+              navigate("/candidate/feedback");
+            }
+          }));
         }
       }
     };
@@ -38,7 +51,7 @@ function Assessmentscreen(){
     return () => {
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
-  }, [tabSwitchCount, dispatch, navigate, warningLimit]);
+  }, [assessmentId, dispatch, navigate, tabSwitchCount, warningLimit]);
 
   useEffect(() => {
     if (isTimeUp) {

@@ -4,7 +4,7 @@ import ProtectLoginRoute from "./privateRoutes/protectLoginRoute";
 import ProtectedDashboardRoute from "./privateRoutes/protectDashboardRoute";
 import Questionsconfiguration from "./pages/Questionsconfiguration";
 import Unauthorized from "./pages/Unauthorized";
-import TestSubmit from "../src/pages/TestSubmit";
+import Feedback from "../src/pages/Feedback";
 import AssessmentInstructions from "./pages/AssessmentInstructions";
 import Assessmentscreen from "./pages/Assessmentscreen";
 import VerifyAssessmentDetails from "./pages/VerifyAssessmentDetails";
@@ -60,7 +60,7 @@ const ROUTES_CONFIG = [
       },
       {
         path: "/candidate/feedback",
-        element: <TestSubmit />
+        element: <Feedback />
       },
       {
         path: "/candidate/thank-you",

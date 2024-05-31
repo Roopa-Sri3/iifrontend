@@ -185,6 +185,20 @@ class APIWrapper extends HTTPClient {
       onError,
     });
   }
+
+  async postFeedback({
+    data,
+    onSuccess = () => { },
+    onError = () => { },
+  }) {
+    return this.post({
+      data,
+      url: "/feedback/saveFeedbackDetails",
+      onSuccess,
+      onError,
+    });
+  }
+
 }
 
 export default APIWrapper;

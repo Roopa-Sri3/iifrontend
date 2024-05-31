@@ -89,6 +89,20 @@ export const PostAssessmentAnswers = ({
   });
 };
 
+export const PostFeedback = ({
+  data,
+  onSuccess = () => {},
+  onError = () => {},
+}) => async(dispatch) => {
+  const apiWrapper = new APIWrapper(dispatch);
+
+  await apiWrapper.postFeedback({
+    data,
+    onSuccess,
+    onError,
+  });
+};
+
 export const {
   setDuration,
   setTimeUp,
