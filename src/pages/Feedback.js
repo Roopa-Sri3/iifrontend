@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import CheckCircle from "../assets/svgs/CheckCircle";
 import Button from "../components/core/button/button";
 import FeedbackStarIcon from "../assets/svgs/FeebackStarIcon";
 import { ratingLabels } from "../shared/constants";
-import "./TestSubmit.css";
+import { PostFeedback } from "../store/reducers/screen/screen";
+
+import "./Feedback.css";
+import { getAssessmentId } from "../store/selector/screen/screen";
+import { GetCandidateId } from "../store/selector/candidate/candidate";
 
 const TestSubmit = () => {
-
+  const dispatch = useDispatch();
+  const assessmentId = useSelector(getAssessmentId);
+  const candidateId = useSelector(GetCandidateId);
   const navigate = useNavigate();
 
   const [rating, setRating] = useState(null);
@@ -52,8 +59,21 @@ const TestSubmit = () => {
   };
 
   const handleFeedbackSubmit = () => {
-    console.log(rating, "   ", comment);
-    navigate("/candidate/thank-you");
+    dispatch(PostFeedback({
+      data : {
+        assessmentId: assessmentId,
+        candidateId: candidateId,
+        rating:rating,
+        comments:comment
+      },
+      onSuccess: (response) => {
+        console.log("Feedback submitted successfully:", response);
+        navigate("/candidate/thank-you");
+      },
+      onError: (error) => {
+        console.error("Error submitting feedback:", error);
+      }
+    }));
   };
 
   return (
