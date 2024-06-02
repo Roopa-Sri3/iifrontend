@@ -147,13 +147,16 @@ function CandidateProfileView() {
                     })}
                   </div>
                   <div className="secondary-skills">
-                    {secondarySkills.map((secondarySkill) =>
+                    {/* {secondarySkills.map((secondarySkill) =>
                       (
                         <Infocard
                           text={
                             skills.find((skill) => skill.value === secondarySkill)?.label}
                           background= "blue-background"
-                        />))}
+                        />))} */}
+                    {skills.map((skill) => (
+                      skill.value === secondarySkills ? <Infocard text={skill.label} background="blue-background" /> : <></>
+                    ))}
                   </div>
                 </div>
               </div>
