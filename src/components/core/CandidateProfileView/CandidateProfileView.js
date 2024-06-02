@@ -1,51 +1,35 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch,useSelector } from "react-redux";
+import React, { useRef,useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { setAlert } from "../../../store/reducers/app/app";
 import { useNavigate } from "react-router-dom";
 import { PostIdProofDetails } from "../../../../src/store/reducers/candidate/candidate";
 import DocumentUploader from "../documentUploader/documentUploader";
 import RightArrowIcon from "../../../assets/svgs/rightArrowIcon";
-import CallIcon from "../../../assets/svgs/CallIcon";
-import MailIcon from "../../../assets/svgs/MailIcon";
-import ExperienceIcon from "../../../assets/svgs/ExperienceIcon";
+import CallIcon from "../../../../src/assets/svgs/CallIcon";
+import MailIcon from "../../../../src/assets/svgs/MailIcon";
+import ExperienceIcon from "../../../../src/assets/svgs/ExperienceIcon";
 import Infocard from "./Infocard/Infocard";
-import {
-  GetCandidateName,
-  GetPhoneNumber,
-  GetEmail,
-  GetExperience,
-  GetPrimarySkill,
-  GetSecondarySkills,
-  GetRrNo,
-} from "../../../store/selector/app/app";
 import VerticalLine from "../../../assets/svgs/VerticalLine";
-import { GetTechSkills } from "../../../store/reducers/dashboard/dashboard";
-import { GetStoreSkills } from "../../../store/selector/dashboard/dashboard";
 import "./CandidateProfileView.css";
+import { GetCandidateEmail, GetCandidateExperience, GetCandidateName, GetCandidateNumber, GetCandidatePrimarySkill, GetCandidateRrno, GetCandidateSecondarySkills, GetStoreSkillsOptions } from "../../../store/selector/candidate/candidate";
 
 function CandidateProfileView() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const candidateId = sessionStorage.getItem("candidateId");
+  const candidateName = useSelector(GetCandidateName);
+  const phoneNumber = useSelector(GetCandidateNumber);
+  const email = useSelector(GetCandidateEmail);
+  const experience = useSelector(GetCandidateExperience);
+  const primarySkill = useSelector(GetCandidatePrimarySkill);
+  const secondarySkills = useSelector(GetCandidateSecondarySkills);
+  const rrNo = useSelector(GetCandidateRrno);
+  const skillsOptions = useSelector(GetStoreSkillsOptions);
   const [selectedFile, setSelectedFile] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
   const [isValidFile, setIsValidFile] = useState(false);
   const [uploadFailed, setUploadFailed] = useState(false);
-  const candidateName = useSelector(GetCandidateName);
-  const phoneNumber = useSelector(GetPhoneNumber);
-  const email = useSelector(GetEmail);
-  const experience = useSelector(GetExperience);
-  const primarySkill = useSelector(GetPrimarySkill);
-  const secondarySkills = useSelector(GetSecondarySkills);
-  const rrNo = useSelector(GetRrNo);
-  const skills = useSelector(GetStoreSkills);
-
-  useEffect(() => {
-    dispatch(GetTechSkills({
-      onSuccess: () => { },
-      onError: () => { },
-    }));
-  }, [dispatch]);
+  const fileRef = useRef();
 
   const handleNextPage = () => {
     navigate("/candidate/assessment-instructions");
@@ -67,6 +51,7 @@ function CandidateProfileView() {
     setErrorMessage("");
     setIsValidFile(false);
     setUploadFailed(false);
+    fileRef.current.value = null;
   };
 
   const handleSubmit = () => {
@@ -92,6 +77,12 @@ function CandidateProfileView() {
     }
   };
 
+  const getSkillLabel = (skill) => {
+    const filteredSkill = skillsOptions.find((option) => option.value === skill);
+
+    return filteredSkill ? filteredSkill.label : "";
+  };
+
   return (
     <>
       <div className="header-container">
@@ -102,7 +93,7 @@ function CandidateProfileView() {
                 <div className="icon-container">
                   <div className="candidate-name">
                     {candidateName}
-                    <Infocard text={rrNo} background="green-background" />
+                    <Infocard text={`RR# ${rrNo}`} background="green-background" />
                   </div>
                   <div className="icon-item">
                     <CallIcon />
@@ -119,7 +110,7 @@ function CandidateProfileView() {
                   <div className="icon-item">
                     <ExperienceIcon />
                     <span className="candidate-experience">
-                     Experience {experience} Yr
+                    Experience {experience} {experience > 1 ? "Yrs" : "Yr"}
                     </span>
                   </div>
                 </div>
@@ -134,28 +125,19 @@ function CandidateProfileView() {
                 <p>Skills:</p>
                 <div className="skills">
                   <div className="primary-skills">
-                    {skills.map((skill) => {
-                      if (skill.value === primarySkill) {
-                        return (
-                          <Infocard
-                            text={skill.label}
-                            background="blue-background"
-                          />
-                        );
-                      }
-                      return null;
-                    })}
+                    <Infocard
+                      text={getSkillLabel(primarySkill)}
+                      background="blue-background"
+                    />
                   </div>
                   <div className="secondary-skills">
-                    {/* {secondarySkills.map((secondarySkill) =>
-                      (
-                        <Infocard
-                          text={
-                            skills.find((skill) => skill.value === secondarySkill)?.label}
-                          background= "blue-background"
-                        />))} */}
-                    {skills.map((skill) => (
-                      skill.value === secondarySkills ? <Infocard text={skill.label} background="blue-background" /> : <></>
+                    {secondarySkills
+                    && secondarySkills.length > 0
+                    && secondarySkills.map((secondarySkill) =>(
+                      <Infocard
+                        text={getSkillLabel(secondarySkill)}
+                        background="blue-background"
+                      />
                     ))}
                   </div>
                 </div>
@@ -163,11 +145,11 @@ function CandidateProfileView() {
             </div>
           </div>
           <div className="email-address-container">
-          For further queries reach out to raghu@gmail.com
+            <p>For further queries reach out to  Raghu@gmail.com </p>
           </div>
         </div>
       </div>
-
+      {/* http://localhost:3000//candidate/verify-assessment-details?candidateId=65ecfc67-e088-4813-94e5-3d14d753f19d */}
       <div className="profile-viewer container">
         <div className="id-proof-title">
           <p>ID Proof</p>
@@ -183,8 +165,9 @@ function CandidateProfileView() {
               errorMessage={errorMessage}
               handleDelete={handleDelete}
               uploadFailed={uploadFailed}
+              fileRef={fileRef}
             />
-            {errorMessage && <p className="error-message">{errorMessage}</p>}
+            {errorMessage && <p className="error-document-message">{errorMessage}</p>}
             <div className="button-layout">
               <button
                 className="upload-button"

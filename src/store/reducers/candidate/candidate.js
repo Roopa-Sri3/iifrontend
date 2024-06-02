@@ -9,9 +9,10 @@ const initialState = {
   email:"",
   experience:"",
   primarySkill:"",
-  secondarySkills:"",
+  secondarySkills:[],
   rrNo:"",
   linkExpired:false,
+  skillsOptions: [],
 };
 
 const candidateSlice = createSlice({
@@ -46,6 +47,10 @@ const candidateSlice = createSlice({
       state.rrNo = rrNo;
       state.linkExpired = linkExpired;
     },
+    setSkills: (state, action) => {
+      state.skillsOptions = action.payload;
+    },
+
   }
 });
 
@@ -53,6 +58,7 @@ export const {
   setCandidateId,
   setIdProofStatus,
   setCandidateDetails,
+  setSkills,
 } = candidateSlice.actions;
 
 export default candidateSlice.reducer;
@@ -85,4 +91,18 @@ export const VerifyCandidateStatus = ({
     onSuccess,
     onError,
   });
+};
+
+export const GetTechnicalSkillsForCandidate = ({
+  onSuccess = () => {},
+  onError = () => {},
+} = {}) => async(dispatch) => {
+  const apiWrapper = new APIWrapper(dispatch);
+
+  const skills = await apiWrapper.getTechSkills({
+    onSuccess,
+    onError,
+  });
+
+  dispatch(setSkills(skills));
 };

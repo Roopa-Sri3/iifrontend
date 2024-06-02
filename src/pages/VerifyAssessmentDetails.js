@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import Loading from "./Loading";
-import { VerifyCandidateStatus, setCandidateDetails, setCandidateId } from "../store/reducers/candidate/candidate";
+import { GetTechnicalSkillsForCandidate, VerifyCandidateStatus, setCandidateDetails, setCandidateId } from "../store/reducers/candidate/candidate";
 
 function VerifyAssessmentDetails () {
   const dispatch = useDispatch();
@@ -23,6 +23,7 @@ function VerifyAssessmentDetails () {
         dispatch(setCandidateDetails({
           ...candidateDetails
         }));
+        dispatch(GetTechnicalSkillsForCandidate({}));
         // navigate to upload aadhaar page
         navigate("/candidate/candidate-profile-view");
       }
