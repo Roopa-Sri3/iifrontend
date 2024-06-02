@@ -11,6 +11,7 @@ const DocumentUploader = ({
   handleDelete,
   errorMessage,
   uploadFailed,
+  fileRef,
 }) => (
   <div>
     <FileUploader
@@ -21,6 +22,7 @@ const DocumentUploader = ({
       secondaryText={secondaryText}
       secondaryTextClassName="custom-secondary-text"
       handleFiles={handleFiles}
+      fileRef={fileRef}
     />
     {selectedFile && (
       <UploadItems
