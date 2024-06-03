@@ -59,11 +59,12 @@ class HTTPClient {
       onSuccess(responseData);
       result = responseData;
     } catch (e) {
-      onError(e);
+      const errorResponse = e.response?.data || {message:e.message};
       result = {
         isError: true,
-        errorMessage: e.message,
+        errorMessage: errorResponse.message,
       };
+      onError(result);
     } finally {
       this.dispatch(decrementApiCounter());
     }
@@ -91,11 +92,12 @@ class HTTPClient {
       onSuccess(responseData);
       result = responseData;
     } catch (e) {
-      onError(e);
+      const errorResponse = e.response?.data || {message:e.message};
       result = {
         isError: true,
-        errorMessage: e.message,
+        errorMessage: errorResponse.message,
       };
+      onError(result);
     } finally {
       this.dispatch(decrementApiCounter());
     }

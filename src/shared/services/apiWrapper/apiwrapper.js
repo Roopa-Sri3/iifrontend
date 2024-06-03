@@ -2,7 +2,7 @@ import HTTPClient from "../httpclient";
 class APIWrapper extends HTTPClient {
   constructor(dispatch = () => { }) {
     super();
-    this.baseURL = "https://dev-interviewinsights.innovasolutions.com:7443/InterviewInsights-0.0.1-SNAPSHOT";
+    this.baseURL = process.env.REACT_APP_API_BASE_URL;
     this.dispatch = dispatch;
   }
   async postUserCredentials({

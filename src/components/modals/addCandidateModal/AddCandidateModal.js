@@ -6,17 +6,16 @@ import MultiSelect from "../../core/multiselect/multiselect";
 import Checkbox from "../../core/checkbox/checkbox";
 import AddCandidateModalHeader from "./AddCandidateModalHeader";
 import AddCandidateModalActions from "./AddCandidateModalActions";
-import {closeModal} from "../../../store/reducers/app/app";
-import { IsModalOpen, GetModalData, GetToken } from "../../../store/selector/app/app";
+import {closeModal, setAlert} from "../../../store/reducers/app/app";
+import { AddCandidate, EditCandidate } from "../../../store/reducers/dashboard/dashboard.js";
+import { IsModalOpen, GetModalData } from "../../../store/selector/app/app";
 import { GetStoreSkills } from "../../../store/selector/dashboard/dashboard";
 import "./AddCandidateModal.css";
 
-const AddCandidateModal = ({
-  handleAddOrEditCandidate = () => {}
-}) => {
+const AddCandidateModal = ({fetchCandidates}) => {
   const dispatch = useDispatch();
   const options = useSelector(GetStoreSkills);
-  const token = useSelector(GetToken);
+  const token = sessionStorage.getItem("Token");
   const IsAddCandidateModalOpen = useSelector(
     (state) => IsModalOpen(state, "AddCandidateModal"),
   );
@@ -48,8 +47,8 @@ const AddCandidateModal = ({
 
     const updatedSecondarySkills = selectedSecondarySkills.filter(
       (skill) => !selectedValues.some(
-        (primarySkill) => primarySkill.value === skill.value));
-
+        (primarySkill) => primarySkill.value === skill.value)
+    );
     setSelectedSecondarySkills(updatedSecondarySkills);
   };
 
@@ -170,6 +169,63 @@ const AddCandidateModal = ({
     return char.toUpperCase();
   });
 
+  const handleAddOrEditCandidate = ({
+    mode,
+    candidateId,
+    ...formData
+  }) => {
+    const handleSuccess = () => {
+      console.log("added");
+      let message;
+      if (mode === "EDIT"){
+        message = "Candidate details updated successfully";
+      } else{
+        message = formData.shareLink ? "Candidate added and link shared successfully" : "Candidate added successfully";
+      }
+      dispatch(setAlert({
+        message,
+        messageType: "success"
+      }));
+      resetForm();
+      dispatch(closeModal());
+      fetchCandidates();
+    };
+
+    const handleError = (error) => {
+      if((error.errorMessage === "Email and Mobile Number already exist") || (error.errorMessage === "Email already exists") || (error.errorMessage === "Mobile Number already exists")){
+        const message = error.errorMessage;
+        dispatch(setAlert({
+          message,
+          messageType: "failure"
+        }));
+      }
+      else{
+        const message = (mode !== "EDIT" && formData.shareLink) ? "Failed to send link and add candidate" : "Failed to add candidate";
+        dispatch(setAlert({
+          message,
+          messageType: "failure"
+        }));
+      }
+    };
+
+    if (mode === "EDIT") {
+      dispatch(EditCandidate({
+        data: {
+          candidateId,
+          ...formData
+        },
+        onSuccess: handleSuccess,
+        onError: handleError
+      }));
+    } else {
+      dispatch(AddCandidate({
+        data: { ...formData },
+        onSuccess: handleSuccess,
+        onError: handleError
+      }));
+    }
+  };
+
   const handleSubmit = () => {
     const isValid = validateForm();
     if (isValid){
@@ -183,7 +239,7 @@ const AddCandidateModal = ({
         secondaryTechSkill : selectedSecondarySkills.map(skill => skill.value),
         rrNo:rRNumber,
         shareLink:isChecked,
-        token: token,
+        token,
       };
 
       handleAddOrEditCandidate({
@@ -191,8 +247,6 @@ const AddCandidateModal = ({
         mode: storeModalData && storeModalData.mode,
         candidateId: storeModalData.candidateId,
       });
-      resetForm();
-      dispatch(closeModal());
     }
   };
 
