@@ -11,7 +11,8 @@ import ExperienceIcon from "../../../../src/assets/svgs/ExperienceIcon";
 import Infocard from "./Infocard/Infocard";
 import VerticalLine from "../../../assets/svgs/VerticalLine";
 import "./CandidateProfileView.css";
-import { GetCandidateEmail, GetCandidateExperience, GetCandidateName, GetCandidateNumber, GetCandidatePrimarySkill, GetCandidateRrno, GetCandidateSecondarySkills, GetStoreSkillsOptions } from "../../../store/selector/candidate/candidate";
+import { GetCandidateEmail, GetCandidateExperience, GetCandidateName, GetCandidateNumber, GetCandidatePrimarySkill, GetCandidateSecondarySkills, GetStoreSkillsOptions } from "../../../store/selector/candidate/candidate";
+import AccountCircle from "../../../assets/svgs/AccountCircle";
 
 function CandidateProfileView() {
   const navigate = useNavigate();
@@ -23,7 +24,6 @@ function CandidateProfileView() {
   const experience = useSelector(GetCandidateExperience);
   const primarySkill = useSelector(GetCandidatePrimarySkill);
   const secondarySkills = useSelector(GetCandidateSecondarySkills);
-  const rrNo = useSelector(GetCandidateRrno);
   const skillsOptions = useSelector(GetStoreSkillsOptions);
   const [selectedFile, setSelectedFile] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
@@ -91,9 +91,14 @@ function CandidateProfileView() {
             <div className="Candidate-info-container">
               <div className="icon-wrapper">
                 <div className="icon-container">
-                  <div className="candidate-name">
-                    {candidateName}
-                    <Infocard text={`RR# ${rrNo}`} background="green-background" />
+                  <div className="candidate-title">
+                    <h5>Candidate Details</h5>
+                  </div>
+                  <div className="icon-item">
+                    <AccountCircle />
+                    <span className="candidate-name">
+                      {candidateName}
+                    </span>
                   </div>
                   <div className="icon-item">
                     <CallIcon />
