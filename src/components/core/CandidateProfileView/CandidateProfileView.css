@@ -27,7 +27,7 @@
     background: linear-gradient(90deg, #326D62 0%, #0E5291 51.6%, #0E034F 100%);
     justify-content: space-between;
     margin-top:34px;
-}
+  }
  
 .icon-wrapper{
      height: 100%;
@@ -72,9 +72,8 @@
  
 .id-proof-text {
   font-weight: 450;
-  padding-top: 5px;
-  margin-bottom: 5px;
-  padding-left: 10px;
+  margin: 12px 0 1px;
+  padding: 0 4px;
 }
  
 .id-proof-text::after {
@@ -85,7 +84,6 @@
 .id-proof-super-container {
   background-color: #FFFFFF;
   width: 60%;
-  border-radius: 5px;
   border-radius: 5px;
 }
  
@@ -131,10 +129,9 @@
 .button-layout {
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 12px;
+  margin-bottom: 5px;
   cursor: pointer;
-  padding-left: 12px;
-  padding-top: 10px;
+  padding:10px 1px;
 }
  
 .upload-button {
@@ -153,7 +150,7 @@
 }
 
 .candidate-name{
-   color: #F9F9F9;
+  color: #F9F9F9;
   font-size: 15px;
   margin-bottom: 30px;
   display: flex;
@@ -170,6 +167,7 @@
   padding-right:150px;
   padding-bottom: 1px;
 }
+
 .green-background{
   background-color: #1AB900;
 }
@@ -215,14 +213,15 @@
 }
 
 .candidate-mail{
-   color: #F9F9F9;
-    padding-left: 20px
+  color: #F9F9F9;
+  padding-left: 20px
 }
 
 .candidate-experience{
   color: #F9F9F9;
-   padding-left: 20px;
+  padding-left: 20px;
 }
+
 .secondary-skills{
   display: flex;
   gap: 10px;
