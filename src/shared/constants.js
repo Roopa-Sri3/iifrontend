@@ -27,7 +27,7 @@ export const options = [
 
 export const assessmentInstructions =
 [
-  "This is an online assessment",
+  "This is an online assessment.",
 
   "You need to use google chrome browser for writing this assessment.",
 
@@ -37,7 +37,7 @@ export const assessmentInstructions =
 
   "On selecting the answer you should click 'next question' button to go the next question and 'submit' button to submit the answer. To navigate to respective questions, you can use the circle icon. You can find only submit button at the last question to submit the assessment.",
 
-  "Note- please don't change tabs or refresh the page while writing the examination. All these are recorded and can lead to disqualification.",
+  "Note- please don't change the tabs, while writing the examination.All these are recorded and can lead to disqualification which results in force test submission.",
 
   "If you switch tabs the test will be automatically submitted when you exceed limited number of warnings.",
 
@@ -45,7 +45,7 @@ export const assessmentInstructions =
 
   "This test is designed to grade your ability on your skills based on your experience and domain.",
 
-  "Don’t close the tab or else test will get automatically submitted.",
+  ".Don’t close the tab or refresh the tab else test will get automatically submitted.",
 
   "On top of the page, there's a submit button which, when clicked, will submit the exam.",
 
