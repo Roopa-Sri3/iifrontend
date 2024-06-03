@@ -5,17 +5,10 @@ import SubFooter from "../components/table/SubFooter/SubFooter";
 import SubHeader from "../components/table/SubHeader/SubHeader";
 import SubLayout from "../components/table/SubLayout/SubLayout";
 import UserDisplay from "../components/UserDisplay/UserDisplay";
-import
-AddCandidateModal
-  from "../components/modals/addCandidateModal/AddCandidateModal";
+import AddCandidateModal from "../components/modals/addCandidateModal/AddCandidateModal";
 import FeedbackModal from "../components/modals/feedbackModal/FeedbackModal";
-import { openModal, setAlert, } from "../store/reducers/app/app";
-import {
-  AddCandidate,
-  EditCandidate,
-  GetCandidateDetails,
-  GetTechSkills,
-} from "../store/reducers/dashboard/dashboard.js";
+import { openModal } from "../store/reducers/app/app";
+import { GetCandidateDetails, GetTechSkills } from "../store/reducers/dashboard/dashboard.js";
 import { GetUserRole } from "../store/selector/app";
 import { GetStoreCandidates, GetStoreCandidatesTotalCount } from "../store/selector/dashboard/dashboard.js";
 import ClearTextIcon from "../assets/svgs/CrossMark.js";
@@ -23,8 +16,8 @@ import Search from "../assets/svgs/Search";
 import AddIcon from "../assets/svgs/AddIcon.js";
 import StatusFilter from "../components/table/statuFilter/StatuFilter.js";
 import LogoutModal from "../components/modals/logoutModal/LogoutModal.js";
-import "./Dashboard.css";
 import { statuses } from "../shared/constants.js";
+import "./Dashboard.css";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -91,56 +84,6 @@ const Dashboard = () => {
       modalName: "AddCandidateModal",
       modalData: {}
     }));
-  };
-
-  const handleAddOrEditCandidate = ({
-    mode,
-    candidateId,
-    ...formData
-  }) => {
-    if (mode === "EDIT") {
-      dispatch(EditCandidate({
-        data: {
-          candidateId,
-          ...formData
-        },
-        onSuccess: () => {
-          fetchCandidates();
-          dispatch(setAlert({
-            message: "Candidate details updated successfully",
-            messageType: "success"
-          }));
-        },
-        onError: () => {
-          dispatch(setAlert({
-            message: "Failed to update details",
-            messageType: "failure"
-          }));
-        }
-      }));
-    } else {
-      dispatch(AddCandidate({
-        data: { ...formData },
-        onSuccess: () => {
-          fetchCandidates();
-
-          const message = formData.shareLink ? "Candidate added and link shared successfully" : "Candidate added successfully";
-
-          dispatch(setAlert({
-            message,
-            messageType: "success"
-          }));
-        },
-        onError: () => {
-          const message = formData.shareLink ? "Failed to send link and add candidate" : "Failed to add candidate";
-
-          dispatch(setAlert({
-            message,
-            messageType: "failure"
-          }));
-        }
-      }));
-    }
   };
 
   const handleCheckboxChange = (optionSelected, selected) => {
@@ -259,7 +202,7 @@ const Dashboard = () => {
           />
         </div>
         <AddCandidateModal
-          handleAddOrEditCandidate={handleAddOrEditCandidate}
+          fetchCandidates={fetchCandidates}
         />
         <FeedbackModal />
         <LogoutModal />
@@ -269,4 +212,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-
