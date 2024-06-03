@@ -175,7 +175,6 @@ const AddCandidateModal = ({fetchCandidates}) => {
     ...formData
   }) => {
     const handleSuccess = () => {
-      console.log("added");
       let message;
       if (mode === "EDIT"){
         message = "Candidate details updated successfully";
