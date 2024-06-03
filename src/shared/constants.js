@@ -3,7 +3,7 @@
  * File to save all constants in app
  */
 
-export const downloadUrl = "http://10.139.166.48:8081/InterviewInsights-0.0.1-SNAPSHOT/interviewinsights/downloadTemplate";
+export const downloadUrl = "https://dev-interviewinsights.innovasolutions.com:7443/InterviewInsights-0.0.1-SNAPSHOT/interviewinsights/downloadTemplate";
 
 export const instructions =
 [
