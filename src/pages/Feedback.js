@@ -68,6 +68,7 @@ const TestSubmit = () => {
       onSuccess: (response) => {
         console.log("Feedback submitted successfully:", response);
         navigate("/candidate/thank-you");
+        sessionStorage.removeItem("candidateId");
       },
       onError: (error) => {
         console.error("Error submitting feedback:", error);
