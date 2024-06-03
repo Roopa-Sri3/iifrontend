@@ -3,8 +3,6 @@
  * File to save all constants in app
  */
 
-export const downloadUrl = "https://dev-interviewinsights.innovasolutions.com:7443/InterviewInsights-0.0.1-SNAPSHOT/interviewinsights/downloadTemplate";
-
 export const instructions =
 [
   "Download Template: Before importing questions, download the template file by clicking the 'Download Template' button below. This file contains the required format for uploading questions." ,
