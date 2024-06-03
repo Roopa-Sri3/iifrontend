@@ -6,7 +6,7 @@ const appSlice = createSlice({
   initialState: {
     isUserLoggedIn: false,
     isUserLoading: true,
-    // token: "",
+    // token: ",
     userName: "",
     firstName: "",
     lastName: "",
