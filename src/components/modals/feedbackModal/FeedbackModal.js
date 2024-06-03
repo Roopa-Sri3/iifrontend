@@ -28,7 +28,7 @@ const FeedbackModal = () => {
 
     const stars = [];
     for (let i = 0; i < 5; i++) {
-      const fillColor = i < storeModalData.feedback ? "#FFD700" : "#D9D9D9";
+      const fillColor = i < storeModalData.rating ? "#FFD700" : "#D9D9D9";
       const label = ratingLabels[i];
       stars.push(
         <div key={`star-${label}`} className="star-with-label">
@@ -48,10 +48,10 @@ const FeedbackModal = () => {
           size="model-md"
           modalHeader={
             <div className="feedback-header">
-              <div className="candidate-name">
-                {storeModalData.candidateName}
+              <div className="candidate-name-data">
+                {storeModalData.fullName}
               </div>
-              <CloseIcon color={"black"} onClick={handleCloseModal} />
+              <CloseIcon className="modal-close-icon" color={"black"} onClick={handleCloseModal} />
             </div>
           }
         >

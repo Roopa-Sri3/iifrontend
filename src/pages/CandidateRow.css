@@ -6,6 +6,7 @@
     color: #0b55bd;
     font-size: 14px;
     margin-right: 15px;
+    cursor: pointer;
   }
 
 .edit-icon{
@@ -25,7 +26,7 @@
 }
 
 .feedback-container{
-  display:inline-flex ;
+  display:flex ;
   font-weight: 500;
 }
 

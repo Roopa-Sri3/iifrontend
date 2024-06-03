@@ -9,7 +9,6 @@ import {
   GetCandidateName ,
   GetCandidateNumber,
   GetCandidatePrimarySkill,
-  GetCandidateRrno ,
   GetCandidateSecondarySkills,
   GetStoreSkillsOptions
 } from "../../../store/selector/candidate/candidate";
@@ -20,7 +19,6 @@ import MailIcon from "../../../../src/assets/svgs/MailIcon";
 import ExperienceIcon from "../../../../src/assets/svgs/ExperienceIcon";
 import Infocard from "./Infocard/Infocard";
 import VerticalLine from "../../../assets/svgs/VerticalLine";
-import { GetCandidateEmail, GetCandidateExperience, GetCandidateName, GetCandidateNumber, GetCandidatePrimarySkill, GetCandidateSecondarySkills, GetStoreSkillsOptions } from "../../../store/selector/candidate/candidate";
 import AccountCircle from "../../../assets/svgs/AccountCircle";
 import "./CandidateProfileView.css";
 
