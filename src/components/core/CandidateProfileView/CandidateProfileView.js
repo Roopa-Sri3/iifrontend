@@ -149,7 +149,6 @@ function CandidateProfileView() {
           </div>
         </div>
       </div>
-      {/* http://localhost:3000//candidate/verify-assessment-details?candidateId=65ecfc67-e088-4813-94e5-3d14d753f19d */}
       <div className="profile-viewer container">
         <div className="id-proof-title">
           <p>ID Proof</p>
