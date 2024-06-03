@@ -33,7 +33,7 @@ frontend-deploy:
         - chmod 644 ~/.ssh/known_hosts
   script:
      
-      - scp -r /home/roopagaddam/builds/W3MLysJnj/0/capstone_2024/interview-insights/interview-insights-web/build roopagaddam@10.139.166.48:/var/www/
+      - scp -r /home/roopagaddam/builds/W3MLysJnj/0/capstone_2024/interview-insights/interview-insights-web/build roopagaddam@10.139.166.48:/var/www/develop
   only:
       - develop
 
