@@ -74,10 +74,20 @@ const CandidateRow = ({ candidate }) => {
             <VisibilityComponent
               style={{marginLeft: "40px",cursor:"pointer"}}
               onClick={handleOpenModal}/>
-            <span className="comments-text"
-              style={{ marginLeft: "10px" }}>
-            Comments
-            </span>
+            <div
+              className="comments-text"
+              style={{ marginLeft: "10px" }}
+              role="button"
+              tabindex="0"
+              onClick={() => handleOpenModal()}
+              onKeyDown={(event) => {
+                if (event.key === "Enter") {
+                  handleOpenModal();
+                }
+              }}
+            >
+              Comments
+            </div>
           </div>
         ) : (
           <div className="feedback-container">N/A</div>
