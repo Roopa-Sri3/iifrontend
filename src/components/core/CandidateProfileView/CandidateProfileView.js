@@ -77,7 +77,6 @@ function CandidateProfileView() {
           onError: () => {
             setUploadFailed(true);
             dispatch(setAlert({ message: "Failed to upload", messageType: "failure" }));
-            console.log(Error);
           }
         }));
       } else {
