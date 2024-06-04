@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { setAlert } from "../../../store/reducers/app/app";
 import { useNavigate } from "react-router-dom";
 import { PostIdProofDetails } from "../../../../src/store/reducers/candidate/candidate";
@@ -9,14 +9,22 @@ import CallIcon from "../../../assets/svgs/CallIcon";
 import MailIcon from "../../../assets/svgs/MailIcon";
 import ExperienceIcon from "../../../assets/svgs/ExperienceIcon";
 import Infocard from "./Infocard/Infocard";
-import "./CandidateProfileView.css";
-import { candidateDetails } from "../../../components/core/CandidateProfileView/Infocard/Constants";
 import VerticalLine from "../../../assets/svgs/VerticalLine";
 import "./CandidateProfileView.css";
+import { GetCandidateEmail, GetCandidateExperience, GetCandidateName, GetCandidateNumber, GetCandidatePrimarySkill, GetCandidateRrno, GetCandidateSecondarySkills, GetStoreSkillsOptions } from "../../../store/selector/candidate/candidate";
 
 function CandidateProfileView() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const candidateId = sessionStorage.getItem("candidateId");
+  const candidateName = useSelector(GetCandidateName);
+  const phoneNumber = useSelector(GetCandidateNumber);
+  const email = useSelector(GetCandidateEmail);
+  const experience = useSelector(GetCandidateExperience);
+  const primarySkill = useSelector(GetCandidatePrimarySkill);
+  const secondarySkills = useSelector(GetCandidateSecondarySkills);
+  const rrNo = useSelector(GetCandidateRrno);
+  const skillsOptions = useSelector(GetStoreSkillsOptions);
   const [selectedFile, setSelectedFile] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
   const [isValidFile, setIsValidFile] = useState(false);
@@ -67,6 +75,12 @@ function CandidateProfileView() {
     }
   };
 
+  const getSkillLabel = (skill) => {
+    const filteredSkill = skillsOptions.find((option) => option.value === skill);
+
+    return filteredSkill ? filteredSkill.label : "";
+  };
+
   return (
     <>
       <div className="header-container">
@@ -76,30 +90,31 @@ function CandidateProfileView() {
               <div className="icon-wrapper">
                 <div className="icon-container">
                   <div className="candidate-name">
-                    {candidateDetails.candidateName}
-                    <Infocard text={candidateDetails.uniqueNumber} background="green-background" />
+                    {candidateName}
+                    <Infocard text={`RR# ${rrNo}`} background="green-background" />
                   </div>
                   <div className="icon-item">
                     <CallIcon />
                     <span className="candidate-number">
-                      {candidateDetails.phoneNumber}
+                      {phoneNumber}
                     </span>
                   </div>
                   <div className="icon-item">
                     <MailIcon />
                     <span className="candidate-mail">
-                      {candidateDetails.Email}
+                      {email}
                     </span>
                   </div>
                   <div className="icon-item">
                     <ExperienceIcon />
                     <span className="candidate-experience">
-                      {candidateDetails.Experience}
+                    Experience {experience} {experience > 1 ? "Yrs" : "Yr"}
                     </span>
                   </div>
                 </div>
               </div>
             </div>
+
             <div className="Skill-set-container">
               <div className="vertical-line">
                 <VerticalLine />
@@ -108,21 +123,30 @@ function CandidateProfileView() {
                 <p>Skills:</p>
                 <div className="skills">
                   <div className="primary-skills">
-                    <Infocard text={candidateDetails.primarySkills} background="blue-background" />
+                    <Infocard
+                      text={getSkillLabel(primarySkill)}
+                      background="blue-background"
+                    />
                   </div>
                   <div className="secondary-skills">
-                    <Infocard text={candidateDetails.secondarySkills} background="blue-background" />
+                    {secondarySkills
+                    && secondarySkills.length > 0
+                    && secondarySkills.map((secondarySkill) =>(
+                      <Infocard
+                        text={getSkillLabel(secondarySkill)}
+                        background="blue-background"
+                      />
+                    ))}
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div className="email-address-container">
-            {candidateDetails.supportEmail}
+            <p>For further queries reach out to  Raghu@gmail.com </p>
           </div>
         </div>
       </div>
-
       <div className="profile-viewer container">
         <div className="id-proof-title">
           <p>ID Proof</p>
