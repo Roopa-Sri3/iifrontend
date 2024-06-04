@@ -17,6 +17,8 @@ frontend_build:
             - ./build
     only:
         - develop
+        - release
+        - main
         
 frontend-deploy:
   stage: deploy
@@ -33,7 +35,7 @@ frontend-deploy:
         - chmod 644 ~/.ssh/known_hosts
   script:
      
-      - scp -r /home/roopagaddam/builds/W3MLysJnj/0/capstone_2024/interview-insights/interview-insights-web/build roopagaddam@10.139.166.48:/var/www/develop
+      - scp -r ${CI_BUILDS_DIR}${CI_PROJECT_PATH}${CI_ARTIFACT_PATH} $DEPLOY_HOST:$DEPLOY_PATH_DEV
   only:
       - develop
 
