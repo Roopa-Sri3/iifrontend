@@ -48,7 +48,8 @@ function CandidateProfileView() {
       setSelectedFile(file);
       setIsValidFile(
         file.size <= 2 * 1024 * 1024 &&
-        ["image/jpeg", "image/jpg", "image/png"].includes(file.type)
+        file.size >= 10 * 1024 &&
+          ["image/jpeg", "image/jpg", "image/png"].includes(file.type)
       );
       setUploadFailed(false);
     }
@@ -76,6 +77,7 @@ function CandidateProfileView() {
           onError: () => {
             setUploadFailed(true);
             dispatch(setAlert({ message: "Failed to upload", messageType: "failure" }));
+            console.log(Error);
           }
         }));
       } else {
