@@ -17,6 +17,8 @@
   font-size: 12.25px;
   line-height: 18.38px;
   align-self: flex-start;
+  margin-top: 5px;
+  margin-bottom: 0px;
 }
 
 .add-candidate-field-error {
@@ -72,5 +74,3 @@
 .experience-input-field span p{
   font-size: 12px;
 }
-
-

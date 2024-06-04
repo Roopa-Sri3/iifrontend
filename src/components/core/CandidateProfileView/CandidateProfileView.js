@@ -3,6 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { setAlert } from "../../../store/reducers/app/app";
 import { useNavigate } from "react-router-dom";
 import { PostIdProofDetails } from "../../../../src/store/reducers/candidate/candidate";
+import {
+  GetCandidateEmail,
+  GetCandidateExperience,
+  GetCandidateName ,
+  GetCandidateNumber,
+  GetCandidatePrimarySkill,
+  GetCandidateSecondarySkills,
+  GetStoreSkillsOptions
+} from "../../../store/selector/candidate/candidate";
 import DocumentUploader from "../documentUploader/documentUploader";
 import RightArrowIcon from "../../../assets/svgs/rightArrowIcon";
 import CallIcon from "../../../assets/svgs/CallIcon";
@@ -10,8 +19,8 @@ import MailIcon from "../../../assets/svgs/MailIcon";
 import ExperienceIcon from "../../../assets/svgs/ExperienceIcon";
 import Infocard from "./Infocard/Infocard";
 import VerticalLine from "../../../assets/svgs/VerticalLine";
+import AccountCircle from "../../../assets/svgs/AccountCircle";
 import "./CandidateProfileView.css";
-import { GetCandidateEmail, GetCandidateExperience, GetCandidateName, GetCandidateNumber, GetCandidatePrimarySkill, GetCandidateRrno, GetCandidateSecondarySkills, GetStoreSkillsOptions } from "../../../store/selector/candidate/candidate";
 
 function CandidateProfileView() {
   const navigate = useNavigate();
@@ -23,7 +32,6 @@ function CandidateProfileView() {
   const experience = useSelector(GetCandidateExperience);
   const primarySkill = useSelector(GetCandidatePrimarySkill);
   const secondarySkills = useSelector(GetCandidateSecondarySkills);
-  const rrNo = useSelector(GetCandidateRrno);
   const skillsOptions = useSelector(GetStoreSkillsOptions);
   const [selectedFile, setSelectedFile] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
@@ -89,9 +97,14 @@ function CandidateProfileView() {
             <div className="Candidate-info-container">
               <div className="icon-wrapper">
                 <div className="icon-container">
-                  <div className="candidate-name">
-                    {candidateName}
-                    <Infocard text={`RR# ${rrNo}`} background="green-background" />
+                  <div className="candidate-title">
+                    <h5>Candidate Details</h5>
+                  </div>
+                  <div className="icon-item">
+                    <AccountCircle />
+                    <span className="candidate-name">
+                      {candidateName}
+                    </span>
                   </div>
                   <div className="icon-item">
                     <CallIcon />
@@ -156,7 +169,7 @@ function CandidateProfileView() {
             <p className="id-proof-text">Upload files for ID proof</p>
             <DocumentUploader
               displayText="Click to Upload PAN/Aadhar"
-              secondaryText="Supported files JPEG, JPG, PNG with max size 2MB."
+              secondaryText="Supported file formats JPEG,JPG,PNG with max size 2MB."
               handleFiles={(e) => handleFileChange(e.target.files[0])}
               selectedFile={selectedFile}
               errorMessage={errorMessage}
