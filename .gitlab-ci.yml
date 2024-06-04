@@ -1,5 +1,5 @@
 include:
-    project: https://gitlab.ggktech.com/capstone_2024/interview-insights/interview-insights-web
+    project: capstone_2024/interview-insights/interview-insights-web
     ref: devops
     file: 
       - 'pipelines/frontend-build.gitlab-ci.yml'
