@@ -1,61 +1,12 @@
-stages:
-    - build
-    - deploy
-
-frontend_build:
-    stage: build
-    tags:
-        - capstone
-        - linux
-    script:
-        - npm ci
-        - npm run build
-    artifacts:
-        paths: 
-            - ./build
-    only:
-        - develop
-        - release
-        - main
-        
-frontend-deploy-DEV:
-  stage: deploy
-  tags:
-    - capstone
-    - linux
-  before_script:
-        - 'command -v ssh-agent >/dev/null || ( apk add --update openssh )'
-        - eval $(ssh-agent -s)
-        - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
-        - mkdir -p ~/.ssh
-        - chmod 700 ~/.ssh
-        - ssh-keyscan 10.139.166.48 >> ~/.ssh/known_hosts
-        - chmod 644 ~/.ssh/known_hosts
-  script:
-     
-      - scp -r ${CI_BUILDS_DIR}${CI_PROJECT_PATH}${CI_ARTIFACT_PATH} $DEPLOY_HOST:$DEPLOY_PATH_DEV
-  only:
-      - develop
+include:
+    project: https://gitlab.ggktech.com/capstone_2024/interview-insights/interview-insights-web
+    ref: devops
+    file: 
+      - 'pipelines/frontend-build.gitlab-ci.yml'
+      - 'pipelines/frontend-deploy-dev.gitlab-ci.yml'
+      - 'pipelines/frontend-deploy-qa.gitlab-ci.yml'
 
 
-frontend-deploy-QA:
-  stage: deploy
-  tags:
-    - capstone
-    - linux
-  before_script:
-        - 'command -v ssh-agent >/dev/null || ( apk add --update openssh )'
-        - eval $(ssh-agent -s)
-        - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
-        - mkdir -p ~/.ssh
-        - chmod 700 ~/.ssh
-        - ssh-keyscan 10.139.166.48 >> ~/.ssh/known_hosts
-        - chmod 644 ~/.ssh/known_hosts
-  script:
-     
-      - scp -r ${CI_BUILDS_DIR}${CI_PROJECT_PATH}${CI_ARTIFACT_PATH} $DEPLOY_HOST:$DEPLOY_PATH_QA
-  only:
-      - release
 
 
 
