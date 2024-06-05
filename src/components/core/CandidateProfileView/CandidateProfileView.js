@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef,useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setAlert } from "../../../store/reducers/app/app";
 import { useNavigate } from "react-router-dom";
@@ -14,9 +14,9 @@ import {
 } from "../../../store/selector/candidate/candidate";
 import DocumentUploader from "../documentUploader/documentUploader";
 import RightArrowIcon from "../../../assets/svgs/rightArrowIcon";
-import CallIcon from "../../../assets/svgs/CallIcon";
-import MailIcon from "../../../assets/svgs/MailIcon";
-import ExperienceIcon from "../../../assets/svgs/ExperienceIcon";
+import CallIcon from "../../../../src/assets/svgs/CallIcon";
+import MailIcon from "../../../../src/assets/svgs/MailIcon";
+import ExperienceIcon from "../../../../src/assets/svgs/ExperienceIcon";
 import Infocard from "./Infocard/Infocard";
 import VerticalLine from "../../../assets/svgs/VerticalLine";
 import AccountCircle from "../../../assets/svgs/AccountCircle";
@@ -37,6 +37,7 @@ function CandidateProfileView() {
   const [errorMessage, setErrorMessage] = useState("");
   const [isValidFile, setIsValidFile] = useState(false);
   const [uploadFailed, setUploadFailed] = useState(false);
+  const fileRef = useRef();
 
   const handleNextPage = () => {
     navigate("/candidate/assessment-instructions");
@@ -58,6 +59,7 @@ function CandidateProfileView() {
     setErrorMessage("");
     setIsValidFile(false);
     setUploadFailed(false);
+    fileRef.current.value = null;
   };
 
   const handleSubmit = () => {
@@ -65,7 +67,7 @@ function CandidateProfileView() {
       if (isValidFile) {
         dispatch(PostIdProofDetails({
           file: selectedFile,
-          candidateId: "00329248-165d-45e4-96dd-dcd1b3f31dac",
+          candidateId,
           onSuccess: () => {
             dispatch(setAlert({ message: "File uploaded successfully", messageType: "success" }));
             setErrorMessage("");
@@ -175,8 +177,9 @@ function CandidateProfileView() {
               errorMessage={errorMessage}
               handleDelete={handleDelete}
               uploadFailed={uploadFailed}
+              fileRef={fileRef}
             />
-            {errorMessage && <p className="error-message">{errorMessage}</p>}
+            {errorMessage && <p className="error-document-message">{errorMessage}</p>}
             <div className="button-layout">
               <button
                 className="upload-button"
@@ -208,4 +211,3 @@ function CandidateProfileView() {
 }
 
 export default CandidateProfileView;
-
