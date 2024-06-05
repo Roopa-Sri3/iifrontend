@@ -149,12 +149,12 @@ class APIWrapper extends HTTPClient {
     onError = () => { },
   }) {
     const formData = new FormData();
-    const adminToken = sessionStorage.getItem("Token");
     formData.append("file", file);
-    formData.append("createdBy", adminToken);
-    formData.append("modifiedBy", adminToken);
+    formData.append("createdBy", sessionStorage.getItem("Token"));
+    formData.append("modifiedBy",sessionStorage.getItem("Token") );
     this.headers = {
       "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${sessionStorage.getItem("Token")}`,
     };
 
     return this.post({

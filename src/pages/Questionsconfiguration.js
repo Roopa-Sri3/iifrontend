@@ -33,6 +33,15 @@ function Questionsconfiguration() {
       setSelectedFile(null);
     }
   };
+  // const handleError = (error) => {
+  //   if((error.response === "Please upload Excel format only") ||
+  //   (error.response === "Maximum upload size exceeded")){
+  //     const mess = error.response;
+  //     dispatch(setAlert({
+  //       mess,
+  //       messageType: "failure"
+  //     }));
+  //   }    };
 
   const handleDeleteFile = () => {
     setSelectedFile(null);
