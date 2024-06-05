@@ -78,7 +78,7 @@ const CandidateRow = ({ candidate }) => {
               className="comments-text"
               style={{ marginLeft: "10px" }}
               role="button"
-              tabindex="0"
+              tabIndex="0"
               onClick={() => handleOpenModal()}
               onKeyDown={(event) => {
                 if (event.key === "Enter") {

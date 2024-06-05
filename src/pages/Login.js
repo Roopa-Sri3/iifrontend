@@ -51,9 +51,6 @@ function Login() {
           sessionStorage.setItem("Token", token);
           dispatch(setToken({token}));
           dispatch(PostToken({
-            data: {
-              token
-            },
             onSuccess: (userDetails) => {
               const responseDetails = userDetails && userDetails.response;
               if (responseDetails) {
