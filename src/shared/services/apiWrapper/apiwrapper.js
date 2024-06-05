@@ -31,7 +31,6 @@ class APIWrapper extends HTTPClient {
   }
 
   async postToken({
-    // data,
     onSuccess = () => { },
     onError = () => { },
   }) {
@@ -43,7 +42,6 @@ class APIWrapper extends HTTPClient {
 
     return this.get({
       url: "/user/getUserDetails",
-      // data,
       headers: this.headers,
       onSuccess,
       onError,
