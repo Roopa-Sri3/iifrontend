@@ -48,7 +48,8 @@ function CandidateProfileView() {
       setSelectedFile(file);
       setIsValidFile(
         file.size <= 2 * 1024 * 1024 &&
-        ["image/jpeg", "image/jpg", "image/png"].includes(file.type)
+        file.size >= 10 * 1024 &&
+          ["image/jpeg", "image/jpg", "image/png"].includes(file.type)
       );
       setUploadFailed(false);
     }
@@ -171,7 +172,7 @@ function CandidateProfileView() {
             <p className="id-proof-text">Upload files for ID proof</p>
             <DocumentUploader
               displayText="Click to Upload PAN/Aadhar"
-              secondaryText="Supported file formats JPEG,JPG,PNG with max size 2MB."
+              secondaryText="Supported file formats JPEG,JPG,PNG with size between 10KB and 2MB."
               handleFiles={(e) => handleFileChange(e.target.files[0])}
               selectedFile={selectedFile}
               errorMessage={errorMessage}
