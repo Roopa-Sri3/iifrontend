@@ -18,14 +18,7 @@ class APIWrapper extends HTTPClient {
     return this.post({
       url: "/interview/authenticate",
       data,
-      onSuccess: (response) => {
-        const token = response.token;
-        this.headers = {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        };
-        onSuccess(response);
-      },
+      onSuccess,
       onError,
     });
   }
