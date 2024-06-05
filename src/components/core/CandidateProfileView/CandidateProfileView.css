@@ -19,7 +19,7 @@
 }
    
 .candidate-container {
-    width: 59%;
+    width: 69%;
     bottom: 40px;
     height: 30%;
     padding: 10px;
@@ -61,7 +61,7 @@
  
 .id-proof-title {
   display: flex;
-  width: 60%;
+  width: 70%;
   font-weight: 700;
   padding-top:10px;
 }
@@ -84,7 +84,7 @@
  
 .id-proof-super-container {
   background-color: #FFFFFF;
-  width: 60%;
+  width: 70%;
   border-radius: 5px;
 }
  
@@ -98,7 +98,7 @@
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
-  width: 60%;
+  width: 70%;
 }
  
 .next-page-button {
