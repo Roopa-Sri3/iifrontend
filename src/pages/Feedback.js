@@ -79,7 +79,7 @@ const TestSubmit = () => {
       <center>
         <div  className='submit-msg'>
           <CheckCircle color={"green"} />
-          <h5 id='test-submit'>Test Submitted</h5>
+          <h5 id='test-submit'>Your test has been submitted successfully</h5>
           <p id='test-description'>Please Submit your feedback</p>
         </div>
 
