@@ -74,8 +74,12 @@ class APIWrapper extends HTTPClient {
     onSuccess = () => { },
     onError = () => { },
   }) {
+    this.headers = {
+      Authorization: `Bearer ${sessionStorage.getItem("Token")}`,
+    };
     return this.post({
       data,
+      headers: this.headers,
       url: "/interviewinsights/addcandidate",
       onSuccess,
       onError,
@@ -91,8 +95,12 @@ class APIWrapper extends HTTPClient {
       candidateId,
       ...formData
     } = data;
+    this.headers = {
+      Authorization: `Bearer ${sessionStorage.getItem("Token")}`,
+    };
     return this.put({
       data: formData,
+      headers: this.headers,
       url: `/interviewinsights/editcandidate/${candidateId}`,
       onSuccess,
       onError,
