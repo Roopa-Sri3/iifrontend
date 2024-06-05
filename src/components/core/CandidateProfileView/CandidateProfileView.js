@@ -172,7 +172,7 @@ function CandidateProfileView() {
             <p className="id-proof-text">Upload files for ID proof</p>
             <DocumentUploader
               displayText="Click to Upload PAN/Aadhar"
-              secondaryText="Supported file formats JPEG,JPG,PNG with max size 2MB."
+              secondaryText="Supported file formats JPEG,JPG,PNG with size between 10KB and 2MB."
               handleFiles={(e) => handleFileChange(e.target.files[0])}
               selectedFile={selectedFile}
               errorMessage={errorMessage}
@@ -212,4 +212,3 @@ function CandidateProfileView() {
 }
 
 export default CandidateProfileView;
-
