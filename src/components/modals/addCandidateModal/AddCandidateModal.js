@@ -15,7 +15,6 @@ import "./AddCandidateModal.css";
 const AddCandidateModal = ({fetchCandidates}) => {
   const dispatch = useDispatch();
   const options = useSelector(GetStoreSkills);
-  const token = sessionStorage.getItem("Token");
   const IsAddCandidateModalOpen = useSelector(
     (state) => IsModalOpen(state, "AddCandidateModal"),
   );
@@ -238,7 +237,6 @@ const AddCandidateModal = ({fetchCandidates}) => {
         secondaryTechSkill : selectedSecondarySkills.map(skill => skill.value),
         rrNo:rRNumber,
         shareLink:isChecked,
-        token,
       };
 
       handleAddOrEditCandidate({
