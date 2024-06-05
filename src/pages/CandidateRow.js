@@ -8,6 +8,7 @@ import VisibilityComponent from "../assets/svgs/visibilityImage";
 import DownloadIcon from "../assets/svgs/downloadIcon";
 import { GetUserRole } from "../store/selector/app";
 import "./CandidateRow.css";
+import { ShareAssessmentLink } from "../store/reducers/dashboard/dashboard";
 
 const CandidateRow = ({ candidate }) => {
   const dispatch = useDispatch();
@@ -40,6 +41,17 @@ const CandidateRow = ({ candidate }) => {
             )
         }
       }));
+  };
+
+  const handleShareIcon = () =>{
+    dispatch(ShareAssessmentLink({
+      onSuccess: ()=>{
+        console.log("Link Shared Successfully");
+      },
+      onError:()=>{
+        console.log("Error");
+      },
+    }));
   };
 
   return (
@@ -111,6 +123,7 @@ const CandidateRow = ({ candidate }) => {
           <ShareComponent
             className = {`share-icon ${isStatusNewOrExpired ? "active" : ""}`}
             fillColor={isStatusNewOrExpired ? "#383838" : "#D0D5DD"}
+            onClick={handleShareIcon}
           />
         </td>
       )}

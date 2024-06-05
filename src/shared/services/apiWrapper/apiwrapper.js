@@ -95,6 +95,18 @@ class APIWrapper extends HTTPClient {
     });
   }
 
+  async shareAssessmentLink({
+    candidateId,
+    onSuccess = () => { },
+    onError = () => { },
+  }) {
+    return this.post({
+      url: `/interviewinsights/shareLink/${candidateId}`,
+      onSuccess,
+      onError,
+    });
+  }
+
   async getFileDownload({
     onSuccess = () => { },
     onError = () => { },
