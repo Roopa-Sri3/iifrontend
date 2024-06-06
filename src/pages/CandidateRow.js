@@ -11,7 +11,7 @@ import "./CandidateRow.css";
 import { ShareAssessmentLink } from "../store/reducers/dashboard/dashboard";
 import { setAlert } from "../store/reducers/app/app";
 
-const CandidateRow = ({ candidate }) => {
+const CandidateRow = ({ candidate , fetchCandidates}) => {
   const dispatch = useDispatch();
   const role = useSelector(GetUserRole);
   const options = useSelector(GetStoreSkills);
@@ -50,6 +50,7 @@ const CandidateRow = ({ candidate }) => {
       candidateID,
       onSuccess: (response)=>{
         dispatch(setAlert({ message: response.message, messageType: "success" }));
+        fetchCandidates();
       },
       onError:()=>{ },
     }));
