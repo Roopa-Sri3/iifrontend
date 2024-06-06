@@ -33,7 +33,7 @@ export const assessmentInstructions =
 
   "Only One answer should be selected for each question;please choose accordingly.",
 
-  "On selecting the answer you should click 'next question' button to go the next question and 'submit' button to submit the answer. To navigate to respective questions, you can use the circle icon. You can find only submit button at the last question to submit the assessment.",
+  "For saving the answer and to go to next question, click on 'Save & Next' button. To navigate to respective questions, you can use the circle icon. For coding question, click on 'Save' to save the coding answer. Click on 'Submit' button to submit the assessment.",
 
   "Note- please don't change the tabs, while writing the examination.All these are recorded and can lead to disqualification which results in force test submission.",
 
