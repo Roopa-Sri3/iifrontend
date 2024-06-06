@@ -5,7 +5,9 @@ import { useNavigate } from "react-router-dom";
 import { PostIdProofDetails } from "../../../../src/store/reducers/candidate/candidate";
 import {
   GetCandidateEmail,
-  GetCandidateExperience,
+  GetCandidateExperienceInMonths,
+  GetCandidateExperienceInYears,
+  GetCandidateHR,
   GetCandidateName ,
   GetCandidateNumber,
   GetCandidatePrimarySkill,
@@ -29,9 +31,11 @@ function CandidateProfileView() {
   const candidateName = useSelector(GetCandidateName);
   const phoneNumber = useSelector(GetCandidateNumber);
   const email = useSelector(GetCandidateEmail);
-  const experience = useSelector(GetCandidateExperience);
+  const years = useSelector(GetCandidateExperienceInYears);
+  const months = useSelector(GetCandidateExperienceInMonths);
   const primarySkill = useSelector(GetCandidatePrimarySkill);
   const secondarySkills = useSelector(GetCandidateSecondarySkills);
+  const candidateHR = useSelector(GetCandidateHR);
   const skillsOptions = useSelector(GetStoreSkillsOptions);
   const [selectedFile, setSelectedFile] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
@@ -48,7 +52,8 @@ function CandidateProfileView() {
       setSelectedFile(file);
       setIsValidFile(
         file.size <= 2 * 1024 * 1024 &&
-        ["image/jpeg", "image/jpg", "image/png"].includes(file.type)
+        file.size >= 10 * 1024 &&
+          ["image/jpeg", "image/jpg", "image/png"].includes(file.type)
       );
       setUploadFailed(false);
     }
@@ -123,7 +128,15 @@ function CandidateProfileView() {
                   <div className="icon-item">
                     <ExperienceIcon />
                     <span className="candidate-experience">
-                    Experience {experience} {experience > 1 ? "Yrs" : "Yr"}
+                      Experience {years} {years > 1 ? "Yrs" : "Yr"}
+                      <>
+                        {months > 0 && (
+                          <>
+                            {" "}
+                            {months} {months > 1 ? "Months" : "Month"}
+                          </>
+                        )}
+                      </>
                     </span>
                   </div>
                 </div>
@@ -135,7 +148,7 @@ function CandidateProfileView() {
                 <VerticalLine />
               </div>
               <div className="skills-container">
-                <p>Skills:</p>
+                <p className="skills-text">Skills:</p>
                 <div className="skills">
                   <div className="primary-skills">
                     <Infocard
@@ -158,7 +171,7 @@ function CandidateProfileView() {
             </div>
           </div>
           <div className="email-address-container">
-            <p>For further queries reach out to  Raghu@gmail.com </p>
+            <p>For further queries reach out to  {candidateHR} </p>
           </div>
         </div>
       </div>
@@ -168,10 +181,10 @@ function CandidateProfileView() {
         </div>
         <div className="id-proof-super-container">
           <div className="id-proof container">
-            <p className="id-proof-text">Upload files for ID proof</p>
+            <p className="id-proof-text">Upload a file for ID proof</p>
             <DocumentUploader
               displayText="Click to Upload PAN/Aadhar"
-              secondaryText="Supported file formats JPEG,JPG,PNG with max size 2MB."
+              secondaryText="Supported file formats JPEG,JPG,PNG with size between 10KB and 2MB."
               handleFiles={(e) => handleFileChange(e.target.files[0])}
               selectedFile={selectedFile}
               errorMessage={errorMessage}
