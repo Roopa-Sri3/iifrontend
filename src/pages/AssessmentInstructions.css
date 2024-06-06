@@ -1,0 +1,70 @@
+.instructions-container{
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    background-color: #ebeef3;
+}
+
+.instructions-card{
+    width: 75%;
+    height: 75vh;
+    border-radius: 5px;
+    background-color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-top: 20px;
+}
+.instructions-box{
+    overflow-y:scroll;
+    border:1px solid #ebeef3;
+    border-radius: 5px;
+    padding-top: 10px;
+}
+
+.greeting{
+    margin-left: 10px;
+    font-size: 12px;
+}
+
+.go-through{
+    margin-left: 10px;
+    font-size: 12px;
+}
+
+.list-instructions{
+    font-size: 12px;
+    padding-bottom: 10px;
+    padding-top: 5px;
+}
+.inst-title{
+    padding-bottom: 10px;
+}
+.confirm-section{
+    display: flex;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.checkbox-text{
+    margin-left: 10px;
+    font-size: 12px;
+}
+
+.start-exam-button {
+    background-color: #C0C0C0;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    cursor: not-allowed;
+    width:20%;
+    align-self: center;
+    border-radius: 5px;
+}
+
+.start-exam-button.enabled {
+    cursor: pointer;
+    background-color: #4595ff;
+}

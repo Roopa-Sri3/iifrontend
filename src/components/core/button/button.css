@@ -1,0 +1,17 @@
+.buttonComponent {
+    background-color:#4595FF;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+    min-height:36px;
+}
+
+.buttonComponentContainer {
+    display:flex;
+    align-items:center;
+}
+
+.buttonComponentLabel {
+    margin-right:10px;
+}

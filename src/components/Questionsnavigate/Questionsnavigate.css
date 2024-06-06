@@ -1,0 +1,42 @@
+.question-pagination-bar {
+    display: flex; 
+    margin-left: 15px;
+  }
+
+.submit-assessment-button{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    color: #ffffff;
+    background-color: #46c569;
+    border-radius: 5px;
+    margin-right: 40px;
+    font-size: 15px;
+    border: none;
+    padding: 10px 20px;
+    height:36px;
+    box-shadow: none;
+}
+
+.questions-pagination-layout{
+    display: inline-flex;
+    align-items: center;
+}
+
+.nav-layout{
+    background-color: #ebeef3;
+}
+
+.screen-layout{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+
+
+
+
+
+

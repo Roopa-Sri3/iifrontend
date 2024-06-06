@@ -1,0 +1,35 @@
+{
+  "plugins": [
+    "jsx-a11y",
+    "@stylistic/js"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "react-app",
+    "plugin:react-hooks/recommended",
+    "plugin:jsx-a11y/recommended"
+  ],
+  "rules": {
+    "prefer-const":"error",
+    "space-infix-ops":"error",
+    "max-len": [
+      "error",
+      {
+        "code" : 150,
+        "ignoreComments": true,
+        "ignoreUrls": true,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true,
+        "ignoreRegExpLiterals": true,
+      }
+    ],
+    "no-irregular-whitespace": "error",
+    "semi": "error",
+    "no-trailing-spaces": "error",
+    "no-multiple-empty-lines": ["error", {"max": 1}],
+    "eol-last": "error",
+    "indent": ["error", 2],
+    "arrow-body-style": ["error", "as-needed"],
+    "quotes": ["error","double"]
+  }
+}

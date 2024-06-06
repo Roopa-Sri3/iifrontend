@@ -1,0 +1,14 @@
+.table-heading {
+  background-color: #fafcff;
+  border: 2px solid #eaeef1;
+  padding: 10px;
+  color: #333;
+}
+
+.candidate-th {
+  padding: 10px;
+}
+
+.th-section-with-filter{
+  display: flex;
+}

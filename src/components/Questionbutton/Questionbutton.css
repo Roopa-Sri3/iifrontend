@@ -1,0 +1,47 @@
+.question-pagination-bar {
+    display: flex; 
+    margin-left: 15px;
+}
+
+.navigation-card{
+    display: flex;
+    align-items: center;
+}
+
+.button-s{
+    display: flex;
+    margin-left: 25px;
+}
+
+.question-button {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    cursor: pointer;
+    margin: 15px 5px 15px 15px;
+    padding: 0px;
+    box-shadow: none;
+}
+  
+.present {
+    border-color: #4595ff; 
+    color: #4595ff; 
+    background-color: #ebeef3; 
+}
+  
+.saved {
+    border-color: #4595ff; 
+    color: white; 
+    background-color: #4595ff; 
+}
+  
+.unsaved {
+    border-color: #ccc; 
+    color: white;
+    background-color: #ccc;
+}

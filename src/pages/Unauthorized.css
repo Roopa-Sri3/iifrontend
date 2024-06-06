@@ -1,0 +1,9 @@
+.Unauthorized-msg{
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    height:40px;
+    position: absolute;
+    top: 80px;
+    left: 600px;
+ }

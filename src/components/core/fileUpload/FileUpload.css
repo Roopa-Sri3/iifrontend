@@ -1,0 +1,53 @@
+.file-upload-image{
+    height: 40px;
+}
+
+.div-icon{
+    display: flex;
+    flex: 0.3;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.input-file-upload-button{
+    display: none;
+}
+
+
+.button-tag{
+  display:flex;
+  padding: 10px 20px;
+  border: 2px dotted #d9e0e6;
+  color: #333;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  margin: 0px;
+}
+
+.button-tag:hover {
+    background-color: #f0f0f0;
+    border-color: #999;
+}
+
+.criteria-text{
+    color:#787f8b;
+    font-size: 12px;
+    margin: 0px;
+}
+
+.upload-label-text{
+    display: flex;
+    flex-direction: column;
+    flex:1;
+    justify-content: flex-start;
+    align-items: start;
+    margin-left: 20px;
+}
+
+.upload-text-data{
+    font-size: 14px;
+    margin-bottom:2px;
+}
+
