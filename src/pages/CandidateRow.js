@@ -6,15 +6,20 @@ import EditComponent from "../assets/svgs/editImage";
 import ShareComponent from "../assets/svgs/shareImage";
 import VisibilityComponent from "../assets/svgs/visibilityImage";
 import DownloadIcon from "../assets/svgs/downloadIcon";
-import { GetUserRole } from "../store/selector/app";
+import { GetModalData, GetUserRole } from "../store/selector/app";
 import "./CandidateRow.css";
 import { ShareAssessmentLink } from "../store/reducers/dashboard/dashboard";
+import { setAlert } from "../store/reducers/app/app";
 
 const CandidateRow = ({ candidate }) => {
   const dispatch = useDispatch();
   const role = useSelector(GetUserRole);
+  const storeModalData = useSelector(GetModalData);
+  console.log(storeModalData);
   const options = useSelector(GetStoreSkills);
   const isStatusNewOrExpired = candidate.status === "New" || candidate.status === "Expired";
+  // const sharelinkId = storeModalData.candidateId;
+  // console.log(sharelinkId);
 
   const handleOpenModal = () => {
     dispatch(openModal(
@@ -43,13 +48,16 @@ const CandidateRow = ({ candidate }) => {
       }));
   };
 
-  const handleShareIcon = () =>{
+  const handleShareIcon = (rowCandidateData) =>{
+    const candidateID = rowCandidateData.candidateId;
+    console.log(candidateID);
     dispatch(ShareAssessmentLink({
-      onSuccess: ()=>{
-        console.log("Link Shared Successfully");
+      candidateID,
+      onSuccess: (response)=>{
+        dispatch(setAlert({ message: response.message, messageType: "success" }));
       },
-      onError:()=>{
-        console.log("Error");
+      onError:(e)=>{
+        console.error(e.message);
       },
     }));
   };
@@ -90,7 +98,7 @@ const CandidateRow = ({ candidate }) => {
               className="comments-text"
               style={{ marginLeft: "10px" }}
               role="button"
-              tabindex="0"
+              tabIndex="0"
               onClick={() => handleOpenModal()}
               onKeyDown={(event) => {
                 if (event.key === "Enter") {
@@ -123,7 +131,7 @@ const CandidateRow = ({ candidate }) => {
           <ShareComponent
             className = {`share-icon ${isStatusNewOrExpired ? "active" : ""}`}
             fillColor={isStatusNewOrExpired ? "#383838" : "#D0D5DD"}
-            onClick={handleShareIcon}
+            onClick={() => handleShareIcon(candidate)}
           />
         </td>
       )}

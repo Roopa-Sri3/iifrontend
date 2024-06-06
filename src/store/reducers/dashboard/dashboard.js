@@ -60,13 +60,14 @@ export const GetCandidateDetails = ({
 };
 
 export const ShareAssessmentLink = ({
-  candidateId,
+  candidateID,
   onSuccess = () => {},
   onError = () => {},
 } = {}) => async(dispatch) => {
   const apiWrapper = new APIWrapper(dispatch);
+
   await apiWrapper.shareAssessmentLink({
-    candidateId,
+    candidateID,
     onSuccess,
     onError,
   });

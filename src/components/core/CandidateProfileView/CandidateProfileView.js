@@ -211,4 +211,3 @@ function CandidateProfileView() {
 }
 
 export default CandidateProfileView;
-
