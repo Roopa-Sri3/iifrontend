@@ -59,6 +59,20 @@ export const GetCandidateDetails = ({
   dispatch(setCandidates(candidatesResponse.data));
 };
 
+export const ShareAssessmentLink = ({
+  candidateID,
+  onSuccess = () => {},
+  onError = () => {},
+} = {}) => async(dispatch) => {
+  const apiWrapper = new APIWrapper(dispatch);
+
+  await apiWrapper.shareAssessmentLink({
+    candidateID,
+    onSuccess,
+    onError,
+  });
+};
+
 export const AddCandidate = ({
   data,
   onSuccess = () => {},
