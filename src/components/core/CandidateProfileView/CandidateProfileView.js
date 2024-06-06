@@ -127,14 +127,17 @@ function CandidateProfileView() {
                   </div>
                   <div className="icon-item">
                     <ExperienceIcon />
-                    {months > 0 ?
-                      <span className="candidate-experience">
-                      Experience {years} {years > 1 ? "Yrs" : "Yr"} {months} {months > 1 ? "Months" : "Month"}
-                      </span> :
-                      <span className="candidate-experience">
+                    <span className="candidate-experience">
                       Experience {years} {years > 1 ? "Yrs" : "Yr"}
-                      </span>
-                    }
+                      <>
+                        {months > 0 && (
+                          <>
+                            {" "}
+                            {months} {months > 1 ? "Months" : "Month"}
+                          </>
+                        )}
+                      </>
+                    </span>
                   </div>
                 </div>
               </div>
