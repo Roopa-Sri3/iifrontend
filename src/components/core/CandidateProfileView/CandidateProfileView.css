@@ -235,3 +235,8 @@
   display: flex;
   gap: 10px;
 }
+
+.skills-text{
+  margin-bottom: 10px;
+  gap: 10px;
+}

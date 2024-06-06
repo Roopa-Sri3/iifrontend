@@ -6,7 +6,9 @@ export const GetCandidateNumber = (state) => state.candidate.phoneNumber;
 
 export const GetCandidateEmail = (state) => state.candidate.email;
 
-export const GetCandidateExperience = (state) => state.candidate.experience;
+export const GetCandidateExperienceInYears = (state) => state.candidate.years;
+
+export const GetCandidateExperienceInMonths = (state) => state.candidate.months;
 
 export const GetCandidatePrimarySkill = (state) => state.candidate.primarySkill ;
 
@@ -16,3 +18,4 @@ export const GetStoreSkillsOptions = (state) => state.candidate.skillsOptions;
 
 export const GetCandidateRrno = (state) => state.candidate.rrNo;
 
+export const GetCandidateHR = (state) => state.candidate.createdBy;
