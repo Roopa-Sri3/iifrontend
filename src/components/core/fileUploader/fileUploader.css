@@ -2,11 +2,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width:100%;
-    padding: 5px 42px;
+    width:85%;
+    padding: 5px;
     border: 2px dotted #D9E0E6;
     background-color: #FFFFFF;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: bold;
     cursor: pointer;
   }
@@ -29,7 +29,7 @@
   
   .imageicon-container {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     width: min-content;
   }
   
@@ -43,4 +43,3 @@
     align-items: center;
     padding: 5px;
   }
-  

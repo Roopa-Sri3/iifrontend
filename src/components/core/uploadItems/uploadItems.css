@@ -1,11 +1,12 @@
 .complete-file-content-view {
     display: flex;
-    width:100%;
+    width:84%;
     align-items: center;
     background-color: #ebeef3;
     border-radius: 5px;
     height: 65px;
     margin-top: 10px;
+    margin-left:50px;
     border: 2px solid #eaeef3;
   }
   
@@ -40,7 +41,7 @@
   }
   
   .file-name {
-    font-size: 15px;
+    font-size: 14px;
     font-weight: bold;
     color: black;
     text-overflow: ellipsis;
