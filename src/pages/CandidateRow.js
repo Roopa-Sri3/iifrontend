@@ -6,7 +6,7 @@ import EditComponent from "../assets/svgs/editImage";
 import ShareComponent from "../assets/svgs/shareImage";
 import VisibilityComponent from "../assets/svgs/visibilityImage";
 import DownloadIcon from "../assets/svgs/downloadIcon";
-import { GetModalData, GetUserRole } from "../store/selector/app";
+import { GetUserRole } from "../store/selector/app";
 import "./CandidateRow.css";
 import { ShareAssessmentLink } from "../store/reducers/dashboard/dashboard";
 import { setAlert } from "../store/reducers/app/app";
@@ -14,12 +14,8 @@ import { setAlert } from "../store/reducers/app/app";
 const CandidateRow = ({ candidate }) => {
   const dispatch = useDispatch();
   const role = useSelector(GetUserRole);
-  const storeModalData = useSelector(GetModalData);
-  console.log(storeModalData);
   const options = useSelector(GetStoreSkills);
   const isStatusNewOrExpired = candidate.status === "New" || candidate.status === "Expired";
-  // const sharelinkId = storeModalData.candidateId;
-  // console.log(sharelinkId);
 
   const handleOpenModal = () => {
     dispatch(openModal(
@@ -50,15 +46,12 @@ const CandidateRow = ({ candidate }) => {
 
   const handleShareIcon = (rowCandidateData) =>{
     const candidateID = rowCandidateData.candidateId;
-    console.log(candidateID);
     dispatch(ShareAssessmentLink({
       candidateID,
       onSuccess: (response)=>{
         dispatch(setAlert({ message: response.message, messageType: "success" }));
       },
-      onError:(e)=>{
-        console.error(e.message);
-      },
+      onError:()=>{ },
     }));
   };
 
@@ -131,7 +124,7 @@ const CandidateRow = ({ candidate }) => {
           <ShareComponent
             className = {`share-icon ${isStatusNewOrExpired ? "active" : ""}`}
             fillColor={isStatusNewOrExpired ? "#383838" : "#D0D5DD"}
-            onClick={() => handleShareIcon(candidate)}
+            onClick={() => isStatusNewOrExpired && handleShareIcon(candidate)}
           />
         </td>
       )}
