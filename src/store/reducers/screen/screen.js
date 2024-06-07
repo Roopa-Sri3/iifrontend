@@ -103,6 +103,20 @@ export const PostFeedback = ({
   });
 };
 
+export const PostTabSwitchCount = ({
+  data,
+  onSuccess = () => {},
+  onError = () => {},
+}) => async(dispatch) => {
+  const apiWrapper = new APIWrapper(dispatch);
+
+  await apiWrapper.postTabSwitchCount({
+    data,
+    onSuccess,
+    onError,
+  });
+};
+
 export const {
   setDuration,
   setTimeUp,

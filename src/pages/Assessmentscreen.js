@@ -6,9 +6,10 @@ import Question from "../components/question";
 import ExamSubmitModal from "../components/modals/ExamSubmitModal";
 import TabSwitchWarningModal from "../components/modals/tabSwitchWarningModal/TabSwitchWarningModal";
 import { openModal } from "../store/reducers/app/app";
-import { PostAssessmentAnswers, endExam, setTimeUp } from "../store/reducers/screen/screen";
+import { PostAssessmentAnswers, PostTabSwitchCount, endExam, setTimeUp } from "../store/reducers/screen/screen";
 import { incrementTabSwitchCount } from "../store/reducers/screen/screen";
 import { GetIsTimeUp, GetTabSwitchCount, GetWarningLimit, getAssessmentId } from "../store/selector/screen/screen";
+import { GetCandidateId } from "../store/selector/candidate/candidate";
 
 function Assessmentscreen(){
   const navigate = useNavigate();
@@ -17,6 +18,7 @@ function Assessmentscreen(){
   const warningLimit = useSelector(GetWarningLimit);
   const tabSwitchCount = useSelector(GetTabSwitchCount);
   const assessmentId = useSelector(getAssessmentId);
+  const candidateId = useSelector(GetCandidateId);
 
   useEffect(() => {
     const handleVisibilityChange = () => {
@@ -24,7 +26,18 @@ function Assessmentscreen(){
         dispatch(incrementTabSwitchCount());
 
         if (tabSwitchCount < warningLimit) {
-          dispatch(openModal({ modalName: "TabSwitchWarningModal" }));
+          dispatch(PostTabSwitchCount({
+            data:{
+              assessmentId,
+              candidateId,
+              tabSwitchCount: warningLimit - 1,
+            },
+            onSuccess: () => {
+              dispatch(openModal({ modalName: "TabSwitchWarningModal" }));
+            },
+            onError: () => { }
+          }));
+
         } else {
           dispatch(PostAssessmentAnswers({
             data:{
@@ -51,7 +64,7 @@ function Assessmentscreen(){
     return () => {
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
-  }, [assessmentId, dispatch, navigate, tabSwitchCount, warningLimit]);
+  }, [assessmentId, dispatch, navigate, tabSwitchCount, warningLimit, candidateId]);
 
   useEffect(() => {
     if (isTimeUp) {
