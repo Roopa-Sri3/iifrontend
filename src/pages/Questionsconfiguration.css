@@ -96,6 +96,10 @@
     border: 2px solid #eaeef3;
 }
 
+.file-content-layout.invalid {
+    border: 2px solid red;
+  }
+
 .file-info-layout{
     display: flex;
     flex-direction: column;
