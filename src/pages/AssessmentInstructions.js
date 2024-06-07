@@ -22,7 +22,7 @@ const AssessmentInstructions = () => {
 
   const handleStartExam = () => {
     dispatch(startExam());
-    dispatch(setDuration());
+    dispatch(setDuration(40));
     const candidateId = sessionStorage.getItem("candidateId");
     dispatch(GetAssessmentQuestions({
       candidateId,

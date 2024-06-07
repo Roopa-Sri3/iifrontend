@@ -17,8 +17,8 @@ const screenSlice = createSlice({
   name: "screen",
   initialState,
   reducers: {
-    setDuration: (state) => {
-      state.duration = 40;
+    setDuration: (state, action) => {
+      state.duration = action.payload;
       state.isTimeUp = false;
     },
     setTimeUp: (state) => {
