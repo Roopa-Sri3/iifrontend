@@ -44,17 +44,20 @@ function Questionsconfiguration() {
       onSuccess: () => {
         dispatch(setAlert({ message: "File uploaded successfully", messageType: "success" }));
       },
-      onError: () => {
+      onError: (e) => {
         if (selectedFile.size > (4 * 1024 * 1024)) {
-          dispatch(setAlert({ message: "File size should not exceed 4Mb", messageType: "failure" }));
+          dispatch(setAlert({ message: "File size exceeded", messageType: "failure" }));
           fileRef.current.value = null;
         }
         else if (selectedFile.type !== "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") {
-          dispatch(setAlert({ message: "Files only on XLSX format can be uploaded", messageType: "failure" }));
+          dispatch(setAlert({ message: "Invalid file type", messageType: "failure" }));
           fileRef.current.value = null;
         }
+        else if(e.errorMessage === "The uploaded file contains an unexpected column.") {
+          dispatch(setAlert({message: e.errorMessage, messageType: "failure" }));
+        }
         else{
-          dispatch(setAlert({ message: "File upload unsuccessful", messageType: "failure" }));
+          dispatch(setAlert({ message: "File to upload", messageType: "failure" }));
         }
       },
 
