@@ -2,12 +2,19 @@ import React, { useRef, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setAlert } from "../../../store/reducers/app/app";
 import { useNavigate } from "react-router-dom";
-import { PostIdProofDetails } from "../../../../src/store/reducers/candidate/candidate";
+import {
+  GetTechnicalSkillsForCandidate,
+  PostIdProofDetails,
+  VerifyCandidateStatus,
+  setCandidateDetails,
+  setCandidateId
+} from "../../../../src/store/reducers/candidate/candidate";
 import {
   GetCandidateEmail,
   GetCandidateExperienceInMonths,
   GetCandidateExperienceInYears,
   GetCandidateHR,
+  GetCandidateId,
   GetCandidateName,
   GetCandidateNumber,
   GetCandidatePrimarySkill,
@@ -44,6 +51,36 @@ function CandidateProfileView() {
   const [isNextButtonEnabled, setIsNextButtonEnabled] = useState(false);
   const [isFileUploaded, setIsFileUploaded] = useState(false);
   const fileRef = useRef();
+
+  const isStoreHasCandidateData = useSelector(GetCandidateId);
+
+  useEffect(() => {
+    const localStoreCandidateId = sessionStorage.getItem("candidateId");
+    if (
+      !isStoreHasCandidateData
+      && localStoreCandidateId
+    ) {
+      dispatch(VerifyCandidateStatus({
+        candidateId: localStoreCandidateId,
+        onSuccess: (res) => {
+          if(res.message === "The link has expired"){
+            navigate("/candidate/link-expired");
+          }
+          else{
+            const candidateDetails = res && res.response;
+            dispatch(setCandidateId({candidateId}));
+            dispatch(setCandidateDetails({
+              ...candidateDetails
+            }));
+            dispatch(GetTechnicalSkillsForCandidate({}));
+          }
+        },
+        onError: (e) => {
+          navigate("/unauthorized");
+        }
+      }));
+    }
+  }, [dispatch, isStoreHasCandidateData, navigate, candidateId]);
 
   useEffect(() => {
     setIsNextButtonEnabled(isValidFile && !uploadFailed && isFileUploaded);
