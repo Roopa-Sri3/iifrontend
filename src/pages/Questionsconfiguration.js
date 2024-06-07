@@ -48,15 +48,12 @@ function Questionsconfiguration() {
         if (selectedFile.size > (4 * 1024 * 1024)) {
           dispatch(setAlert({ message: "File size exceeded", messageType: "failure" }));
           fileRef.current.value = null;
-        }
-        else if (selectedFile.type !== "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") {
+        } else if (selectedFile.type !== "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") {
           dispatch(setAlert({ message: "Invalid file type", messageType: "failure" }));
           fileRef.current.value = null;
-        }
-        else if(e.errorMessage === "The uploaded file contains an unexpected column.") {
+        } else if (e.errorMessage === "The uploaded file contains an unexpected column.") {
           dispatch(setAlert({message: e.errorMessage, messageType: "failure" }));
-        }
-        else{
+        } else {
           dispatch(setAlert({ message: "Failed to upload", messageType: "failure" }));
         }
       },
