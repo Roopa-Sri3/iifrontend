@@ -24,12 +24,10 @@ function VerifyAssessmentDetails () {
           ...candidateDetails
         }));
         dispatch(GetTechnicalSkillsForCandidate({}));
-        // navigate to upload aadhaar page
         navigate("/candidate/candidate-profile-view");
       }
     },
     onError: (e) => {
-      console.log(e.response.data.message);
       navigate("/unauthorized");
     }
   }));
