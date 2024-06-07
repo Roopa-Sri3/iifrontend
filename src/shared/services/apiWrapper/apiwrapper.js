@@ -175,7 +175,6 @@ class APIWrapper extends HTTPClient {
     const formData = new FormData();
     formData.append("file", file);
     formData.append("createdBy", `Bearer ${sessionStorage.getItem("Token")}`);
-    formData.append("modifiedBy", `Bearer ${sessionStorage.getItem("Token")}`,);
     this.headers = {
       "Content-Type": "multipart/form-data",
       Authorization: `Bearer ${sessionStorage.getItem("Token")}`,

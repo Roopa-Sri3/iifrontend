@@ -5,12 +5,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/core/button";
 import { GetAssessmentQuestions, setDuration, startExam } from "../store/reducers/screen/screen";
-import { GetExamStatus } from "../store/selector/screen";
+import { getAssessmentId } from "../store/selector/screen";
 import { GetCandidateName } from "../store/selector/candidate";
 
 const AssessmentInstructions = () => {
   const [isConfirmed, setIsConfirmed] = useState(false);
   const candidateName = useSelector(GetCandidateName);
+  const assessment_id = useSelector(getAssessmentId);
 
   const handleConfirmation = () => {
     setIsConfirmed(!isConfirmed);
@@ -18,18 +19,21 @@ const AssessmentInstructions = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const examStarted = useSelector(GetExamStatus);
 
   const handleStartExam = () => {
     dispatch(startExam());
     dispatch(setDuration());
     const candidateId = sessionStorage.getItem("candidateId");
-    dispatch(startExam());
-    dispatch(setDuration());
     dispatch(GetAssessmentQuestions({
       candidateId,
-      onSuccess: () => {
-        console.log("Questions fetched successfully");
+      onSuccess: (response) => {
+        if(response.message === "Assessment Already Started"){
+          navigate("/candidate/assessment-started");
+        }
+        else{
+          sessionStorage.setItem("assessmentId",assessment_id);
+          navigate("/candidate/assessment-screen");
+        }
       },
       onError: () => {
         console.error("Error fetching questions");
@@ -65,16 +69,12 @@ const AssessmentInstructions = () => {
           I confirm that I have read and understood all the exam instructions
           </label>
         </div>
-        {!examStarted ?
-          (
-            <Button
-              label="Start Exam"
-              handleClick={handleStartExam}
-              disabled={!isConfirmed}
-              className={`start-exam-button ${isConfirmed ? "enabled" : ""}`}
-            />
-          ) : navigate("/candidate/assessment-screen")
-        }
+        <Button
+          label="Start Exam"
+          handleClick={handleStartExam}
+          disabled={!isConfirmed}
+          className={`start-exam-button ${isConfirmed ? "enabled" : ""}`}
+        />
       </div>
     </div>
   );
