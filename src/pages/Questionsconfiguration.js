@@ -57,7 +57,7 @@ function Questionsconfiguration() {
           dispatch(setAlert({message: e.errorMessage, messageType: "failure" }));
         }
         else{
-          dispatch(setAlert({ message: "File to upload", messageType: "failure" }));
+          dispatch(setAlert({ message: "Failed to upload", messageType: "failure" }));
         }
       },
 
