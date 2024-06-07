@@ -31,18 +31,18 @@ const Question = () => {
   };
 
   const handleSaveAndNextButton = () => {
+    const action = presentquestion >= questions.length - 1 ? "Save" : "Save & Next";
     const updatedAnswers = [...answers];
     const answerValue = selectedOption ? selectedOption : codeValue || "";
     updatedAnswers[presentquestion] = {
       questionId: currQuestion.question_id,
       optionSelected: answerValue,
       assessmentId: assessment_id,
-      action: presentquestion >= questions.length - 1 ? "Save" : "Save & Next",
     };
     setSelectedOption(null);
     dispatch(updateAnswers(updatedAnswers));
     dispatch(PostAssessmentAnswers({
-      data: updatedAnswers[presentquestion],
+      data: {...updatedAnswers[presentquestion],action},
       onSuccess: () => {
         console.log("Assessment answers saved successfully!");
       },
@@ -59,7 +59,6 @@ const Question = () => {
 
   const handleCodeChange = (event) => {
     setCodeValue(event.target.value);
-
   };
 
   return (
