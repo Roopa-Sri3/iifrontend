@@ -45,7 +45,7 @@ function Questionsconfiguration() {
     } else if (selectedFile.type !== "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") {
       dispatch(setAlert({ message: "Invalid file type", messageType: "failure" }));
       fileRef.current.value = null;
-    }else {
+    } else {
       dispatch(PostUploadFile({
         file: selectedFile,
         onSuccess: () => {
