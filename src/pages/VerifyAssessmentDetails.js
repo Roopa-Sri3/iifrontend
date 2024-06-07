@@ -17,6 +17,9 @@ function VerifyAssessmentDetails () {
       if(res.message === "The link has expired"){
         navigate("/candidate/link-expired");
       }
+      else if(res.message === "Candidate already completed the Assessment"){
+        navigate("/candidate/assessment-completed");
+      }
       else{
         const candidateDetails = res && res.response;
         dispatch(setCandidateId({candidateId}));
