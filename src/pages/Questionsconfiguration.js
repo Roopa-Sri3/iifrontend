@@ -10,8 +10,8 @@ import {instructions} from "../shared/constants";
 import { PostUploadFile } from "../store/reducers/dashboard/dashboard";
 import { setAlert } from "../store/reducers/app/app";
 import { useDispatch } from "react-redux";
-import "./Questionsconfiguration.css";
 import LogoutModal from "../components/modals/logoutModal/LogoutModal";
+import "./Questionsconfiguration.css";
 
 function Questionsconfiguration() {
   const fileRef = useRef();
@@ -22,7 +22,6 @@ function Questionsconfiguration() {
   };
 
   const [selectedFile, setSelectedFile] = useState(null);
-
   const handleFiles = (event) => {
     const files = event.target.files;
     if (files.length > 0) {
@@ -40,7 +39,6 @@ function Questionsconfiguration() {
   };
 
   const handleSubmit = () => {
-
     dispatch(PostUploadFile({
       file: selectedFile,
       onSuccess: () => {
@@ -48,17 +46,18 @@ function Questionsconfiguration() {
       },
       onError: () => {
         if (selectedFile.size > (4 * 1024 * 1024)) {
-          dispatch(setAlert({ message: "File size exceeded", messageType: "failure" }));
+          dispatch(setAlert({ message: "File size should not exceed 4Mb", messageType: "failure" }));
           fileRef.current.value = null;
         }
         else if (selectedFile.type !== "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") {
-          dispatch(setAlert({ message: "Invalid file type.", messageType: "failure" }));
+          dispatch(setAlert({ message: "Files only on XLSX format can be uploaded", messageType: "failure" }));
           fileRef.current.value = null;
         }
         else{
           dispatch(setAlert({ message: "File upload unsuccessful", messageType: "failure" }));
         }
       },
+
     }));
   };
 

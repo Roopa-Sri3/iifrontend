@@ -107,6 +107,18 @@ class APIWrapper extends HTTPClient {
     });
   }
 
+  async shareAssessmentLink({
+    candidateID,
+    onSuccess = () => { },
+    onError = () => { },
+  }) {
+    return this.post({
+      url: `/interviewinsights/shareLink?candidateId=${candidateID}`,
+      onSuccess,
+      onError,
+    });
+  }
+
   async getFileDownload({
     onSuccess = () => { },
     onError = () => { },
@@ -163,7 +175,6 @@ class APIWrapper extends HTTPClient {
     const formData = new FormData();
     formData.append("file", file);
     formData.append("createdBy", `Bearer ${sessionStorage.getItem("Token")}`);
-    formData.append("modifiedBy", `Bearer ${sessionStorage.getItem("Token")}`,);
     this.headers = {
       "Content-Type": "multipart/form-data",
       Authorization: `Bearer ${sessionStorage.getItem("Token")}`,

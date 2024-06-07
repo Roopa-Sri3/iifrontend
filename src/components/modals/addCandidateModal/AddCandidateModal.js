@@ -118,11 +118,11 @@ const AddCandidateModal = ({fetchCandidates}) => {
         isValid = false;
       }
     } else {
-      if ((!/^\d+$/.test(years) || years < 0 || years > 25) && (!/^\d+$/.test(months) || months < 0 || months > 11)) {
+      if ((!/^\d+$/.test(years) || years < 1 || years > 25) && (!/^\d+$/.test(months) || months < 0 || months > 11)) {
         setYearsOfExperienceError("Please enter valid years of experience");
         setMonthsOfExperienceError("Please enter valid years of experience");
         isValid = false;
-      } else if (!/^\d+$/.test(years) || years < 0 || years > 25) {
+      } else if (!/^\d+$/.test(years) || years < 1 || years > 25) {
         setYearsOfExperienceError("Please enter valid years of experience");
         isValid = false;
       } else if (!/^\d+$/.test(months) || months < 0 || months > 11) {
@@ -344,7 +344,7 @@ const AddCandidateModal = ({fetchCandidates}) => {
                       }}
                       autoComplete="off"
                     />
-                    <span>Years<p>(0-25)</p></span>
+                    <span>Years<p>(1-25)</p></span>
                   </div>
                   <div className="experience-input-field">
                     <input

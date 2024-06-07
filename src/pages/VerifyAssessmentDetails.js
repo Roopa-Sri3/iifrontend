@@ -17,6 +17,9 @@ function VerifyAssessmentDetails () {
       if(res.message === "The link has expired"){
         navigate("/candidate/link-expired");
       }
+      else if(res.message === "Candidate already completed the Assessment"){
+        navigate("/candidate/assessment-completed");
+      }
       else{
         const candidateDetails = res && res.response;
         dispatch(setCandidateId({candidateId}));
@@ -24,12 +27,10 @@ function VerifyAssessmentDetails () {
           ...candidateDetails
         }));
         dispatch(GetTechnicalSkillsForCandidate({}));
-        // navigate to upload aadhaar page
         navigate("/candidate/candidate-profile-view");
       }
     },
     onError: (e) => {
-      console.log(e.response.data.message);
       navigate("/unauthorized");
     }
   }));

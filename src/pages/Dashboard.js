@@ -181,6 +181,7 @@ const Dashboard = () => {
                 currentPage={currentPage}
                 recordsPerPage={recordsPerPage}
                 filteredCandidates={candidates}
+                fetchCandidates={fetchCandidates}
               />
             ) : (
               <tbody>

@@ -11,6 +11,8 @@ import VerifyAssessmentDetails from "./pages/VerifyAssessmentDetails";
 import LinkExpired from "./pages/LinkExpired";
 import ThankYou from "./pages/ThankYou";
 import CandidateProfileview from "./components/core/CandidateProfileView";
+import AssessmentCompleted from "./pages/AssessmentCompleted";
+import AssessmentStarted from "./pages/AssessmentStarted";
 
 const ROUTES_CONFIG = [
   {
@@ -49,6 +51,14 @@ const ROUTES_CONFIG = [
       {
         path: "/candidate/assessment-instructions",
         element: <AssessmentInstructions />
+      },
+      {
+        path: "/candidate/assessment-completed",
+        element: <AssessmentCompleted />
+      },
+      {
+        path: "/candidate/assessment-started",
+        element: <AssessmentStarted />
       },
       {
         path: "/candidate/verify-assessment-details",
