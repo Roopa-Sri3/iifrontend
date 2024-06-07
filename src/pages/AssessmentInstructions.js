@@ -63,7 +63,6 @@ const AssessmentInstructions = () => {
           }
         },
         onError: (e) => {
-          console.log(e.response.data.message);
           navigate("/unauthorized");
         }
       }));
