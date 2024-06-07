@@ -142,6 +142,19 @@ class APIWrapper extends HTTPClient {
     });
   }
 
+  async getAssessmentRefreshData({
+    data,
+    onSuccess = () => {},
+    onError = () => {},
+  }) {
+    return this.get({
+      url: "/interviewapi/RefreshPage",
+      data,
+      onSuccess,
+      onError,
+    });
+  }
+
   async verifyCandidateStatus({
     candidateId,
     onSuccess = () => {},

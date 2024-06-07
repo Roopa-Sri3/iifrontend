@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Button from "../core/button";
 import RadioGroup from "../core/radioGroup/RadioGroup";
-import { handleSaveAndNext, handlePrevious, updateAnswers } from "../../store/reducers/screen/screen";
+import { handleSaveAndNext, handlePrevious, updateAnswers, setRefreshData, GetAssessmentRefreshData } from "../../store/reducers/screen/screen";
 import { selectCurrentQuestion, getQuestions, getAnswers, getAssessmentId } from "../../store/selector/screen";
 import { PostAssessmentAnswers } from "../../store/reducers/screen/screen";
 import Loading from "../../pages/Loading";
@@ -10,6 +11,7 @@ import "./Question.css";
 
 const Question = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const answers = useSelector(getAnswers);
   const questions = useSelector(getQuestions);
   const assessment_id = useSelector(getAssessmentId);
@@ -25,6 +27,29 @@ const Question = () => {
   useEffect(() => {
     setSelectedOption(savedAnswer);
   }, [currQuestion, savedAnswer]);
+
+  useEffect(() => {
+    const storeAssessmentData = sessionStorage.getItem("assessmentId");
+    const candidateID = sessionStorage.getItem("candidateId");
+    if (!storeAssessmentData) {
+      navigate("/unauthorized");
+    } else if (!assessment_id && (storeAssessmentData && candidateID)) {
+      const data = {
+        assessmentId: storeAssessmentData,
+        candidateId: candidateID,
+      };
+      dispatch(GetAssessmentRefreshData({
+        data,
+        onSuccess: (response) => {
+          dispatch(setRefreshData(response));
+          console.log("Assessment Info fetched successfully after refresh..");
+        },
+        onError: () => {
+          console.error("Error fetching data after refresh");
+        },
+      }));
+    }
+  }, [assessment_id, dispatch, navigate]);
 
   const handlePreviousButton = () => {
     dispatch(handlePrevious(presentquestion));

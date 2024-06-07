@@ -21,8 +21,6 @@ const AssessmentInstructions = () => {
   const navigate = useNavigate();
 
   const handleStartExam = () => {
-    dispatch(startExam());
-    dispatch(setDuration());
     const candidateId = sessionStorage.getItem("candidateId");
     dispatch(GetAssessmentQuestions({
       candidateId,
@@ -32,7 +30,9 @@ const AssessmentInstructions = () => {
         }
         else{
           sessionStorage.setItem("assessmentId",assessment_id);
+          dispatch(startExam());
           navigate("/candidate/assessment-screen");
+          dispatch(setDuration());
         }
       },
       onError: () => {
