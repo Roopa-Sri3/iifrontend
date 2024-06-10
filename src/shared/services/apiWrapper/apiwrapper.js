@@ -24,18 +24,18 @@ class APIWrapper extends HTTPClient {
   }
 
   async postToken({
-    data,
     onSuccess = () => { },
     onError = () => { },
   }) {
 
     this.headers = {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${sessionStorage.getItem("Token")}`,
     };
 
-    return this.post({
+    return this.get({
       url: "/user/getUserDetails",
-      data,
+      headers: this.headers,
       onSuccess,
       onError,
     });
@@ -57,8 +57,12 @@ class APIWrapper extends HTTPClient {
     onSuccess = () => { },
     onError = () => { },
   }) {
+    this.headers = {
+      Authorization: `Bearer ${sessionStorage.getItem("Token")}`,
+    };
     return this.post({
       data,
+      headers: this.headers,
       url: "/interviewinsights/searchcandidates",
       onSuccess,
       onError,
@@ -70,8 +74,12 @@ class APIWrapper extends HTTPClient {
     onSuccess = () => { },
     onError = () => { },
   }) {
+    this.headers = {
+      Authorization: `Bearer ${sessionStorage.getItem("Token")}`,
+    };
     return this.post({
       data,
+      headers: this.headers,
       url: "/interviewinsights/addcandidate",
       onSuccess,
       onError,
@@ -87,9 +95,25 @@ class APIWrapper extends HTTPClient {
       candidateId,
       ...formData
     } = data;
+    this.headers = {
+      Authorization: `Bearer ${sessionStorage.getItem("Token")}`,
+    };
     return this.put({
       data: formData,
+      headers: this.headers,
       url: `/interviewinsights/editcandidate/${candidateId}`,
+      onSuccess,
+      onError,
+    });
+  }
+
+  async shareAssessmentLink({
+    candidateID,
+    onSuccess = () => { },
+    onError = () => { },
+  }) {
+    return this.post({
+      url: `/interviewinsights/shareLink?candidateId=${candidateID}`,
       onSuccess,
       onError,
     });
@@ -149,17 +173,18 @@ class APIWrapper extends HTTPClient {
     onError = () => { },
   }) {
     const formData = new FormData();
-    const adminToken = sessionStorage.getItem("Token");
     formData.append("file", file);
-    formData.append("createdBy", adminToken);
-    formData.append("modifiedBy", adminToken);
+    formData.append("createdBy", `Bearer ${sessionStorage.getItem("Token")}`);
+    formData.append("modifiedBy", `Bearer ${sessionStorage.getItem("Token")}`);
     this.headers = {
       "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${sessionStorage.getItem("Token")}`,
     };
 
     return this.post({
       url: "/interviewinsights/uploadExcelFile",
       data: formData,
+      headers: this.headers,
       onSuccess,
       onError,
     });

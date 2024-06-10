@@ -72,15 +72,14 @@
 }
 .test-submit-feedback-stars{
     display: flex;
-    max-width: 50%;
+    max-width: 52%;
     margin-bottom: 30px;
 }
 
 .test-submit-star{
     display: flex;
     justify-content: space-between;
-    gap: 20px;
-    width: 100%;
+    gap: 10px;
 }
 
 .test-submit-star-with-label {
@@ -88,7 +87,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    min-width: 52px;
+    min-width: 75px;
 }
 .test-submit-star-label {
     margin-top: 10px;

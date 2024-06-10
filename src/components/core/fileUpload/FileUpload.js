@@ -17,8 +17,8 @@ function FileUpload({
           <UploadIcon className="file-upload-image"/>
         </div>
         <div className="upload-label-text">
-          <p className="upload-text">Click to upload</p>
-          <p className="criteria-text"> Supported files CSV, XLSX with max size 4MB</p>
+          <p className="upload-text-data">Click to upload</p>
+          <p className="criteria-text"> Supported file XLSX with max size 4MB</p>
         </div>
       </Label>
       <input

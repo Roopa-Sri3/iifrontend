@@ -2,7 +2,6 @@ import React from "react";
 import Button from "../button";
 import { GetFileDownload } from "../../../store/reducers/dashboard/dashboard";
 import { useDispatch } from "react-redux";
-import { downloadUrl } from "../../../shared/constants";
 import "./Download.css";
 
 const Download = () => {
@@ -11,7 +10,7 @@ const Download = () => {
   const downloadFile = () => {
     dispatch(GetFileDownload({
       onSuccess: () => {
-        window.open(downloadUrl,"_blank");
+        window.open(`${process.env.REACT_APP_API_BASE_URL}/interviewinsights/downloadTemplate`,"_blank");
       },
       onError: (e) => {
         console.error(e);

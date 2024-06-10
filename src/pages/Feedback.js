@@ -39,7 +39,7 @@ const TestSubmit = () => {
     const stars = [];
     for (let i = 0; i < 5; i++) {
       const fillColor = i < (hoveredStar != null ? hoveredStar : rating) ? "#FFC90A" : "#C9C9C9";
-      const label = (i === 4) ? "Out\nStanding" : ratingLabels[i];
+      const label = (i === 4) ? "Out Standing" : ratingLabels[i];
 
       stars.push(
         <div key={`star-${label}`} className="test-submit-star-with-label">
@@ -65,13 +65,11 @@ const TestSubmit = () => {
         rating:rating,
         comments:comment
       },
-      onSuccess: (response) => {
-        console.log("Feedback submitted successfully:", response);
+      onSuccess: () => {
         navigate("/candidate/thank-you");
         sessionStorage.removeItem("candidateId");
       },
-      onError: (error) => {
-        console.error("Error submitting feedback:", error);
+      onError: () => {
       }
     }));
   };
@@ -81,7 +79,7 @@ const TestSubmit = () => {
       <center>
         <div  className='submit-msg'>
           <CheckCircle color={"green"} />
-          <h5 id='test-submit'>Test Submitted</h5>
+          <h5 id='test-submit'>Your test has been submitted successfully</h5>
           <p id='test-description'>Please Submit your feedback</p>
         </div>
 

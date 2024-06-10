@@ -7,11 +7,13 @@ const initialState = {
   candidateName: "",
   phoneNumber: "",
   email:"",
-  experience:"",
+  years:null,
+  months:null,
   primarySkill:"",
   secondarySkills:[],
   rrNo:"",
   linkExpired:false,
+  createdBy:"",
   skillsOptions: [],
 };
 
@@ -31,21 +33,25 @@ const candidateSlice = createSlice({
         candidateName,
         phoneNumber,
         email,
-        experience,
+        years,
+        months,
         primarySkill,
         secondarySkills,
         rrNo,
         linkExpired,
+        createdBy,
       } = action.payload;
 
       state.candidateName = candidateName;
       state.phoneNumber = phoneNumber;
       state.email = email;
-      state.experience = experience;
+      state.years = years;
+      state.months = months;
       state.primarySkill = primarySkill;
       state.secondarySkills = secondarySkills;
       state.rrNo = rrNo;
       state.linkExpired = linkExpired;
+      state.createdBy = createdBy;
     },
     setSkills: (state, action) => {
       state.skillsOptions = action.payload;

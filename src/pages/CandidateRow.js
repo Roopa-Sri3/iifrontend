@@ -8,8 +8,10 @@ import VisibilityComponent from "../assets/svgs/visibilityImage";
 import DownloadIcon from "../assets/svgs/downloadIcon";
 import { GetUserRole } from "../store/selector/app";
 import "./CandidateRow.css";
+import { ShareAssessmentLink } from "../store/reducers/dashboard/dashboard";
+import { setAlert } from "../store/reducers/app/app";
 
-const CandidateRow = ({ candidate }) => {
+const CandidateRow = ({ candidate , fetchCandidates}) => {
   const dispatch = useDispatch();
   const role = useSelector(GetUserRole);
   const options = useSelector(GetStoreSkills);
@@ -40,6 +42,18 @@ const CandidateRow = ({ candidate }) => {
             )
         }
       }));
+  };
+
+  const handleShareIcon = (rowCandidateData) =>{
+    const candidateID = rowCandidateData.candidateId;
+    dispatch(ShareAssessmentLink({
+      candidateID,
+      onSuccess: (response)=>{
+        dispatch(setAlert({ message: response.message, messageType: "success" }));
+        fetchCandidates();
+      },
+      onError:()=>{ },
+    }));
   };
 
   return (
@@ -74,10 +88,20 @@ const CandidateRow = ({ candidate }) => {
             <VisibilityComponent
               style={{marginLeft: "40px",cursor:"pointer"}}
               onClick={handleOpenModal}/>
-            <span className="comments-text"
-              style={{ marginLeft: "10px" }}>
-            Comments
-            </span>
+            <div
+              className="comments-text"
+              style={{ marginLeft: "10px" }}
+              role="button"
+              tabIndex="0"
+              onClick={() => handleOpenModal()}
+              onKeyDown={(event) => {
+                if (event.key === "Enter") {
+                  handleOpenModal();
+                }
+              }}
+            >
+              Comments
+            </div>
           </div>
         ) : (
           <div className="feedback-container">N/A</div>
@@ -101,6 +125,7 @@ const CandidateRow = ({ candidate }) => {
           <ShareComponent
             className = {`share-icon ${isStatusNewOrExpired ? "active" : ""}`}
             fillColor={isStatusNewOrExpired ? "#383838" : "#D0D5DD"}
+            onClick={() => isStatusNewOrExpired && handleShareIcon(candidate)}
           />
         </td>
       )}

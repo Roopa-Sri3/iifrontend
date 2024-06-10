@@ -10,8 +10,8 @@ import {instructions} from "../shared/constants";
 import { PostUploadFile } from "../store/reducers/dashboard/dashboard";
 import { setAlert } from "../store/reducers/app/app";
 import { useDispatch } from "react-redux";
-import "./Questionsconfiguration.css";
 import LogoutModal from "../components/modals/logoutModal/LogoutModal";
+import "./Questionsconfiguration.css";
 
 function Questionsconfiguration() {
   const fileRef = useRef();
@@ -22,12 +22,12 @@ function Questionsconfiguration() {
   };
 
   const [selectedFile, setSelectedFile] = useState(null);
-
+  const [isFileValid, setIsFileValid] = useState(true);
   const handleFiles = (event) => {
     const files = event.target.files;
     if (files.length > 0) {
       setSelectedFile(files[0]);
-      console.log(selectedFile);
+      setIsFileValid(true);
     }
     else{
       setSelectedFile(null);
@@ -37,29 +37,35 @@ function Questionsconfiguration() {
   const handleDeleteFile = () => {
     setSelectedFile(null);
     fileRef.current.value = null;
+    setIsFileValid(true);
   };
 
   const handleSubmit = () => {
-
-    dispatch(PostUploadFile({
-      file: selectedFile,
-      onSuccess: () => {
-        dispatch(setAlert({ message: "File uploaded successfully", messageType: "success" }));
-      },
-      onError: () => {
-        if (selectedFile.size > (4 * 1024 * 1024)) {
-          dispatch(setAlert({ message: "File size exceeded", messageType: "failure" }));
-          fileRef.current.value = null;
-        }
-        else if (selectedFile.type !== "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") {
-          dispatch(setAlert({ message: "Invalid file type.", messageType: "failure" }));
-          fileRef.current.value = null;
-        }
-        else{
-          dispatch(setAlert({ message: "File upload unsuccessful", messageType: "failure" }));
-        }
-      },
-    }));
+    if (selectedFile.size > (4 * 1024 * 1024)) {
+      dispatch(setAlert({ message: "File size exceeded", messageType: "failure" }));
+      fileRef.current.value = null;
+      setIsFileValid(false);
+    } else if (selectedFile.type !== "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") {
+      dispatch(setAlert({ message: "Invalid file type", messageType: "failure" }));
+      fileRef.current.value = null;
+      setIsFileValid(false);
+    } else {
+      dispatch(PostUploadFile({
+        file: selectedFile,
+        onSuccess: () => {
+          dispatch(setAlert({ message: "File uploaded successfully", messageType: "success" }));
+        },
+        onError: (e) => {
+          if (e.errorMessage === "The uploaded file contains an unexpected column.") {
+            dispatch(setAlert({message: e.errorMessage, messageType: "failure" }));
+            setIsFileValid(false);
+          } else {
+            dispatch(setAlert({ message: "Failed to upload", messageType: "failure" }));
+            setIsFileValid(false);
+          }
+        },
+      }));
+    }
   };
 
   return(
@@ -95,7 +101,7 @@ function Questionsconfiguration() {
           </div>
           {selectedFile && (
             <div className="complete-file-content-layout">
-              <div className="file-content-layout">
+              <div className={`file-content-layout  ${!isFileValid ? "invalid" : ""}`}>
                 <div className="file-layout"><FileIcon /></div>
                 <div className="file-info-layout">
                   <span className="file-name">{selectedFile.name}</span>
