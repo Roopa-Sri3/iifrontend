@@ -5,14 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/core/button";
 import { GetAssessmentQuestions, setDuration, startExam } from "../store/reducers/screen/screen";
-import { getAssessmentId } from "../store/selector/screen";
 import { GetCandidateName } from "../store/selector/candidate";
 import {VerifyCandidateStatus, setCandidateDetails, setCandidateId, GetTechnicalSkillsForCandidate} from "../store/reducers/candidate/candidate";
 
 const AssessmentInstructions = () => {
   const [isConfirmed, setIsConfirmed] = useState(false);
   const candidateName = useSelector(GetCandidateName);
-  const assessment_id = useSelector(getAssessmentId);
 
   const handleConfirmation = () => {
     setIsConfirmed(!isConfirmed);
@@ -30,7 +28,6 @@ const AssessmentInstructions = () => {
           navigate("/candidate/assessment-started");
         }
         else{
-          sessionStorage.setItem("assessmentId",assessment_id);
           dispatch(startExam());
           navigate("/candidate/assessment-screen");
           dispatch(setDuration());

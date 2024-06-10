@@ -148,7 +148,7 @@ class APIWrapper extends HTTPClient {
     onError = () => {},
   }) {
     return this.get({
-      url: "/interviewapi/RefreshPage",
+      url: "/interviewinsightapi/refreshPage",
       data,
       onSuccess,
       onError,

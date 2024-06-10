@@ -12,9 +12,10 @@ import "./Question.css";
 const Question = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const assessment_id = useSelector(getAssessmentId);
+  sessionStorage.setItem("assessmentId", assessment_id);
   const answers = useSelector(getAnswers);
   const questions = useSelector(getQuestions);
-  const assessment_id = useSelector(getAssessmentId);
   const totalQuestions = questions.length;
   const presentquestion = useSelector(selectCurrentQuestion);
   const currQuestion = questions[presentquestion];
@@ -27,6 +28,12 @@ const Question = () => {
   useEffect(() => {
     setSelectedOption(savedAnswer);
   }, [currQuestion, savedAnswer]);
+
+  // useEffect(() => {
+  //   if (assessment_id) {
+  //     sessionStorage.setItem("assessmentId", assessment_id);
+  //   }
+  // }, [assessment_id]);
 
   useEffect(() => {
     const storeAssessmentData = sessionStorage.getItem("assessmentId");

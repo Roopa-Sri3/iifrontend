@@ -68,6 +68,7 @@ const TestSubmit = () => {
       onSuccess: () => {
         navigate("/candidate/thank-you");
         sessionStorage.removeItem("candidateId");
+        sessionStorage.removeItem("assessmentId");
       },
       onError: () => {
       }
