@@ -142,6 +142,19 @@ class APIWrapper extends HTTPClient {
     });
   }
 
+  async getAssessmentRefreshData({
+    assessmentId,
+    candidateId,
+    onSuccess = () => {},
+    onError = () => {},
+  }) {
+    return this.get({
+      url: `/interviewinsightapi/refreshPage?assessmentId=${assessmentId}&candidateId=${candidateId}`,
+      onSuccess,
+      onError,
+    });
+  }
+
   async verifyCandidateStatus({
     candidateId,
     onSuccess = () => {},
