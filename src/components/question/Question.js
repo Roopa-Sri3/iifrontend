@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Button from "../core/button";
 import RadioGroup from "../core/radioGroup/RadioGroup";
-import { handleSaveAndNext, handlePrevious, updateAnswers, setRefreshData, GetAssessmentRefreshData, setDuration } from "../../store/reducers/screen/screen";
+import { handleSaveAndNext, handlePrevious, updateAnswers, setRefreshData, GetAssessmentRefreshData, setDuration, startExam } from "../../store/reducers/screen/screen";
 import { selectCurrentQuestion, getQuestions, getAnswers, getAssessmentId } from "../../store/selector/screen";
 import { PostAssessmentAnswers } from "../../store/reducers/screen/screen";
 import Loading from "../../pages/Loading";
@@ -39,7 +39,8 @@ const Question = () => {
         candidateId,
         onSuccess: (response) => {
           dispatch(setRefreshData(response));
-          dispatch(setDuration(response.remainingTime));
+          dispatch(startExam());
+          dispatch(setDuration(parseInt(response.remainingTime)));
           console.log("Assessment Info fetched successfully after refresh..");
         },
         onError: () => {
@@ -57,11 +58,6 @@ const Question = () => {
     const action = presentquestion >= questions.length - 1 ? "Save" : "Save & Next";
     const updatedAnswers = [...answers];
     const answerValue = selectedOption ? selectedOption : codeValue || "";
-    // updatedAnswers[presentquestion] = {
-    //   questionId: currQuestion.question_id,
-    //   optionSelected: answerValue,
-    //   assessmentId: assessment_id,
-    // };
     if (answerValue !== "") {
       updatedAnswers[presentquestion] = {
         questionId: currQuestion.question_id,
