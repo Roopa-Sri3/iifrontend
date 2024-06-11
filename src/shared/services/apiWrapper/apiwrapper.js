@@ -243,6 +243,19 @@ class APIWrapper extends HTTPClient {
     });
   }
 
+  async postTabSwitchCount({
+    data,
+    onSuccess = () => {},
+    onError = () => {},
+  }) {
+    return this.post({
+      data,
+      url: "/interviewapi/updateAssessmentViolation",
+      onSuccess,
+      onError,
+    });
+  }
+
 }
 
 export default APIWrapper;

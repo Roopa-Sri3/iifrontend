@@ -17,8 +17,8 @@ const screenSlice = createSlice({
   name: "screen",
   initialState,
   reducers: {
-    setDuration: (state) => {
-      state.duration = 40;
+    setDuration: (state, action) => {
+      state.duration = action.payload;
       state.isTimeUp = false;
     },
     setTimeUp: (state) => {
@@ -97,6 +97,20 @@ export const PostFeedback = ({
   const apiWrapper = new APIWrapper(dispatch);
 
   await apiWrapper.postFeedback({
+    data,
+    onSuccess,
+    onError,
+  });
+};
+
+export const PostTabSwitchCount = ({
+  data,
+  onSuccess = () => {},
+  onError = () => {},
+}) => async(dispatch) => {
+  const apiWrapper = new APIWrapper(dispatch);
+
+  await apiWrapper.postTabSwitchCount({
     data,
     onSuccess,
     onError,
