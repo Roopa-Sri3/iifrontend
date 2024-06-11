@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import APIWrapper from "../../../shared/services/apiWrapper/apiwrapper";
 
 const initialState = {
+  isExamSubmitted: false,
   duration: null,
   isTimeUp: null,
   isRunning: null,
@@ -48,9 +49,10 @@ const screenSlice = createSlice({
       }));
       state.answers = action.payload.questions.map((question) => ({
         questionId: question.question_id,
-        optionSelected: question.optionSelected || null,
+        optionSelected: question.optionSelected !== null ? question.optionSelected : null,
         assessmentId: action.payload.assessmentId,
       }));
+      state.warningLimit = action.payload.warningLimit;
     },
     handleQuestionClick: (state, action) => {
       state.currentQuestion = action.payload;
@@ -104,14 +106,16 @@ export const PostAssessmentAnswers = ({
 };
 
 export const GetAssessmentRefreshData = ({
-  data,
+  assessmentId,
+  candidateId,
   onSuccess = () => {},
   onError = () => {},
 }) => async(dispatch) => {
   const apiWrapper = new APIWrapper(dispatch);
 
   await apiWrapper.getAssessmentRefreshData({
-    data,
+    assessmentId,
+    candidateId,
     onSuccess,
     onError,
   });

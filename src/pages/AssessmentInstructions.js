@@ -29,6 +29,7 @@ const AssessmentInstructions = () => {
         }
         else{
           dispatch(startExam());
+          sessionStorage.setItem("assessmentId",response.assessmentId);
           navigate("/candidate/assessment-screen");
           dispatch(setDuration());
         }

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Button from "../core/button";
 import RadioGroup from "../core/radioGroup/RadioGroup";
-import { handleSaveAndNext, handlePrevious, updateAnswers, setRefreshData, GetAssessmentRefreshData } from "../../store/reducers/screen/screen";
+import { handleSaveAndNext, handlePrevious, updateAnswers, setRefreshData, GetAssessmentRefreshData, setDuration } from "../../store/reducers/screen/screen";
 import { selectCurrentQuestion, getQuestions, getAnswers, getAssessmentId } from "../../store/selector/screen";
 import { PostAssessmentAnswers } from "../../store/reducers/screen/screen";
 import Loading from "../../pages/Loading";
@@ -13,7 +13,6 @@ const Question = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const assessment_id = useSelector(getAssessmentId);
-  sessionStorage.setItem("assessmentId", assessment_id);
   const answers = useSelector(getAnswers);
   const questions = useSelector(getQuestions);
   const totalQuestions = questions.length;
@@ -29,26 +28,18 @@ const Question = () => {
     setSelectedOption(savedAnswer);
   }, [currQuestion, savedAnswer]);
 
-  // useEffect(() => {
-  //   if (assessment_id) {
-  //     sessionStorage.setItem("assessmentId", assessment_id);
-  //   }
-  // }, [assessment_id]);
-
   useEffect(() => {
-    const storeAssessmentData = sessionStorage.getItem("assessmentId");
-    const candidateID = sessionStorage.getItem("candidateId");
-    if (!storeAssessmentData) {
+    const assessmentId = sessionStorage.getItem("assessmentId");
+    const candidateId = sessionStorage.getItem("candidateId");
+    if (!assessmentId) {
       navigate("/unauthorized");
-    } else if (!assessment_id && (storeAssessmentData && candidateID)) {
-      const data = {
-        assessmentId: storeAssessmentData,
-        candidateId: candidateID,
-      };
+    } else if (!assessment_id && (assessmentId && candidateId)) {
       dispatch(GetAssessmentRefreshData({
-        data,
+        assessmentId,
+        candidateId,
         onSuccess: (response) => {
           dispatch(setRefreshData(response));
+          dispatch(setDuration(response.remainingTime));
           console.log("Assessment Info fetched successfully after refresh..");
         },
         onError: () => {
@@ -66,11 +57,20 @@ const Question = () => {
     const action = presentquestion >= questions.length - 1 ? "Save" : "Save & Next";
     const updatedAnswers = [...answers];
     const answerValue = selectedOption ? selectedOption : codeValue || "";
-    updatedAnswers[presentquestion] = {
-      questionId: currQuestion.question_id,
-      optionSelected: answerValue,
-      assessmentId: assessment_id,
-    };
+    // updatedAnswers[presentquestion] = {
+    //   questionId: currQuestion.question_id,
+    //   optionSelected: answerValue,
+    //   assessmentId: assessment_id,
+    // };
+    if (answerValue !== "") {
+      updatedAnswers[presentquestion] = {
+        questionId: currQuestion.question_id,
+        optionSelected: answerValue,
+        assessmentId: assessment_id,
+      };
+    } else {
+      updatedAnswers[presentquestion] = null;
+    }
     setSelectedOption(null);
     dispatch(updateAnswers(updatedAnswers));
     dispatch(PostAssessmentAnswers({

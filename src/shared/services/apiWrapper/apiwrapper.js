@@ -143,13 +143,13 @@ class APIWrapper extends HTTPClient {
   }
 
   async getAssessmentRefreshData({
-    data,
+    assessmentId,
+    candidateId,
     onSuccess = () => {},
     onError = () => {},
   }) {
     return this.get({
-      url: "/interviewinsightapi/refreshPage",
-      data,
+      url: `/interviewinsightapi/refreshPage?assessmentId=${assessmentId}&candidateId=${candidateId}`,
       onSuccess,
       onError,
     });

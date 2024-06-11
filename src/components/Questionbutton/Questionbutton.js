@@ -24,7 +24,7 @@ const QuestionButtons = () => {
       <Button
         className={`question-button ${
           presentquestion === index ? "present" :
-            answs.some((a) => a && a.questionId === question.question_id) ? "saved" : "unsaved"
+            (answs[index] && answs[index].optionSelected !== null) ? "saved" : "unsaved"
         }`}
         handleClick={() => handlequestionclick(index)}
         label={index + 1}
