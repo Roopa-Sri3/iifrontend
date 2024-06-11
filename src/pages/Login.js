@@ -121,7 +121,7 @@ function Login() {
           <div className="label-and-input">
             <Label
               htmlFor="email"
-              text="Email Address"
+              text="Email address"
               className="label-text"
             />
             <Input
