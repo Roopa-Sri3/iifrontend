@@ -17,7 +17,7 @@ const Question = () => {
   const questions = useSelector(getQuestions);
   const totalQuestions = questions.length;
   const presentquestion = useSelector(selectCurrentQuestion);
-  const currQuestion = questions[presentquestion];
+  const currQuestion = questions && questions[presentquestion];
   const answerForQuestion = answers[presentquestion];
   const savedAnswer = answerForQuestion ? answerForQuestion.optionSelected : "";
 
