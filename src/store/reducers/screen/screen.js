@@ -38,6 +38,22 @@ const screenSlice = createSlice({
       state.assessmentId = action.payload.assessmentId;
       state.questions = action.payload.questions;
     },
+    setRefreshData: (state, action) => {
+      state.assessmentId = action.payload.assessmentId;
+      state.questions = action.payload.questions.map((question) => ({
+        question_id: question.question_id,
+        question: question.question,
+        options: question.options,
+        programmingQuestion: question.programmingQuestion,
+      }));
+      state.answers = action.payload.questions.map((question) => ({
+        questionId: question.question_id,
+        optionSelected: question.optionSelected !== null ? question.optionSelected : null,
+        assessmentId: action.payload.assessmentId,
+      }));
+      state.duration = action.payload.remainingTime;
+      state.warningLimit = action.payload.warningLimit;
+    },
     handleQuestionClick: (state, action) => {
       state.currentQuestion = action.payload;
     },
@@ -72,7 +88,6 @@ export const GetAssessmentQuestions = ({
     onError,
   });
   dispatch(setAssessmentData(responseData));
-  console.log(responseData);
 };
 
 export const PostAssessmentAnswers = ({
@@ -84,6 +99,22 @@ export const PostAssessmentAnswers = ({
 
   await apiWrapper.postAssessmentAnswers({
     data,
+    onSuccess,
+    onError,
+  });
+};
+
+export const GetAssessmentRefreshData = ({
+  assessmentId,
+  candidateId,
+  onSuccess = () => {},
+  onError = () => {},
+}) => async(dispatch) => {
+  const apiWrapper = new APIWrapper(dispatch);
+
+  await apiWrapper.getAssessmentRefreshData({
+    assessmentId,
+    candidateId,
     onSuccess,
     onError,
   });
@@ -124,6 +155,7 @@ export const {
   endExam,
   incrementTabSwitchCount,
   setAssessmentData,
+  setRefreshData,
   handleQuestionClick,
   handleSaveAndNext,
   handlePrevious,

@@ -112,6 +112,9 @@ class APIWrapper extends HTTPClient {
     onSuccess = () => { },
     onError = () => { },
   }) {
+    this.headers = {
+      Authorization: `Bearer ${sessionStorage.getItem("Token")}`,
+    };
     return this.post({
       url: `/interviewinsights/shareLink?candidateId=${candidateID}`,
       onSuccess,
@@ -137,6 +140,19 @@ class APIWrapper extends HTTPClient {
   }) {
     return this.get({
       url: `/interviewapi/getQuestions?candidateId=${candidateId}`,
+      onSuccess,
+      onError,
+    });
+  }
+
+  async getAssessmentRefreshData({
+    assessmentId,
+    candidateId,
+    onSuccess = () => {},
+    onError = () => {},
+  }) {
+    return this.get({
+      url: `/interviewinsightapi/refreshPage?assessmentId=${assessmentId}&candidateId=${candidateId}`,
       onSuccess,
       onError,
     });
