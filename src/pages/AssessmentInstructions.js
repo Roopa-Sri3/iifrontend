@@ -24,7 +24,7 @@ const AssessmentInstructions = () => {
 
   const handleStartExam = () => {
     dispatch(startExam());
-    dispatch(setDuration());
+    dispatch(setDuration(40));
     dispatch(GetAssessmentQuestions({
       candidateId,
       onSuccess: (response) => {
