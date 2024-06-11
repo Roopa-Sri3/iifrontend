@@ -5,7 +5,6 @@ import { IsUserLoggedIn } from "../../store/selector/app";
 
 const ProtectedLogoutRoute = () => {
   const isUserLoggedIn = useSelector(IsUserLoggedIn);
-  console.log("isUserLoggedIn in logout =>", isUserLoggedIn);
 
   return isUserLoggedIn ? <Navigate to="/dashboard" /> : <Navigate to="/" />;
 };
