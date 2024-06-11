@@ -2,6 +2,8 @@ import React from "react";
 import Dashboard from "./pages/Dashboard";
 import ProtectLoginRoute from "./privateRoutes/protectLoginRoute";
 import ProtectedDashboardRoute from "./privateRoutes/protectDashboardRoute";
+import ProtectedQuestionConfigurationRoute from "./privateRoutes/protectedQuestionConfigurationRoute";
+import ProtectedAssessmentscreenRoute from "./privateRoutes/protectedAssessmentscreenRoute";
 import Questionsconfiguration from "./pages/Questionsconfiguration";
 import Unauthorized from "./pages/Unauthorized";
 import Feedback from "../src/pages/Feedback";
@@ -26,10 +28,26 @@ const ROUTES_CONFIG = [
       {
         path: "/dashboard",
         element: (<Dashboard />)
-      },
+      }
+    ]
+  },
+  {
+    path: "/",
+    element:  <ProtectedQuestionConfigurationRoute />,
+    children: [
       {
         path: "/admin/questions-configure",
         element: <Questionsconfiguration />
+      },
+    ]
+  },
+  {
+    path: "/candidate",
+    element:  <ProtectedAssessmentscreenRoute />,
+    children: [
+      {
+        path: "/candidate/assessment-screen",
+        element: <Assessmentscreen />
       },
     ]
   },
@@ -40,10 +58,6 @@ const ROUTES_CONFIG = [
   {
     path: "/candidate",
     children: [
-      {
-        path: "/candidate/assessment-screen",
-        element: <Assessmentscreen />
-      },
       {
         path: "/candidate/candidate-profile-view",
         element:<CandidateProfileview/>
