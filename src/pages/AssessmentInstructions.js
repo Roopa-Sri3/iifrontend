@@ -31,7 +31,7 @@ const AssessmentInstructions = () => {
           dispatch(startExam());
           sessionStorage.setItem("assessmentId",response.assessmentId);
           navigate("/candidate/assessment-screen");
-          dispatch(setDuration());
+          dispatch(setDuration(40));
         }
       },
       onError: () => {
