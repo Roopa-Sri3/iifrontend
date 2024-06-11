@@ -51,6 +51,7 @@ const screenSlice = createSlice({
         optionSelected: question.optionSelected !== null ? question.optionSelected : null,
         assessmentId: action.payload.assessmentId,
       }));
+      state.duration = action.payload.remainingTime;
       state.warningLimit = action.payload.warningLimit;
     },
     handleQuestionClick: (state, action) => {
