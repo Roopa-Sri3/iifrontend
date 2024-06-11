@@ -11,9 +11,6 @@ const QuestionButtons = () => {
   const answs = useSelector(getAnswers);
   const questions = useSelector(getQuestions);
   const presentquestion = useSelector(selectCurrentQuestion);
-  const currQuestion = questions[presentquestion];
-  console.log(presentquestion);
-  console.log(currQuestion);
 
   const handlequestionclick = (presentquestion) => {
     dispatch(handleQuestionClick(presentquestion));

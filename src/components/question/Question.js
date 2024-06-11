@@ -41,11 +41,8 @@ const Question = () => {
           dispatch(setRefreshData(response));
           dispatch(startExam());
           dispatch(setDuration(parseInt(response.remainingTime)));
-          console.log("Assessment Info fetched successfully after refresh..");
         },
-        onError: () => {
-          console.error("Error fetching data after refresh");
-        },
+        onError: () => {},
       }));
     }
   }, [assessment_id, dispatch, navigate]);
@@ -71,12 +68,8 @@ const Question = () => {
     dispatch(updateAnswers(updatedAnswers));
     dispatch(PostAssessmentAnswers({
       data: {...updatedAnswers[presentquestion],action},
-      onSuccess: () => {
-        console.log("Assessment answers saved successfully!");
-      },
-      onError: () => {
-        console.error("Error saving assessment answers");
-      },
+      onSuccess: () => {},
+      onError: () => {},
     }));
     dispatch(handleSaveAndNext(presentquestion));
   };

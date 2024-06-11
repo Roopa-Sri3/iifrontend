@@ -88,7 +88,6 @@ export const GetAssessmentQuestions = ({
     onError,
   });
   dispatch(setAssessmentData(responseData));
-  console.log(responseData);
 };
 
 export const PostAssessmentAnswers = ({

@@ -34,9 +34,7 @@ const AssessmentInstructions = () => {
           dispatch(setDuration(40));
         }
       },
-      onError: () => {
-        console.error("Error fetching questions");
-      }
+      onError: () => {}
     }));
   };
 
