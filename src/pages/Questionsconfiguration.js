@@ -4,7 +4,7 @@ import FileUpload from "../components/core/fileUpload/FileUpload";
 import Button from "../components/core/button";
 import Download from "../components/core/download/Download";
 import BackarrowIcon from "../assets/svgs/BackarrowIcon";
-import FileIcon from "../components/assets/svgs/FileIcon";
+import FileIcon from "../assets/svgs/FileIcon";
 import DeletefileIcon from "../assets/svgs/DeletefileIcon";
 import {instructions} from "../shared/constants";
 import { PostUploadFile } from "../store/reducers/dashboard/dashboard";

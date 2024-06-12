@@ -10,7 +10,7 @@ export const GetWarningLimit = (state) => state.screen.warningLimit;
 
 export const selectCurrentQuestion = (state) => state.screen.currentQuestion;
 
-export const getQuestions = (state) =>  state.screen.questions;
+export const getQuestions = (state) =>  state.screen.questions || [];
 
 export const getAssessmentId = (state) => state.screen.assessmentId;
 
