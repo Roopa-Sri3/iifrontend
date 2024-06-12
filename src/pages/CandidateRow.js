@@ -7,15 +7,16 @@ import ShareComponent from "../assets/svgs/shareImage";
 import VisibilityComponent from "../assets/svgs/visibilityImage";
 import DownloadIcon from "../assets/svgs/downloadIcon";
 import { GetUserRole } from "../store/selector/app";
-import "./CandidateRow.css";
-import { ShareAssessmentLink } from "../store/reducers/dashboard/dashboard";
+import { DownloadCandidateReport, ShareAssessmentLink } from "../store/reducers/dashboard/dashboard";
 import { setAlert } from "../store/reducers/app/app";
+import "./CandidateRow.css";
 
 const CandidateRow = ({ candidate , fetchCandidates}) => {
   const dispatch = useDispatch();
   const role = useSelector(GetUserRole);
   const options = useSelector(GetStoreSkills);
   const isStatusNewOrExpired = candidate.status === "New" || candidate.status === "Expired";
+  const isStatusCompleted = candidate.status === "Completed";
 
   const handleOpenModal = () => {
     dispatch(openModal(
@@ -42,6 +43,17 @@ const CandidateRow = ({ candidate , fetchCandidates}) => {
             )
         }
       }));
+  };
+
+  const handleReportDownload = (rowCandidateData) => {
+    const candidateID = rowCandidateData.candidateId;
+    // window.open(`${process.env.REACT_APP_API_BASE_URL}/interviewinsights/downloadCandidateReport?candidateId=${candidateID}`,"_blank");
+
+    dispatch(DownloadCandidateReport({
+      candidateId: candidateID,
+      onSuccess: () => {},
+      onError: () => {},
+    }));
   };
 
   const handleShareIcon = (rowCandidateData) =>{
@@ -75,10 +87,21 @@ const CandidateRow = ({ candidate , fetchCandidates}) => {
           <div className="report-text">
             {candidate.status === "Completed" ? candidate.fileUrl : "No report"}
           </div>
-          <DownloadIcon
+          <div
+            role="button"
+            tabIndex="0"
+            onKeyDown={(event,candidate) => {
+              if((isStatusCompleted) && (event.key === "Enter" || event.key === " ")){
+                handleReportDownload(candidate);
+              }
+            }}
+            onClick={() => handleReportDownload(candidate)}
             style={{ cursor: candidate.fileUrl !== "null" ? "pointer" : "not-allowed" }}
-            fillColor={candidate.fileUrl !== "null" ? "#196AD6" : "#6F7683"}
-          />
+          >
+            <DownloadIcon
+              fillColor={candidate.fileUrl !== "null" ? "#196AD6" : "#6F7683"}
+            />
+          </div>
         </div>
       </td>
       <td>
