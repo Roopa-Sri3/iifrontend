@@ -6,13 +6,15 @@ import Button from "../../core/button/button";
 import ModalWarningIcon from "../../../assets/svgs/ModalWarningIcon";
 import { closeModal } from "../../../store/reducers/app/app";
 import { IsModalOpen } from "../../../store/selector/app/app";
-import { endExam, setTimeUp } from "../../../store/reducers/screen/screen";
+import { PostAssessmentAnswers, endExam, setTimeUp } from "../../../store/reducers/screen/screen";
 import "./TabSwitchWarningModal.css";
+import { getAssessmentId } from "../../../store/selector/screen";
 
 const TabSwitchWarningModal = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isWarningModalOpen = useSelector((state) => IsModalOpen(state,"TabSwitchWarningModal"));
+  const assessmentId = useSelector(getAssessmentId);
   const timerId = useRef(null);
 
   const handleClose = () => {
@@ -25,10 +27,21 @@ const TabSwitchWarningModal = () => {
 
   const handleCloseAndSubmit = useCallback(() => {
     dispatch(closeModal());
-    dispatch(endExam());
-    dispatch(setTimeUp());
-    navigate("/candidate/feedback");
-  }, [dispatch, navigate]);
+    dispatch(PostAssessmentAnswers({
+      data:{
+        assessmentId : assessmentId,
+        action : "Tab Switch Warning Exceeded",
+      },
+      onSuccess: () => {
+        dispatch(endExam());
+        dispatch(setTimeUp());
+        navigate("/candidate/feedback");
+      },
+      onError: (error) => {
+        console.log(error);
+      }
+    }));
+  }, [dispatch, navigate, assessmentId]);
 
   useEffect(() => {
     if (isWarningModalOpen) {
