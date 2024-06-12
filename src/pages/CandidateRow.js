@@ -93,7 +93,7 @@ const CandidateRow = ({ candidate , fetchCandidates}) => {
                 handleReportDownload(candidate);
               }
             }}
-            onClick={() => handleReportDownload(candidate)}
+            onClick={() => isStatusCompleted && handleReportDownload(candidate)}
             style={{ cursor: candidate.fileUrl !== "null" ? "pointer" : "not-allowed" }}
           >
             <DownloadIcon
