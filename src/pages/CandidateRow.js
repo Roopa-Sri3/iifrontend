@@ -47,8 +47,6 @@ const CandidateRow = ({ candidate , fetchCandidates}) => {
 
   const handleReportDownload = (rowCandidateData) => {
     const candidateID = rowCandidateData.candidateId;
-    // window.open(`${process.env.REACT_APP_API_BASE_URL}/interviewinsights/downloadCandidateReport?candidateId=${candidateID}`,"_blank");
-
     dispatch(DownloadCandidateReport({
       candidateId: candidateID,
       onSuccess: () => {},
