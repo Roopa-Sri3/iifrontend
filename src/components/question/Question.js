@@ -1,17 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import Button from "../core/button";
 import RadioGroup from "../core/radioGroup/RadioGroup";
-import { handleSaveAndNext, handlePrevious, updateAnswers, setRefreshData, GetAssessmentRefreshData, setDuration, startExam } from "../../store/reducers/screen/screen";
+import { handleSaveAndNext, handlePrevious, updateAnswers, PostAssessmentAnswers } from "../../store/reducers/screen/screen";
 import { selectCurrentQuestion, getQuestions, getAnswers, getAssessmentId } from "../../store/selector/screen";
-import { PostAssessmentAnswers } from "../../store/reducers/screen/screen";
 import Loading from "../../pages/Loading";
 import "./Question.css";
 
 const Question = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const assessment_id = useSelector(getAssessmentId);
   const answers = useSelector(getAnswers);
   const questions = useSelector(getQuestions);
@@ -27,25 +24,6 @@ const Question = () => {
   useEffect(() => {
     setSelectedOption(savedAnswer);
   }, [currQuestion, savedAnswer]);
-
-  useEffect(() => {
-    const assessmentId = sessionStorage.getItem("assessmentId");
-    const candidateId = sessionStorage.getItem("candidateId");
-    if (!assessmentId) {
-      navigate("/unauthorized");
-    } else if (!assessment_id && (assessmentId && candidateId)) {
-      dispatch(GetAssessmentRefreshData({
-        assessmentId,
-        candidateId,
-        onSuccess: (response) => {
-          dispatch(setRefreshData(response));
-          dispatch(startExam());
-          dispatch(setDuration(parseInt(response.remainingTime)));
-        },
-        onError: () => {},
-      }));
-    }
-  }, [assessment_id, dispatch, navigate]);
 
   const handlePreviousButton = () => {
     dispatch(handlePrevious(presentquestion));
