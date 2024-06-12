@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import APIWrapper from "../../../shared/services/apiWrapper/apiwrapper";
 
 const initialState = {
+  isAssessmentscreenLoading: false,
   duration: null,
   isTimeUp: null,
   isRunning: null,
@@ -37,8 +38,13 @@ const screenSlice = createSlice({
     setAssessmentData: (state, action) => {
       state.assessmentId = action.payload.assessmentId;
       state.questions = action.payload.questions;
+      state.isAssessmentscreenLoading = true;
+    },
+    setAssessmentScreenLoading: (state, action) => {
+      state.isAssessmentscreenLoading = action.payload.isAssessmentscreenLoading;
     },
     setRefreshData: (state, action) => {
+      state.isAssessmentscreenLoading = true;
       state.assessmentId = action.payload.assessmentId;
       state.questions = action.payload.questions.map((question) => ({
         question_id: question.question_id,
@@ -53,6 +59,7 @@ const screenSlice = createSlice({
       }));
       state.duration = action.payload.remainingTime;
       state.warningLimit = action.payload.warningLimit;
+      state.isRunning = action.payload.remainingTime > 0 && action.payload.warningLimit >= 0;
     },
     handleQuestionClick: (state, action) => {
       state.currentQuestion = action.payload;
@@ -160,6 +167,7 @@ export const {
   handleSaveAndNext,
   handlePrevious,
   updateAnswers,
+  setAssessmentScreenLoading,
 } = screenSlice.actions;
 
 export default screenSlice.reducer;
