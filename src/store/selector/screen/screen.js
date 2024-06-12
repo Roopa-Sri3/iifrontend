@@ -1,3 +1,5 @@
+export const IsAssessmentscreenLoading = (state) => state.screen.isAssessmentscreenLoading;
+
 export const GetDuration = (state) => state.screen.duration;
 
 export const GetExamStatus = (state) => state.screen.isRunning;
