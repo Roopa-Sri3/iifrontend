@@ -1,0 +1,16 @@
+.result-filter{
+    position: relative;
+  }
+  
+  .result-filter-menu {
+    position: absolute;
+    left: 10px;
+    z-index:10;
+    width:max-content;
+    border:1px solid #D9E0E6;
+    max-height:400px;
+    border-top:0;
+    border-radius:5px;
+    background: #FDFDFD;
+    box-shadow: 0px 4px 4px 0px #00000040;
+  }

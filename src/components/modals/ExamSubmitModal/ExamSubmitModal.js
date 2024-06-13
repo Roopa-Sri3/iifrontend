@@ -27,7 +27,6 @@ const ExamSubmitModal = () => {
       assessmentId: assessment_id,
       action: "Submit",
     };
-    console.log(finalAnswers);
 
     dispatch(PostAssessmentAnswers({
       data: finalAnswers,

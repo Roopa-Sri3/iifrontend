@@ -1,12 +1,12 @@
 import React, { useState, useEffect} from "react";
 import { assessmentInstructions } from "../shared/constants";
-import "./AssessmentInstructions.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/core/button";
 import { GetAssessmentQuestions, setDuration, startExam } from "../store/reducers/screen/screen";
 import { GetCandidateName } from "../store/selector/candidate";
 import {VerifyCandidateStatus, setCandidateDetails, setCandidateId, GetTechnicalSkillsForCandidate} from "../store/reducers/candidate/candidate";
+import "./AssessmentInstructions.css";
 
 const AssessmentInstructions = () => {
   const [isConfirmed, setIsConfirmed] = useState(false);
@@ -31,6 +31,7 @@ const AssessmentInstructions = () => {
           dispatch(startExam());
           sessionStorage.setItem("assessmentId",response.assessmentId);
           navigate("/candidate/assessment-screen");
+          //Assessment duration is fixed to 40 minutes
           dispatch(setDuration(40));
         }
       },

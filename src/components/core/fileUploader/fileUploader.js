@@ -1,5 +1,5 @@
 import React from "react";
-import UploadIcon from "../../../components/assets/svgs/UploadIcon";
+import UploadIcon from "../../../assets/svgs/UploadIcon";
 import "./fileUploader.css";
 
 function FileUploader({
@@ -17,7 +17,7 @@ function FileUploader({
       <div className="overall-content-container">
         <label className="upload-tag" htmlFor={identifier}>
           <div className="imageicon-container">
-            <UploadIcon/>
+            <UploadIcon />
           </div>
           <div>
             <p className="upload-text">{displayText}</p>
