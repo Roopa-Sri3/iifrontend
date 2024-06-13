@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Modal from "../../core/modal/Modal";
 import Button from "../../core/button";
-import { PostAssessmentAnswers, endExam } from "../../../store/reducers/screen/screen";
+import { PostAssessmentAnswers, endExam, setTimeUp } from "../../../store/reducers/screen/screen";
 import { closeModal} from "../../../store/reducers/app/app";
 import { IsModalOpen } from "../../../store/selector/app/app";
 import "./ExamSubmitModal.css";
@@ -34,6 +34,7 @@ const ExamSubmitModal = () => {
       onSuccess: () => {
         dispatch(endExam());
         dispatch(closeModal());
+        dispatch(setTimeUp());
         navigate("/candidate/feedback");
       },
       onError: () => {
