@@ -34,7 +34,7 @@ function ResultFilter({
       {showFilter && (
         <div className='result-filter-menu'>
           <OptionsMenu
-            id="dashBoardStatusFilter"
+            id="dashBoardResultFilter"
             options={results}
             handleCheckbox={handleResultChange}
             selectedOptions={resultFilter}
