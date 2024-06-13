@@ -22,6 +22,11 @@ const Question = () => {
   const [codeValue, setCodeValue] = useState("");
 
   useEffect(() => {
+    if (currQuestion && currQuestion.programmingQuestion){
+      setCodeValue(savedAnswer || "");
+    } else {
+      setSelectedOption(savedAnswer);
+    }
     setSelectedOption(savedAnswer);
   }, [currQuestion, savedAnswer]);
 
@@ -36,7 +41,7 @@ const Question = () => {
     if (answerValue !== "") {
       updatedAnswers[presentquestion] = {
         questionId: currQuestion.question_id,
-        optionSelected: answerValue,
+        optionSelected: currQuestion.programmingQuestion ? codeValue : answerValue,
         assessmentId: assessment_id,
       };
     } else {
