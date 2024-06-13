@@ -16,8 +16,9 @@ import Search from "../assets/svgs/Search";
 import AddIcon from "../assets/svgs/AddIcon.js";
 import StatusFilter from "../components/table/statuFilter/StatuFilter.js";
 import LogoutModal from "../components/modals/logoutModal/LogoutModal.js";
-import { statuses } from "../shared/constants.js";
+import { results, statuses } from "../shared/constants.js";
 import "./Dashboard.css";
+import ResultFilter from "../components/table/resultFilter/ResultFilter.js";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ const Dashboard = () => {
   const [selectedStatus] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState([]);
+  const [resultFilter, setResultFilter] = useState([]);
 
   useEffect(() => {
     dispatch(GetTechSkills({
@@ -43,6 +45,7 @@ const Dashboard = () => {
       statuses: statusFilter.map((status) => status.value),
       page: currentPage,
       search: searchTerm,
+      result: resultFilter.map((result) => result.value),
       token: hrToken,
     };
     dispatch(GetCandidateDetails({
@@ -57,6 +60,7 @@ const Dashboard = () => {
       statuses: statusFilter.map((status) => status.value),
       page: currentPage,
       search: searchTerm,
+      result: resultFilter.map((result) => result.value),
       token: hrToken,
     };
     dispatch(GetCandidateDetails({
@@ -64,7 +68,7 @@ const Dashboard = () => {
       onSuccess: () => { },
       onError: () => { },
     }));
-  }, [currentPage, statusFilter, searchTerm, hrToken, dispatch]);
+  }, [currentPage, statusFilter, searchTerm, hrToken, resultFilter, dispatch]);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -99,6 +103,19 @@ const Dashboard = () => {
     }
   };
 
+  const handleResultChange = (optionSelected, selected) => {
+    if (selected) {
+      setResultFilter([
+        ...resultFilter,
+        optionSelected,
+      ]);
+      setCurrentPage(1);
+    } else {
+      setResultFilter(resultFilter.filter((assessmentResult) => assessmentResult.value !== optionSelected.value));
+      setCurrentPage(1);
+    }
+  };
+
   const headerActions = [
     null,
     null,
@@ -106,6 +123,12 @@ const Dashboard = () => {
       statuses={statuses}
       statusFilter={statusFilter}
       handleCheckboxChange={handleCheckboxChange}
+    />,
+    null,
+    <ResultFilter
+      results={results}
+      resultFilter={resultFilter}
+      handleResultChange={handleResultChange}
     />,
     null,
     null,
@@ -164,6 +187,8 @@ const Dashboard = () => {
                 "Candidate Name",
                 "Tech Skills",
                 "Status",
+                "Score",
+                "Result",
                 "View/Download Report",
                 "Feedback",
                 "Actions",
@@ -171,6 +196,8 @@ const Dashboard = () => {
                 "Candidate Name",
                 "Tech Skills",
                 "Status",
+                "Score",
+                "Result",
                 "View/Download Report",
                 "Feedback",
               ]}
@@ -186,7 +213,7 @@ const Dashboard = () => {
             ) : (
               <tbody>
                 <tr>
-                  <td colSpan="6" className="no-records-found">No Records Found</td>
+                  <td colSpan="10" className="no-records-found">No Records Found</td>
                 </tr>
               </tbody>
             )}
