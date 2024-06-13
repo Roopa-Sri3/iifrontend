@@ -59,8 +59,11 @@ function Questionsconfiguration() {
           if (e.errorMessage === "The uploaded file contains an unexpected column.") {
             dispatch(setAlert({message: e.errorMessage, messageType: "failure" }));
             setIsFileValid(false);
-          } else {
-            dispatch(setAlert({ message: "Failed to upload", messageType: "failure" }));
+          } else if(e.errorMessage){
+            dispatch(setAlert({ message: e.errorMessage, messageType: "failure" }));
+            setIsFileValid(false);
+          } else{
+            dispatch(setAlert({message: "Failed to upload", messageType: "failure"}));
             setIsFileValid(false);
           }
         },

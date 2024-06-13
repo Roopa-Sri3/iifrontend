@@ -141,7 +141,7 @@ function CandidateProfileView() {
   };
 
   return (
-    <>
+    <div className="outermost-container">
       <div className="Candidate-profile-page-container">
         <div className="header-container">
           <div className="candidate-container">
@@ -265,7 +265,7 @@ function CandidateProfileView() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

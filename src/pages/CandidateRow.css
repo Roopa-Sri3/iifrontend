@@ -30,6 +30,16 @@
   font-weight: 500;
 }
 
+.score-container{
+  display:flex ;
+  font-weight: 500;
+}
+
+.result-container{
+  display:flex ;
+  font-weight: 500;
+}
+
 .save-icon {
   color: grey;
 }
@@ -40,6 +50,8 @@
 
 .status-completed {
   color: #1AB900;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .comments-button{
@@ -60,4 +72,16 @@
 
 .filter-icon{
   cursor:pointer;
+}
+
+.exam-pass{
+  color:#1AB900;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.exam-fail{
+  color:#FF2828;
+  font-size: 14px;
+  font-weight: 600;
 }
