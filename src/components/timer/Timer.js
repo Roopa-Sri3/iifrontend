@@ -6,9 +6,8 @@ import "./Timer.css";
 
 const Timer = () => {
   const dispatch = useDispatch();
-  const duration = useSelector(GetDuration);
+  const [timeRemaining,setTimeRemaining] = useState(useSelector(GetDuration));
   const assessmentId = useSelector(getAssessmentId);
-  const [timeRemaining, setTimeRemaining] = useState(duration * 60);
   const timeRef = useRef(null);
 
   useEffect(() => {
