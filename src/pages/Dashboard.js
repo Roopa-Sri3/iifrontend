@@ -108,6 +108,12 @@ const Dashboard = () => {
       handleCheckboxChange={handleCheckboxChange}
     />,
     null,
+    <StatusFilter
+      statuses={statuses}
+      statusFilter={statusFilter}
+      handleCheckboxChange={handleCheckboxChange}
+    />,
+    null,
     null,
     null,
   ];
@@ -164,6 +170,8 @@ const Dashboard = () => {
                 "Candidate Name",
                 "Tech Skills",
                 "Status",
+                "Score",
+                "Result",
                 "View/Download Report",
                 "Feedback",
                 "Actions",
@@ -171,6 +179,8 @@ const Dashboard = () => {
                 "Candidate Name",
                 "Tech Skills",
                 "Status",
+                "Score",
+                "Result",
                 "View/Download Report",
                 "Feedback",
               ]}
@@ -186,7 +196,7 @@ const Dashboard = () => {
             ) : (
               <tbody>
                 <tr>
-                  <td colSpan="6" className="no-records-found">No Records Found</td>
+                  <td colSpan="10" className="no-records-found">No Records Found</td>
                 </tr>
               </tbody>
             )}

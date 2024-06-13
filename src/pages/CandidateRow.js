@@ -71,6 +71,25 @@ const CandidateRow = ({ candidate , fetchCandidates}) => {
         {candidate.status}
       </td>
       <td>
+        {candidate.status === "Completed" ? (
+          <div>
+            {candidate.assessmentScore}
+          </div>
+        ) : (
+          <div className="score-container">N/A</div>
+        )}
+      </td>
+      <td>
+        {candidate.status === "Completed" ? (
+          <div className={candidate.assessmentResult ===
+        "Pass" ? "exam-pass" : "exam-fail"}>
+            {candidate.assessmentResult}
+          </div>
+        ) : (
+          <div className="result-container">N/A</div>
+        )}
+      </td>
+      <td>
         <div className="cd-report">
           <div className="report-text">
             {candidate.status === "Completed" ? candidate.fileUrl : "No report"}

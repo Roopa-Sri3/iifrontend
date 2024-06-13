@@ -112,6 +112,9 @@ class APIWrapper extends HTTPClient {
     onSuccess = () => { },
     onError = () => { },
   }) {
+    this.headers = {
+      Authorization: `Bearer ${sessionStorage.getItem("Token")}`,
+    };
     return this.post({
       url: `/interviewinsights/shareLink?candidateId=${candidateID}`,
       onSuccess,
