@@ -62,7 +62,9 @@ function App() {
         onSuccess: (response) => {
           dispatch(setRefreshData(response));
           dispatch(startExam());
-          dispatch(setDuration(parseInt(response.remainingTime)));
+          const [minutes, seconds] = response.remainingTime.split(":").map(Number);
+          const totalSeconds = minutes * 60 + seconds;
+          dispatch(setDuration(totalSeconds));
         },
         onError: () => {},
       }));

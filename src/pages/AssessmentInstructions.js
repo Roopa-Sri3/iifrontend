@@ -32,7 +32,7 @@ const AssessmentInstructions = () => {
           sessionStorage.setItem("assessmentId",response.assessmentId);
           navigate("/candidate/assessment-screen");
           //Assessment duration is fixed to 40 minutes
-          dispatch(setDuration(40));
+          dispatch(setDuration(2400));
         }
       },
       onError: () => {}
