@@ -15,8 +15,8 @@ const UploadItems = ({ file, onDelete, errorMessage, uploadFailed }) => {
           <FileIcon />
         </div>
         <div className="file-information-layout">
-          <span className="file-name">{file.name}</span>
-          <span className="file-size">
+          <span className="file-document-name">{file.name}</span>
+          <span className="file-document-size">
             {(file.size / (1024 * 1024)).toFixed(2)} MB
           </span>
         </div>
