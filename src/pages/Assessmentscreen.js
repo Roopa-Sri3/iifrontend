@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation, useBlocker } from "react-router-dom";
 import Questionsnavigate from "../components/Questionsnavigate/Questionsnavigate";
 import Question from "../components/question";
 import ExamSubmitModal from "../components/modals/ExamSubmitModal";
@@ -14,11 +14,22 @@ import { GetCandidateId } from "../store/selector/candidate/candidate";
 function Assessmentscreen(){
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation();
   const isTimeUp = useSelector(GetIsTimeUp);
   const warningLimit = useSelector(GetWarningLimit);
   const tabSwitchCount = useSelector(GetTabSwitchCount);
   const assessmentId = useSelector(getAssessmentId);
   const candidateId = useSelector(GetCandidateId);
+
+  const blocker = useBlocker(
+    (tx) =>{
+      if (assessmentId !== null &&
+      location.pathname !== tx.nextLocation.pathname){
+        return "Are you sure?";
+      }
+      return false;
+    }
+  );
 
   useEffect(() => {
     const handleVisibilityChange = () => {
@@ -70,7 +81,7 @@ function Assessmentscreen(){
     if (isTimeUp) {
       navigate("/candidate/feedback");
     }
-  }, [isTimeUp, navigate]);
+  }, [isTimeUp, navigate, dispatch]);
 
   return(
     <div className="assess-sreen-layout">
@@ -82,6 +93,9 @@ function Assessmentscreen(){
       </div>
       <ExamSubmitModal />
       <TabSwitchWarningModal />
+      {blocker.state === "blocked" ? (
+        <></>
+      ) : null}
     </div>
   );
 }
