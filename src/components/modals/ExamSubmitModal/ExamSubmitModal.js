@@ -33,6 +33,7 @@ const ExamSubmitModal = () => {
       onSuccess: () => {
         dispatch(endExam());
         dispatch(closeModal());
+        sessionStorage.removeItem("assessmentId");
         navigate("/candidate/feedback");
       },
       onError: () => {
