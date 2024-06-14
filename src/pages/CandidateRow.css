@@ -32,12 +32,10 @@
 
 .score-container{
   display:flex ;
-  font-weight: 500;
 }
 
 .result-container{
   display:flex ;
-  font-weight: 500;
 }
 
 .save-icon {
