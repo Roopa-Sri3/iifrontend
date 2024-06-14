@@ -2,16 +2,18 @@ import React, { useEffect } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./presentation/layout/Layout";
 import ROUTES_CONFIG from "./routes";
-import "./App.css";
 import { useDispatch, useSelector } from "react-redux";
 import { IsUserLoggedIn } from "./store/selector/app";
+import { getAssessmentId } from "./store/selector/screen";
+import { setRefreshData, GetAssessmentRefreshData, setDuration, startExam,setAssessmentScreenLoading } from "./store/reducers/screen/screen";
 import { PostToken, setIsUserLoading, setUserDetails } from "./store/reducers/app/app";
+import "./App.css";
 
 const router = createBrowserRouter(ROUTES_CONFIG);
 
 function App() {
   const dispatch = useDispatch();
-
+  const assessment_id = useSelector(getAssessmentId);
   const isStoreHasUserData = useSelector(IsUserLoggedIn);
 
   useEffect(() => {
@@ -49,7 +51,30 @@ function App() {
         isUserLoading: false,
       }));
     }
-  }, [dispatch, isStoreHasUserData]);
+
+    const assessmentId = sessionStorage.getItem("assessmentId");
+    const candidateId = sessionStorage.getItem("candidateId");
+
+    if (!assessment_id && (assessmentId && candidateId)) {
+      dispatch(GetAssessmentRefreshData({
+        assessmentId,
+        candidateId,
+        onSuccess: (response) => {
+          dispatch(setRefreshData(response));
+          dispatch(startExam());
+          const [minutes, seconds] = response.remainingTime.split(":").map(Number);
+          const totalSeconds = minutes * 60 + seconds;
+          dispatch(setDuration(totalSeconds));
+        },
+        onError: () => {},
+      }));
+    } else {
+      dispatch(setAssessmentScreenLoading({
+        isAssessmentscreenLoading: true,
+      }));
+    }
+
+  }, [dispatch, assessment_id, isStoreHasUserData]);
 
   return (
     <Layout>

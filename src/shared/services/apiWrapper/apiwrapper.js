@@ -272,6 +272,31 @@ class APIWrapper extends HTTPClient {
     });
   }
 
+  async downloadCandidateReport({
+    candidateId,
+    onSuccess = () => {},
+    onError = () => {},
+  }) {
+    this.headers = {
+      Authorization: `Bearer ${sessionStorage.getItem("Token")}`,
+    };
+    return this.get({
+      headers: this.headers,
+      url: `/interviewinsights/downloadCandidateReport?candidateId=${candidateId}`,
+      onSuccess: (response) => {
+        const blob = new Blob([response], { type: "application/pdf" });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `assessment_report_${candidateId}.pdf`;
+        a.click();
+        window.URL.revokeObjectURL(url);
+        onSuccess();
+      },
+      onError,
+    });
+  }
+
 }
 
 export default APIWrapper;

@@ -60,6 +60,18 @@ export const statuses = [
     value: "New"
   },
 ];
+
+export const results = [
+  {
+    label:"Pass",
+    value: "Pass"
+  },
+  {
+    label:"Fail",
+    value: "Fail"
+  },
+];
+
 export const emailPattern = /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/;
 
 export const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;

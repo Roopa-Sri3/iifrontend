@@ -142,3 +142,17 @@ export const PostIdProofDetails = ({
     onError,
   });
 };
+
+export const DownloadCandidateReport = ({
+  candidateId,
+  onSuccess = () => {},
+  onError = () => {},
+} = {}) => async(dispatch) => {
+  const apiWrapper = new APIWrapper(dispatch);
+
+  await apiWrapper.downloadCandidateReport({
+    candidateId,
+    onSuccess,
+    onError,
+  });
+};
