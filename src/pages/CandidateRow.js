@@ -121,10 +121,10 @@ const CandidateRow = ({ candidate , fetchCandidates}) => {
               }
             }}
             onClick={() => isStatusCompleted && handleReportDownload(candidate)}
-            style={{ cursor: candidate.fileUrl !== "null" ? "pointer" : "not-allowed" }}
+            style={{ cursor: isStatusCompleted && candidate.fileUrl !== "null" ? "pointer" : "not-allowed" }}
           >
             <DownloadIcon
-              fillColor={candidate.fileUrl !== "null" ? "#196AD6" : "#6F7683"}
+              fillColor={isStatusCompleted && candidate.fileUrl !== "null" ? "#196AD6" : "#6F7683"}
             />
           </div>
         </div>
