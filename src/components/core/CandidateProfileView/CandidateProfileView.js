@@ -161,7 +161,11 @@ function CandidateProfileView() {
                     <div className="icon-item">
                       <CallIcon />
                       <span className="candidate-number">
-                        {phoneNumber}
+                        {phoneNumber ?
+                          `${phoneNumber}`
+                          : (
+                            "N/A"
+                          )}
                       </span>
                     </div>
                     <div className="icon-item">
