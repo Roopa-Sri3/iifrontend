@@ -83,7 +83,7 @@ const CandidateRow = ({ candidate , fetchCandidates}) => {
       <td>
         {candidate.status === "Completed" ? (
           <div>
-            {candidate.assessmentScore}
+            {candidate.score}
           </div>
         ) : (
           <div className="score-container">N/A</div>
