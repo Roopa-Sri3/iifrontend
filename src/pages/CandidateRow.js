@@ -49,8 +49,16 @@ const CandidateRow = ({ candidate , fetchCandidates}) => {
     const candidateID = rowCandidateData.candidateId;
     dispatch(DownloadCandidateReport({
       candidateId: candidateID,
-      onSuccess: () => {},
-      onError: () => {},
+      onSuccess: (response) => {
+        const blob = new Blob([response], { type: "application/pdf" });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `assessment_report_${candidateID}.pdf`;
+        a.click();
+        window.URL.revokeObjectURL(url);
+      },
+      onError: () => { },
     }));
   };
 
@@ -83,7 +91,7 @@ const CandidateRow = ({ candidate , fetchCandidates}) => {
       <td>
         {candidate.status === "Completed" ? (
           <div>
-            {candidate.assessmentScore}
+            {candidate.score}
           </div>
         ) : (
           <div className="score-container">N/A</div>
@@ -113,10 +121,10 @@ const CandidateRow = ({ candidate , fetchCandidates}) => {
               }
             }}
             onClick={() => isStatusCompleted && handleReportDownload(candidate)}
-            style={{ cursor: candidate.fileUrl !== "null" ? "pointer" : "not-allowed" }}
+            style={{ cursor: isStatusCompleted && candidate.fileUrl !== "null" ? "pointer" : "not-allowed" }}
           >
             <DownloadIcon
-              fillColor={candidate.fileUrl !== "null" ? "#196AD6" : "#6F7683"}
+              fillColor={isStatusCompleted && candidate.fileUrl !== "null" ? "#196AD6" : "#6F7683"}
             />
           </div>
         </div>

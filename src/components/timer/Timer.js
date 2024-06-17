@@ -12,14 +12,19 @@ const Timer = () => {
 
   useEffect(() => {
     timeRef.current = setInterval(() => {
-      setTimeRemaining((prevTime) => prevTime - 1);
+      if (timeRemaining > 1) {
+        setTimeRemaining((prevTime) => prevTime - 1);
+      } else {
+        setTimeRemaining(0);
+        clearInterval(timeRef.current);
+      }
     }, 1000);
 
     return () => clearInterval(timeRef.current);
-  }, []);
+  }, [timeRemaining]);
 
   useEffect(() => {
-    if (timeRemaining <= 0) {
+    if (timeRemaining === 0) {
       dispatch(PostAssessmentAnswers({
         data:{
           assessmentId : assessmentId,
