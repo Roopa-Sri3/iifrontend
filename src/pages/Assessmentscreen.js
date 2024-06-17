@@ -58,13 +58,11 @@ function Assessmentscreen(){
             onSuccess: () => {
               dispatch(endExam());
               dispatch(setTimeUp());
-              sessionStorage.removeItem("assessmentId");
               navigate("/candidate/feedback");
             },
             onError: () => {
               dispatch(endExam());
               dispatch(setTimeUp());
-              sessionStorage.removeItem("assessmentId");
               navigate("/candidate/feedback");
             }
           }));
@@ -81,7 +79,6 @@ function Assessmentscreen(){
 
   useEffect(() => {
     if (isTimeUp) {
-      sessionStorage.removeItem("assessmentId");
       navigate("/candidate/feedback");
     }
   }, [isTimeUp, navigate, dispatch]);
