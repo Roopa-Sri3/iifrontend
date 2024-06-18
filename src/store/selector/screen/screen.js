@@ -21,5 +21,3 @@ export const getAnswers = (state) => state.screen.answers;
 export const getTotalQuestions = (state) => state.screen.questions.length;
 
 export const getquestionType = (state) => state.screen.questionType;
-
-export const GetWarningTimeoutId = (state) => state.app.warningTimeoutId;

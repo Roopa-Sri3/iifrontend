@@ -5,8 +5,8 @@ import Questionsnavigate from "../components/Questionsnavigate/Questionsnavigate
 import Question from "../components/question";
 import ExamSubmitModal from "../components/modals/ExamSubmitModal";
 import TabSwitchWarningModal from "../components/modals/tabSwitchWarningModal/TabSwitchWarningModal";
-import { closeModal, openModal } from "../store/reducers/app/app";
-import { PostAssessmentAnswers, PostTabSwitchCount, clearWarningTimeoutId, endExam, setTimeUp } from "../store/reducers/screen/screen";
+import { openModal } from "../store/reducers/app/app";
+import { PostAssessmentAnswers, PostTabSwitchCount, endExam, setTimeUp } from "../store/reducers/screen/screen";
 import { incrementTabSwitchCount } from "../store/reducers/screen/screen";
 import { GetIsTimeUp, GetTabSwitchCount, GetWarningLimit, getAssessmentId } from "../store/selector/screen/screen";
 import { GetCandidateId } from "../store/selector/candidate/candidate";
@@ -50,8 +50,6 @@ function Assessmentscreen(){
           }));
 
         } else {
-          dispatch(clearWarningTimeoutId());
-          dispatch(closeModal());
           dispatch(PostAssessmentAnswers({
             data:{
               assessmentId : assessmentId,
