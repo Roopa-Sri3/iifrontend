@@ -12,6 +12,7 @@ const initialState = {
   assessmentId: null,
   questions :[],
   answers: [],
+  warningTimeoutId: null,
 };
 
 const screenSlice = createSlice({
@@ -78,6 +79,12 @@ const screenSlice = createSlice({
     },
     updateAnswers: (state, action) => {
       state.answers = action.payload;
+    },
+    setWarningTimeoutId: (state, action) => {
+      state.warningTimeoutId = action.payload;
+    },
+    clearWarningTimeoutId: (state) => {
+      state.warningTimeoutId = null;
     },
   },
 });
@@ -168,6 +175,8 @@ export const {
   handlePrevious,
   updateAnswers,
   setAssessmentScreenLoading,
+  setWarningTimeoutId,
+  clearWarningTimeoutId,
 } = screenSlice.actions;
 
 export default screenSlice.reducer;
