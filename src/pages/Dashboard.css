@@ -1,6 +1,7 @@
 .dashboard {
   padding: 20px 30px;
   background-color: #ebeef3;
+  height: 98vh;
 }
 
 .dashboard-filters-and-actions {
