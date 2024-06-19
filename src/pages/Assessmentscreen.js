@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation, useBlocker } from "react-router-dom";
 import Questionsnavigate from "../components/Questionsnavigate/Questionsnavigate";
 import Question from "../components/question";
 import ExamSubmitModal from "../components/modals/ExamSubmitModal";
 import TabSwitchWarningModal from "../components/modals/tabSwitchWarningModal/TabSwitchWarningModal";
-import { openModal } from "../store/reducers/app/app";
-import { PostAssessmentAnswers, PostTabSwitchCount, endExam, setTimeUp } from "../store/reducers/screen/screen";
+import { closeModal, openModal } from "../store/reducers/app/app";
+import { PostAssessmentAnswers, PostTabSwitchCount, clearWarningTimeoutId, endExam, setTimeUp } from "../store/reducers/screen/screen";
 import { incrementTabSwitchCount } from "../store/reducers/screen/screen";
 import { GetIsTimeUp, GetTabSwitchCount, GetWarningLimit, getAssessmentId } from "../store/selector/screen/screen";
 import { GetCandidateId } from "../store/selector/candidate/candidate";
@@ -14,11 +14,22 @@ import { GetCandidateId } from "../store/selector/candidate/candidate";
 function Assessmentscreen(){
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation();
   const isTimeUp = useSelector(GetIsTimeUp);
   const warningLimit = useSelector(GetWarningLimit);
   const tabSwitchCount = useSelector(GetTabSwitchCount);
   const assessmentId = useSelector(getAssessmentId);
   const candidateId = useSelector(GetCandidateId);
+
+  const blocker = useBlocker(
+    (tx) =>{
+      if (assessmentId !== null &&
+      location.pathname !== tx.nextLocation.pathname){
+        return "Are you sure?";
+      }
+      return false;
+    }
+  );
 
   useEffect(() => {
     const handleVisibilityChange = () => {
@@ -39,6 +50,8 @@ function Assessmentscreen(){
           }));
 
         } else {
+          dispatch(clearWarningTimeoutId());
+          dispatch(closeModal());
           dispatch(PostAssessmentAnswers({
             data:{
               assessmentId : assessmentId,
@@ -47,11 +60,13 @@ function Assessmentscreen(){
             onSuccess: () => {
               dispatch(endExam());
               dispatch(setTimeUp());
+              sessionStorage.removeItem("assessmentId");
               navigate("/candidate/feedback");
             },
             onError: () => {
               dispatch(endExam());
               dispatch(setTimeUp());
+              sessionStorage.removeItem("assessmentId");
               navigate("/candidate/feedback");
             }
           }));
@@ -68,9 +83,10 @@ function Assessmentscreen(){
 
   useEffect(() => {
     if (isTimeUp) {
+      sessionStorage.removeItem("assessmentId");
       navigate("/candidate/feedback");
     }
-  }, [isTimeUp, navigate]);
+  }, [isTimeUp, navigate, dispatch]);
 
   return(
     <div className="assess-sreen-layout">
@@ -82,6 +98,9 @@ function Assessmentscreen(){
       </div>
       <ExamSubmitModal />
       <TabSwitchWarningModal />
+      {blocker.state === "blocked" ? (
+        <></>
+      ) : null}
     </div>
   );
 }

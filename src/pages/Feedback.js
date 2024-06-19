@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useNavigate} from "react-router-dom";
 import CheckCircle from "../assets/svgs/CheckCircle";
 import Button from "../components/core/button/button";
 import FeedbackStarIcon from "../assets/svgs/FeebackStarIcon";
 import { ratingLabels } from "../shared/constants";
 import { PostFeedback } from "../store/reducers/screen/screen";
-import { getAssessmentId } from "../store/selector/screen/screen";
-import { GetCandidateId } from "../store/selector/candidate/candidate";
 import "./Feedback.css";
 
 const TestSubmit = () => {
   const dispatch = useDispatch();
-  const assessmentId = useSelector(getAssessmentId);
-  const candidateId = useSelector(GetCandidateId);
+  const candidateId = sessionStorage.getItem("candidateId");
   const navigate = useNavigate();
 
   const [rating, setRating] = useState(null);
@@ -28,7 +25,6 @@ const TestSubmit = () => {
       setComment(e.target.value);
       setCharCount(maxLength - comment.length);
     }
-
   };
 
   useEffect(() => {
@@ -60,15 +56,13 @@ const TestSubmit = () => {
   const handleFeedbackSubmit = () => {
     dispatch(PostFeedback({
       data : {
-        assessmentId: assessmentId,
         candidateId: candidateId,
         rating:rating,
         comments:comment
       },
       onSuccess: () => {
-        navigate("/candidate/thank-you");
         sessionStorage.removeItem("candidateId");
-        sessionStorage.removeItem("assessmentId");
+        navigate("/candidate/thank-you");
       },
       onError: () => {
       }

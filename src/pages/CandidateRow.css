@@ -9,10 +9,14 @@
     cursor: pointer;
   }
 
-.edit-icon{
-  margin-right: 20px;
-  cursor: pointer;
-}
+  .edit-icon{
+    margin-right: 20px;
+    cursor: not-allowed;
+  }
+
+  .edit-icon.active{
+   cursor: pointer;
+  }
 
 .cd-report {
   display: flex;
@@ -32,12 +36,10 @@
 
 .score-container{
   display:flex ;
-  font-weight: 500;
 }
 
 .result-container{
   display:flex ;
-  font-weight: 500;
 }
 
 .save-icon {

@@ -189,7 +189,7 @@ const Dashboard = () => {
                 "Status",
                 "Score",
                 "Result",
-                "View/Download Report",
+                "Download Report",
                 "Feedback",
                 "Actions",
               ] : [
@@ -198,7 +198,7 @@ const Dashboard = () => {
                 "Status",
                 "Score",
                 "Result",
-                "View/Download Report",
+                "Download Report",
                 "Feedback",
               ]}
               headerActions={headerActions}

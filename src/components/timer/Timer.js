@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { GetDuration, getAssessmentId } from "../../store/selector/screen/screen";
-import { PostAssessmentAnswers, endExam, setTimeUp } from "../../store/reducers/screen/screen";
+import { PostAssessmentAnswers, clearWarningTimeoutId, endExam, setTimeUp } from "../../store/reducers/screen/screen";
 import "./Timer.css";
 
 const Timer = () => {
@@ -12,14 +12,20 @@ const Timer = () => {
 
   useEffect(() => {
     timeRef.current = setInterval(() => {
-      setTimeRemaining((prevTime) => prevTime - 1);
+      if (timeRemaining > 1) {
+        setTimeRemaining((prevTime) => prevTime - 1);
+      } else {
+        setTimeRemaining(0);
+        clearInterval(timeRef.current);
+      }
     }, 1000);
 
     return () => clearInterval(timeRef.current);
-  }, []);
+  }, [timeRemaining]);
 
   useEffect(() => {
-    if (timeRemaining <= 0) {
+    if (timeRemaining === 0) {
+      dispatch(clearWarningTimeoutId());
       dispatch(PostAssessmentAnswers({
         data:{
           assessmentId : assessmentId,

@@ -52,8 +52,8 @@ function Questionsconfiguration() {
     } else {
       dispatch(PostUploadFile({
         file: selectedFile,
-        onSuccess: () => {
-          dispatch(setAlert({ message: "File uploaded successfully", messageType: "success" }));
+        onSuccess: (res) => {
+          dispatch(setAlert({ message: res.message, messageType: "success" }));
         },
         onError: (e) => {
           if (e.errorMessage === "The uploaded file contains an unexpected column.") {
