@@ -48,8 +48,8 @@ const UserDisplay = () => {
   return (
     <div className="user-display">
       <div className="dashboard-user-details">
-        <div>{profileName}</div>
-        <div>{designation}</div>
+        <div className = "role-name"> {profileName}</div>
+        <div className="designation">{designation}</div>
       </div>
       <div>
         {(userRole === "ADMIN") && (
@@ -64,7 +64,7 @@ const UserDisplay = () => {
         {(userRole === "HR") && (
           <div className="candidates-count">
             <div>Candidates</div>
-            <div>Till Date: {candidateTillDate}</div>
+            <div className = "till-date">Till Date: {candidateTillDate}</div>
           </div>
         )}
       </div>
