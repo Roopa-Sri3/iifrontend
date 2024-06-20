@@ -42,3 +42,5 @@ export const GetProfileShortcutName = (state) => {
   return firstName[0].toUpperCase() + lastName[0].toUpperCase() || "UU"; // TODO: IF NO NAME??
 };
 
+export const IsLoaderVisible = (state) => state.app.apiCounter > 1;
+

@@ -2,6 +2,8 @@ import React from "react";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
 import Toaster from "../../components/container/toaster/Toaster";
+import Loader from "../../components/container/loader/Loader";
+import { useSelector } from "react-redux";
 import "./Layout.css";
 
 /**
@@ -12,8 +14,11 @@ import "./Layout.css";
 function Layout({
   children,
 }) {
+  const isLoaderVisible = useSelector((state) => state.app.apiCounter > 0);
   return (
+
     <div>
+      {isLoaderVisible && <Loader />}
       <Header />
       <Toaster />
       <main className="app-content">
