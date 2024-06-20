@@ -17,6 +17,7 @@ const CandidateRow = ({ candidate , fetchCandidates}) => {
   const options = useSelector(GetStoreSkills);
   const isStatusNewOrExpired = candidate.status === "New" || candidate.status === "Expired";
   const isStatusCompleted = candidate.status === "Completed";
+  const isStatusNewOrExpiredorPending = candidate.status === "New" || candidate.status === "Expired" || candidate.status === "Pending";
 
   const handleOpenModal = () => {
     dispatch(openModal(
@@ -58,7 +59,7 @@ const CandidateRow = ({ candidate , fetchCandidates}) => {
         a.click();
         window.URL.revokeObjectURL(url);
       },
-      onError: () => { },
+      onError: () => {},
     }));
   };
 
@@ -158,17 +159,18 @@ const CandidateRow = ({ candidate , fetchCandidates}) => {
       {role === "HR" && (
         <td className="actions-column">
           <span
-            className="edit-icon"
             role="button"
             tabIndex="0"
-            onClick = {() => handleEditClick(candidate)}
+            onClick = {() => isStatusNewOrExpiredorPending && handleEditClick(candidate)}
             onKeyDown={(event) => {
               if(event.key === "Enter" || event.key === " "){
                 handleEditClick(candidate);
               }
             }}
           >
-            <EditComponent />
+            <EditComponent
+              className={`edit-icon ${isStatusNewOrExpiredorPending ? "active" : ""}`}
+              fillColor={isStatusNewOrExpiredorPending ? "#383838" : "#D0D5DD"} />
           </span>
           <ShareComponent
             className = {`share-icon ${isStatusNewOrExpired ? "active" : ""}`}
