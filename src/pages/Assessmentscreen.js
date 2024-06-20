@@ -107,7 +107,7 @@ function Assessmentscreen(){
     dispatch(PostAssessmentAnswers({
       data: {
         assessmentId: assessmentId,
-        action: "Submit",
+        action: "User Closed Browser",
       },
       onSuccess: () => {
         dispatch(endExam());
