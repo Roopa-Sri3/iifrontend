@@ -4,6 +4,7 @@ import Footer from "../footer/Footer";
 import Toaster from "../../components/container/toaster/Toaster";
 import Loader from "../../components/container/loader/Loader";
 import { useSelector } from "react-redux";
+import { IsApiFetching } from "../../store/selector/app";
 import "./Layout.css";
 
 /**
@@ -14,7 +15,7 @@ import "./Layout.css";
 function Layout({
   children,
 }) {
-  const isLoaderVisible = useSelector((state) => state.app.apiCounter > 0);
+  const isLoaderVisible = useSelector(IsApiFetching);
   return (
 
     <div>
