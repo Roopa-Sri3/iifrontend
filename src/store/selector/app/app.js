@@ -22,6 +22,8 @@ export const GetUserRole = (state) => state.app.role;
 
 export const GetUserDesignation = (state) => state.app.designation;
 
+export const GetCandidateTillDate = (state) => state.app.candidateTillDate;
+
 export const GetCandidateName = (state) => state.candidate.candidateName;
 
 export const GetPhoneNumber = (state) => state.candidate.phoneNumber;

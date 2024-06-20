@@ -6,12 +6,12 @@ const appSlice = createSlice({
   initialState: {
     isUserLoggedIn: false,
     isUserLoading: true,
-    // token: ",
     userName: "",
     firstName: "",
     lastName: "",
     designation: "",
     role: "",
+    candidateTillDate:"",
     modal:{
       modalName: "",
       modalData: null,
@@ -42,6 +42,7 @@ const appSlice = createSlice({
         lastName,
         designation,
         role,
+        candidateTillDate,
       } = action.payload;
 
       state.userName = username;
@@ -49,6 +50,7 @@ const appSlice = createSlice({
       state.lastName = lastName;
       state.designation = designation;
       state.role = role;
+      state.candidateTillDate = candidateTillDate;
       state.isUserLoggedIn = true;
       state.isUserLoading = false;
     },
@@ -60,6 +62,7 @@ const appSlice = createSlice({
       state.lastName = "";
       state.designation = "";
       state.role = "";
+      state.candidateTillDate = "";
     },
     openModal: (state, action) => {
       state.modal.modalName = action.payload.modalName;
@@ -91,6 +94,9 @@ const appSlice = createSlice({
     clearTimeoutId: (state) => {
       state.timeoutId = null;
     },
+    increaseCandidateTillDate: (state) => {
+      state.candidateTillDate += 1;
+    },
   },
 });
 
@@ -109,6 +115,7 @@ export const {
   clearAlert,
   setTimeoutId,
   clearTimeoutId,
+  increaseCandidateTillDate,
 } = appSlice.actions;
 
 export default appSlice.reducer;
