@@ -88,6 +88,36 @@ function Assessmentscreen(){
     }
   }, [isTimeUp, navigate, dispatch]);
 
+  useEffect(() => {
+    const handleBeforeUnload = (event) => {
+      event.preventDefault();
+      event.returnValue = "";
+    };
+
+    window.onbeforeunload = handleBeforeUnload;
+    window.addEventListener("unload", function() {
+      handleConfirmLeave();
+    });
+    return () => {
+      window.onbeforeunload = null;
+    };
+  },);
+
+  const handleConfirmLeave = () => {
+    dispatch(PostAssessmentAnswers({
+      data: {
+        assessmentId: assessmentId,
+        action: "Submit",
+      },
+      onSuccess: () => {
+        dispatch(endExam());
+        dispatch(setTimeUp());
+      },
+      onError: () => {
+      }
+    }));
+  };
+
   return(
     <div className="assess-sreen-layout">
       <div>
