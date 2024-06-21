@@ -1,41 +1,29 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../core/button";
-import { GetProfileName,GetUserDesignation, GetUserRole } from "../../store/selector/app";
+import { GetCandidateTillDate, GetProfileName, GetUserDesignation, GetUserRole } from "../../store/selector/app";
 import DownloadIcon from "../../assets/svgs/downloadIcon";
-import "./UserDisplay.css";
 import { PostToken } from "../../store/reducers/app/app";
+import "./UserDisplay.css";
 
 const UserDisplay = () => {
-  const [candidateTillDate, setCandidateTillDate] = useState(null);
   const profileName = useSelector(GetProfileName);
   const userRole = useSelector(GetUserRole);
   const designation = useSelector(GetUserDesignation);
+  const candidateTillDate = useSelector(GetCandidateTillDate);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const token = sessionStorage.getItem("Token");
 
   useEffect(() => {
-
     const fetchCandidateTillDate = () => {
-      try {
-        dispatch(PostToken({
-          data: {
-            token,
-          },
-          onSuccess: (userDetails) => {
-            const responseDetails = userDetails && userDetails.response;
-            if (responseDetails) {
-              setCandidateTillDate(responseDetails.candidateTillDate);
-            }
-          }
-        }));
-      }
+      dispatch(PostToken({
+        data: {
+          token,
+        },
+      }));
 
-      catch (error) {
-        setCandidateTillDate("Error");
-      }
     };
 
     fetchCandidateTillDate();
@@ -48,8 +36,8 @@ const UserDisplay = () => {
   return (
     <div className="user-display">
       <div className="dashboard-user-details">
-        <div>{profileName}</div>
-        <div>{designation}</div>
+        <div className = "role-name"> {profileName}</div>
+        <div className="designation">{designation}</div>
       </div>
       <div>
         {(userRole === "ADMIN") && (
@@ -64,7 +52,7 @@ const UserDisplay = () => {
         {(userRole === "HR") && (
           <div className="candidates-count">
             <div>Candidates</div>
-            <div>Till Date: {candidateTillDate}</div>
+            <div className = "till-date">Till Date: {candidateTillDate}</div>
           </div>
         )}
       </div>

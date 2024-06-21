@@ -22,6 +22,8 @@ export const GetUserRole = (state) => state.app.role;
 
 export const GetUserDesignation = (state) => state.app.designation;
 
+export const GetCandidateTillDate = (state) => state.app.candidateTillDate;
+
 export const GetCandidateName = (state) => state.candidate.candidateName;
 
 export const GetPhoneNumber = (state) => state.candidate.phoneNumber;
@@ -41,4 +43,6 @@ export const GetProfileShortcutName = (state) => {
   const lastName = state.app.lastName || "";
   return firstName[0].toUpperCase() + lastName[0].toUpperCase() || "UU"; // TODO: IF NO NAME??
 };
+
+export const IsApiFetching = (state) => state.app.apiCounter > 0;
 
