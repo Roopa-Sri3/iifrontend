@@ -16,11 +16,6 @@
     margin-top: 0;
 }
 
-/* .innova-logo{
-    margin-left: 2em;
-} */
-
-
 .login-image-block{
     margin: auto;
     margin-left: 10%;
@@ -134,6 +129,26 @@ img{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+input[type="password"]::-ms-reveal {
+    display: none;
+}
+
+input[type="password"]::-ms-clear {
+    display: none;
+}
+
+.password-toggle-button{
+    position: relative;
+    right: 2.8em;
+    top: 0em;
+    z-index: 1;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
 }
 
 
