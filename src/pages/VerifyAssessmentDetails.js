@@ -14,7 +14,6 @@ function VerifyAssessmentDetails () {
   dispatch(VerifyCandidateStatus({
     candidateId,
     onSuccess: (res) => {
-      console.log(res);
       if(res.message === "The link has expired"){
         const HRMail = res.createdBy;
         dispatch(setHREmail(HRMail));

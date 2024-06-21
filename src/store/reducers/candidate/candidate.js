@@ -30,7 +30,6 @@ const candidateSlice = createSlice({
     },
     setHREmail : (state, action) => {
       state.createdBy = action.payload;
-      console.log(action);
     },
     setCandidateDetails: (state, action) => {
       const {
