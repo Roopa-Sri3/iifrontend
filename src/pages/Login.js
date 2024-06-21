@@ -15,6 +15,8 @@ import {
   setUserDetails,
   setToken
 } from "../store/reducers/app/app";
+import EyeShow from "../assets/svgs/EyeShow";
+import EyeHide from "../assets/svgs/EyeHide";
 
 function Login() {
   const dispatch = useDispatch();
@@ -24,6 +26,7 @@ function Login() {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -35,6 +38,10 @@ function Login() {
     setPassword(e.target.value);
     setPasswordError(false);
     setError(false);
+  };
+
+  const handleShowPassword = () => {
+    setShowPassword(!showPassword);
   };
 
   const verifyCredentials = (username, password) => {
@@ -141,13 +148,28 @@ function Login() {
               className="label-text"
             />
             <Input
-              type="password"
+              type={showPassword ? "text" : "password"}
               placeholder="Password"
               id="password"
               onChange={handlePasswordChange}
               autoComplete="off"
               className={passwordError ? "error" : "basic-input"}
             />
+            <button
+              type="button"
+              className="password-toggle-button"
+              onClick={handleShowPassword}
+            >
+              {password && (
+                <div>
+                  {showPassword ? (
+                    <EyeHide />
+                  ) : (
+                    <EyeShow />
+                  )}
+                </div>
+              )}
+            </button>
             {passwordError && <p className="error-message">{passwordError}</p>}
           </div>
           <Button
