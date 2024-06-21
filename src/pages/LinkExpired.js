@@ -59,11 +59,11 @@ function LinkExpired(){
           </div>
         </div>
         <div className="text">
-          <p className="para">
+          <p className="para1">
             You forgot to complete the exam within the due date.
             The link has been expired.
           </p>
-          <p className="para">
+          <p className="para2">
             For any queries reach out to <span className="hr-email">{HREmail}</span>
           </p>
         </div>
