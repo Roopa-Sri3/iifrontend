@@ -6,7 +6,7 @@ import MultiSelect from "../../core/multiselect/multiselect";
 import Checkbox from "../../core/checkbox/checkbox";
 import AddCandidateModalHeader from "./AddCandidateModalHeader";
 import AddCandidateModalActions from "./AddCandidateModalActions";
-import {closeModal, setAlert} from "../../../store/reducers/app/app";
+import {closeModal, setAlert, increaseCandidateTillDate } from "../../../store/reducers/app/app";
 import { AddCandidate, EditCandidate } from "../../../store/reducers/dashboard/dashboard.js";
 import { IsModalOpen, GetModalData } from "../../../store/selector/app/app";
 import { GetStoreSkills } from "../../../store/selector/dashboard/dashboard";
@@ -186,6 +186,7 @@ const AddCandidateModal = ({fetchCandidates}) => {
       }));
       resetForm();
       dispatch(closeModal());
+      dispatch(increaseCandidateTillDate());
       fetchCandidates();
     };
 
