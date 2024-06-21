@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "../components/core/button";
 import { GetAssessmentQuestions, setDuration, startExam } from "../store/reducers/screen/screen";
 import { GetCandidateName } from "../store/selector/candidate";
-import {VerifyCandidateStatus, setCandidateDetails, setCandidateId, GetTechnicalSkillsForCandidate} from "../store/reducers/candidate/candidate";
+import {VerifyCandidateStatus, setCandidateDetails, setCandidateId, GetTechnicalSkillsForCandidate, setHREmail} from "../store/reducers/candidate/candidate";
 import "./AssessmentInstructions.css";
 
 const AssessmentInstructions = () => {
@@ -48,6 +48,8 @@ const AssessmentInstructions = () => {
         candidateId: candidateId,
         onSuccess: (res) => {
           if(res.message === "The link has expired"){
+            const HRMail = res.createdBy;
+            dispatch(setHREmail(HRMail));
             navigate("/candidate/link-expired");
           }
           else{
