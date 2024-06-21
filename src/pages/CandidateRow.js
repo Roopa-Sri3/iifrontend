@@ -111,7 +111,12 @@ const CandidateRow = ({ candidate , fetchCandidates}) => {
       <td>
         <div className="cd-report">
           <div className="report-text">
-            {candidate.status === "Completed" ? candidate.fileUrl : "No report"}
+            {candidate.status === "Completed" ?
+              (
+                <span style={{ color: "#196AD6" }}>{candidate.fileUrl}</span>
+              ) : (
+                <span style={{ color: "#6F7683" }}>No report</span>
+              )}
           </div>
           <div
             role="button"

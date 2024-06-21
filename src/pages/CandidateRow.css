@@ -3,7 +3,7 @@
 }
 
 .comments-text {
-    color: #0b55bd;
+    color: #3D64BE;
     font-size: 14px;
     margin-right: 15px;
     cursor: pointer;
@@ -36,10 +36,12 @@
 
 .score-container{
   display:flex ;
+  color: #6F7683;
 }
 
 .result-container{
   display:flex ;
+  color: #6F7683;
 }
 
 .save-icon {
