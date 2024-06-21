@@ -28,6 +28,10 @@ const candidateSlice = createSlice({
     setIdProofStatus: (state, action) => {
       state.idProofStatus = action.payload;
     },
+    setHREmail : (state, action) => {
+      state.createdBy = action.payload;
+      console.log(action);
+    },
     setCandidateDetails: (state, action) => {
       const {
         candidateName,
@@ -63,6 +67,7 @@ const candidateSlice = createSlice({
 export const {
   setCandidateId,
   setIdProofStatus,
+  setHREmail,
   setCandidateDetails,
   setSkills,
 } = candidateSlice.actions;

@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import Loading from "./Loading";
-import { GetTechnicalSkillsForCandidate, VerifyCandidateStatus, setCandidateDetails, setCandidateId } from "../store/reducers/candidate/candidate";
+import { GetTechnicalSkillsForCandidate, VerifyCandidateStatus, setCandidateDetails, setCandidateId, setHREmail } from "../store/reducers/candidate/candidate";
 
 function VerifyAssessmentDetails () {
   const dispatch = useDispatch();
@@ -14,7 +14,10 @@ function VerifyAssessmentDetails () {
   dispatch(VerifyCandidateStatus({
     candidateId,
     onSuccess: (res) => {
+      console.log(res);
       if(res.message === "The link has expired"){
+        const HRMail = res.createdBy;
+        dispatch(setHREmail(HRMail));
         navigate("/candidate/link-expired");
       }
       else if(res.message === "Candidate already completed the Assessment"){

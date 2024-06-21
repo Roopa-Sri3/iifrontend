@@ -7,7 +7,8 @@ import {
   PostIdProofDetails,
   VerifyCandidateStatus,
   setCandidateDetails,
-  setCandidateId
+  setCandidateId,
+  setHREmail
 } from "../../../../src/store/reducers/candidate/candidate";
 import {
   GetCandidateEmail,
@@ -64,6 +65,8 @@ function CandidateProfileView() {
         candidateId: localStoreCandidateId,
         onSuccess: (res) => {
           if(res.message === "The link has expired"){
+            const HRMail = res.createdBy;
+            dispatch(setHREmail(HRMail));
             navigate("/candidate/link-expired");
           }
           else{

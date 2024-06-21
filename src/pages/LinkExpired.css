@@ -27,5 +27,16 @@
 
 .text{
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+}
+
+.hr-email{
+    color: cornflowerblue;
+}
+
+.para{
+    margin-top: 0;
+    margin-bottom: 0;
+    color: #837e7e;
+    align-self: center;
 }
