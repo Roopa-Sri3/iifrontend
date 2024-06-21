@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useLocation, useBlocker } from "react-router-dom";
 import Questionsnavigate from "../components/Questionsnavigate/Questionsnavigate";
@@ -88,7 +88,7 @@ function Assessmentscreen(){
     }
   }, [isTimeUp, navigate, dispatch]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const handleBeforeUnload = (event) => {
       event.preventDefault();
       event.returnValue = "";
