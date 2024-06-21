@@ -6,10 +6,11 @@ import Question from "../components/question";
 import ExamSubmitModal from "../components/modals/ExamSubmitModal";
 import TabSwitchWarningModal from "../components/modals/tabSwitchWarningModal/TabSwitchWarningModal";
 import { closeModal, openModal } from "../store/reducers/app/app";
-import { PostAssessmentAnswers, PostTabSwitchCount, clearWarningTimeoutId, endExam, setTimeUp } from "../store/reducers/screen/screen";
+import { PostAssessmentAnswers, PostTabSwitchCount, endExam, setTimeUp } from "../store/reducers/screen/screen";
 import { incrementTabSwitchCount } from "../store/reducers/screen/screen";
-import { GetIsTimeUp, GetTabSwitchCount, GetWarningLimit, getAssessmentId } from "../store/selector/screen/screen";
+import { GetIsTimeUp, GetTabSwitchCount, GetWarningLimit } from "../store/selector/screen/screen";
 import { GetCandidateId } from "../store/selector/candidate/candidate";
+import { IsModalOpen } from "../store/selector/app/app";
 
 function Assessmentscreen(){
   const navigate = useNavigate();
@@ -18,8 +19,9 @@ function Assessmentscreen(){
   const isTimeUp = useSelector(GetIsTimeUp);
   const warningLimit = useSelector(GetWarningLimit);
   const tabSwitchCount = useSelector(GetTabSwitchCount);
-  const assessmentId = useSelector(getAssessmentId);
+  const assessmentId = sessionStorage.getItem("assessmentId");
   const candidateId = useSelector(GetCandidateId);
+  const isWarningModalOpen = useSelector((state) => IsModalOpen(state, "TabSwitchWarningModal"));
 
   const blocker = useBlocker(
     (tx) =>{
@@ -50,8 +52,6 @@ function Assessmentscreen(){
           }));
 
         } else {
-          dispatch(clearWarningTimeoutId());
-          dispatch(closeModal());
           dispatch(PostAssessmentAnswers({
             data:{
               assessmentId : assessmentId,
@@ -70,6 +70,7 @@ function Assessmentscreen(){
               navigate("/candidate/feedback");
             }
           }));
+          dispatch(closeModal());
         }
       }
     };
@@ -79,7 +80,7 @@ function Assessmentscreen(){
     return () => {
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
-  }, [assessmentId, dispatch, navigate, tabSwitchCount, warningLimit, candidateId]);
+  }, [assessmentId, dispatch, navigate, tabSwitchCount, warningLimit, candidateId, isWarningModalOpen]);
 
   useEffect(() => {
     if (isTimeUp) {
