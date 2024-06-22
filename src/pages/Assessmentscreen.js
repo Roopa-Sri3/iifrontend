@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useLocation, useBlocker } from "react-router-dom";
 import Questionsnavigate from "../components/Questionsnavigate/Questionsnavigate";
@@ -22,6 +22,7 @@ function Assessmentscreen(){
   const assessmentId = sessionStorage.getItem("assessmentId");
   const candidateId = useSelector(GetCandidateId);
   const isWarningModalOpen = useSelector((state) => IsModalOpen(state, "TabSwitchWarningModal"));
+  const hasConfirmedLeaveRef = useRef(false);
 
   const blocker = useBlocker(
     (tx) =>{
@@ -89,35 +90,38 @@ function Assessmentscreen(){
     }
   }, [isTimeUp, navigate, dispatch]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const handleBeforeUnload = (event) => {
       event.preventDefault();
       event.returnValue = "";
     };
 
+    const handleConfirmLeave = () => {
+      if (!hasConfirmedLeaveRef.current) {
+        hasConfirmedLeaveRef.current = true;
+        dispatch(PostAssessmentAnswers({
+          data: {
+            assessmentId: assessmentId,
+            action: "User Closed Browser",
+          },
+          onSuccess: () => {
+            dispatch(endExam());
+            dispatch(setTimeUp());
+          },
+          onError: () => {
+          }
+        }));
+      }
+    };
+
     window.onbeforeunload = handleBeforeUnload;
-    window.addEventListener("unload", function() {
-      handleConfirmLeave();
-    });
+    window.addEventListener("unload", handleConfirmLeave);
+
     return () => {
       window.onbeforeunload = null;
+      window.removeEventListener("unload", handleConfirmLeave);
     };
-  },);
-
-  const handleConfirmLeave = () => {
-    dispatch(PostAssessmentAnswers({
-      data: {
-        assessmentId: assessmentId,
-        action: "User Closed Browser",
-      },
-      onSuccess: () => {
-        dispatch(endExam());
-        dispatch(setTimeUp());
-      },
-      onError: () => {
-      }
-    }));
-  };
+  }, [assessmentId, dispatch]);
 
   return(
     <div className="assess-sreen-layout">
