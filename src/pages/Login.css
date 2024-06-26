@@ -26,7 +26,7 @@
     margin-bottom: 3em;
 }
 
-img{
+.ppl-img{
     display: block;
 }
 
@@ -155,6 +155,73 @@ input[type="password"]::-ms-clear {
 @media screen and (max-width: 912px) {
     .login-container {
         width: 80%;
+    }
+}
+
+@media screen and (max-width: 1024px){
+    .login-container{
+        width: 40%;
+        margin-top: 40px;
+    }
+    .login-welcome-style{
+        margin-bottom: 15px;
+    }
+    .basic-button, .basic-input, .error{
+        width: 75%;
+        height: 1em;
+    }
+    .error-message{
+        margin-top: 2px;
+    }
+    .ppl-img{
+        width: 40%;
+    }
+    .page{
+        background-color: #ebeef3;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .login-container{
+        width: 45%;
+        margin-top: 25px;
+        padding: 1em;
+    }
+    .ppl-img{
+        margin-top: 60px;
+        width: 45%;
+    }
+    .signin-text{
+        margin-bottom: 20px;
+    }
+    .label-text{
+        margin-left: 10px;
+    }
+    .basic-button, .basic-input, .error{
+        width: 90%;
+        height: 1em;
+        margin-left: 10px;
+    }
+    .error-message{
+        margin-left: 10px;
+    }
+}
+
+@media screen and (max-height: 600px){
+    .login-container{
+        margin-top: 20px;
+        padding-bottom: 20px;
+        width: 40%;
+    }
+    .basic-button, .basic-input, .error{
+        width: 75%;
+        height: 1em;
+    }
+    .error-message{
+        margin-top: 2px;
+    }
+    .login-welcome-style{
+        margin-bottom: 15px;
     }
 }
 
