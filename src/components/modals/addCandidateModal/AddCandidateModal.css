@@ -74,3 +74,11 @@
 .experience-input-field span p{
   font-size: 12px;
 }
+
+@media screen and (max-height: 700px) {
+  .my-form {
+    max-height: 250px;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+  }
+}
