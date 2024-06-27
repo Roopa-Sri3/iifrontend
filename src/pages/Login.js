@@ -115,7 +115,7 @@ function Login() {
         <img src={background} alt="" className="background-image"></img>
         <div className="login-image-block">
           <img src={imagetext} alt="" className="image-text"></img>
-          <img src={image} alt=""></img>
+          <img src={image} alt="people-img" className="ppl-img"></img>
         </div>
         <form className="login-container" onSubmit={handleSubmit}>
           <p className="login-welcome-style">
