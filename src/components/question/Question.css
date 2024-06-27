@@ -82,3 +82,15 @@
     box-shadow: none;
     padding: 5px 15px;
 }
+
+@media (max-width: 768px){
+    .questions-container{
+        width: 135%;
+    }
+}
+
+@media (max-width: 1440px){
+    .questions-container{
+        padding-top: 20px;
+    }
+}
