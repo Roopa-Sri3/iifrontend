@@ -82,3 +82,23 @@
     box-shadow: none;
     padding: 5px 15px;
 }
+
+@media screen and (max-width: 768px){
+    .questions-container{
+        width: 135%;
+    }
+}
+
+
+@media screen and (max-width: 1024px){
+    .questions-container{
+        padding-top: 20px;
+    }
+}
+
+
+@media screen and (max-width: 1440px){
+    .questions-container{
+        padding-top: 20px;
+    }
+}
