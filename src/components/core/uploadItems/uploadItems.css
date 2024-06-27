@@ -78,15 +78,14 @@
   }
 }
 
-@media (max-width: 1024px) {
-  .file-document-layout{
-    margin: 2px 8px 2px 17px;
-  }
-
-}
-
 @media (max-width: 1440px) {
   .file-document-layout{
     margin: 2px 8px 2px 17px;
+  }
+}
+
+@media (max-width: 768px) {
+  .file-document-layout{
+    margin: 2px 8px 2px 5px;
   }
 }
