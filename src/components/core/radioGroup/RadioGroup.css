@@ -23,12 +23,12 @@
 }
 
 .radio-option-label{
+  display: flex;
   color:#2C2C2C;
   margin-left:8px;
-  height:35px;
   padding:5px 10px;
   border-radius: 5px;
-  min-width:292px;
+  min-width: 292px;
   border: 1px solid #D9E0E6;
 }
 
