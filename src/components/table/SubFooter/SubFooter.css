@@ -1,0 +1,38 @@
+
+.page-number-btn {
+    margin: 10px;
+    padding: 3px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 15px;
+    margin-top: 15px;
+    background-color: transparent;
+    color: #000;
+    border:none;
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+
+
+  
+
+.pagination-root {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+.page-button.active {
+  width: 30px;
+  height: 30px;
+  background-color: #cde8ff;
+  color: #0b55bd;
+  border-color: #cde8ff;
+}
+
+.current-page-entries {
+  margin-left: 60px;
+  align-self: center;
+  color: #787373;
+}

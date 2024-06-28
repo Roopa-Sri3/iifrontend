@@ -1,0 +1,130 @@
+.drop-box{
+  position: relative;
+  display: inline-block;
+}
+
+.drop-box-header {
+  cursor:pointer;
+  border-radius: 8px;
+  border: 1px solid #D0D5DD;
+  box-sizing:border-box;
+  padding: 10px 14px 10px 14px;
+  display:flex;
+  background: #FFFFFF;
+  justify-content: space-between;
+  align-items:center;
+  overflow-y:scroll;
+  height:44px;
+}
+
+.drop-box-header-disabled{
+  cursor: not-allowed;
+  opacity:0.5;
+}
+
+.drop-box-header-disabled:hover{
+  cursor: not-allowed;
+  opacity:0.5;
+}
+
+.drop-box-header-error{
+  border-color: red;
+}
+
+.drop-box-menu{
+  position: absolute;
+  z-index:10;
+  width:100%;
+  border:1px solid #D9E0E6;
+  max-height:200px;
+  border-top:0;
+  border-radius:5px;
+  background: #FDFDFD;
+  box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+.drop-box-menu input[type="text"]{
+  width:94%;
+  padding:8px;
+  border:1px solid #ccc;
+  box-sizing:border-box;
+  margin:5px 3px 3px 5px;
+  border-radius:5px;
+  height:30px;
+}
+
+.drop-box-menu .option-item-field-label{
+  color:#494949;
+  margin: 0px;
+  text-align: left;
+}
+
+.drop-box-menu input[type="checkbox"]:checked{
+  background: #A5BFF226;
+}
+
+.drop-box-menu input[type="checkbox"]:checked + .option-item-field-label{
+  color:#1967D2;
+}
+
+.options-menu{
+  border:1px solid #ccc;
+  overflow-y:scroll;
+  height:200px;
+  width:100%;
+  position:absolute;
+  background-color: #FDFDFD;
+}
+
+.option-item{
+  padding:8px 10px;
+  cursor:pointer;
+  margin:5px;
+  display:flex;
+  align-items: center;
+}
+
+.option-item-check-box{
+  margin-right: 8px;
+}
+
+.option-item:hover{
+  background: #A5BFF226;
+}
+
+.selected-options{
+  display:flex;
+  flex-wrap:wrap;
+}
+
+.selected-option {
+  display:inline-block;
+  margin:3px;
+  padding:2px 3px 2px 7px;
+  border-radius:5px;
+  background-color: #F1F7FF;
+  height:28px;
+  line-height: 24px;
+  size: 16px;
+}
+
+.selected-option + .option-item-field-label{
+  color: #667085;
+}
+
+.deselect-option{
+  margin-left: 5px;
+  cursor:pointer;
+}
+
+.search-section {
+  position: relative;
+  
+  .multiselect-search-icon{
+    position: absolute;
+    top: 7px;
+    right: 15px;
+  }
+}
+
+

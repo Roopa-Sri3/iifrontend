@@ -1,0 +1,9 @@
+import React from "react";
+
+const RightArrowIcon = (props) => (
+  <svg width="19" height="10" viewBox="0 0 19 10" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <path d="M14.5 9.5L13.075 8.1L15.175 6H0V4H15.175L13.1 1.9L14.525 0.5L19 5L14.5 9.5Z" fill="#C0C0C0"/>
+  </svg>
+);
+
+export default RightArrowIcon;

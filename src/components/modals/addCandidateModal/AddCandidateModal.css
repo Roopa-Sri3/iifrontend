@@ -1,0 +1,84 @@
+.add-candidate-field-label-mandatory::after {
+  content: "*";
+  color: #FF2828;
+}
+
+.form-input {
+  border: 1px solid #D0D5DD;
+  border-radius: 8px;
+  font-size: 16px;
+  height:44px;
+  padding-left: 10px;
+  width:100%
+}
+
+.validation-error {
+  color: #FF2828;
+  font-size: 12.25px;
+  line-height: 18.38px;
+  align-self: flex-start;
+  margin-top: 5px;
+  margin-bottom: 0px;
+}
+
+.add-candidate-field-error {
+  border-color: #FF2828;
+}
+
+.add-candidate-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.add-candidate-field-label-mandatory, .add-candidate-field-label{
+  margin-bottom:3px;
+  margin-left: 0;
+  color: #344054;
+  font-size: 14px;
+  line-height:20px;
+  align-self: flex-start;
+  text-align: left;
+}
+
+.my-form{
+  padding: 0px 20px;
+}
+
+.col-12{ 
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px; 
+}
+
+.experience-input-container{
+  display: flex;
+  gap:25px;
+  width:100%;
+  height: 44px;
+}
+
+.experience-input-field {
+  display: flex;
+}
+
+.experience-input-field span {
+  white-space: nowrap;
+  margin-left: 5px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #344054;
+}
+
+.experience-input-field span p{
+  font-size: 12px;
+}
+
+@media screen and (max-height: 725px) {
+  .my-form {
+    max-height: 250px;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+  }
+}

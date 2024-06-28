@@ -1,0 +1,91 @@
+.candidate-row{
+  border-bottom: 1px solid #D9E0E6;
+}
+
+.comments-text {
+    color: #3D64BE;
+    font-size: 14px;
+    margin-right: 15px;
+    cursor: pointer;
+  }
+
+  .edit-icon{
+    margin-right: 20px;
+    cursor: not-allowed;
+  }
+
+  .edit-icon.active{
+   cursor: pointer;
+  }
+
+.cd-report {
+  display: flex;
+  align-items: center;
+}
+
+.report-text{
+  width:150px;
+  overflow: hidden;
+  text-Overflow:ellipsis;
+}
+
+.feedback-container{
+  display:flex ;
+  font-weight: 500;
+}
+
+.score-container{
+  display:flex ;
+  color: #6F7683;
+}
+
+.result-container{
+  display:flex ;
+  color: #6F7683;
+}
+
+.save-icon {
+  color: grey;
+}
+
+.save-icon.clickable {
+  color: blue;
+}
+
+.status-completed {
+  color: #1AB900;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.comments-button{
+  display: inline-flex;
+}
+
+.visibility-icon{
+  cursor:'pointer';
+}
+
+.share-icon {
+  cursor: not-allowed;
+}
+
+.share-icon.active {
+  cursor: pointer;
+}
+
+.filter-icon{
+  cursor:pointer;
+}
+
+.exam-pass{
+  color:#1AB900;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.exam-fail{
+  color:#FF2828;
+  font-size: 14px;
+  font-weight: 600;
+}

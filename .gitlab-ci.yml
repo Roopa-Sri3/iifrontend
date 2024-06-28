@@ -1,0 +1,21 @@
+include:
+    project: capstone_2024/interview-insights/interview-insights-web
+    ref: devops
+    file:
+      - 'pipelines/sonarqube.gitlab-ci.yml' 
+      - 'pipelines/frontend-build-dev.gitlab-ci.yml'
+      - 'pipelines/frontend-deploy-dev.gitlab-ci.yml'
+      - 'pipelines/frontend-build-qa.gitlab-ci.yml'
+      - 'pipelines/frontend-deploy-qa.gitlab-ci.yml'
+      - 'pipelines/frontend-build-prod.gitlab-ci.yml'
+      - 'pipelines/frontend-deploy-prod.gitlab-ci.yml'
+
+stages:
+  - build
+  - test
+  - deploy
+
+
+
+
+    

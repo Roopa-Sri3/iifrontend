@@ -1,0 +1,122 @@
+.test-submit-container{
+    background-color: #EBEEF3;
+    min-height: 650px;
+    padding: 20px 100px;
+}
+.submit-msg{
+    padding-bottom: 10px;
+}
+#test-submit{
+    margin-top: 15px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19.36px;
+    color: #383838;
+}
+#test-description{
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 14.52px;
+    color: #6F7683;
+}
+.test-submit-feedback{
+    max-width: 750px;
+    min-height: 270px;
+    display: block;
+}
+#feedback-title{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19.36px;
+    text-align: left;
+    color: #2C2C2C;
+    margin-bottom: 10px;
+}
+.feedback-card{
+    display: flex;
+    flex-direction: column;
+    max-width: 750px;
+    min-height: 360px;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+    padding: 20px;
+}
+.feedback-sub-title{
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16.94px;
+    text-align: left;
+    color: #000000;
+}
+.required::after{
+    content: '*';
+    color: #FF0000;
+}
+.feedback-textarea{
+    border-radius: 5px;
+    border: 1px solid #D9E0E6;
+    resize: none;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+}
+.feedback-textarea:focus{
+    outline: none !important;
+    border: 1px solid #D9E0E6; 
+}
+#feedback-submit{
+    margin-left: auto;
+}
+.submit-btn{
+    box-shadow: none;
+}
+.test-submit-feedback-stars{
+    display: flex;
+    max-width: 52%;
+    margin-bottom: 30px;
+}
+
+.test-submit-star{
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.test-submit-star-with-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-width: 75px;
+}
+.test-submit-star-label {
+    margin-top: 10px;
+    align-items: center;
+    font-size: 12px;
+    color: #666;
+}
+.disable-submit{
+    background-color: #C0C0C0;
+    color: #FFFFFF;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+.comment-description{
+    margin-left: auto;
+    margin-top: 3px;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #6F7683;
+}
+.red-comment-description{
+    margin-left: auto;
+    margin-top: 3px;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #FF2828;
+}
+.limit-border{
+    border: 1px solid #FF2828 !important;
+}

@@ -1,0 +1,275 @@
+.outermost-container{
+  background-color: #EBEEF3;
+  height: 90vh;
+  width: 100%;
+  padding-bottom: 50px;
+}
+
+.Candidate-profile-page-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #EBEEF3;
+  overflow-y: auto;
+}
+
+.header-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #EBEEF3;
+  max-width: 100%;
+  margin-top: 7px;
+}
+
+.Candidate-box {
+  display: flex;
+  flex-direction: row;
+  align-items: left;
+}
+
+.candidate-container {
+  width: 69%;
+  bottom: 40px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #326D62 0%, #0E5291 51.6%, #0E034F 100%);
+  justify-content: space-between;
+  margin-top: 19px;
+}
+
+.icon-wrapper {
+  height: 100%;
+}
+
+.icon-container {
+  margin-top: 10px;
+  margin-left: 20px;
+}
+
+.icon-item {
+  margin: 10px 25px;
+  gap: 5px;
+  margin-bottom: 0;
+}
+
+.support-email {
+  color: #F9F9F9;
+  font-size: 12px;
+  display: block;
+}
+
+.profile-viewer.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #EBEEF3;
+  max-width: 100%;
+  padding-bottom: 50px;
+}
+
+.id-proof-title {
+  display: flex;
+  width: 70%;
+  font-weight: 700;
+  padding-top: 10px;
+}
+
+.id-proof.container {
+  background-color: #FFFFFF;
+  width: 60%;
+}
+
+.id-proof-text {
+  font-weight: 450;
+  margin: 12px 20px 1px;
+  padding: 0 28px;
+}
+
+.id-proof-text::after {
+  content: " *";
+  color: #FF2828;
+}
+
+.id-proof-super-container {
+  background-color: #FFFFFF;
+  width: 70%;
+  border-radius: 5px;
+}
+
+.button-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.next-page-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  width: 72%;
+}
+
+.next-page-button {
+  display: flex;
+  font-weight: 550;
+  margin-top: 10px;
+  border: none;
+  color: #C0C0C0;
+  background-color: #EBEEF3;
+}
+
+.arrow-container {
+  display: flex;
+  padding: 7px 8px;
+}
+
+.next-page-button.enabled {
+  color: #4595FF;
+}
+
+.next-page-button.enabled svg path {
+  fill: #4595FF;
+}
+
+.next-page-button[disabled] {
+  color: #C0C0C0;
+}
+
+.next-page-button svg path {
+  fill: #C0C0C0;
+}
+
+.button-layout {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 5px;
+  cursor: pointer;
+  padding: 12px 49px;
+}
+
+.upload-button {
+  background-color: #4595FF;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 5px 20px;
+}
+
+.upload-button[disabled] {
+  background-color: #C0C0C0;
+  color: #ffffff;
+}
+
+.candidate-name {
+  color: #F9F9F9;
+  font-size: 15px;
+  gap: 10px;
+}
+
+.skills-container {
+  display: flex;
+  font-size: 14px;
+  font-weight: 600;
+  align-items: flex-start;
+  flex-direction: column;
+  color: #F9F9F9;
+  margin-left: 20px;
+  padding-right: 150px;
+  padding-bottom: 2px;
+}
+
+.green-background {
+  background-color: #1AB900;
+}
+
+.blue-background {
+  background-color: #4595FF;
+}
+
+.skills {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.vertical-line {
+  display: flex;
+  padding-top: 60px;
+}
+
+.Skill-set-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.email-address-container {
+  align-items: right;
+  color: #F9F9F9;
+  font-size: 12px;
+  padding: 8px;
+  float: right;
+}
+
+.email-address-container p {
+  margin-bottom: 0;
+}
+
+.candidate-title {
+  color: #F9F9F9;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.email-detail-contact {
+  display: flex;
+  align-items: end;
+  margin-top: 28px;
+  padding-top: 49px;
+}
+
+.candidate-name {
+  color: #F9F9F9;
+  padding-left: 15px;
+  font-size: 14px;
+}
+
+.candidate-number {
+  color: #F9F9F9;
+  padding-left: 16px;
+  font-size: 14px;
+}
+
+.candidate-mail {
+  color: #F9F9F9;
+  padding-left: 15px;
+  font-size: 14px;
+}
+
+.candidate-experience {
+  color: #F9F9F9;
+  padding-left: 15px;
+  font-size: 14px;
+}
+
+.secondary-skills {
+  display: flex;
+  gap: 10px;
+}
+
+.skills-text {
+  margin-bottom: 10px;
+}
+
+@media (max-width: 1100px) {
+  .button-layout {
+    padding: 12px 4px;
+  }
+   
+  .id-proof-text {
+    margin: 12px 2px 1px;
+    padding: 0 3px;
+  }
+  
+}

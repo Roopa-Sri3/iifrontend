@@ -1,0 +1,145 @@
+.dashboard {
+  padding: 20px 30px;
+  background-color: #ebeef3;
+}
+
+.dashboard-filters-and-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  align-items: center;
+}
+
+input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th, td {
+    text-align: left;
+    border-bottom: 1px solid #D9E0E6;
+  }
+
+  td {
+    text-align: left;
+  }
+
+  .Pagination{
+    display: block;
+    align-items: center;
+  }
+
+  td {
+    padding: 10px;
+  }
+
+.filter{
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.candidate-row-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.blue-button {
+  background-color: #4595FF;
+  color: #ffffff; 
+  border: none;
+  padding: 20px 20px 30px 20px;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  height: 0px;
+  width: 150px;
+  display: inline-flex;
+}
+
+.blue-button:hover {
+  background-color: #0056b3;
+}
+
+.search-field {
+  display: flex;
+  align-items: center;
+  position: relative;
+  border-radius: 5px;
+  padding:5px;
+  cursor: pointer;
+  background-color: white;
+}
+
+.search-field input {
+  border:none;
+  width: 350px;
+}
+
+
+.search-text:focus{
+  outline: none;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.img-search{
+  position:absolute;
+  right:5;
+}
+
+.column-heading{
+  display: flex;
+  justify-content: space-between;
+}
+
+.candidate-insights{
+  font-weight: bold;
+  display: inline-flex;
+}
+
+.no-records-found{
+  text-align: center;
+  color: red;
+}
+
+.config-question{
+    position: absolute;
+    right: 0;
+    background-color: #0047AB;
+    border: none;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    margin: 4px 4px;
+    border-radius: 5px;
+}
+
+.anchor-tag{
+    color: aliceblue;
+    text-decoration: none;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: medium;
+}
+
+.addCandidateButton{
+  padding:0 10px 0 10px;
+}

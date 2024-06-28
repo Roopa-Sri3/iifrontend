@@ -1,0 +1,23 @@
+.already-completed-data{
+    background-color: #ebeef3;
+    height:91vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.oops-data{
+    color:red;
+    margin-top: 20px;
+    font-weight: 600;font-size: 24px;
+}
+
+.reason-data{
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width:40%;
+    color:#6f7683
+}

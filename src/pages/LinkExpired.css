@@ -1,0 +1,53 @@
+.link-expired-page{
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    background-color: #ebeef3;
+}
+
+.link-expired-card{
+    width: 50%;
+    height: 60%;
+    background-color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.text-image{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.text{
+    display: flex;
+    flex-direction: column;
+}
+
+.hr-email{
+    color: #4595ff;
+}
+
+.para1{
+    margin-top: 0;
+    margin-bottom: 0;
+    color: #837e7e;
+    align-self: center;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.para2{
+    margin-top: 0;
+    margin-bottom: 0;
+    color: #837e7e;
+    align-self: center;
+    font-weight: 600;
+    font-size: 12px;
+}

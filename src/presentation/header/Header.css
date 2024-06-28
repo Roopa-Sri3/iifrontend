@@ -1,0 +1,122 @@
+.header {
+  position: fixed;
+  top:0; 
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #0b38a1;
+  height: 60px;
+  width: 100%;
+  padding: 0px 10px;
+  z-index: 1500;
+
+  .logged-in-app-header{
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;
+  }
+}
+
+.round {
+  display: flex;
+  align-items: center;
+  border: none;
+  margin-left: auto;
+  padding-right: 11px;
+}
+
+.user-profile {
+  width: 56.76px;
+  height: 41.76px;
+  top: 9.12px;
+  left: 1294.03px;
+  padding: 6px 0px 0px 0px;
+  gap: 5px;
+}
+
+.interview-insights-title {
+  display: flex;
+  align-items: center;
+  color: white;
+  height: 40px;
+  border-radius: 6px;
+  margin-left: 29px;
+  box-shadow: 0 0 3px 1px rgba(255, 255, 255, 0.5);
+  padding: 0px 20px 0px 20px;
+  transform: translateY(10%);
+  font-size: 18px;
+  margin-right: auto;
+}
+
+.innova-logo {
+  width: 85px;
+  height: 40px;
+  margin-left:12px;  
+}
+
+.user-details {
+  display: flex;
+  height: 115px;
+  border-radius: 4px 0px 0px 0px;
+}
+.user-name {
+  align-self: flex-start; 
+  flex:1;
+}
+
+.user-role {
+  align-self: flex-start;
+  flex:1;
+  color: #929292;
+}
+
+.expand-div {
+  width: 230px; 
+  height: auto;
+  border: 2px solid Whitesmoke;
+  border-radius: 5px;
+  font-size: 25px;
+  position: absolute;
+  top:84%;
+  left:84%;
+  padding: 12px;
+  background-color:#F5F5F7;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  
+}
+
+.expand-div hr {
+  width: 100%;  
+  margin: 8px 0; 
+
+}
+
+.expand-icon {
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.logout-button{
+  display: flex;
+   align-items: center;
+   width: 100%;
+ }
+
+.logout-section{
+  display: flex;
+  width: auto;
+}
+.logout-section > h6 {
+  margin-top: 12px;
+  margin-left: 5px;
+}
+
+.round-button {
+  cursor: auto !important;
+}
+.header-timer{
+  margin-left: auto;
+  padding-right: 20px;
+}
