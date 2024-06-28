@@ -72,9 +72,9 @@ const Question = () => {
           <h4 className="number">Question {presentquestion + 1}/{totalQuestions}</h4>
           <div className="question">
             <h6 className="heading">Answer the Question</h6>
-            <div className="question-text">
+            <pre className="question-text">
               {currQuestion.question}
-            </div>
+            </pre>
             {!currQuestion.programmingQuestion &&
           <div className="sinlge-option">
             <RadioGroup

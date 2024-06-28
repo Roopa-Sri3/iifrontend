@@ -21,7 +21,7 @@ const UploadItems = ({ file, onDelete, errorMessage, uploadFailed }) => {
           </span>
         </div>
       </div>
-      <div className="delete-button">
+      <div className="delete-button-upload">
         <DeletefileIcon onClick={handleDeleteFile} />
       </div>
     </div>

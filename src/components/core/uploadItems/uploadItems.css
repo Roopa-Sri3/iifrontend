@@ -12,7 +12,7 @@
 
 .file-document-layout {
   display: flex;
-  margin: 2px 17px;
+  margin: 2px 12px 2px 17px;
   background-color: #ffffff;
   height: 45px;
   width: 87%;
@@ -51,10 +51,41 @@
   max-width: 100%;
 }
 
-.delete-button {
+.delete-button-upload {
   cursor: pointer;
   border: 1px solid #ebeef3;
   display: flex;
-  align-items: center;
-  
+  align-items: center; 
+}
+
+@media (max-width: 1100px) {
+  .complete-file-content-view {
+    margin-left: 5px;
+    width: 97%;
+  }
+
+  .file-document-layout {
+    width: 80%;
+  }
+
+  .file-information-layout {
+    max-width: 70%;
+  }
+
+  .delete-button-upload {
+    margin-left: auto;
+    margin-right: 14px;
+  }
+}
+
+@media (max-width: 1440px) {
+  .file-document-layout{
+    margin: 2px 8px 2px 17px;
+  }
+}
+
+@media (max-width: 768px) {
+  .file-document-layout{
+    margin: 2px 8px 2px 5px;
+  }
 }

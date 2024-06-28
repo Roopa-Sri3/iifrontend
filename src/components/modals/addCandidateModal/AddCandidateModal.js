@@ -82,10 +82,10 @@ const AddCandidateModal = ({fetchCandidates}) => {
 
   const validateForm = () => {
     let isValid = true;
-    if(fullName === ""){
+    if(fullName.trim() === ""){
       setFullNameError("Please enter Full name");
       isValid = false;
-    } else if ((fullName.length < 2) || (fullName.length > 50) || !/^[a-zA-Z]+(?: [a-zA-Z]+)*$/.test(fullName) || /\s{2,}/.test(fullName) || /\bnull\b/i.test(fullName)) {
+    } else if ((fullName.length < 2) || (fullName.length > 50) || !/^[a-zA-Z]+(?: [a-zA-Z]+)*$/.test(fullName.trim()) || /\s{2,}/.test(fullName.trim()) || /\bnull\b/i.test(fullName.trim())) {
       setFullNameError("Please enter valid name");
       isValid = false;
     }
@@ -164,7 +164,7 @@ const AddCandidateModal = ({fetchCandidates}) => {
     dispatch(closeModal());
   };
 
-  const capitalizedFullName = fullName.replace(/\b\w/g, function(char) {
+  const capitalizedFullName = fullName.trim().replace(/\b\w/g, function(char) {
     return char.toUpperCase();
   });
 
