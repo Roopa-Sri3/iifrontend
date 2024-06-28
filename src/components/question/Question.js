@@ -4,7 +4,6 @@ import Button from "../core/button";
 import RadioGroup from "../core/radioGroup/RadioGroup";
 import { handleSaveAndNext, handlePrevious, updateAnswers, PostAssessmentAnswers } from "../../store/reducers/screen/screen";
 import { selectCurrentQuestion, getQuestions, getAnswers, getAssessmentId } from "../../store/selector/screen";
-import Loading from "../../pages/Loading";
 import "./Question.css";
 
 const Question = () => {
@@ -114,9 +113,6 @@ const Question = () => {
           </div>
         </div>
       </div>)}
-      {!currQuestion &&
-      <Loading />
-      }
     </>
   );
 };

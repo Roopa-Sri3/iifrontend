@@ -2,7 +2,6 @@ import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { IsAssessmentscreenLoading, GetExamStatus, getAssessmentId } from "../../store/selector/screen";
-import Loading from "../../pages/Loading";
 
 const ProtectedAssessmentscreenRoute = () => {
   const examStatus = useSelector(GetExamStatus);
@@ -10,7 +9,7 @@ const ProtectedAssessmentscreenRoute = () => {
   const isAssessmentscreenLoading = useSelector(IsAssessmentscreenLoading);
 
   if (!isAssessmentscreenLoading) {
-    return <Loading />;
+    return <></>;
   }
 
   if (!assessment_id) {
