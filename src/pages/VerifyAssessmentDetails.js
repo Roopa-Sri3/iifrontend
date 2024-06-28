@@ -1,7 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import Loading from "./Loading";
 import { GetTechnicalSkillsForCandidate, VerifyCandidateStatus, setCandidateDetails, setCandidateId, setHREmail } from "../store/reducers/candidate/candidate";
 
 function VerifyAssessmentDetails () {
@@ -38,7 +37,7 @@ function VerifyAssessmentDetails () {
   }));
 
   return(
-    <Loading />
+    <></>
   );
 }
 
