@@ -1,7 +1,7 @@
 pipeline{
     agent any
     stages{
-        stage('Build'){
+        stage('Build-feature'){
             when{
                 branch "feature"
             }
@@ -10,7 +10,7 @@ pipeline{
                 sh 'npm run build'
             }
         }
-        stage('Deploy'){
+        stage('Deploy-feature'){
             when{
                 branch "feature"
             }
@@ -18,7 +18,7 @@ pipeline{
                 sh 'cp -r /var/lib/jenkins/workspace/demo/build /var/www/'
             }
         }
-        stage('Build'){
+        stage('Build-dev'){
             when{
                 branch "dev"
             }
@@ -27,7 +27,7 @@ pipeline{
                 sh 'npm run build'
             }
         }
-        stage('Deploy'){
+        stage('Deploy-dev'){
             when{
                 branch "dev"
             }
