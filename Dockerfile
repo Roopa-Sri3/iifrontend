@@ -1,12 +1,12 @@
-FROM node:20.14.0 as build
+#FROM node:20.14.0 as build
 # Set the working directory
-WORKDIR /home/app
+#WORKDIR /home/app
 # Copy the package.json and package-lock.json files
-COPY . ./
+#COPY . ./
 # Install dependencies
-RUN npm ci
+#RUN npm ci
 
-COPY . .
+#COPY . .
 
 RUN npm run build
 
