@@ -1,6 +1,6 @@
 FROM node:20.14.0 as build
 # Set the working directory
-WORKDIR /app
+WORKDIR /home/app
 # Copy the package.json and package-lock.json files
 COPY . ./
 # Install dependencies
